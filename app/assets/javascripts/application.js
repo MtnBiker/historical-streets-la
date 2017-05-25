@@ -10,6 +10,15 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+  // Is rail-ujs in conflict with jquery_ujs?
 //= require rails-ujs
+//= require jquery_ujs
+//= require jquery-ui
+//= require jquery
+//= require bootstrap-sprockets
+//= require leaflet
+//= require leaflet.draw
+// provides jqgrid jquery plugin from gem 'jqgrid-jquery-rails':
+//= require jqgrid-jquery-rails
 //= require turbolinks
 //= require_tree .
