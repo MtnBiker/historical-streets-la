@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+added some gems
+bundle
+
+https://stark-cove-20051.herokuapp.com/ | https://git.heroku.com/stark-cove-20051.git
+https://github.com/MtnBiker/historical-streets-la.git
+rake db:create 
