@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prevName: MyString
+  currentName: MyString
+  dateEarliest: MyString
+  dateLatest: MyString
+  where: MyString
+  extent: 
+  numBlocks: MyString
+  ref1: MyText
+  ref2: MyText
+  ref3: MyText
+  notes: MyText
+
+two:
+  prevName: MyString
+  currentName: MyString
+  dateEarliest: MyString
+  dateLatest: MyString
+  where: MyString
+  extent: 
+  numBlocks: MyString
+  ref1: MyText
+  ref2: MyText
+  ref3: MyText
+  notes: MyText

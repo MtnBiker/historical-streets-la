@@ -1,0 +1,79 @@
+<!-- _form.html.erb used by Street: Edit and New —  -->
+
+<%= form_with(model: street, local: true) do |form| %>
+  <% if street.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(street.errors.count, "error") %> prohibited this street from being saved:</h2>
+
+      <ul>
+      <% street.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<em>Make the first four fields a two by two grid and set width on references</em>
+<p>This is for a street name from Previous Name/Earliest Date to Current Name/Latest Date</p>
+  
+
+  <div class="field">
+    <%= form.label "Previous Name" %>
+    <%= form.text_field :prevName, id: :street_prevName %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Current Street Name" %>
+    <%= form.text_field :currentName, id: :street_currentName %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Earliest Confirmed Date for Current Name" %>
+    <%= form.text_field :dateEarliest, id: :street_dateEarliest %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Latest Confirmed Date for Current Name" %>
+    <%= form.text_field :dateLatest, id: :street_dateLatest %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Entry covers from cross street to cross street or similar" %>
+    <%= form.text_field :where, id: :street_where %>
+  </div>
+
+  <div class="field">
+    <%= form.label "To come: this will be a GIS description of the section of street" %>
+    <%= form.text_field :extent, id: :street_extent %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Approximate Number of Blocks this entry is about" %>
+    <%= form.text_field :numBlocks, id: :street_numBlocks %>
+  </div>
+<p>List each reference in a separate field.</p>
+  <div class="field">
+    <%= form.label "Reference 1" %>
+    <%= form.text_area :ref1, id: :street_ref1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Reference 2" %>
+    <%= form.text_area :ref2, id: :street_ref2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Reference 3" %>
+    <%= form.text_area :ref3, id: :street_ref3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :street_notes %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Create/Update Historical Street", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

@@ -10,6 +10,14 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ * Bootstrap is covered in custom.css.scss with an @
+
+ *= require jquery-ui
+ *= require leaflet
+ *= require leaflet.draw
+  provides jqgrid jquery plugin from gem 'jqgrid-jquery-rails':
+  = require jqgrid-jquery-rails
+
  *= require_tree .
  *= require_self
  */
