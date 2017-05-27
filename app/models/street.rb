@@ -1,2 +1,0 @@
-class Street < ApplicationRecord
-end
