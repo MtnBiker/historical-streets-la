@@ -2,6 +2,7 @@
 Rails 5.1 since supposed to have beter JS asset management, Ruby 2.4
 https://stark-cove-20051.herokuapp.com/ | https://git.heroku.com/stark-cove-20051.git
 https://github.com/MtnBiker/historical-streets-la.git
+
 Wiped out old rails app except folder and .gitignore
 Git 3- , may have forgotten to merge
 rails new la_hist_street [asked if wanted to overwrite .gitignore and I said no]
@@ -43,3 +44,7 @@ https://github.com/bootstrap-ruby/bootstrap-editable-rails Looks fairly straight
 Added Procfile from crores5 to satisfy Heroku
 
 heroku run rake db:migrate Did the database get sent?
+
+bundle exec gem install bundler failed to stop message: "Warning: the running version of Bundler (1.13.7) is older than the version that created the lockfile (1.15.0). We suggest you upgrade to the latest version of Bundler by running `gem install bundler`."
+
+jquery-3.2.1.min.js in application/javascript didn't stop error "Sprockets::FileNotFound: couldn't find file 'jquery' with type 'application/javascript'" with heroku push
