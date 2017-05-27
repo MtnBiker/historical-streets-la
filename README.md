@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Wiped out old rails app except folder and .gitignore
+Git 3- , may have forgotten to merge
+rails new la_hist_street [asked if wanted to overwrite .gitignore and I said no]
+Copied over stuff to Gemfile including bundler
+bundle
+bundle update
