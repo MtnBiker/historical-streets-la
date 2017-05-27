@@ -39,3 +39,4 @@ https://github.com/infinum/phrasing Lots of pieces but may do the job
 https://adityashedge.wordpress.com/2014/01/05/in-place-editable-table-with-jquery/, not clear to me how to implement. Apparently add the .js, But simple. Easiest to try
 
 https://github.com/bootstrap-ruby/bootstrap-editable-rails Looks fairly straightforward. I think it wraps http://vitalets.github.io/x-editable/index.html  into a Rails gem
+Added Procfile from crores5 to satisfy Heroku
