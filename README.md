@@ -14,7 +14,7 @@ rails db:create db:migrate
 added line to config/application.rb config.active_record.schema_format = :sql. should have done it before above
 rails g scaffold Street prevName:string currentName:string dateEarliest:string dateLatest:string where:string  extent:line_string numBlocks:string ref1:text ref2:text ref3:text notes:text --force since I am reusing some of this rails
 yarn add jquery
-yarn add bootstrap
+<!-- yarn add bootstrap -->
 yarn add bootstrap@4.0.0-alpha.6
 
 @bootstrap-sprockets is commented out. Should I add //= require bootstrap-sprockets to application.js to make it work?
@@ -48,3 +48,5 @@ heroku run rake db:migrate Did the database get sent?
 bundle exec gem install bundler failed to stop message: "Warning: the running version of Bundler (1.13.7) is older than the version that created the lockfile (1.15.0). We suggest you upgrade to the latest version of Bundler by running `gem install bundler`."
 
 jquery-3.2.1.min.js in application/javascript didn't stop error "Sprockets::FileNotFound: couldn't find file 'jquery' with type 'application/javascript'" with heroku push
+
+removed and added jquery and bootstrap alpha
