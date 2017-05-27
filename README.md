@@ -1,6 +1,7 @@
 # README
 Rails 5.1 since supposed to have beter JS asset management, Ruby 2.4
-
+https://stark-cove-20051.herokuapp.com/ | https://git.heroku.com/stark-cove-20051.git
+https://github.com/MtnBiker/historical-streets-la.git
 Wiped out old rails app except folder and .gitignore
 Git 3- , may have forgotten to merge
 rails new la_hist_street [asked if wanted to overwrite .gitignore and I said no]
@@ -39,3 +40,6 @@ https://github.com/infinum/phrasing Lots of pieces but may do the job
 https://adityashedge.wordpress.com/2014/01/05/in-place-editable-table-with-jquery/, not clear to me how to implement. Apparently add the .js, But simple. Easiest to try
 
 https://github.com/bootstrap-ruby/bootstrap-editable-rails Looks fairly straightforward. I think it wraps http://vitalets.github.io/x-editable/index.html  into a Rails gem
+Added Procfile from crores5 to satisfy Heroku
+
+heroku run rake db:migrate Did the database get sent?
