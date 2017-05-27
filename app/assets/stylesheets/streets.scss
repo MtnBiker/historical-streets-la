@@ -23,3 +23,48 @@
 }
 
  .ui-autocomplete { font-size: 11px; position: absolute; cursor: default;z-index:5000 !important;}      
+
+// From crores5. Left in unneeded ones to show the possiblities$gray-light
+.streets {
+ list-style: none;
+ margin: 0;
+ li, td, th {
+   overflow: auto;
+   padding: 2px 6px;
+//   border-bottom: 1px solid $gray-light; these styles not available although they are in crores5
+//   border-left: 1px solid $gray-lighter;
+   border-bottom: 1px solid teal; // since above not available
+   border-left: 1px solid #cacaca;
+
+   .asc {
+     background-image: url(/images/up_arrow.png);
+   }
+   .desc {
+     background-image: url(/images/down_arrow.png);
+   }
+ }
+ .given-name {
+   text-align: right;
+   padding-right: 2px;
+ }
+ .last-name {
+   text-align: left;
+   padding-left: 2px;
+ }
+
+ a:link,
+ a:visited {
+     color: black;
+ }
+
+ /* mouse over link */
+ a:hover {
+     color: lightblue;
+ }
+
+ /* selected link */
+ a:active {
+     color: hotpink;
+ }
+
+}
