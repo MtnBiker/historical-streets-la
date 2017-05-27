@@ -15,3 +15,6 @@ yarn add bootstrap
 yarn add bootstrap@4.0.0-alpha.6
 
 @bootstrap-sprockets is commented out. Should I add //= require bootstrap-sprockets to application.js to make it work?
+or gem 'sprockets-rails', :require => 'sprockets/railtie'
+
+To import csv, using right click on table streets to bring up import. Changed created_at and update_at to accept null. did not import index. Couldn't change back to null!!!

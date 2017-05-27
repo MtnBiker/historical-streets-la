@@ -11,3 +11,15 @@
 
 /* Leaflet*/
 #map { height: 600px; }
+
+//jqGrid
+
+/* set the size of the datepicker search control for Order Date*/
+#ui-datepicker-div { font-size:11px; }
+
+/* set the size of the autocomplete search control*/
+.ui-menu-item {
+    font-size: 11px;
+}
+
+ .ui-autocomplete { font-size: 11px; position: absolute; cursor: default;z-index:5000 !important;}      

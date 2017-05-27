@@ -1,8 +1,10 @@
-<h1>New Street</h1>
-
+<% provide(:title, 'New Street') %>
 <%= render 'form', street: @street %>
 
 <br/>
 <div class="btn btn-primary active">
-	<%= link_to 'To List of Streets', streets_path %>
+  <%= link_to 'To List of Streets', streets_path %>
 </div>
+<button type="button" class="btn btn-primary-outline" >
+  <%= link_to 'New Street Entry in a table', jqgrid_path %>
+</button>
