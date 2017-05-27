@@ -29,3 +29,13 @@ SET created_at = 'Sat, 27 May 2017 15:51:00 GMT';
 in pgAdmin changed definition of created_at and updated_at to 'not NULL ' 
 
 Index to Bootstrap 4. Use crores5 people as an example which is Bootstrap 3
+
+Looking at editing in place
+
+https://github.com/janv/rest_in_place. Simple gem ? Try this first in a git
+
+https://github.com/infinum/phrasing Lots of pieces but may do the job
+
+https://adityashedge.wordpress.com/2014/01/05/in-place-editable-table-with-jquery/, not clear to me how to implement. Apparently add the .js, But simple. Easiest to try
+
+https://github.com/bootstrap-ruby/bootstrap-editable-rails Looks fairly straightforward. I think it wraps http://vitalets.github.io/x-editable/index.html  into a Rails gem
