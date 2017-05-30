@@ -50,3 +50,9 @@ bundle exec gem install bundler failed to stop message: "Warning: the running ve
 jquery-3.2.1.min.js in application/javascript didn't stop error "Sprockets::FileNotFound: couldn't find file 'jquery' with type 'application/javascript'" with heroku push
 
 removed and added jquery and bootstrap alpha
+
+Tried different JS edit in table and none worked. See the git forks. Comments on the last one below
+
+Giving up on bootstrap-editable
+Maybe a versioning problem with jQuery and/or Bootstrap. Demos work OK, but I try different versions and still get errors. Usually of a different type.
+This one does appear to be well-supported, both in RoR and in general.

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'streets#index'
   resources :streets
-  get 'jqgrid'  => 'streets#jqgrid'
+  # get 'jqgrid'  => 'streets#jqgrid'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

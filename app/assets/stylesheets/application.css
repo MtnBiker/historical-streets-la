@@ -15,9 +15,6 @@
  *= require jquery-ui
  *= require leaflet
  *= require leaflet.draw
-  provides jqgrid jquery plugin from gem 'jqgrid-jquery-rails':
-  = require jqgrid-jquery-rails
-
  *= require_tree .
  *= require_self
  */

@@ -37,8 +37,8 @@ gem 'activerecord-postgis-adapter'
 gem 'leaflet-draw-rails'
 
 # jQuery
-gem 'jquery-ui-rails'
-gem 'jqgrid-jquery-rails', '~> 4.6.001'
+gem 'jquery-ui-rails' # Does this also bring in jQuery
+# gem 'jqgrid-jquery-rails', '~> 4.6.001' # an in place editing trial
 
 
 group :development, :test do
