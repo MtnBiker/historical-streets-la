@@ -22,6 +22,7 @@ r/tile/{z}/{y}/{x}',
     sanborn1894km1aURL = "//knobby.ws/crorestiles/sanborn1894km1a/{z}/{x}/{y}.png",
     sanborn1888km1aURL = "//knobby.ws/crorestiles/sanborn1888km1a/{z}/{x}/{y}.png",
     googleUrl = 'http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}'
+    bingUrl = "https://openlayers.org/en/v4.1.1/build/ol.js"
     
 // Attribution
     var osmAttrib = '&copy; ' + osmLink + ' Contributors',
@@ -38,6 +39,7 @@ r/tile/{z}/{y}/{x}',
   var mbMap       = L.tileLayer(mbUrl,        {attribution: mbAttrib}),
       osmMap      = L.tileLayer(osmUrl,       {attribution: osmAttrib}),
       esriMap     = L.tileLayer(esriUrl,      {attribution: esriAttrib}),
+      bing     = L.tileLayer(bingUrl),
       google      = L.tileLayer(googleUrl,      {attribution: 'Google'}),
       hillMap1928 = L.tileLayer(Hill1928url,  {attribution: mwAttrib}),
       baistDetail = L.tileLayer(baistDetailurl, {attribution: baistAttrib}),
@@ -49,11 +51,12 @@ r/tile/{z}/{y}/{x}',
       
     
     var baseLayers = {
-      "<span style='color: orange'>OSM Street</span>"        : osmMap,
+      // "<span style='color: orange'>OSM Street</span>"        : osmMap, // since is the tileLayer
       "<span style='color: blue'>1921 Baist detail</span>"  : baistDetail,
       "<span style='color: blue'>1921 Baist Key Map</span>" : baistKM,
       "<span style='color: green'>ESRI Satellite</span>"  : esriMap,
       "<span style='color: green'>Google Satellite</span>": google,
+      "<span style='color: green'>Bing</span>": bing,
       "1908 Wood"  : wood1908,
       "1928 Hill"  : hillMap1928,
       "1908 LA [?]": mbMap,
@@ -64,7 +67,7 @@ r/tile/{z}/{y}/{x}',
     
     var map = L.map('map').setView([34.05, -118.25], 13);
 
-    // adds the default map layer. Does this layer remain on when selecting one the layers from below?
+    // adds the default map layer. Does this layer remain on when selecting one the layers from below?. Seems as if the null below should take the place of this
     L.tileLayer(osmUrl).addTo(map);
     
     // Adds control to show other layers. Can't figure out how to get the options collapsed: false
