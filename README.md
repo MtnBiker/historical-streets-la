@@ -56,3 +56,5 @@ Tried different JS edit in table and none worked. See the git forks. Comments on
 Giving up on bootstrap-editable
 Maybe a versioning problem with jQuery and/or Bootstrap. Demos work OK, but I try different versions and still get errors. Usually of a different type.
 This one does appear to be well-supported, both in RoR and in general.
+
+leaflet-draw in place via gem which seems to be kept up to date
