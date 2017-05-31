@@ -62,41 +62,40 @@ r/tile/{z}/{y}/{x}',
       "1888 Sanborn" : sanborn1888km1a,
     };
     
-    osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib }),
-    myMap = L.map('map', { center: [34.05, -118.25], zoom: 13 }),
-    drawnItems = L.featureGroup().addTo(myMap);
-    // L.tileLayer('http://knobby.ws/crorestiles/bkm/{z}/{x}/{y}.png').addTo(myMap);
-    
-    L.control.layers( baseLayers, { 'drawlayer': drawnItems }, { position: 'topright', collapsed: false }).addTo(myMap);
-    
-    myMap.addControl(new L.Control.Draw({
-        edit: { featureGroup: drawnItems, poly: { allowIntersection: false } },
-        draw: { polygon: { allowIntersection: false, showArea: true } }
-    }));
-    
-    // Uncaught SyntaxError: missing ) after argument list
-    // myMap.on('draw:edited'; function (event) {
-    //         var layers = event.layers;
-    //         layers.eachLayer(function (layer) {
-    //             //do whatever you want; most likely save back to db
-    //         });
-    //     });
+    var map = L.map('map').setView([34.05, -118.25], 13);
 
-    // myMap.on(L.Draw.Event.CREATED; function (e) {
-   //     var type = e.layerType;
-   //         layer = e.layer;
-   //     if (type === 'marker') {
-   //         // Do marker specific actions
-   //     }
-   //     // Do whatever else you need to. (save to db; add to map etc)
-   //     myMap.addLayer(layer);
-   //  });
-    //   
-    // myMap.on(L.Draw.Event.CREATED, function (event) {
- //        var layer = event.layer;
- //
- //        drawnItems.addLayer(layer);
- //    });
+    // add an OpenStreetMap tile layer
+    L.tileLayer(osmUrl).addTo(map);
+    L.control.layers( baseLayers).addTo(map);
+
+    // Initialise the FeatureGroup to store editable layers
+    var drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+
+    // Initialise the draw control and pass it the FeatureGroup of editable layers
+    var drawControl = new L.Control.Draw({
+      position: 'topleft',
+      draw: {
+        marker: true
+      },
+      edit: {
+        featureGroup: drawnItems
+      }
+    });
+    map.addControl(drawControl);
+
+    map.on('draw:created', function(e) {
+      var type = e.layerType,
+        layer = e.layer;
+
+      if (type === 'marker') {
+        layer.bindPopup('A popup!');
+      }
+
+      drawnItems.addLayer(layer);
+    });
+
+    
  </script>
        
 </div>
