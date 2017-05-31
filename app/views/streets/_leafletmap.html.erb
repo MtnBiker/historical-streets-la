@@ -64,9 +64,11 @@ r/tile/{z}/{y}/{x}',
     
     var map = L.map('map').setView([34.05, -118.25], 13);
 
-    // add an OpenStreetMap tile layer
+    // adds the default map layer. Does this layer remain on when selecting one the layers from below?
     L.tileLayer(osmUrl).addTo(map);
-    L.control.layers( baseLayers).addTo(map);
+    
+    // Adds control to show other layers. Can't figure out how to get the options collapsed: false
+    L.control.layers( baseLayers, null, {collapsed:false} ).addTo(map);
 
     // Initialise the FeatureGroup to store editable layers
     var drawnItems = new L.FeatureGroup();
