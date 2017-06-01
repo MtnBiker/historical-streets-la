@@ -76,6 +76,15 @@ r/tile/{z}/{y}/{x}',
     // Initialise the FeatureGroup to store editable layers
     var drawnItems = new L.FeatureGroup();
     map.addLayer(drawnItems);
+    
+    testPolyLine = [[34.06, -118.26],[34.05, -118.25],[34.07, -118.24]];
+    L.polyline( testPolyLine ).addTo(map)
+    .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
+       .openPopup(testPolyLine[0]);
+    // L.polyline(<%= @street.extent %>).addTo(map)
+        // .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
+        //  .openPopup(testPolyLine[0]);
+
 
     // Initialise the draw control and pass it the FeatureGroup of editable layers
     var drawControl = new L.Control.Draw({
@@ -99,6 +108,8 @@ r/tile/{z}/{y}/{x}',
 
       drawnItems.addLayer(layer);
     });
+    
+    var extent = drawnItems.toGeoJSON();
 
     
  </script>
