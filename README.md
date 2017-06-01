@@ -53,8 +53,8 @@ removed and added jquery and bootstrap alpha
 
 Tried different JS edit in table and none worked. See the git forks. Comments on the last one below
 
-Giving up on bootstrap-editable
+Giving up on bootstrap-editable. Check git for all the ones I tried and couldn't make work.
 Maybe a versioning problem with jQuery and/or Bootstrap. Demos work OK, but I try different versions and still get errors. Usually of a different type.
 This one does appear to be well-supported, both in RoR and in general.
 
-leaflet-draw in place via gem which seems to be kept up to date
+leaflet-draw in place via gem which seems to be kept up to date. Drawing now working. Next get the result to Postgres

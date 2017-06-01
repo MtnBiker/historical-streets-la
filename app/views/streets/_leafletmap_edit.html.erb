@@ -77,10 +77,12 @@ r/tile/{z}/{y}/{x}',
     var drawnItems = new L.FeatureGroup();
     map.addLayer(drawnItems);
     
-    testPolyLine = [[34.06, -118.26],[34.05, -118.25],[34.07, -118.24]];
-    L.polyline( testPolyLine ).addTo(map)
-    .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateLatest %>")
-       .openPopup(testPolyLine[0]);
+    // testPolyLine = [[34.06, -118.26],[34.05, -118.25],[34.07, -118.24]];
+    // L.polyline( testPolyLine ).addTo(map)
+    // .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateLatest %>")
+    //  .openPopup(testPolyLine[0]);
+
+// A general case, the one above is a demo
     // L.polyline(<%= @street.extent %>).addTo(map)
         // .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
         //  .openPopup(testPolyLine[0]);
@@ -101,11 +103,9 @@ r/tile/{z}/{y}/{x}',
     map.on('draw:created', function(e) {
       var type = e.layerType,
         layer = e.layer;
-
       if (type === 'marker') {
         layer.bindPopup('A popup!');
       }
-
       drawnItems.addLayer(layer);
     });
     

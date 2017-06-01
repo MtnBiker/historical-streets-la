@@ -47,10 +47,10 @@
         <%= form.text_field :where, id: :street_where %>
       </div>
 
-      <!-- <div class="field">
+      <div class="field">
         <%= form.label "To come: this will be a GIS description of the section of street" %>
-        <%= form.text_field :extent, id: :street_extent, disabled: true %>
-      </div> -->
+        <%= form.text_field :extent, id: :street_extent %>
+      </div>
 
       <div class="field">
         <%= form.label "Approximate Number of Blocks this entry is about" %>
@@ -84,7 +84,7 @@
   </div>
   <div class="col-lg-8">
     <br/>
-    <%= render 'leafletmap' %>
+    <%= render 'leafletmap_edit' %>
   </div>
 </div>
 
