@@ -79,7 +79,7 @@ r/tile/{z}/{y}/{x}',
     
     testPolyLine = [[34.06, -118.26],[34.05, -118.25],[34.07, -118.24]];
     L.polyline( testPolyLine ).addTo(map)
-    .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
+    .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateLatest %>")
        .openPopup(testPolyLine[0]);
     // L.polyline(<%= @street.extent %>).addTo(map)
         // .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
