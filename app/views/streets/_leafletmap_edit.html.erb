@@ -1,4 +1,5 @@
 <div id="map">
+  <p>Use controls at right to select map. Then use the draw tool (upper right) to trace the portion of the street.</p>
 <script>
 // Links for attribution
   var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
@@ -73,15 +74,30 @@ r/tile/{z}/{y}/{x}',
     // Adds control to show other layers. Can't figure out how to get the options collapsed: false
     L.control.layers( baseLayers, null, {collapsed:false} ).addTo(map);
 
-//  Putting on the current Extent from extent_array
-    L.polyline(<%= @street.extent_array %>).addTo(map)
-        .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
-         // .openPopup("< = @street.extent_array.to_a[0] %>") // need to parse to get coordinate
-    ;
+//  Putting on the current Extent from extent_array // Turned off for testing
+    // L.polyline(<%= @street.extent_array %>).addTo(map)
+    //     .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
+    //      // .openPopup("< = @street.extent_array.to_a[0] %>") // need to parse to get coordinate
+    // ;
 
     // Initialise the FeatureGroup to store editable layers
     var drawnItems = new L.FeatureGroup();
     map.addLayer(drawnItems);
+    
+    // From https://stackoverflow.com/questions/31625126/editable-geojson-layer-on-map-with-leaflet-draw as a test
+    // No errors after adding gem 'rgeo-geojson', but doesn't display anything
+    // Doesn't change if make it extent_array, even if array present
+    // Hoping will lead to a way to write to streets.extent
+    L.geoJson(<%= RGeo::GeoJSON.encode(@street.extent).to_json.html_safe %>, {
+                  onEachFeature: function (feature, layer) {
+                      drawnItems.addLayer(layer);
+                  }
+              }).addTo(map);
+              
+              // OR look 
+              // geojson = $.parseJSON(data);
+              //         L.geoJson(geojson).addTo(map);
+              //       },
     
     // Initialise the draw control for only polyline and pass it the FeatureGroup of editable layers
     var drawControl = new L.Control.Draw({
@@ -105,12 +121,38 @@ r/tile/{z}/{y}/{x}',
       if (type === 'marker') {
         layer.bindPopup('A popup!');
       }
-      drawnItems.addLayer(layer);
-    });
+      // $("#TestField").value = "Testing writing to DOM";
+      // var testFieldValue = $("#TestField").value;  // undefined
+      // var testField = $("#TestField");
+      // console.log("Got to line 124. Gets here after complete drawing.");
+      // console.log(testFieldValue);
+      // console.log(testField);
+  drawnItems.addLayer(layer);
+  // $("#street_ref2").next().text("Testing writing to DOM in window.onload")  ; // This works writing to span. Removed span after test
+  // $("#street_ref2").value = "Testing writing to DOM in window.onload"; // Writing to the field. Doesn't work when the above does
+  $("#street_extent_array").val("Testing writing to DOM at completion of drawing");
+  $("#street_ref2").val("Testing writing to DOM at completion of drawing"); // val is the key
+  // $("street_extent_array").value = drawnItems.toGeoJSON(); // Didn't work here, but DOM may be wrong
+    var extent_array_new = drawnItems.toGeoJSON(); // No error, but how parse?
+    // $("#extent_array").val("Testing writing to DOM after draawing");
+});
+
     
-    var extent_array = drawnItems.toGeoJSON(); // No error, but how parse?
 
     // var extent = drawnItems.LatLngs(); // not a function
+    
+    // map.on('draw:drawstop'; function (e) {
+   //           var layers = e.layers;
+   //           layers.eachLayer(function (layer) {
+   //               //do whatever you want; most likely save back to db
+   //
+   //           });
+   //       });
+  
+    //  var street_ref2_Was = $("#street_ref2").value;
+    // console.log(street_ref2_Was);
+  // Not doing anything as is
+    
 
     
  </script>

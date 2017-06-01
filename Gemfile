@@ -34,6 +34,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'leaflet-rails'
 gem 'activerecord-postgis-adapter'
+gem 'rgeo-geojson'
 gem 'leaflet-draw-rails'
 
 # jQuery

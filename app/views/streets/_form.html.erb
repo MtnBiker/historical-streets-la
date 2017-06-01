@@ -1,4 +1,4 @@
-<!-- _form.html.erb used by Street: Edit and New —  -->
+<!-- _form.html.erb used by Street > Edit and New —  -->
 
 <%= form_with(model: street, local: true) do |form| %>
   <% if street.errors.any? %>
@@ -54,7 +54,7 @@
       
       <div class="field">
         <%= form.label "Extent as Line String" %>
-        <%= form.text_field :extent_array, id: :street_extent_array %>
+        <%= form.text_area :extent_array, id: :street_extent_array %>
       </div>
 
       <div class="field">
