@@ -73,26 +73,25 @@ r/tile/{z}/{y}/{x}',
     // Adds control to show other layers. Can't figure out how to get the options collapsed: false
     L.control.layers( baseLayers, null, {collapsed:false} ).addTo(map);
 
+//  Putting on the current Extent from extent_array
+    L.polyline(<%= @street.extent_array %>).addTo(map)
+        .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
+         // .openPopup("< = @street.extent_array.to_a[0] %>") // need to parse to get coordinate
+    ;
+
     // Initialise the FeatureGroup to store editable layers
     var drawnItems = new L.FeatureGroup();
     map.addLayer(drawnItems);
     
-    // testPolyLine = [[34.06, -118.26],[34.05, -118.25],[34.07, -118.24]];
-    // L.polyline( testPolyLine ).addTo(map)
-    // .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateLatest %>")
-    //  .openPopup(testPolyLine[0]);
-
-// A general case, the one above is a demo
-    // L.polyline(<%= @street.extent %>).addTo(map)
-        // .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
-        //  .openPopup(testPolyLine[0]);
-
-
-    // Initialise the draw control and pass it the FeatureGroup of editable layers
+    // Initialise the draw control for only polyline and pass it the FeatureGroup of editable layers
     var drawControl = new L.Control.Draw({
       position: 'topleft',
       draw: {
-        marker: true
+        polyline :  true,
+        marker:     false,
+        polygon :   false,
+        rectangle : false,
+        circle :    false
       },
       edit: {
         featureGroup: drawnItems
@@ -109,7 +108,7 @@ r/tile/{z}/{y}/{x}',
       drawnItems.addLayer(layer);
     });
     
-    var extent = drawnItems.toGeoJSON(); // No error, but how parse?
+    var extent_array = drawnItems.toGeoJSON(); // No error, but how parse?
 
     // var extent = drawnItems.LatLngs(); // not a function
 
