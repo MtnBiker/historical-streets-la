@@ -69,6 +69,6 @@ class StreetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def street_params
-      params.require(:street).permit(:prevName, :currentName, :dateEarliest, :dateLatest, :where, :extent, :numBlocks, :ref1, :ref2, :ref3, :notes)
+      params.require(:street).permit(:prevName, :currentName, :dateEarliest, :dateLatest, :where, :extent, :extent_array, :numBlocks, :ref1, :ref2, :ref3, :notes)
     end
 end

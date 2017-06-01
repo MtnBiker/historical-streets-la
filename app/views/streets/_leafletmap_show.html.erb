@@ -80,41 +80,10 @@ r/tile/{z}/{y}/{x}',
     //  .openPopup(testPolyLine[0]);
 
 // A general case, the one above is a demo
-    // L.polyline(<%= @street.extent %>).addTo(map)
-    //     .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
-    //      .openPopup(testPolyLine[0]);
-    
-
-    // BELOW ALL HAS TO DO WITH DRAWING AND DOESN'T BELONG IN SHOW
-    // NEED TO DRY THIS, BUT NOT SURE HOW WITHIN JS
-    // // Initialise the FeatureGroup to store editable layers
-    // var drawnItems = new L.FeatureGroup();
-    // map.addLayer(drawnItems);
-  
-
-    // Initialise the draw control and pass it the FeatureGroup of editable layers
-    // var drawControl = new L.Control.Draw({
-    //   position: 'topleft',
-    //   draw: {
-    //     marker: true
-    //   },
-    //   edit: {
-    //     featureGroup: drawnItems
-    //   }
-    // });
-    // map.addControl(drawControl);
-    //
-    // map.on('draw:created', function(e) {
-    //   var type = e.layerType,
-    //     layer = e.layer;
-    //   if (type === 'marker') {
-    //     layer.bindPopup('A popup!');
-    //   }
-    //   drawnItems.addLayer(layer);
-    // });
-    //
-    // var extent = drawnItems.toGeoJSON();
-
+    L.polyline(<%= @street.extent_array %>).addTo(map)
+        .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
+         // .openPopup("< = @street.extent_array.to_a[0] %>") // need to parse to get coordinate
+    ;
     
  </script>
        

@@ -49,7 +49,12 @@
 
       <div class="field">
         <%= form.label "To come: this will be a GIS description of the section of street" %>
-        <%= form.text_field :extent, id: :street_extent %>
+        <%= form.text_field :extent, id: :street_extent, disabled: true %>
+      </div>
+      
+      <div class="field">
+        <%= form.label "Extent as Line String" %>
+        <%= form.text_field :extent_array, id: :street_extent_array %>
       </div>
 
       <div class="field">
