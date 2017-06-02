@@ -70,19 +70,14 @@ r/tile/{z}/{y}/{x}',
     // adds the default map layer. Does this layer remain on when selecting one the layers from below?. Seems as if the null below should take the place of this
     L.tileLayer(osmUrl).addTo(map);
     
-    // Adds control to show other layers. Can't figure out how to get the options collapsed: false
+    // Adds control to show other layers. 
     L.control.layers( baseLayers, null, {collapsed:false} ).addTo(map);
     
-    // TRYING TO SHOW EXTENT, BUT NOT SAVING OR WORKING AT THE MOMENT
-    // testPolyLine = [[34.06, -118.26],[34.05, -118.25],[34.07, -118.24]];
-    // L.polyline( testPolyLine ).addTo(map)
-    // .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateLatest %>")
-    //  .openPopup(testPolyLine[0]);
-
+    console.log("<%= @street.extent_array %>");
 // A general case, the one above is a demo
     L.polyline(<%= @street.extent_array %>).addTo(map)
-        .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
-         // .openPopup("< = @street.extent_array.to_a[0] %>") // need to parse to get coordinate
+        .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateLatest %>")
+         // .openPopup("< = @street.extent_array.getCenter() %>") // need to parse to get coordinate getCenter works on latlng in Leaflet
     ;
     
  </script>

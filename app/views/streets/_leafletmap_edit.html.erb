@@ -127,14 +127,40 @@ r/tile/{z}/{y}/{x}',
       // console.log("Got to line 124. Gets here after complete drawing.");
       // console.log(testFieldValue);
       // console.log(testField);
-  drawnItems.addLayer(layer);
+        // from https://gis.stackexchange.com/questions/133379/how-to-export-to-all-points-within-leaflet-polygon
+              var points = layer._latlngs;
+              $("#street_ref2").val(points);  // LatLng(34.06631, -118.30513),LatLng(34.04228,...
+              // here you can get it in geojson format
+              var geojson = layer.toGeoJSON();  // is an object Object
+              var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc. 
+              console.log(latlngs);
+      // export the coordinates from the layer
+              coordinates = [];
+              latlngs = layer.getLatLngs();
+              for (var i = 0; i < latlngs.length; i++) {
+                  coordinates.push("[" + [latlngs[i].lat, latlngs[i].lng] + "]")
+              }
+              console.log("coordinates: " + coordinates);
+              // push the coordinates to the json geometry
+              // geojson['geometry']['coordinates'] = [coordinates];
+              //
+              // // Finally, show the poly as a geojson object in the console
+              // console.log(JSON.stringify(geojson));
+              $("#street_extent_array").val("[" + coordinates + "]");
+         // here you add it to a layer to display it in the map
+            drawnItems.addLayer(layer);
+  // var collection = drawnItems.toGeoJSON();
+  // console.log(collection);
   // $("#street_ref2").next().text("Testing writing to DOM in window.onload")  ; // This works writing to span. Removed span after test
   // $("#street_ref2").value = "Testing writing to DOM in window.onload"; // Writing to the field. Doesn't work when the above does
-  $("#street_extent_array").val("Testing writing to DOM at completion of drawing");
-  $("#street_ref2").val("Testing writing to DOM at completion of drawing"); // val is the key
+  // $("#street_extent_array").val("Testing writing to DOM at completion of drawing");
+  $("#street_ref2").val("[" + coordinates + "]"); // val is the key
   // $("street_extent_array").value = drawnItems.toGeoJSON(); // Didn't work here, but DOM may be wrong
-    var extent_array_new = drawnItems.toGeoJSON(); // No error, but how parse?
-    // $("#extent_array").val("Testing writing to DOM after draawing");
+    // var extent_array_new = drawnItems.toGeoJSON(); // No error, but how parse?
+    // console.log(extent_array_new);
+    // $("#street_ref2").val(extent_array_new);
+    
+    
 });
 
     
