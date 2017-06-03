@@ -1,2 +1,11 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<% provide(:title, "Home") %>
+
+<h1>Historical Street Names in Los Angeles</h1>
+<p>
+  This is the home page and information will be added explaining what's going on.
+  For now the action is here:
+  <div class="btn btn-primary active">
+    <%= link_to 'To List of Historical Streets', streets_path %>
+  </div>
+  
+</p>
