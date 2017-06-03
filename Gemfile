@@ -37,7 +37,8 @@ gem 'rgeo-geojson'
 gem 'leaflet-draw-rails'
 
 # jQuery
-gem 'jquery-rails' #without this jQuery runs fine except I can't upload to heroku
+gem 'jquery-rails' # without this jQuery runs fine except I can't upload to heroku
+gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error
 gem 'jquery-ui-rails' # Does this also bring in jQuery
 # gem 'jqgrid-jquery-rails', '~> 4.6.001' # an in place editing trial
 
