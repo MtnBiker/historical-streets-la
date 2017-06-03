@@ -58,3 +58,5 @@ Maybe a versioning problem with jQuery and/or Bootstrap. Demos work OK, but I tr
 This one does appear to be well-supported, both in RoR and in general.
 
 leaflet-draw in place via gem which seems to be kept up to date. Drawing now working. Next get the result to Postgres
+
+See git for progress. Drawing works and results to Postgres

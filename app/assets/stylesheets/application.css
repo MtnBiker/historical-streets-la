@@ -13,6 +13,7 @@
  * Bootstrap is covered in custom.css.scss with an @
 
  *= require jquery-ui
+ *= require tether
  *= require leaflet
  *= require leaflet.draw
  *= require_tree .
