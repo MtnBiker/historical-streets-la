@@ -5,9 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'bundler', '1.15'
+gem 'bundler', '1.15.1' # 1.13.7 may be the latest version heroku is supporting 2017.06.03
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
@@ -38,6 +37,7 @@ gem 'rgeo-geojson'
 gem 'leaflet-draw-rails'
 
 # jQuery
+gem 'jquery-rails' #without this jQuery runs fine except I can't upload to heroku
 gem 'jquery-ui-rails' # Does this also bring in jQuery
 # gem 'jqgrid-jquery-rails', '~> 4.6.001' # an in place editing trial
 
