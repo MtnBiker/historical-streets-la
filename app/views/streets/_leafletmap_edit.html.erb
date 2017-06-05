@@ -14,9 +14,9 @@
   var osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     esriUrl   = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServe\
 r/tile/{z}/{y}/{x}',
-    mbUrl = 'https://api.tiles.mapbox.com/v4/mtnbiker.d7jfhf8u.json?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg', 
+    mbUrl = 'https://api.tiles.mapbox.com/v4/mtnbiker.d7jfhf8u.json?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg',
     Hill1928url = 'http://mapwarper.net/maps/tile/2935/{z}/{x}/{y}.png',
-    baistDetailurl = '//knobby.ws/crorestiles/tiles/{z}/{x}/{y}.png', 
+    baistDetailurl = '//knobby.ws/crorestiles/tiles/{z}/{x}/{y}.png',
     baistKMurl = "//knobby.ws/crorestiles/bkm/{z}/{x}/{y}.png",
     street1902URL = "//knobby.ws/crorestiles/street1902/{z}/{x}/{y}.png",
     wood1902URL = "//knobby.ws/crorestiles/wood1908/{z}/{x}/{y}.png",
@@ -52,7 +52,7 @@ r/tile/{z}/{y}/{x}',
       
     
     var baseLayers = {
-      // "<span style='color: orange'>OSM Street</span>"        : osmMap, // since is the tileLayer
+      "<span style='color: orange'>OSM Street</span>"        : osmMap, // need here also so can select from control
       "<span style='color: blue'>1921 Baist detail</span>"  : baistDetail,
       "<span style='color: blue'>1921 Baist Key Map</span>" : baistKM,
       "<span style='color: green'>ESRI Satellite</span>"  : esriMap,
@@ -85,7 +85,6 @@ r/tile/{z}/{y}/{x}',
     map.addLayer(drawnItems);
     
     // From https://stackoverflow.com/questions/31625126/editable-geojson-layer-on-map-with-leaflet-draw as a test
-    // No errors after adding gem 'rgeo-geojson', but doesn't display anything
     // Doesn't change if make it extent_array, even if array present
     // Hoping will lead to a way to write to streets.extent
     L.geoJson(<%= RGeo::GeoJSON.encode(@street.extent).to_json.html_safe %>, {
@@ -121,12 +120,7 @@ r/tile/{z}/{y}/{x}',
       if (type === 'marker') {
         layer.bindPopup('A popup!');
       }
-      // $("#TestField").value = "Testing writing to DOM";
-      // var testFieldValue = $("#TestField").value;  // undefined
-      // var testField = $("#TestField");
-      // console.log("Got to line 124. Gets here after complete drawing.");
-      // console.log(testFieldValue);
-      // console.log(testField);
+
         // from https://gis.stackexchange.com/questions/133379/how-to-export-to-all-points-within-leaflet-polygon
               var points = layer._latlngs;
               $("#street_ref2").val(points);  // LatLng(34.06631, -118.30513),LatLng(34.04228,...
