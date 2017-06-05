@@ -1,84 +1,9 @@
 <div id="map">
-  <p>Use controls at right to select map. Then use the draw tool (upper right) to trace the portion of the street.</p>
 <script>
-// Links for attribution
-  var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
-      osmCopy = '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      mapboxCopy = '<a href="https://www.mapbox.com/map-feedback/">Mapbox</a>'
-      esriLink = '<a href="https://www.esri.com/">Esri</a>',
-      mbLink   = '<a href="https://mapbox.com/">OpenStreetMap</a>',
-      rumseyLink = '<a href="http://www.davidrumsey.com">The David Rumsey Map Collection</a>',
-      csunLink = ""
-
-// Map tile URLs
-  var osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    esriUrl   = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServe\
-r/tile/{z}/{y}/{x}',
-    mbUrl = 'https://api.tiles.mapbox.com/v4/mtnbiker.d7jfhf8u.json?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg',
-    Hill1928url = 'http://mapwarper.net/maps/tile/2935/{z}/{x}/{y}.png',
-    baistDetailurl = '//knobby.ws/crorestiles/tiles/{z}/{x}/{y}.png',
-    baistKMurl = "//knobby.ws/crorestiles/bkm/{z}/{x}/{y}.png",
-    street1902URL = "//knobby.ws/crorestiles/street1902/{z}/{x}/{y}.png",
-    wood1902URL = "//knobby.ws/crorestiles/wood1908/{z}/{x}/{y}.png",
-    sanborn1894km1aURL = "//knobby.ws/crorestiles/sanborn1894km1a/{z}/{x}/{y}.png",
-    sanborn1888km1aURL = "//knobby.ws/crorestiles/sanborn1888km1a/{z}/{x}/{y}.png",
-    googleUrl = 'http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}'
-    bingUrl = "https://openlayers.org/en/v4.1.1/build/ol.js"
-    
-// Attribution
-    var osmAttrib = '&copy; ' + osmLink + ' Contributors',
-    esriAttrib = 'i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP,\
- and the GIS User Community & '+ esriLink,
-    mbAttrib = '&copy; ' + mapboxCopy + '&copy;' + osmCopy,
-    mwAttrib ='https://thinkwhere.wordpress.com',
-    wood1908Attrib = rumseyLink,
-    baistAttrib = rumseyLink,
-    csun1894Attrib = csunLink,
-    csun1888Attrib = csunLink
-    
-// Putting together 
-  var mbMap       = L.tileLayer(mbUrl,        {attribution: mbAttrib}),
-      osmMap      = L.tileLayer(osmUrl,       {attribution: osmAttrib}),
-      esriMap     = L.tileLayer(esriUrl,      {attribution: esriAttrib}),
-      bing     = L.tileLayer(bingUrl),
-      google      = L.tileLayer(googleUrl,      {attribution: 'Google'}),
-      hillMap1928 = L.tileLayer(Hill1928url,  {attribution: mwAttrib}),
-      baistDetail = L.tileLayer(baistDetailurl, {attribution: baistAttrib}),
-      baistKM     = L.tileLayer(baistKMurl,   {attribution: baistAttrib}),
-      street1902  = L.tileLayer(street1902URL),
-      wood1908    = L.tileLayer(wood1902URL,  {attribution: wood1908Attrib}),
-      sanborn1894km1a = L.tileLayer(sanborn1894km1aURL,  {attribution: csun1894Attrib}),
-      sanborn1888km1a = L.tileLayer(sanborn1888km1aURL,  {attribution: csun1888Attrib})
-      
-    
-    var baseLayers = {
-      "<span style='color: orange'>OSM Street</span>"        : osmMap, // need here also so can select from control
-      "<span style='color: blue'>1921 Baist detail</span>"  : baistDetail,
-      "<span style='color: blue'>1921 Baist Key Map</span>" : baistKM,
-      "<span style='color: green'>ESRI Satellite</span>"  : esriMap,
-      "<span style='color: green'>Google Satellite</span>": google,
-      "<span style='color: green'>Bing</span>": bing,
-      "1908 Wood"  : wood1908,
-      "1928 Hill"  : hillMap1928,
-      "1908 LA [?]": mbMap,
-      "1902 Street Guide" : street1902,
-      "1894 Sanborn" : sanborn1894km1a,
-      "1888 Sanborn" : sanborn1888km1a,
-    };
-    
-    var map = L.map('map').setView([34.05, -118.25], 13);
-
-    // adds the default map layer. Does this layer remain on when selecting one the layers from below?. Seems as if the null below should take the place of this
-    L.tileLayer(osmUrl).addTo(map);
-    
-    // Adds control to show other layers. Can't figure out how to get the options collapsed: false
-    L.control.layers( baseLayers, null, {collapsed:false} ).addTo(map);
-
-//  Putting on the current Extent from extent_array // Turned off for testing
-    // L.polyline(<%= @street.extent_array %>).addTo(map)
-    //     .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateEarliest %>")
-    //      // .openPopup("< = @street.extent_array.to_a[0] %>") // need to parse to get coordinate
-    // ;
+<%= render 'map_initial.js' %>
+  
+  // Initial map draws the map and adds control to select basemaps.
+  // Now we add what's needed to draw the extent and save to database
 
     // Initialise the FeatureGroup to store editable layers
     var drawnItems = new L.FeatureGroup();
@@ -87,11 +12,12 @@ r/tile/{z}/{y}/{x}',
     // From https://stackoverflow.com/questions/31625126/editable-geojson-layer-on-map-with-leaflet-draw as a test
     // Doesn't change if make it extent_array, even if array present
     // Hoping will lead to a way to write to streets.extent
-    L.geoJson(<%= RGeo::GeoJSON.encode(@street.extent).to_json.html_safe %>, {
-                  onEachFeature: function (feature, layer) {
-                      drawnItems.addLayer(layer);
-                  }
-              }).addTo(map);
+    // I THINK THIS IS ALREADY IN map_initial
+    // L.geoJson(<%= RGeo::GeoJSON.encode(@street.extent).to_json.html_safe %>, {
+    //               onEachFeature: function (feature, layer) {
+    //                   drawnItems.addLayer(layer);
+    //               }
+    //           }).addTo(map);
               
               // OR look 
               // geojson = $.parseJSON(data);
@@ -114,6 +40,7 @@ r/tile/{z}/{y}/{x}',
     });
     map.addControl(drawControl);
 
+// What is this doing? Is it putting the line on, but what about the pop up?
     map.on('draw:created', function(e) {
       var type = e.layerType,
         layer = e.layer;
@@ -121,34 +48,36 @@ r/tile/{z}/{y}/{x}',
         layer.bindPopup('A popup!');
       }
 
-        // from https://gis.stackexchange.com/questions/133379/how-to-export-to-all-points-within-leaflet-polygon
-              var points = layer._latlngs;
-              $("#street_ref2").val(points);  // LatLng(34.06631, -118.30513),LatLng(34.04228,...
-              // here you can get it in geojson format
-              var geojson = layer.toGeoJSON();  // is an object Object
-              var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc. 
-              console.log(latlngs);
-      // export the coordinates from the layer
-              coordinates = [];
-              latlngs = layer.getLatLngs();
-              for (var i = 0; i < latlngs.length; i++) {
-                  coordinates.push("[" + [latlngs[i].lat, latlngs[i].lng] + "]")
-              }
-              console.log("coordinates: " + coordinates);
-              // push the coordinates to the json geometry
-              // geojson['geometry']['coordinates'] = [coordinates];
-              //
-              // // Finally, show the poly as a geojson object in the console
-              // console.log(JSON.stringify(geojson));
-              $("#street_extent_array").val("[" + coordinates + "]");
-         // here you add it to a layer to display it in the map
-            drawnItems.addLayer(layer);
+    // from https://gis.stackexchange.com/questions/133379/how-to-export-to-all-points-within-leaflet-polygon
+    var points = layer._latlngs; // No longer needed, but shows alt way to get lat lng, need to check type
+    console.log("type of layer._latlngs: " + typeof layer._latlngs); //object, what about string?
+    console.log("type of points = to above: " + typeof points); //object
+    // here you can get it in geojson format
+    var geojson = layer.toGeoJSON();  // is an object Object
+    console.log("type of layer.toJSON: " + typeof geojson); // object
+    var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc. 
+    console.log(latlngs);
+// export the coordinates from the layer
+    coordinates = [];
+    latlngs = layer.getLatLngs();
+    for (var i = 0; i < latlngs.length; i++) {
+        coordinates.push("[" + [latlngs[i].lat, latlngs[i].lng] + "]")
+    }
+    console.log("coordinates: " + coordinates);
+    // push the coordinates to the json geometry
+    // geojson['geometry']['coordinates'] = [coordinates];
+    //
+    // // Finally, show the poly as a geojson object in the console
+    // console.log(JSON.stringify(geojson));
+    $("#street_extent_array").val("[" + coordinates + "]");
+     // here you add it to a layer to display it in the map
+        drawnItems.addLayer(layer);
   // var collection = drawnItems.toGeoJSON();
   // console.log(collection);
   // $("#street_ref2").next().text("Testing writing to DOM in window.onload")  ; // This works writing to span. Removed span after test
   // $("#street_ref2").value = "Testing writing to DOM in window.onload"; // Writing to the field. Doesn't work when the above does
   // $("#street_extent_array").val("Testing writing to DOM at completion of drawing");
-  $("#street_ref2").val("[" + coordinates + "]"); // val is the key
+  // $("#street_ref2").val("[" + coordinates + "]"); // val is the key
   // $("street_extent_array").value = drawnItems.toGeoJSON(); // Didn't work here, but DOM may be wrong
     // var extent_array_new = drawnItems.toGeoJSON(); // No error, but how parse?
     // console.log(extent_array_new);

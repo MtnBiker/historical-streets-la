@@ -70,6 +70,9 @@ r/tile/{z}/{y}/{x}',
     console.log("typeof gon.streetExtentArray: " + typeof gon.streetExtentArray);
     var streetExtentArray = gon.streetExtentArray;
     console.log("typeof streetExtentArray: " + typeof streetExtentArray);
+    
+    // Contorsions to get the bounds if the streetExtentArray has data and coerce to the needed types
+    // May not be correctly leveraging gon. I'M GETTING erb NOT gon.
     if ( streetExtentArray == null ) {
       console.log("streetExtentArray is null");
     } else {
