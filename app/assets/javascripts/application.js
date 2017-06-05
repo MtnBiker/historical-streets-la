@@ -10,21 +10,15 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
   
-// Is rail-ujs in conflict with jquery_ujs?
+// Is rail-ujs in conflict with jquery_ujs? Doesn't seem to be
 //= require rails-ujs
 //= require jquery
 //= require tether
 //= require bootstrap-sprockets
 //= require jquery-ui
 //  require jquery_ujs
-//  Bootstrap-Editable-Rails shows to have both of these
-// Ah there are two js files in the gem, the original, and another rails one, only 34 lines all v1.5.1 at present. This was a trial, see 6-bootstrap-editable-rails
-// require bootstrap-editable
-// require bootstrap-editable-rails
 //= require leaflet
 //= require leaflet.draw
-// provides jqgrid jquery plugin from gem 'jqgrid-jquery-rails':
-//  require jqgrid-jquery-rails
   
 //= require turbolinks
 //= require_tree .
