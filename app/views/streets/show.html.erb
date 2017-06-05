@@ -1,74 +1,84 @@
 <p id="notice"><%= notice %></p>
+<% provide(:title, @street.currentName) %>
+<h2>Historical Street</h2>
 
   <div class="row">
-    <div class="col-lg-4">
-
+    <div class="col-4">
       <p>
-        <strong>Prevname:</strong>
+        <strong>Previous Street Name:</strong>
         <%= @street.prevName %>
       </p>
 
       <p>
-        <strong>Currentname:</strong>
+        <strong>'Current' Street Name:</strong>
         <%= @street.currentName %>
       </p>
 
       <p>
-        <strong>Dateearliest:</strong>
+        <strong>Earliest Date for 'Current' Name:</strong>
         <%= @street.dateEarliest %>
       </p>
 
       <p>
-        <strong>Datelatest:</strong>
+        <strong>Latest Date for 'Current' Name:</strong>
         <%= @street.dateLatest %>
       </p>
 
       <p>
-        <strong>Where:</strong>
+        <strong>Entry covers from cross street to cross street or similar:</strong>
         <%= @street.where %>
       </p>
 
       <p>
-        <strong>Extent:</strong>
+        <strong>FYI: Extent as Geometry:</strong>
         <%= @street.extent %>
       </p>
 
       <p>
-        <strong>Extent as Line String:</strong>
+        <strong>Extent as Coordinate Array:</strong>
         <%= @street.extent_array %>
       </p>
 
       <p>
-        <strong>Numblocks:</strong>
+        <strong>Approximate Number of Blocks:</strong>
         <%= @street.numBlocks %>
       </p>
 
       <p>
-        <strong>Ref1:</strong>
+        <strong>Reference 1:</strong>
         <%= @street.ref1 %>
       </p>
 
       <p>
-        <strong>Ref2:</strong>
+        <strong>Reference 2:</strong>
         <%= @street.ref2 %>
       </p>
 
       <p>
-        <strong>Ref3:</strong>
+        <strong>Reference 3:</strong>
         <%= @street.ref3 %>
       </p>
 
       <p>
         <strong>Notes:</strong>
         <%= @street.notes %>
-      </p>
-    </div>
+      </p>    
+    </div> <!-- end col-4 -->
 
-    <div class="col-lg-8">
+    <div class="col">
       <br/>
       <%= render 'leafletmap_show' %>
     </div>
   </div>
   
-<%= link_to 'Edit', edit_street_path(@street) %> |
-<%= link_to 'Back', streets_path %>
+<button type="button" class="btn btn-primary-outline" >
+  <%= link_to 'Edit', edit_street_path(@street) %>
+</button>
+
+<button type="button" class="btn btn-primary-outline" >
+  <%= link_to 'Back to Street List', streets_path %> 
+  </button>
+
+  <button type="button" class="btn btn-primary-outline" >
+  <%= link_to 'New Historical Street Entry', new_street_path %>
+</button>
