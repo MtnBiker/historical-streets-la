@@ -65,3 +65,5 @@ leaflet-draw in place via gem which seems to be kept up to date. Drawing now wor
 See git for progress. Drawing works and results to Postgres
 
 **Had to do a stash because messed up some merges or forgot to save.**
+
+Added Guard, but didn't explore. Seems to give odd results. Adding items with line is working. Not very native Postgres or anything. Is stored as text.

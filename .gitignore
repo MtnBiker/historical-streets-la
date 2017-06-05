@@ -107,7 +107,7 @@ bower.json
 .env
 .rubocop
 
-# Ignore Spring files. p133 Hartl. Not sure I'm using Spring
+# Ignore Spring files. p133 Hartl. Not sure I'm using Spring. And Listing 3.46 v5.1 2017.06.05
 /spring/*pid
 
 # A map of how map is created and other macOS app files stored here for convenience
