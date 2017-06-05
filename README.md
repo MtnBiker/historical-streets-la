@@ -4,7 +4,7 @@ https://stark-cove-20051.herokuapp.com/ | https://git.heroku.com/stark-cove-2005
 https://github.com/MtnBiker/historical-streets-la.git
 
 #### Moving database to Heroku—at some points Heroku will become the master
-See Evernote > PostreSQL databases at bottom
+See Evernote > PostreSQL databases at bottom. 
 
 Wiped out old rails app except folder and .gitignore
 Git 3- , may have forgotten to merge
@@ -64,4 +64,4 @@ leaflet-draw in place via gem which seems to be kept up to date. Drawing now wor
 
 See git for progress. Drawing works and results to Postgres
 
-Had to do a stash because messed up some merges or forgot to save.
+**Had to do a stash because messed up some merges or forgot to save.**

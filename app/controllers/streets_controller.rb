@@ -10,15 +10,18 @@ class StreetsController < ApplicationController
   # GET /streets/1
   # GET /streets/1.json
   def show
+    gon.streetExtentArray = @street.extent_array
   end
 
   # GET /streets/new
   def new
     @street = Street.new
+    gon.streetExtentArray = @street.extent_array
   end
 
   # GET /streets/1/edit
   def edit
+    gon.streetExtentArray = @street.extent_array
   end
 
   # POST /streets

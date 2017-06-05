@@ -4,7 +4,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-ruby '2.3.4' # Heroku wants this
+# ruby '2.3.4' # Heroku wants this. I have 2.4.0, but is Heroku only to 2.3.4
 gem 'bundler', '1.15.1' # 1.13.7 may be the latest version heroku is supporting 2017.06.03
 
 gem 'rails', '~> 5.1.1'
@@ -40,7 +40,7 @@ gem 'leaflet-draw-rails'
 gem 'jquery-rails' # without this jQuery runs fine except I can't upload to heroku
 gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. Still getting error, but no jquery error `yarn add tether` didn't help.Sprockets::FileNotFound: couldn't find file 'tether' with type 'application/javascript'.
 gem 'jquery-ui-rails' # Does this also bring in jQuery
-# gem 'jqgrid-jquery-rails', '~> 4.6.001' # an in place editing trial
+gem 'gon'
 
 
 group :development, :test do
