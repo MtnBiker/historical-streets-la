@@ -46,6 +46,7 @@
 *.sql
 *.sqlite
 *.dump
+db/dumps/ # git showed that this folder was being considered. The files would not have been uploaded because of the above. Not working
 
 # OS generated files #
 ######################
