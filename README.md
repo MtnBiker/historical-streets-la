@@ -37,6 +37,8 @@ Index to Bootstrap 4. Use crores5 people as an example which is Bootstrap 3
 
 Looking at editing in place
 
+https://github.com/rweng/jquery-datatables-rails Datatables looks good, but couldn't make it work
+
 https://github.com/janv/rest_in_place. Simple gem ? Try this first in a git
 
 https://github.com/infinum/phrasing Lots of pieces but may do the job

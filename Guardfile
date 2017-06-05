@@ -1,4 +1,4 @@
-# Defines the matching rules for Guard.
+# Defines the matching rules for Guard. From Hartl on line. See also book
 guard :minitest, spring: "bin/rails test", all_on_start: false do
   watch(%r{^test/(.*)/?(.*)_test\.rb$})
   watch('test/test_helper.rb') { 'test' }
