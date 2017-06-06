@@ -51,4 +51,5 @@ Rails.application.configure do
   # Gave error generating model, but Devise install asked for the second line. Searched for action_mailer in the app and found that I'd turned it off in railtie
   # config.action_mailer.default_url_options = { host: '127.0.0.1', port: 3000 }
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.delivery_method = :smtp # from Stackoverflow. Didn't help with running on localhost
 end
