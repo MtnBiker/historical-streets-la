@@ -10,4 +10,9 @@ module ApplicationHelper
     end
   end
   
+  # https://www.sitepoint.com/devise-authentication-in-depth/
+  def header(text)
+    content_for(:header) { text.to_s }
+  end
+  
 end

@@ -31,6 +31,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Mapping and GIS
 gem 'leaflet-rails'
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-geojson'
@@ -42,6 +43,11 @@ gem 'tether-rails' #  without this runs fine except I can't upload to heroku, er
 gem 'jquery-ui-rails' # Does this also bring in jQuery
 gem 'gon'
 
+# Devise following https://revs.runtime-revolution.com/working-with-facebook-using-devise-omniauth-koala-and-rails-5-cde5d032de02
+gem 'devise'
+gem 'omniauth-facebook'
+gem 'koala'
+gem 'jquery-turbolinks' # Dropdown menus in Devise
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,6 +55,7 @@ group :development, :test do
   gem 'pry-byebug' # binding.pry
   gem "better_errors"
   gem 'binding_of_caller'
+  gem 'dotenv-rails' # See p198 Clark. Right now I just have Mapbox credential. But I'm using it for AWS I think. https://rubygems.org/gems/dotenv-rails, https://github.com/bkeepers/dotenv
 
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
@@ -74,7 +81,6 @@ group :development do
   gem 'database_cleaner'
   gem 'rubocop', require: false # on command line `rubocop`
   # gem 'factory_girl_rails'
-  gem 'dotenv-rails' # See p198 Clark. Right now I just have Mapbox credential. But I'm using it for AWS I think.
   gem 'awesome_print' # Prefs in ~/.irbrc
   # http://undefined-reference.org/2016/01/31/super_awesome_print-as-debugger.html
   gem 'super_awesome_print' # Gilmore just uses awesome_print may be enough.

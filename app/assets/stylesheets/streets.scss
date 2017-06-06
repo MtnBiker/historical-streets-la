@@ -29,6 +29,7 @@
   li, td, th {
    overflow: auto;
    padding: 2px 6px;
+//   Tried substituting @ for $ to get to bootstrap-more study needed TODO
   //   border-bottom: 1px solid $gray-light; these styles not available although they are in crores5
   //   border-left: 1px solid $gray-lighter;
    border-bottom: 1px solid teal; // since above not available
@@ -77,7 +78,7 @@ button a:link{
 
 a:link,
 a:visited {
-   color: black;
+   color: blue;
 }
 
 /* mouse over link */
@@ -89,3 +90,13 @@ a:hover {
 a:active {
    color: hotpink;
 }
+
+// https://www.sitepoint.com/devise-authentication-in-depth/
+// Getting an error, so try again later TODO
+//.alert-alert {
+//  @extend .alert-warning;
+//}
+//
+//.alert-notice {
+//  @extend .alert-info;
+//}

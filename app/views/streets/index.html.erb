@@ -1,7 +1,21 @@
 <p id="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p> <!-- Asked for by Devise, but do I need both of these? Doubt it -->
 <!-- <%= full_title(yield(:title)) %> -->
 <% provide(:title, @street) %>
 <h1>Historical Street Name Changes in Los Angeles</h1>
+
+<!-- https://www.sitepoint.com/devise-authentication-in-depth/ -->
+<% content_for :top_content do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Welcome!</h1>
+      <p>Register to get started.</p>
+      <p>
+        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+      </p>
+    </div>
+  </div>
+<% end %>
 
 <button type="button" class="btn btn-primary-outline" >
   <%= link_to 'New Historical Street Entry', new_street_path %>
