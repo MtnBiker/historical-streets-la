@@ -7,6 +7,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'a780a6f30a8b6ccfaaeb4b85b3ef28af3a52a157fd2d2a208dca937b616df0b574abd11ac600895b5b8eb939db95186a42f452ef405506853a868cccaa719dfc'
+    config.secret_key = '2bbf79f673713bd5dde818e111c7be93e295854bad41e9d15fdcf56e589f05dbf1f7314b9eaa2dfdf6d5f7a24ba60d95a423395de42f259345cdaff68d7a7745' # per message in trying to upload to Heroku
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
