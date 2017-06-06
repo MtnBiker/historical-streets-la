@@ -10,11 +10,11 @@
   </head>
 
   <body>
-    <!-- For Devise: Was only a yield before -->
-    <nav class="navbar navbar-inverse">
+    <!-- For Devise: Was only a yield before  But not getting formatting. I use similar in crores, but this is also duplicating to some extent what is on the index page for registration-->
+    <nav class="navbar navbar-inverse"> <!-- Added navbar-fixed-top based on crores, but didn't give the styling. Something else is different TODO In crores this line is a header not nav, but changing it here didn't help. The navbar-header shows up if change from navbar-inverse to navbar-default -->
       <div class="container">
         <div class="navbar-header">
-          <%= link_to 'Devise Demo', root_path, class: 'navbar-brand' %>
+          <%= link_to 'Home Page', root_path, class: 'navbar-brand' %>
         </div>
         <div id="navbar">
           <ul class="nav navbar-nav">
@@ -34,11 +34,11 @@
               </li>
             <% else %>
               <li><%= link_to 'Log In', new_user_session_path %></li>
-              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to 'Sign Up if you want to make additions or changes', new_user_registration_path %></li>
             <% end %>
           </ul>
-        </div>
-      </div>
+        </div> <!-- end navbar -->
+      </div> <!-- end container -->
     </nav>
     <div class="container">
       <% flash.each do |key, value| %>
@@ -46,14 +46,14 @@
           <%= value %>
         </div>
       <% end %>
-    </div>
+    </div> <!-- end second container -->
 
     <%= yield :top_content %>
 
     <div class="container">
         <h1><%= yield :header %></h1>
       <%= yield %>
-    </div>
+    </div> <!-- end third container -->
     
   </body>
 </html>

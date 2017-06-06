@@ -48,7 +48,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
   # https://www.sitepoint.com/devise-authentication-in-depth/
-  # Gave error generating model, but Devise install asked for the second line
+  # Gave error generating model, but Devise install asked for the second line. Searched for action_mailer in the app and found that I'd turned it off in railtie
   # config.action_mailer.default_url_options = { host: '127.0.0.1', port: 3000 }
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
