@@ -54,6 +54,6 @@
         <h1><%= yield :header %></h1>
       <%= yield %>
     </div> <!-- end third container -->
-    
+    <%= debug(params) if Rails.env.development? %>  
   </body>
 </html>

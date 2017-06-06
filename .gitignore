@@ -46,7 +46,7 @@
 *.sql
 *.sqlite
 *.dump
-db/dumps/ # git showed that this folder was being considered. The files would not have been uploaded because of the above. Not working
+/db/dumps # git showed that this folder was being considered. The files would not have been uploaded because of the above. Not working if db/ in front and not working without it. Plain dumps doesn't work either
 
 # OS generated files #
 ######################
