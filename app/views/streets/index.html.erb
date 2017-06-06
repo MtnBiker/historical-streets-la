@@ -36,9 +36,9 @@
         <td><%= street.where %></td>
         <td><%= street.numBlocks %></td>
           <% if street.extent? || street.extent_array? %>
-            <td>Yes</td>
+            <td class="extent-yes">Yes</td>
           <% else %>
-            <td class='extend-no'>No</td>
+            <td class='extent-no'>No</td>
           <% end %>
         <td><%= street.ref1 %></td>
         <td><%= street.ref2 %></td>

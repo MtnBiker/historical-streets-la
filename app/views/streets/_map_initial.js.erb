@@ -6,13 +6,15 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
     mbLink   = '<a href="https://mapbox.com/">OpenStreetMap</a>',
     rumseyLink = '<a href="http://www.davidrumsey.com">The David Rumsey Map Collection</a>',
     csunLink = ""
+    bigBlogMapLink = 'http://www.bigmapblog.com'
 
 // Map tile URLs
   var osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     esriUrl   = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServe\
 r/tile/{z}/{y}/{x}',
     mbUrl = 'https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg', 
-    Hill1928url = 'http://mapwarper.net/maps/tile/2935/{z}/{x}/{y}.png',
+    // Hill1928url = 'http://mapwarper.net/maps/tile/2935/{z}/{x}/{y}.png',
+    Hill1928url = '//knobby.ws/crorestiles/1928Hills/{z}/{x}/{y}.png',
     baistDetailurl = '//knobby.ws/crorestiles/tiles/{z}/{x}/{y}.png', 
     baistKMurl = "//knobby.ws/crorestiles/bkm/{z}/{x}/{y}.png",
     street1902URL = "//knobby.ws/crorestiles/street1902/{z}/{x}/{y}.png",
@@ -32,6 +34,7 @@ r/tile/{z}/{y}/{x}',
     baistAttrib = rumseyLink,
     csun1894Attrib = csunLink,
     csun1888Attrib = csunLink
+    bigBlogMapAttrib = bigBlogMapLink
     
 // Putting together 
   var mbMap       = L.tileLayer(mbUrl,        {attribution: mbAttrib}),
@@ -39,7 +42,8 @@ r/tile/{z}/{y}/{x}',
       esriMap     = L.tileLayer(esriUrl,      {attribution: esriAttrib}),
       bing     = L.tileLayer(bingUrl),
       google      = L.tileLayer(googleUrl,      {attribution: 'Google'}),
-      hillMap1928 = L.tileLayer(Hill1928url,  {attribution: mwAttrib}),
+      // hillMap1928 = L.tileLayer(Hill1928url,  {attribution: mwAttrib}),
+      hillMap1928 = L.tileLayer(Hill1928url,  {attribution: bigBlogMapAttrib}),
       baistDetail = L.tileLayer(baistDetailurl, {attribution: baistAttrib}),
       baistKM     = L.tileLayer(baistKMurl,   {attribution: baistAttrib}),
       street1902  = L.tileLayer(street1902URL),
