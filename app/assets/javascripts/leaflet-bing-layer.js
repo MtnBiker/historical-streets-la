@@ -51,7 +51,7 @@ var VALID_IMAGERY_SETS = ['Aerial', 'AerialWithLabels', 'Road']
 L.TileLayer.Bing = L.TileLayer.extend({
   options: {
     bingMapsKey: null, // Required
-    imagerySet: 'Aerial',
+    imagerySet: 'Road', // I changed this from Aerial because options didn't work
     culture: 'en-US',
     minZoom: 1
   },

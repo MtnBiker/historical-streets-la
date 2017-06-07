@@ -42,7 +42,8 @@ r/tile/{z}/{y}/{x}',
   var mbMap       = L.tileLayer(mbUrl,        {attribution: mbAttrib}),
       osmMap      = L.tileLayer(osmUrl,       {attribution: osmAttrib}),
       esriMap     = L.tileLayer(esriUrl,      {attribution: esriAttrib}),
-      bing        = L.tileLayer(bingUrl),
+      // bing        = L.tileLayer(bingUrl),
+      bing = L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav'),
       google      = L.tileLayer(googleUrl,      {attribution: 'Google'}),
       // hillMap1928 = L.tileLayer(Hill1928url,  {attribution: mwAttrib}),
       hill1928 = L.tileLayer(Hill1928url,  {attribution: bigBlogMapAttrib}),
@@ -53,9 +54,9 @@ r/tile/{z}/{y}/{x}',
       sanborn1894km1a = L.tileLayer(sanborn1894km1aURL,  {attribution: csun1894Attrib}),
       sanborn1888km1a = L.tileLayer(sanborn1888km1aURL,  {attribution: csun1888Attrib})
       
-    
+    // baselayers are selectable in the control.layers set up at the bottom
     var baseLayers = {
-      "<span style='color: green'>Bing</span>"               : bing, // if Bing is added to map, then this works.
+      "<span style='color: green'>Bing</span>"               : bing, 
       "<span style='color: orange'>OSM Street</span>"        : osmMap, // need so can switch back to
       "<span style='color: blue'>1921 Baist detail</span>"   : baistDetail,
       "<span style='color: blue'>1921 Baist Key Map</span>"  : baistKM,
@@ -76,12 +77,12 @@ r/tile/{z}/{y}/{x}',
     var streetExtentArray = gon.streetExtentArray;
     console.log("typeof streetExtentArray: " + typeof streetExtentArray);
     
-    // Contorsions to get the bounds if the streetExtentArray has data and coerce to the needed types
+    // Contortions to get the bounds if the streetExtentArray has data and coerce to the needed types
     // May not be correctly leveraging gon. I'M GETTING erb NOT gon.
+    // TODO. Go back to gon, may be easier that what I've got ehre
     if ( streetExtentArray == null ) {
       console.log("streetExtentArray is null");
     } else {
-        
       console.log(streetExtentArray.length);
       // L.polyline(streetExtentArray).addTo(map)
       //     .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateLatest %>")
@@ -96,15 +97,14 @@ r/tile/{z}/{y}/{x}',
         L.polyline(<%= @street.extent_array %>).addTo(map)
             .bindPopup("&le;<%= @street.dateEarliest %><br><%= @street.currentName %><br>&ge;<%= @street.dateLatest %>")
              // .openPopup("< = @street.extent_array.getCenter() %>") // need to parse to get coordinate getCenter works on latlng in Leaflet, but not on simple array
-        ;
-        
+        ;       
       }
     };
 
-    // adds the default map layer. Does this layer remain on when selecting one the layers from below?. Seems as if the null below should take the place of this
-    L.tileLayer(osmUrl).addTo(map);
-
-    var bingLayer = L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) //
+    // adds the default map layer. Does this layer remain on when selecting one the layers from control.layer? I don't think so. But you have to select one button anyway 
+    // L.tileLayer(osmUrl).addTo(map); // can switch to this, but Bing is easier to read street names.
+  L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
 
     // Adds control to show other layers. Can't figure out how to get the options collapsed: false
     L.control.layers( baseLayers, null, {collapsed:false} ).addTo(map);
+    
