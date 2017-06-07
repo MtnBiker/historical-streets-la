@@ -23,6 +23,7 @@ yarn add bootstrap@4.0.0-alpha.6
 @bootstrap-sprockets is commented out. Should I add //= require bootstrap-sprockets to application.js to make it work?
 or gem 'sprockets-rails', :require => 'sprockets/railtie'
 
+
 To import csv, using right click on table streets to bring up import. Changed created_at and update_at to accept null. did not import index. Couldn't change back to null!!! Fixed below
 Ran these in pgAdmin (Got correct format using puts DateTime.now.httpdate and didn't sweat the GMT not being PDT -07:00; This format matched what I saw in crores5 database)
 UPDATE Streets
@@ -69,9 +70,19 @@ See git for progress. Drawing works and results to Postgres
 
 Added Guard, but didn't explore. Seems to give odd results. Adding items with line is working. Not very native Postgres or anything. Is stored as text.
 
-#### Devise
+#### Devise--this was abandoned and is in 'old' master.
 
 Adding Devise per https://www.sitepoint.com/devise-authentication-in-depth/ and https://revs.runtime-revolution.com/working-with-facebook-using-devise-omniauth-koala-and-rails-5-cde5d032de02. Hope they don't clash too much
 rails generate model User name token uid avatar (May cause problems two steps after this)
 rails generate devise:install
 rails generate devise User [Adds to existing user file if it exists, which in my case it does]
+
+#### Changing master to 9-formatting
+For me
+git checkout 9-formatting
+git merge --strategy=ours master  -m "Making 9-formatting the master"
+git checkout master
+git merge 9-formatting            # fast-forward master up to the merge
+
+Got message "Your branch is ahead of 'origin/master' by 5 commits.
+  (use "git push" to publish your local commits)" after git co master. And changes to this file 
