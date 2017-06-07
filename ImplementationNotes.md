@@ -2,7 +2,7 @@
 Rails 5.1 since supposed to have better JS asset management, Ruby 2.4
 https://stark-cove-20051.herokuapp.com/ | https://git.heroku.com/stark-cove-20051.git
 https://github.com/MtnBiker/historical-streets-la.git
-
+These notes can be incomplete because of things tried in branches that were abandoned. I forget to note those trials in here sometimes.
 #### Moving database to Heroku—at some points Heroku will become the master
 See Evernote > PostreSQL databases at bottom. 
 
@@ -86,3 +86,5 @@ git merge 9-formatting            # fast-forward master up to the merge
 
 Got message "Your branch is ahead of 'origin/master' by 5 commits.
   (use "git push" to publish your local commits)" after git co master. And changes to this file 
+  
+  Error if edit from streets. Probably in the ugly decision tree. Look at gon
