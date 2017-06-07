@@ -13,10 +13,8 @@
 // Is rail-ujs in conflict with jquery_ujs? Doesn't seem to be
 //= require rails-ujs
 //= require jquery
-//= require jquery.turbolinks
 //= require tether
 //= require bootstrap-sprockets
-//= require bootstrap/dropdown
 //= require jquery-ui
 //  require jquery_ujs
 //= require leaflet

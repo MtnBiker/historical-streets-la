@@ -1,11 +1,8 @@
 <p id="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p> <!-- Asked for by Devise, but do I need both of these? Doubt it -->
 <!-- <%= full_title(yield(:title)) %> -->
 <% provide(:title, @street) %>
 <h1>Historical Street Name Changes in Los Angeles</h1>
 
-
-</div><!-- Not sure what div it's closing but without this, the table below was cut off on the right. Was OK before Devise navbar added to application.html.erb-->
 <button type="button" class="btn btn-primary-outline" >
   <%= link_to 'New Historical Street Entry', new_street_path %>
 </button>

@@ -1,3 +1,6 @@
 Add search for street and return to map at center of the segment
 
 1928 Hill's needs more detailed georeferencing
+
+Add another page with all the segments mapped. Maybe can do a SQL to find all the segments and make a JSON or maybe it happens automagically. Need  popups. 
+And then have date slider.

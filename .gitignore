@@ -35,7 +35,7 @@
 *.tar
 *.zip
 
-# Logs and databases #
+# Logs and databases (see next section) #
 ######################
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -45,8 +45,10 @@
 *.log
 *.sql
 *.sqlite
+
+# Storing old copies of uploaded database, i.e., copies for uploading to Heroku
 *.dump
-/db/dumps # git showed that this folder was being considered. The files would not have been uploaded because of the above. Not working if db/ in front and not working without it. Plain dumps doesn't work either
+db/dumps/ # git showed that this folder was being considered. The files would not have been uploaded because of the above. Not working
 
 # OS generated files #
 ######################
@@ -99,9 +101,6 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
-
-# Storing old copies of uploaded database, i.e., copies for uploading to Heroku
-*.dump
 
 # dotenv-rails gem for storing environmental variable. Clark p198
 .env
