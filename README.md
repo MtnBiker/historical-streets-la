@@ -1,8 +1,15 @@
 # README
-About: see https://stark-cove-20051.herokuapp.com/about
-Beta deployment: https://stark-cove-20051.herokuapp.com/. Although as of 2017.06.05 not working. Concentrating on getting it working on localhost. One more essential feature to add then will focus on deployment
+About: see the About at [Croatian Run Restaurants in Los Angeles. 1880&ndash;1930](https://stark-cove-20051.herokuapp.com/about) which uses many of the same resources.
 
-Developed to support https://secure-shore-68966.herokuapp.com
-but also because I saw a general need and leveraged the work started by  <a href="http://stevemorse.org/census/changes/LosAngelesChanges2.htm">Los Angeles in the 1900s&mdash;Streets of a Hundred Years Ago</a>. Morse's site is a treasure trove of historical and geneological information. Almost all of the information is from this resource. I've added the ability to put that information on a map. 
+[Beta deployment](https://stark-cove-20051.herokuapp.com/). Although as of 2017.06.05 not working. One more item on the TODO list
 
-Planned after initial deployment is an overview map showing all the changed streets. Followed by a timeline. Etc. 
+Concentrating on getting it working on localhost. One more essential feature to add then will focus on deployment
+
+Developed to support [Croatian Run Restaurants in Los Angeles. 1880&ndash;1930](https://secure-shore-68966.herokuapp.com),
+but also because I saw a general need and leveraged the work published by Steve Morse: [Los Angeles in the 1900s&mdash;Streets of a Hundred Years Ago](http://stevemorse.org/census/changes/LosAngelesChanges2.htm)". [Morse's site](http://stevemorse.org/) is a treasure trove of historical and geneological information. Almost all of the information is from this resource. I've added the ability to put that information on a map and have started to do that for some of the 500 or so entries. After launching the site, anyone will be able to add or edit the entries. 
+
+### Bigger plans
+- Planned after initial deployment is an overview map showing all the changed streets. 
+
+- A slider to view those segments over time
+ 
