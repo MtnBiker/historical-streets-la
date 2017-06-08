@@ -10,3 +10,5 @@ And then have date slider.
  class="container" in application.html.erb messes up streets table, even though the div is closed
  
 Navbar list doesn't work right. Works OK in footer.
+
+Section 5.3.4 testing mostly not working
