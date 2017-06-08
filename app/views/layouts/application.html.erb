@@ -15,7 +15,7 @@
 
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container"> <!-- OK here, but not below -->
+      <div class=" class="container-fluid "> <!-- OK here, but not below -->
         <%= link_to "Historical Street Names in Los Angeles", root_path, id: "logo" %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
@@ -26,7 +26,7 @@
         </nav>
       </div>
     </header>
-    <div> <!-- class="container" has meaning to Bootstrap, but currently crops streets table -->
+    <div class="container-fluid"> <!-- class="container" has meaning to Bootstrap, but currently crops streets table, Container-fluid fixes that -->
       <%= yield %>
     </div>
   </body>
