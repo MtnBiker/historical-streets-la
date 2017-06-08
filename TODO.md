@@ -8,3 +8,5 @@ And then have date slider.
  Error if edit from streets. Probably in the ugly decision tree. Look at gon
  
  class="container" in application.html.erb messes up streets table, even though the div is closed
+ 
+ Remove bootstrap.scss since it's not getting the styles

@@ -1,6 +1,15 @@
 //@import "bootstrap-sprockets"; // Need to figure out if this is needed. Hartl uses it, but File to import not found or unreadable: bootstrap-sprockets
 @import "bootstrap";
 
+// Bootstrap not working right for these and they need to be more sophisticated
+.navbar-inverse,
+.navbar-inverse li a, 
+.navbar-inverse a:hover,
+.navbar-inverse a#logo {
+  color: white;
+  background-color: black;
+}
+
 /* universal from Hartl-5 Listing 5-7 except first six lines of body */
 
 body {
@@ -54,6 +63,23 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+/* header Hartl 5-9*/
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 // Other 
