@@ -9,4 +9,4 @@ And then have date slider.
  
  class="container" in application.html.erb messes up streets table, even though the div is closed
  
- Remove bootstrap.scss since it's not getting the styles
+Navbar list doesn't work right. Works OK in footer.

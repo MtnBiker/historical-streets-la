@@ -1,6 +1,15 @@
 //@import "bootstrap-sprockets"; // Need to figure out if this is needed. Hartl uses it, but File to import not found or unreadable: bootstrap-sprockets
 @import "bootstrap";
 
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+$gray-darker:  lighten(#000, 13.5%); // #222
+$gray-dark:    lighten(#000, 20%);   // #333
+$gray:         lighten(#000, 33.5%); // #555
+$gray-light:   lighten(#000, 46.7%); // #777
+$gray-lighter: lighten(#000, 93.5%); // #eee
+
 // Bootstrap not working right for these and they need to be more sophisticated
 .navbar-inverse,
 .navbar-inverse li a, 
@@ -57,7 +66,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #777;
+  color: $gray-light;
 }
 
 p {
@@ -65,7 +74,7 @@ p {
   line-height: 1.7em;
 }
 
-/* header Hartl 5-9*/
+/* header Hartl 5-9 SCSS*/
 #logo {
   float: left;
   margin-right: 10px;
@@ -75,11 +84,36 @@ p {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
 }
 
-#logo:hover {
-  color: #fff;
-  text-decoration: none;
+/* footer SCSS */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-medium-light;
+  color: $gray-light;
+  a {
+    color: #555;
+    &:hover {
+      color: $gray-darker;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
 }
 
 // Other 

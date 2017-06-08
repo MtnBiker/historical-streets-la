@@ -7,27 +7,14 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--[if lt IE 9]>
-         <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
-         </script>
-       <![endif]-->
+    <%= render 'layouts/shim' %>
   </head>
 
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class=" class="container-fluid "> <!-- OK here, but not below -->
-        <%= link_to "Historical Street Names in Los Angeles", root_path, id: "logo" %>
-        <nav>
-          <ul class="nav navbar-nav navbar-right navbar-inverse">
-            <li><%= link_to "Home",  root_path %></li>
-            <li><%= link_to "About",  about_url %></li>
-            <li><%= link_to "Log in", '#' %></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <%= render 'layouts/header' %>
     <div class="container-fluid"> <!-- class="container" has meaning to Bootstrap, but currently crops streets table, Container-fluid fixes that -->
       <%= yield %>
     </div>
+    <%= render 'layouts/footer' %> <!-- No content yet -->
   </body>
 </html>
