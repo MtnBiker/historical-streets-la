@@ -1,13 +1,10 @@
 <% provide(:title, "Home") %>
-<div class="center jumbotron">
+<div class="jumbotron">
   <!-- <h1>Historical Street Names in Los Angeles</h1> -->
   <p>
     This is the home page and information will be added explaining what's going on.
 </p>
 <p>
-    If you want to make additions or changes <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>, otherwise just proceed to 
-      <div class="btn btn-primary active">
-      <%= link_to 'To List of Historical Streets', streets_path %>
-    </div>
-
+    If you want to make additions or changes <%= link_to "Sign up", signup_path, class: "btn btn-primary" %>, otherwise just proceed to 
+      <%= link_to 'to the list of Historical Streets', streets_path, class: "btn btn-primary" %>.
   </p>

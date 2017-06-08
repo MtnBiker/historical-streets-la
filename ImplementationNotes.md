@@ -102,3 +102,4 @@ Listing 5.6 bootstrap-sprockets results in page loading error
 5.7 CSS to scaffolds, changed to custom.scss. Not getting black band in nav menu. Missing in Bootstrap 4. Fixed in custom scss, although needs refinement
 5.8 5.9 CSS for basic and Heading
 thru 5-17. Partials for header and footer
+rails generate controller Users new. Finished Chapter 5.
