@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   
-  get 'users/new'
   get 'signup' => 'users#new'
   root 'static_pages#home'
   resources :streets
+  resources :users
 
   get  '/home',   to: 'static_pages#home'
   get  '/contact',   to: 'static_pages#contact'

@@ -16,5 +16,6 @@
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %> <!-- No content yet -->
+    <%= debug(params) if Rails.env.development? %> <!-- Hartl 7.1.1 -->
   </body>
 </html>
