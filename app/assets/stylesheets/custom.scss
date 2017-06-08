@@ -1,6 +1,8 @@
 //@import "bootstrap-sprockets"; // Need to figure out if this is needed. Hartl uses it, but File to import not found or unreadable: bootstrap-sprockets
 @import "bootstrap";
 
+/* universal from Hartl-5 Listing 5-7 except first six lines of body */
+
 body {
   background-color: #fff;
   color: #333;
@@ -11,6 +13,50 @@ body {
   padding-top: 60px;
 }
 
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+/* typography Hartl*/
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+// Other 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;

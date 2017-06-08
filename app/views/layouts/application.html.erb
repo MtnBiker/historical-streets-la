@@ -15,8 +15,8 @@
 
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <%= link_to "sample app", '#', id: "logo" %>
+      <div class="container"> <!-- OK here, but not below -->
+        <%= link_to "Historical Street Names in Los Angeles", root_path, id: "logo" %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home",  '#' %></li>
@@ -26,7 +26,7 @@
         </nav>
       </div>
     </header>
-    <div class="container"> <!-- has meaning to Bootstrap -->
+    <div> <!-- class="container" has meaning to Bootstrap, but currently crops streets table -->
       <%= yield %>
     </div>
   </body>

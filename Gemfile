@@ -13,12 +13,13 @@ gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+# gem 'sass-rails', '~> 5.0' # I have a note that may not need with Bootstrap 4
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'bootstrap', '~> 4.0.0.alpha6' # Don't think -sass is needed with 4.
+# gem 'bootstrap-sass', '3.3.7' # Hartl 5 2017.06.07 No problem as first go. One Stackoverflower said not to have this with gem 'bootstrap', but I want v4
 # Use CoffeeScript for .coffee assets and views
 # gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -37,32 +38,10 @@ gem 'rgeo-geojson'
 gem 'leaflet-draw-rails'
 
 # jQuery
-gem 'jquery-rails' # without this jQuery runs fine except I can't upload to heroku
+gem 'jquery-rails' # without this jQuery runs fine except I can't upload to heroku. This needed by Bootstrap 4
 gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. Still getting error, but no jquery error `yarn add tether` didn't help.Sprockets::FileNotFound: couldn't find file 'tether' with type 'application/javascript'.
 gem 'jquery-ui-rails' # Does this also bring in jQuery
 gem 'gon'
-
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry-byebug' # binding.pry
-  gem "better_errors"
-  gem 'binding_of_caller'
-
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
-end
-
-group :test do
-  gem 'minitest-reporters', '1.1.9'
-  gem 'guard',              '2.13.0' # Rails 5 Hartl
-  gem 'guard-minitest',     '2.4.4' # '2.4.4' Rails 5 Hartl
-  gem 'rails-controller-testing', '0.1.1' # with Rails 5 Hartl
-  # Creates /coverage/index.html which details MiniTest coverage
-  gem 'simplecov', :require => false
-end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -83,6 +62,27 @@ group :development do
   # To see an updated list of tasks and descriptions: rake heroku_db_restore -T heroku_db_restore
   gem 'heroku_db_restore'
 
+end
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-byebug' # binding.pry
+  gem "better_errors"
+  gem 'binding_of_caller'
+
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '~> 2.13'
+  gem 'selenium-webdriver'
+end
+
+group :test do
+  gem 'minitest-reporters', '1.1.9'
+  gem 'guard',              '2.13.0' # Rails 5 Hartl
+  gem 'guard-minitest',     '2.4.4' # '2.4.4' Rails 5 Hartl
+  gem 'rails-controller-testing', '0.1.1' # with Rails 5 Hartl
+  # Creates /coverage/index.html which details MiniTest coverage
+  gem 'simplecov', :require => false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
