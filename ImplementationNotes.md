@@ -105,3 +105,4 @@ thru 5-17. Partials for header and footer
 rails generate controller Users new. Finished Chapter 5.
 Updated gems to Hartl https://github.com/mhartl/rails_tutorial_4th_edition_gemfiles/blob/master/sample_app/Gemfile
 rails generate migration add_index_to_users_email and validations
+rails generate migration add_password_digest_to_users password_digest:string
