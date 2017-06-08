@@ -106,3 +106,4 @@ rails generate controller Users new. Finished Chapter 5.
 Updated gems to Hartl https://github.com/mhartl/rails_tutorial_4th_edition_gemfiles/blob/master/sample_app/Gemfile
 rails generate migration add_index_to_users_email and validations
 rails generate migration add_password_digest_to_users password_digest:string
+User.create(name: "Greg Scarich", email: "admin-la_hist_street@web.knobby.ws",  password: "", password_confirmation: "") in console since I'm pushing the database up to Heroku
