@@ -9,10 +9,12 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+// Bootstrap tooltips and popovers depend on popper.js for positioning. The bootstrap gem already depends on the popper_js gem.
   
 // Is rail-ujs in conflict with jquery_ujs? Doesn't seem to be
 //= require rails-ujs
 //= require jquery
+//  require popper
 //= require tether
 //= require bootstrap-sprockets
 //= require jquery-ui

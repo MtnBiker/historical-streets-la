@@ -1,4 +1,4 @@
-//@import "bootstrap-sprockets"; // Need to figure out if this is needed. Hartl uses it
+//@import "bootstrap-sprockets"; // Need to figure out if this is needed. Hartl uses it, but File to import not found or unreadable: bootstrap-sprockets
 @import "bootstrap";
 
 body {
@@ -8,6 +8,7 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  padding-top: 60px;
 }
 
 p, ol, ul, td {
