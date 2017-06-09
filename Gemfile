@@ -42,6 +42,10 @@ gem 'leaflet-draw-rails'
 gem 'jquery-rails' # without this jQuery runs fine except I can't upload to heroku. This needed by Bootstrap 4
 gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. Still getting error, but no jquery error `yarn add tether` didn't help.Sprockets::FileNotFound: couldn't find file 'tether' with type 'application/javascript'.
 gem 'jquery-ui-rails' # Does this also bring in jQuery
+
+gem 'will_paginate',           '3.1.5'
+gem 'bootstrap-will_paginate', '1.0.0'
+
 gem 'gon'
 
 group :development do

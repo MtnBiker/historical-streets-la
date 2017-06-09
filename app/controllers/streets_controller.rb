@@ -4,7 +4,8 @@ class StreetsController < ApplicationController
   # GET /streets
   # GET /streets.json
   def index
-    @streets = Street.all
+    # @streets = Street.all # Before pagination added Listing 10.46
+    @streets = Street.paginate(page: params[:page])
   end
 
   # GET /streets/1
