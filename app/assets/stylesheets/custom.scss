@@ -169,7 +169,7 @@ aside {
   margin-top: 15px;
 }
 
-/* forms Hartl Listing 7.16 */
+/* forms Hartl Listing 7.16, 7.22 */
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
@@ -180,6 +180,21 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+//  @extend .has-error; // Error on any page load TODO
+  .form-control {
+    color: $state-danger-text;
+  }
 }
 
 // Other 

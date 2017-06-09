@@ -15,7 +15,7 @@
     <div class="container-fluid"> <!-- class="container" has meaning to Bootstrap, but currently crops streets table, Container-fluid fixes that -->
       <%= yield %>
     </div>
-    <%= render 'layouts/footer' %> <!-- No content yet -->
+    <%= render 'layouts/footer' %>
     <%= debug(params) if Rails.env.development? %> <!-- Hartl 7.1.1 -->
   </body>
 </html>
