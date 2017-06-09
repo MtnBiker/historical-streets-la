@@ -37,9 +37,9 @@ preload_app!
 
 # https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
 #  May not be needed on newer versions of Puma so left commented out. Hartl has on
-rackup      DefaultRackup
-port        ENV['PORT']     || 3000
-environment ENV['RACK_ENV'] || 'development'
+# rackup      DefaultRackup
+# port        ENV['PORT']     || 3000
+# environment ENV['RACK_ENV'] || 'development'
 
 # If you are preloading your application and using Active Record, it's
 # recommended that you close any connections to the database before workers
