@@ -10,6 +10,12 @@ $gray:         lighten(#000, 33.5%); // #555
 $gray-light:   lighten(#000, 46.7%); // #777
 $gray-lighter: lighten(#000, 93.5%); // #eee
 
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
 // Bootstrap not working right for these and they need to be more sophisticated
 .navbar-inverse,
 .navbar-inverse li a, 
@@ -144,6 +150,16 @@ aside {
   }
 }
 
+/* miscellaneous Hartl Listing 7.2 */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
 .gravatar {
   float: left;
   margin-right: 10px;
@@ -151,6 +167,19 @@ aside {
 
 .gravatar_edit {
   margin-top: 15px;
+}
+
+/* forms Hartl Listing 7.16 */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
 }
 
 // Other 
