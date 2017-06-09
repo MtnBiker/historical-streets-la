@@ -16,3 +16,5 @@ Section 5.3.4 testing mostly not working
 Link colors have problems. Changed to teal, but that doesn't work with blue background buttons
 
 Redo columns on Streets > Edit and Show. Worked with Bootstrap 4, but not with v3 that I've downgraded to to get Header to work right
+
+Option to paginate. Gems are installed. Two places change. streets/users_controller.rb lines 7/8 and two erbs for pagination on streets/index.html.erb
