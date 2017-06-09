@@ -3,7 +3,7 @@ require 'test_helper'
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   
   def setup
-    @base_title = "Historical Street Names in Los Angeles"
+    @base_title = "Historic Street Names in Los Angeles"
   end
   
   test "should get root" do

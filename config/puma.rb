@@ -4,7 +4,10 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
 #
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+
+workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 5) # Hartl
+# threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 } # Default version
 threads threads_count, threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
@@ -33,10 +36,10 @@ workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 preload_app!
 
 # https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
-#  May not be needed on newer versions of Puma so left commented out
-# rackup      DefaultRackup
-# port        ENV['PORT']     || 3000
-# environment ENV['RACK_ENV'] || 'development'
+#  May not be needed on newer versions of Puma so left commented out. Hartl has on
+rackup      DefaultRackup
+port        ENV['PORT']     || 3000
+environment ENV['RACK_ENV'] || 'development'
 
 # If you are preloading your application and using Active Record, it's
 # recommended that you close any connections to the database before workers
@@ -54,7 +57,7 @@ preload_app!
 # cannot share connections between processes.
 #
 on_worker_boot do
-  ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
+  ActiveRecord::Base.establish_connection if defined?(ActiveRecord) # Hartl has slightly different version Listing 7.37
 end
 #
 
