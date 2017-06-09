@@ -13,6 +13,9 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="container-fluid"> <!-- class="container" has meaning to Bootstrap, but currently crops streets table, Container-fluid fixes that -->
+      <% flash.each do |message_type, message| %> <!-- Hartl Listing 7.31, 7.35 -->
+        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <% end %>
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
