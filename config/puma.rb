@@ -37,7 +37,7 @@ preload_app!
 
 # https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
 #  May not be needed on newer versions of Puma so left commented out. Hartl has on
-# rackup      DefaultRackup 
+rackup      DefaultRackup
 port        ENV['PORT']     || 3000
 environment ENV['RACK_ENV'] || 'development'
 

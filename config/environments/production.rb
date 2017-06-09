@@ -41,7 +41,8 @@ Rails.application.configure do
 
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true # TODO Turned off to see it was why Heroku failed
+  # Listing 7.36 Hartl
+  config.force_ssl = true # TODO Turned off to see it was why Heroku failed. Didn't help
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
