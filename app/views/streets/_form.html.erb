@@ -1,97 +1,97 @@
 <!-- _form.html.erb used by Street > Edit and New —  -->
 <div class="container-fluid">
 
-  <%= form_with(model: street, local: true) do |form| %>
-    <% if street.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(street.errors.count, "error") %> prohibited this street from being saved:</h2>
-
-        <ul>
-        <% street.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
   <p>This is for a street name from Previous Name/Earliest Date to Current Name/Latest Date</p>
-    <div class="row">
-       <div class="col-4"> <!-- Set one row width and the others will fit.  https://v4-alpha.getbootstrap.com/layout/grid/#setting-one-column-width -->
-       <div class="form-inputs">
+    <div class="row"> <!-- Setting up to have two columns -->
+       <div class="col-4"> <!--Left hand column. Set one row width and the others will fit in Bootstrap 4.  https://v4-alpha.getbootstrap.com/layout/grid/#setting-one-column-width -->
+        <%= form_with(model: street, local: true) do |form| %>
+          <% if street.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(street.errors.count, "error") %> prohibited this street from being saved:</h2>
 
-        <div class="field">
-          <%= form.label "Previous Name" %>
-          <%= form.text_field :prevName, id: :street_prevName %>
-        </div>
+              <ul>
+              <% street.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          
+         <div class="form-inputs">
 
-        <div class="field">
-          <%= form.label "Current Street Name" %>
-          <%= form.text_field :currentName, id: :street_currentName, placeholder: "Name at end of period (Latest confirmed date)", :size=>"95%" %> <!-- whether size or maxlength it goes full -->
-        </div>
+          <div class="field">
+            <%= form.label "Previous Name" %>
+            <%= form.text_field :prevName, id: :street_prevName %>
+          </div>
 
-    <div class="row">
-      <div class="col-lg-12 text-center">For Current Street Name</div>
-        <div class="field col-lg-6">
-          <%= form.label "Earliest Confirmed Date" %>
-          <%= form.text_field :dateEarliest, id: :street_dateEarliest %>
-        </div>
+          <div class="field">
+            <%= form.label "Current Street Name" %>
+            <%= form.text_field :currentName, id: :street_currentName, placeholder: "Name at end of period (Latest confirmed date)", :size=>"95%" %> <!-- whether size or maxlength it goes full -->
+          </div>
 
-        <div class="field col-lg-6">
-          <%= form.label "Latest Confirmed Date" %>
-          <%= form.text_field :dateLatest, id: :street_dateLatest %>
-        </div>
-    </div>
+          <div class="row">
+            <div class="col-lg-12 text-center">For Current Street Name</div>
+              <div class="field col-lg-6">
+                <%= form.label "Earliest Confirmed Date" %>
+                <%= form.text_field :dateEarliest, id: :street_dateEarliest %>
+              </div>
+
+              <div class="field col-lg-6">
+                <%= form.label "Latest Confirmed Date" %>
+                <%= form.text_field :dateLatest, id: :street_dateLatest %>
+              </div>
+          </div>
       
-        <div class="field">
-          <%= form.label "Entry covers from cross street to cross street or similar" %>
-          <%= form.text_field :where, id: :street_where, :maxlength=>"100%" %>
-        </div>
+          <div class="field">
+            <%= form.label "Entry covers from cross street to cross street or similar" %>
+            <%= form.text_field :where, id: :street_where, :maxlength=>"100%" %>
+          </div>
 
-        <div class="field">
-          <%= form.label "To come: this will be a GIS description of the section of street" %>
-          <%= form.text_field :extent, id: :street_extent, disabled: true %>
-        </div>
+          <div class="field">
+            <%= form.label "To come: this will be a GIS description of the section of street" %>
+            <%= form.text_field :extent, id: :street_extent, disabled: true %>
+          </div>
       
-        <div class="field">
-          <%= form.label "Extent as Line String" %>
-          <%= form.text_area :extent_array, id: :street_extent_array, placeholder: "Will be automagically filled in when line is drawn", :maxlength=>"95%" %>
-        </div>
+          <div class="field">
+            <%= form.label "Extent as Line String" %>
+            <%= form.text_area :extent_array, id: :street_extent_array, placeholder: "Will be automagically filled in when line is drawn", :maxlength=>"95%" %>
+          </div>
 
-        <div class="field">
-          <%= form.label "Approximate Number of Blocks this entry is about" %>
-          <%= form.text_field :numBlocks, id: :street_numBlocks %>
-        </div>
-      <p>List each reference in a separate field.</p>
-        <div class="field">
-          <%= form.label "Reference 1" %>
-          <%= form.text_area :ref1, id: :street_ref1, :maxlength=>"95%" %> <!-- maxlength having no effect -->
-        </div>
+          <div class="field">
+            <%= form.label "Approximate Number of Blocks this entry is about" %>
+            <%= form.text_field :numBlocks, id: :street_numBlocks %>
+          </div>
+        
+        <p>List each reference in a separate field.</p>
+          <div class="field">
+            <%= form.label "Reference 1" %>
+            <%= form.text_area :ref1, id: :street_ref1, :maxlength=>"95%" %> <!-- maxlength having no effect -->
+          </div>
 
-        <div class="field">
-          <%= form.label "Reference 2" %>
-          <%= form.text_area :ref2, id: :street_ref2 %>
-        </div>
+          <div class="field">
+            <%= form.label "Reference 2" %>
+            <%= form.text_area :ref2, id: :street_ref2 %>
+          </div>
 
-        <div class="field">
-          <%= form.label "Reference 3" %>
-          <%= form.text_area :ref3, id: :street_ref3 %>
-        </div>
+          <div class="field">
+            <%= form.label "Reference 3" %>
+            <%= form.text_area :ref3, id: :street_ref3 %>
+          </div>
 
-        <div class="field">
-          <%= form.label :notes %>
-          <%= form.text_area :notes, id: :street_notes %>
-        </div>
+          <div class="field">
+            <%= form.label :notes %>
+            <%= form.text_area :notes, id: :street_notes %>
+          </div>
 
-        <div class="actions">
-          <%= form.submit "Create/Update Historical Street", class: "btn btn-primary" %>
-        </div>
-     </div>
-    </div>
-    <div class="col">  <!-- becomes col-8. See comment near top -->
+          <div class="actions">
+            <%= form.submit "Create/Update Historical Street", class: "btn btn-primary" %>
+          </div>
+       </div> <!-- end col-4, the left hand column -->
+  <% end %> <!-- End of form -->
+    <div class="col-8">  <!-- col becomes col-8 in Bootstrap 4, but not v3. See comment near top -->
       <br/>
       <%= render 'leafletmap_edit' %>
-    </div>
-  </div>
+    </div> <!-- end col-8. right hand column, the map -->
+  </div> <!-- end row -->
 
-  <% end %>
 </div>  <!-- end container-fluid -->
