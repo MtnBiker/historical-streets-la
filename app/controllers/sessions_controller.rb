@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
   end
 
@@ -6,6 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in user
+      remember user
       redirect_to user
     else
       flash.now[:danger] = 'Invalid email/password combination'
@@ -13,8 +15,10 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy # Hartl Listing 8.3
-    log_out
+  def destroy
+    log_out if logged_in?
     redirect_to root_url
   end
 end
+
+# Complete Hartl Listing 9.7 plus Listing 9.16
