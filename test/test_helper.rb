@@ -8,7 +8,10 @@ Minitest::Reporters.use!
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
-  include ApplicationHelper
+  include ApplicationHelper # Hartl doesn't have this. Is it by default or did I put it in?
 
-  # Add more helper methods to be used by all tests here...
+  # Returns true if a test user is logged in. Hartl Listing 8.26
+  def is_logged_in?
+    !session[:user_id].nil?
+  end
 end
