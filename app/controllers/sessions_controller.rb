@@ -13,6 +13,8 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy # Hartl Listing 8.3
+    log_out
+    redirect_to root_url
   end
 end
