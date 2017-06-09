@@ -43,6 +43,7 @@ gem 'jquery-rails' # without this jQuery runs fine except I can't upload to hero
 gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. Still getting error, but no jquery error `yarn add tether` didn't help.Sprockets::FileNotFound: couldn't find file 'tether' with type 'application/javascript'.
 gem 'jquery-ui-rails' # Does this also bring in jQuery
 
+# Added for Hartl tutorial and can be used with streets, but I want an option. May be better with edit in table
 gem 'will_paginate',           '3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'
 
