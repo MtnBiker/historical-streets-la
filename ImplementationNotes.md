@@ -92,7 +92,7 @@ Got message "Your branch is ahead of 'origin/master' by 5 commits.
 #### 11-Hartl-Users
 10 was short lived because edited in master and decided better just to go with new branch. 10- was in master
 
-Need to remove Users from database, but migrations are somewhere else. Which is probably good, not clogging up Rails. Do it in PgAdmin. Done. Right click on Users and drop.
+~~Need to remove Users from database, but migrations are somewhere else. Which is probably good, not clogging up Rails. Do it in PgAdmin.~~ Done. Right click on Users and drop.
 Guess it will be easier to do Hartl step by step even though means many revisions.
 Pasted Listing 5.1 (layout) container class causes problems so one is commented out, 5.2 (home), already had gem bootstrap, 
 File to import not found or unreadable: bootstrap-sprockets, so leaving out p189

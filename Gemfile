@@ -11,7 +11,7 @@ gem 'rails', '~> 5.1.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.20'
 # Use Puma as the app server
-gem 'puma', '~> 3.9.1'
+gem 'puma', '3.4'
 # Use SCSS for stylesheets
 # gem 'sass-rails', '~> 5.0' # I have a note that may not need with Bootstrap 4
 # Use Uglifier as compressor for JavaScript assets

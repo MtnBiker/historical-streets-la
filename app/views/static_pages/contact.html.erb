@@ -1,5 +1,6 @@
 <% provide(:title, 'Contact') %>
 <h1>Contact</h1>
 <p>
-  
+  Please contact <%= mail_to("admin-la_hist_street@web.knobby.ws", name = "Greg", html_options = {subject: "About the LA Historic Streets", body: "Hi Greg"}) %> with any comments, questions, suggestions or whatever.
 </p>
+<p>See the <%= link_to "Acknowledgements", acknowledgements_path %> page for information on sources, etc.</p>
