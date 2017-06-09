@@ -12,3 +12,5 @@ And then have date slider.
 Navbar list doesn't work right. Works OK in footer.
 
 Section 5.3.4 testing mostly not working
+
+Link colors have problems. Changed to teal, but that doesn't work with blue background buttons

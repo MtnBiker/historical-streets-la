@@ -2,7 +2,7 @@
   <div class="container-fluid"> <!-- -fluid so table in streets works -->
     <%= link_to "Historic Street Names in Los Angeles", root_path, id: "logo" %>
     <nav> <!-- For assistive technologies -->
-      <ul class="nav navbar-nav">  <!-- navbar-right having no effect at the moment -->
+      <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home",  root_path %></li>
         <li><%= link_to "Street List",  streets_path %></li>
         <li><%= link_to "About",  about_url %></li>

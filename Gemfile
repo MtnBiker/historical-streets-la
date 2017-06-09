@@ -11,15 +11,15 @@ gem 'rails', '~> 5.1.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.20'
 # Use Puma as the app server
-gem 'puma', '3.4'
+gem 'puma', '3.4' # not sure of latest version that will work, but 3.9.1 doesn't work. I thought I had 3.7 before and it worked but now it doesn't
 # Use SCSS for stylesheets
 # gem 'sass-rails', '~> 5.0' # I have a note that may not need with Bootstrap 4
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 3.2.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'bootstrap', '~> 4.0.0.alpha6' # Don't think -sass is needed with 4.
-# gem 'bootstrap-sass', '3.3.7' # Hartl 5 2017.06.07 No problem as first go. One Stackoverflower said not to have this with gem 'bootstrap', but I want v4
+# gem 'bootstrap', '~> 4.0.0.alpha6' # Don't think -sass is needed with 4. Causes problems in Header
+gem 'bootstrap-sass', '3.3.7' # Hartl 5 2017.06.07 No problem as first go. One Stackoverflower said not to have this with gem 'bootstrap', but I want v4
 # Use CoffeeScript for .coffee assets and views
 # gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

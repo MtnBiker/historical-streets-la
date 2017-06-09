@@ -7,6 +7,7 @@ $gray-medium-light: #eaeaea;
 $gray-darker:  lighten(#000, 13.5%); // #222
 $gray-dark:    lighten(#000, 20%);   // #333
 $gray:         lighten(#000, 33.5%); // #555
+$gray-very-dark: #666;
 $gray-light:   lighten(#000, 46.7%); // #777
 $gray-lighter: lighten(#000, 93.5%); // #eee
 
@@ -16,20 +17,21 @@ $gray-lighter: lighten(#000, 93.5%); // #eee
   box-sizing:         border-box;
 }
 
-// Bootstrap not working right for these and they need to be more sophisticated
-.navbar-inverse,
-.navbar-inverse li a, 
-.navbar-inverse a:hover,
-.navbar-inverse a#logo {
-  color: white;
-  background-color: black;
-}
+// Bootstrap not working right without these with 4.0.0.alpha6
+// But shouldn't need now that downgraded to v3
+//.navbar-inverse,
+//.navbar-inverse li a,
+//.navbar-inverse a:hover,
+//.navbar-inverse a#logo {
+//  color: white;
+//  background-color: black;
+//}
 
 /* universal from Hartl-5 Listing 5-7 except first six lines of body */
 
 body {
   background-color: #fff;
-  color: #333;
+  color: $gray-dark;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -205,21 +207,21 @@ p, ol, ul, td {
 }
 
 pre {
-  background-color: #eee;
+  background-color: $gray-lighter;
   padding: 10px;
   font-size: 11px;
 }
 
 a {
-  color: #000;
+  color: teal;
 
   &:visited {
-    color: #666;
+    color: teal;
   }
 
   &:hover {
     color: #fff;
-    background-color: #000;
+    background-color: black;
   }
 }
 

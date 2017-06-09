@@ -107,3 +107,5 @@ Updated gems to Hartl https://github.com/mhartl/rails_tutorial_4th_edition_gemfi
 rails generate migration add_index_to_users_email and validations
 rails generate migration add_password_digest_to_users password_digest:string
 User.create(name: "Greg Scarich", email: "admin-la_hist_street@web.knobby.ws",  password: "", password_confirmation: "") in console since I'm pushing the database up to Heroku
+Went to Bootstrap 3 after not being able to solve header formatting problem. Using bootstrap-sass. Only changed Gemfile, nothing in manifests
+Also had to go to earlier version of puma. Had upgraded following Hartl

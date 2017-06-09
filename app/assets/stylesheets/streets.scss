@@ -75,10 +75,11 @@ button a:link{
  color: white;
 }
 
-a:link,
-a:visited {
-   color: black;
-}
+// Off because links look like regular text and this is supposedly controlling. Need to change in custom.scss too
+//a:link,
+//a:visited {
+//   color: black;
+//}
 
 /* mouse over link */
 a:hover {
