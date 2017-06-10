@@ -5,10 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(name:  "Example User",
-             email: "example@railstutorial.org",
-             password:              "foobar",
-             password_confirmation: "foobar",
-             admin:     true,
-             activated: true,
-             activated_at: Time.zone.now)
+
+# Done and this is the user I am now at localhost
+# User.create!(name:  "Example User",
+#              email: "example@railstutorial.org",
+#              password:              "foobar",
+#              password_confirmation: "foobar",
+#              admin:     true,
+#              activated: true,
+#              activated_at: Time.zone.now)
+# 
+# Maybe can figure out an update or user console. Look at the book

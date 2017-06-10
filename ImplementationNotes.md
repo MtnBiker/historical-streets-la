@@ -112,3 +112,5 @@ Also had to go to earlier version of puma. Had upgraded following Hartl
 
 brew install heroku Chapter 11.4 rm '/usr/local/bin/heroku' and then brew link --overwrite heroku
 heroku addons:create sendgrid:starter
+
+In pgAdmin copied and pasted activation_digest and activated_at from Example User. Still says account not activated
