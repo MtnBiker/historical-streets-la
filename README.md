@@ -14,9 +14,9 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 - [Beta deployment](https://stark-cove-20051.herokuapp.com/). √
 
-- Now that it's deployed, a few details need to be resolved. 
+- Now that it's deployed, a few problems have to be fixed: 
 
-- At first glance an important problem is that maptiles can't be served from my domain. Error message: Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR
+- Maptiles can't be served from my domain. Error message: Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR. Cross-site issue?
 
 - The database will be refreshed, in other words, you can make changes and create accounts, but they will disappear. Be patient. But please let me know if you have any comments or suggestions.
 
