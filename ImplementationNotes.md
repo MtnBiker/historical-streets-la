@@ -109,3 +109,6 @@ rails generate migration add_password_digest_to_users password_digest:string
 User.create(name: "Greg Scarich", email: "admin-la_hist_street@web.knobby.ws",  password: "", password_confirmation: "") in console since I'm pushing the database up to Heroku
 Went to Bootstrap 3 after not being able to solve header formatting problem. Using bootstrap-sass. Only changed Gemfile, nothing in manifests
 Also had to go to earlier version of puma. Had upgraded following Hartl
+
+brew install heroku Chapter 11.4 rm '/usr/local/bin/heroku' and then brew link --overwrite heroku
+heroku addons:create sendgrid:starter
