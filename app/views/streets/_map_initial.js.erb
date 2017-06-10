@@ -1,13 +1,3 @@
-// Links for attribution
-var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
-    osmCopy = '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    mapboxCopy = '<a href="https://www.mapbox.com/map-feedback/">Mapbox</a>'
-    esriLink = '<a href="https://www.esri.com/">Esri</a>',
-    mbLink   = '<a href="https://mapbox.com/">OpenStreetMap</a>',
-    rumseyLink = '<a href="http://www.davidrumsey.com">The David Rumsey Map Collection</a>',
-    csunLink = ""
-    bigBlogMapLink = 'http://www.bigmapblog.com'
-
 // Map tile URLs
   var osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     esriUrl   = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServe\
@@ -15,6 +5,7 @@ r/tile/{z}/{y}/{x}',
     mbUrl = 'https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg', 
     // Hill1928url = 'http://mapwarper.net/maps/tile/2935/{z}/{x}/{y}.png',
     Hill1928url = '//knobby.ws/crorestiles/1928Hills/{z}/{x}/{y}.png',
+    Hill1928aws = 'http://crores.s3.amazonaws.com/1928Hills/{z}/{x}/{y}.png',
     baistDetailurl = '//knobby.ws/crorestiles/tiles/{z}/{x}/{y}.png', 
     baistKMurl = "//knobby.ws/crorestiles/bkm/{z}/{x}/{y}.png",
     street1902URL = "//knobby.ws/crorestiles/street1902/{z}/{x}/{y}.png",
@@ -26,6 +17,16 @@ r/tile/{z}/{y}/{x}',
     // bingUrl = "http://bing.com/maps/default.aspx?cp=34.05~118.25&lvl=12&style=r",
     bingUrl = "https://dev.virtualearth.net/REST/v1/ Imagery/Map/resourcePath?queryParameters&key=AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav"
     
+// Links for attribution
+var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
+    osmCopy = '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    mapboxCopy = '<a href="https://www.mapbox.com/map-feedback/">Mapbox</a>'
+    esriLink = '<a href="https://www.esri.com/">Esri</a>',
+    mbLink   = '<a href="https://mapbox.com/">OpenStreetMap</a>',
+    rumseyLink = '<a href="http://www.davidrumsey.com">The David Rumsey Map Collection</a>',
+    csunLink = ""
+    bigBlogMapLink = 'http://www.bigmapblog.com'
+
 // Attribution
     var osmAttrib = '&copy; ' + osmLink + ' Contributors',
     esriAttrib = 'i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP,\
@@ -47,6 +48,7 @@ r/tile/{z}/{y}/{x}',
       google      = L.tileLayer(googleUrl,      {attribution: 'Google'}),
       // hillMap1928 = L.tileLayer(Hill1928url,  {attribution: mwAttrib}),
       hill1928 = L.tileLayer(Hill1928url,  {attribution: bigBlogMapAttrib}),
+      hill1928aws = L.tileLayer(Hill1928aws,  {attribution: bigBlogMapAttrib}),
       baistDetail = L.tileLayer(baistDetailurl, {attribution: baistAttrib}),
       baistKM     = L.tileLayer(baistKMurl,   {attribution: baistAttrib}),
       street1902  = L.tileLayer(street1902URL),
@@ -63,6 +65,7 @@ r/tile/{z}/{y}/{x}',
       "<span style='color: green'>ESRI Satellite</span>"     : esriMap,
       "<span style='color: green'>Google Satellite</span>"   : google,
       "1928 Hill"  : hill1928,
+      "1928 Hill (AWS)"  : hill1928aws,
       "1908 Woods"  : woods1908,
       "1908 LA [broken link]": mbMap,
       "1902 Rueger" : street1902,

@@ -123,3 +123,9 @@ Done with Hartl I hope. No doubt some loose ends. Mainly have to get deployed.
 Skip Chapters 13 & 14 Microposts. Although might be interesting to have a bit of a site like that.
 
 Copied puma.rb from Hartl to mine. Original doesn't work. Look at commented out parts to see if any should be put back in.
+
+Trying again. Had Heroku problem and console showed double http, so tried again
+heroku config:set  ERROR_PAGE_URL=//s3.amazonaws.com/crores_heroku/heroku_error_page.html
+
+trying AWS for map tiles: Hill1928aws = 'http://crores.s3.amazonaws.com/1928Hills/{z}/{x}/{y}.png',
+   

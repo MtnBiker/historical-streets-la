@@ -24,3 +24,5 @@ Get rid of example user when I get myself set up on localhost
 Make the signup and password reset emails and HTML a bit more professional
 
 Look at puma.rb and see if hidden stuff is needed
+
+Mobile

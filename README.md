@@ -9,6 +9,7 @@ but then saw a general need and was able to leverage the extensive list publishe
 For more information for now check out the about page at [Croatian Run Restaurants in Los Angeles  1880&ndash;1930](https://stark-cove-20051.herokuapp.com/about) which uses many of the same resources. Also its [acknowledgements page](https://stark-cove-20051.herokuapp.com/about).
 
 ### Status—pre-release
+- The database will be refreshed, in other words, you can make changes and create accounts, but they will disappear. Be patient. But please let me know if you have any comments or suggestions.
 
 - Basic feature set implemented and working on my computer. √
 
@@ -18,21 +19,24 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 - Maptiles can't be served from my domain. Error message: Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR. Cross-site issue?
 
-- The database will be refreshed, in other words, you can make changes and create accounts, but they will disappear. Be patient. But please let me know if you have any comments or suggestions.
+- Confirm that the geographic information storage of the segments is a good choice. It's currently a LINESTRING array stored as a string. 
 
 - Then decide if I can work on localhost and sync changes to Heroku or everything needs to be on Heroku.
  
-- Confirm that the geographic information storage of the segments is a good choice. It's currently a LINESTRING array stored as a string. 
+- Formatting issues. Started with Bootstrap v4 alpha. Downgraded to v3. Both have issues. I don't want to solve the problems if soon to be released v4 beta will solve.
 
 - Acknowledgements page TBD.
 
 ### Bigger plans
-- Planned after initial deployment is an overview map showing all the changed streets. 
+- An overview map showing all the changed streets. 
 
 - A slider to view those segments over time
 
 - More historical maps. Particularly Sanborn
 
+#### Nice to haves
+
+
 ### Technical
-Ruby on Rails 5.1. PostgreSQL database. Mainly Leaflet.js for maps. Offline QGIS for georeferening maps. Deployed at Heroku. Historic maps mostly served from my domain (not a long term solution). Will expand in Acknowledgements page.
+Ruby on Rails 5.1. PostgreSQL database. Mainly Leaflet.js for mapping. Offline QGIS for georeferening maps. Deployed at Heroku. Historic maps mostly served from my domain (not a long term solution). Will expand in Acknowledgements page.
  

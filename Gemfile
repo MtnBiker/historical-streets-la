@@ -48,6 +48,7 @@ gem 'will_paginate',           '3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'
 
 gem 'gon'
+gem 'aws-sdk', '~> 2.3' # Needed for AWS
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
