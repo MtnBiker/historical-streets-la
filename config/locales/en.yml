@@ -31,6 +31,6 @@
 
 en:
   hello: "Hello world"
-
+  user_mailer.account_activation.subject: "Account activation for Historic Street Names LA"
 # Hartl Listing 11.10. Aslo one for reset
-en.user_mailer.account_activation.subject = "Your account activation for Historic Street Names LA"
+#  but don't know how to activate it
