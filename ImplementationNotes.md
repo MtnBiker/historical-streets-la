@@ -115,4 +115,3 @@ heroku addons:create sendgrid:starter
 
 In pgAdmin copied and pasted activation_digest and activated_at from Example User. Still says account not activated
 
--- SET idle_in_transaction_session_timeout = 0; -- Causing a testing error. I think this gets reset. TODO
