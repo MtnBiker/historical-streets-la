@@ -20,3 +20,5 @@ Redo columns on Streets > Edit and Show. Worked with Bootstrap 4, but not with v
 Option to paginate. Gems are installed. Two places change. streets/users_controller.rb lines 7/8 and two erbs for pagination on streets/index.html.erb
 
 Get rid of example user when I get myself set up on localhost
+
+Make the signup and password reset emails and HTML a bit more professional
