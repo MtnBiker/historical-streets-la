@@ -1,6 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+   # Access-Control-Allow-Origin: https://knobby.ws/maptiles/*
+  
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -43,7 +45,7 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # Listing 7.36 Hartl
   config.force_ssl = true # TODO Turned off to see it was why Heroku failed. Didn't help
-  config.secret_key_base = ENV["SECRET_KEY_BASE"] # https://stackoverflow.com/questions/23180650/how-to-solve-error-missing-secret-key-base-for-production-environment-rai
+  config.secret_key_base = ENV["SECRET_KEY_BASE"] # This would have been in config/secrets.yml, but it's in .gitignore
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.

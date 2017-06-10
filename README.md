@@ -12,7 +12,13 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 - Basic feature set implemented and working on my computer. √
 
-- [Beta deployment](https://stark-cove-20051.herokuapp.com/). Although as of 2017.06.09 not working at Heroku. 
+- [Beta deployment](https://stark-cove-20051.herokuapp.com/). √
+
+- Now that it's deployed, a few details need to be resolved. 
+
+- At first glance an important problem is that maptiles can't be served from my domain. Error message: Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR
+
+- The database will be refreshed, in other words, you can make changes and create accounts, but they will disappear. Be patient. But please let me know if you have any comments or suggestions.
 
 - Then decide if I can work on localhost and sync changes to Heroku or everything needs to be on Heroku.
  

@@ -47,8 +47,10 @@
         <td><%= street.ref3 %></td>
         <td><%= street.notes %></td>
         <td><%= link_to 'Show', street %></td>
-        <td><%= link_to 'Edit', edit_street_path(street) %></td>
-        <td><%= link_to 'Destroy', street, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if logged_in? %>
+          <td><%= link_to 'Edit', edit_street_path(street) %></td>
+          <td><%= link_to 'Destroy', street, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
