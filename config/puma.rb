@@ -16,6 +16,7 @@ on_worker_boot do
   ActiveRecord::Base.establish_connection
 end
 
+# TODO Do I need any of these? Because one or more of them prevents Heroku from working.
 #  config/puma.rb 2017.06.09 Trying to get Heroku working. 
 
 # Puma can serve each request in a thread from an internal thread pool.

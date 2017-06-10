@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<% provide(:title, @street.currentName) %>
+<% provide(:title, @street.prevName) %>
 <h2>Historic Street Name</h2>
 
   <div class="row">
@@ -76,10 +76,12 @@
     </button>
   <% end  %>
 
-<button type="button" class="btn btn-primary-outline" >
-  <%= link_to 'Back to Street List', streets_path %> 
+  <button type="button" class="btn btn-primary-outline" >
+    <%= link_to 'Back to Street List', streets_path %> 
   </button>
 
-  <button type="button" class="btn btn-primary-outline" >
-  <%= link_to 'New Historic Street Entry', new_street_path %>
-</button>
+  <% if logged_in? %>
+    <button type="button" class="btn btn-primary-outline" >
+      <%= link_to 'New Historic Street Entry', new_street_path %>
+    </button>
+  <% end  %>

@@ -122,5 +122,4 @@ Done with Hartl I hope. No doubt some loose ends. Mainly have to get deployed.
 
 Skip Chapters 13 & 14 Microposts. Although might be interesting to have a bit of a site like that.
 
-Copied puma.rb from Hartl to mine. At least the site shows up again with this error: 
-"An unhandled lowlevel error occurred. The application logs may have details."
+Copied puma.rb from Hartl to mine. Original doesn't work. Look at commented out parts to see if any should be put back in.
