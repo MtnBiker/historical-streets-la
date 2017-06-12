@@ -4,7 +4,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-# ruby '2.3.4' # Heroku wants this. I have 2.4.0, but is Heroku only to 2.3.4
+ruby '2.4.0' # Heroku wants this. I have 2.4.0, but is Heroku only to 2.3.4
 gem 'bundler', '1.15.1' # 1.13.7 may be the latest version heroku is supporting 2017.06.03
 
 gem 'rails', '~> 5.1.1'
@@ -18,8 +18,8 @@ gem 'puma', '3.4' # not sure of latest version that will work, but 3.9.1 doesn't
 gem 'uglifier', '>= 3.2.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-# gem 'bootstrap', '~> 4.0.0.alpha6' # Don't think -sass is needed with 4. Causes problems in Header
-gem 'bootstrap-sass', '3.3.7' # Hartl 5 2017.06.07 No problem as first go. One Stackoverflower said not to have this with gem 'bootstrap', but I want v4
+gem 'bootstrap', '~> 4.0.0.alpha6' # Don't think -sass is needed with 4. Causes problems in Header
+# gem 'bootstrap-sass', '3.3.7' # Hartl 5 2017.06.07 No problem as first go. One Stackoverflower said not to have this with gem 'bootstrap', but I want v4
 # Use CoffeeScript for .coffee assets and views
 # gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -46,7 +46,6 @@ gem 'jquery-ui-rails' # Does this also bring in jQuery
 # Added for Hartl tutorial and can be used with streets, but I want an option. May be better with edit in table
 gem 'will_paginate',           '3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'
-
 gem 'gon'
 gem 'aws-sdk', '~> 2.3' # Needed for AWS
 

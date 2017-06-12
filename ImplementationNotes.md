@@ -122,10 +122,13 @@ Done with Hartl I hope. No doubt some loose ends. Mainly have to get deployed.
 
 Skip Chapters 13 & 14 Microposts. Although might be interesting to have a bit of a site like that.
 
-Copied puma.rb from Hartl to mine. Original doesn't work. Look at commented out parts to see if any should be put back in.
+Copied puma.rb from Hartl to mine. Original doesn't work. Look at commented out parts to see if any should be put back in. TODO
 
 Trying again. Had Heroku problem and console showed double http, so tried again
 heroku config:set  ERROR_PAGE_URL=//s3.amazonaws.com/crores_heroku/heroku_error_page.html
 
-trying AWS for map tiles: Hill1928aws = 'http://crores.s3.amazonaws.com/1928Hills/{z}/{x}/{y}.png',
+trying AWS for map tiles: Hill1928aws = 'http://crores.s3.amazonaws.com/1928Hills/{z}/{x}/{y}.png'. Seems to work. Will upload all and confirm
+
+Back to  Bootstrap 4 alpha6. Get both columns in Streets > Edit and Show, but have problems with navbar. Time to solve that. Used /bootstrap-4.0.0-alpha.6/docs/examples/navbar-top-fixed/navbar-top-fixed.css as a model for _header.html.erb. Didn't bother to sort out why not working correctly before. Haven't sorted out how much is Bootstrap and how much is CSS (that I have). See also */bootstrap-4.0.0-alpha.6/docs/examples/navbars/index.html#* Notes about **containers** navbar-top-fixed is the basics the examples/navbars has dropdown which I need
+Not sure about where the styling is coming from. But I do have /Users/gscar/Documents/Croatian Restaurants Project-CroRes/LA Historical Street Names/la_hist_street/node_modules/bootstrap/dist/css/bootstrap.css which may be where some of these styles are picked up. I think the Node.js installation is a remnant of some trials. Maybe I need to remove this and put in just the relevant CSS
    

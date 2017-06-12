@@ -1,30 +1,41 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container-fluid"> <!-- -fluid so table in streets works -->
-    <%= link_to "Historic Street Names in Los Angeles", root_path, id: "logo" %>
-    <nav> <!-- For assistive technologies -->
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",  root_path %></li>
-        <li><%= link_to "Street List",  streets_path %></li>
-        <li><%= link_to "About",  about_path %></li> # was about_url
-        <% if logged_in? %>
-          <li><%= link_to "Users", users_path %></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to "Log out", logout_path, method: :delete %>
-              </li>
-            </ul>
-          </li>
-        <% else %>
-          <li><%= link_to "Log in", login_path %></li>
-        <% end %>
-      </ul>
-    </nav>
+<!-- Bootstrap Fixed top inverse Not sure about toggleable part -->
+<!-- Modeled after bootstrap-4.0.0-alpha.6/docs/examples/navbars/index.html -->
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <%= link_to "Historic Street Names in Los Angeles", root_path, id: "logo", class: "navbar-brand" %>
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+
+  <div class="collapse navbar-collapse" id="navbarCollapse"> <!-- Is navbarCollapse styled? -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to "Home",  root_path, class: "nav-link" %><span class="sr-only">(current)</span></a>
+        <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
+      </li>
+      <li class="nav-item"><%= link_to "Street List",  streets_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "About",  about_path, class: "nav-link" %></li>
+      <% if logged_in? %>
+        <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link"  %></li>
+        
+        <!-- Dropdown starts -->
+        <!-- Accessible Rich Internet Applications (ARIA) for accesibility -->
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a> <!-- <a c href="#">Action</a> -->
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <%= link_to "Profile", current_user, class: "dropdown-item" %>
+            <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>
+      <% else %>
+        <%= link_to "Log in", login_path, class: "dropdown-item" %>
+      <% end %>
+      </div>
+      </li>
+    </ul>
+    <!-- Placeholder for search. Search shows twice. What is placeholder="Search". Note that two items labeled Search show up. -->
+    <!-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
   </div>
-</header>
+</nav>

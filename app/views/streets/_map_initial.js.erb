@@ -45,7 +45,7 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
   var mbMap       = L.tileLayer(mbUrl,        {attribution: mbAttrib}),
       osmMap      = L.tileLayer(osmUrl,       {attribution: osmAttrib}),
       esriMap     = L.tileLayer(esriUrl,      {attribution: esriAttrib}),
-      // bing        = L.tileLayer(bingUrl),
+      // bing        = L.tileLayer(bingUrl), // This approach doesn't seem to work, but the following does. bing is easier to read than OSM because many major street names don't show up in OSM
       bing = L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav'),
       google      = L.tileLayer(googleUrl,      {attribution: 'Google'}),
       // hillMap1928 = L.tileLayer(Hill1928url,  {attribution: mwAttrib}),
