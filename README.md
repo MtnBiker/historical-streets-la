@@ -17,20 +17,20 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 - Now that it's deployed, a few problems have to be fixed: 
 
-- Maptiles can't be served from my domain. Error message: Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR. Cross-site issue?
-
 - Confirm that the geographic information storage of the segments is a good choice. It's currently a LINESTRING array stored as a string. 
 
-- Then decide if I can work on localhost and sync changes to Heroku or everything needs to be on Heroku.
- 
-- Formatting issues. Started with Bootstrap v4 alpha. Downgraded to v3. Both have issues. I don't want to solve the problems if soon to be released v4 beta will solve.
+- Button text formatting
 
-- Acknowledgements page TBD.
+- Can localhost and Heroku databases be synced? Nice if I could work on localhost.
+ 
+- Acknowledgements page TBD, linked to [acknowledgements at Croatian Run Restaurants in Los Angeles 1880&ndash;1930](https://secure-shore-68966.herokuapp.com) and notes on home page cover the basics
 
 ### Bigger plans
 - An overview map showing all the changed streets. 
 
 - A slider to view those segments over time
+
+- Search. Could then add pagination 
 
 - More historical maps. Particularly Sanborn
 

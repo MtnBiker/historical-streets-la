@@ -1,10 +1,21 @@
 <% provide(:title, "Home") %>
 <div class="jumbotron">
-  <!-- <h1>Historical Street Names in Los Angeles</h1> -->
-  <p>
-    This is the home page and information will be added explaining what's going on.
+<%= image_tag("hill-header.jpg", size: "1039x300", alt: "Nice old map", class:"center") %>
+<br><br>
+<h1>Street Name Changes in Los Angeles.</h1>
+
+<p>A compilation of the history of the street name changes in Los Angeles and showing those changed segments of the streets on a map.</p>
+
+<p>Intially to support <%= link_to "Croatian Run Restaurants in Los Angeles 1880—1930", "https://secure-shore-68966.herokuapp.com" %>
+but then saw a general need and was able to leverage the extensive list published by Steve Morse: 
+<%= link_to "Los Angeles in the 1900s—Streets of a Hundred Years Ago", "http://stevemorse.org/census/changes/LosAngelesChanges2.htm" %> 
+<%= link_to "Morse's site", "http://stevemorse.org/" %> is a treasure trove of historical and geneological information. Almost all of the information is from this resource. I've added the ability to put that information on a map and have started to do that for some of the 500 or so entries. After launching the site, anyone will be able to add or edit the entries.</p>
+
+<p>Inspired by <%= link_to "Chris Salvano's San Francisco Historical Street Names Index", "http://www.chrissalvano.com/lost-san-francisco/san-francisco-historical-street-names-index-update" %>
+
+<p>The historic maps can be slow to appear.</p>
+<p>The whole list will load which allows using the browser searching.</p>
+
+ <p>
+    If you want to make additions or changes <%= link_to "Sign up", signup_path %>, otherwise just proceed to <%= link_to 'to the list of Historic Streets', streets_path %>.
 </p>
-<p>
-    If you want to make additions or changes <%= link_to "Sign up", signup_path, class: "btn btn-primary" %>, otherwise just proceed to 
-      <%= link_to 'to the list of Historical Streets', streets_path, class: "btn btn-primary" %>.
-  </p>

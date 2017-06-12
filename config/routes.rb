@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+  
+  # Whats does one use in link_to to use this link, crores_path or _url doesn't work
+  get 'crores' => redirect("https://secure-shore-68966.herokuapp.com")
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
