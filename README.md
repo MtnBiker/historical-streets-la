@@ -21,6 +21,8 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 - Button text formatting
 
+- Mobile: dropdown menu not working
+
 - Can localhost and Heroku databases be synced? Nice if I could work on localhost.
  
 - Acknowledgements page TBD, linked to [acknowledgements at Croatian Run Restaurants in Los Angeles 1880&ndash;1930](https://secure-shore-68966.herokuapp.com) and notes on home page cover the basics

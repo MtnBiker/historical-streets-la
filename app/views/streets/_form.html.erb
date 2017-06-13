@@ -17,77 +17,77 @@
             </div>
           <% end %>
           
-         <div class="form-inputs">
+          <div class="form-inputs">
+            <div class="field">
+              <%= form.label "Previous Name" %>
+              <%= form.text_field :prevName, id: :street_prevName %>
+            </div>
 
-          <div class="field">
-            <%= form.label "Previous Name" %>
-            <%= form.text_field :prevName, id: :street_prevName %>
-          </div>
+            <div class="field">
+              <%= form.label "Current Street Name" %>
+              <%= form.text_field :currentName, id: :street_currentName, placeholder: "Name at end of period (Latest confirmed date)", :size=>"95%" %> <!-- whether size or maxlength it goes full -->
+            </div>
 
-          <div class="field">
-            <%= form.label "Current Street Name" %>
-            <%= form.text_field :currentName, id: :street_currentName, placeholder: "Name at end of period (Latest confirmed date)", :size=>"95%" %> <!-- whether size or maxlength it goes full -->
-          </div>
+            <div class="row">
+              <div class="col-lg-12 text-center">For Current Street Name</div>
+                <div class="field col-lg-6">
+                  <%= form.label "Earliest Confirmed Date" %>
+                  <%= form.text_field :dateEarliest, id: :street_dateEarliest %>
+                </div>
 
-          <div class="row">
-            <div class="col-lg-12 text-center">For Current Street Name</div>
-              <div class="field col-lg-6">
-                <%= form.label "Earliest Confirmed Date" %>
-                <%= form.text_field :dateEarliest, id: :street_dateEarliest %>
-              </div>
+                <div class="field col">
+                  <%= form.label "Latest Confirmed Date" %>
+                  <%= form.text_field :dateLatest, id: :street_dateLatest %>
+                </div>
+            </div>
 
-              <div class="field col-lg-6">
-                <%= form.label "Latest Confirmed Date" %>
-                <%= form.text_field :dateLatest, id: :street_dateLatest %>
-              </div>
-          </div>
-      
-          <div class="field">
-            <%= form.label "Entry covers from cross street to cross street or similar" %>
-            <%= form.text_field :where, id: :street_where, :maxlength=>"100%" %>
-          </div>
+            <div class="field">
+              <%= form.label "Entry covers from cross street to cross street or similar" %>
+              <%= form.text_field :where, id: :street_where, :maxlength=>"100%" %>
+            </div>
 
-          <div class="field">
-            <%= form.label "To come: this will be a GIS description of the section of street" %>
-            <%= form.text_field :extent, id: :street_extent, disabled: true %>
-          </div>
-      
-          <div class="field">
-            <%= form.label "Extent as Line String" %>
-            <%= form.text_area :extent_array, id: :street_extent_array, placeholder: "Will be automagically filled in when line is drawn", :maxlength=>"95%" %>
-          </div>
+            <div class="field">
+              <%= form.label "To come: this will be a GIS description of the section of street" %>
+              <%= form.text_field :extent, id: :street_extent, disabled: true %>
+            </div>
 
-          <div class="field">
-            <%= form.label "Approximate Number of Blocks this entry is about" %>
-            <%= form.text_field :numBlocks, id: :street_numBlocks %>
-          </div>
-        
-        <p>List each reference in a separate field.</p>
-          <div class="field">
-            <%= form.label "Reference 1" %>
-            <%= form.text_area :ref1, id: :street_ref1, :maxlength=>"95%" %> <!-- maxlength having no effect -->
-          </div>
+            <div class="field">
+              <%= form.label "Extent as Line String" %>
+              <%= form.text_area :extent_array, id: :street_extent_array, placeholder: "Will be automagically filled in when line is drawn", :maxlength=>"95%" %>
+            </div>
 
-          <div class="field">
-            <%= form.label "Reference 2" %>
-            <%= form.text_area :ref2, id: :street_ref2 %>
-          </div>
+            <div class="field">
+              <%= form.label "Approximate Number of Blocks this entry is about" %>
+              <%= form.text_field :numBlocks, id: :street_numBlocks %>
+            </div>
 
-          <div class="field">
-            <%= form.label "Reference 3" %>
-            <%= form.text_area :ref3, id: :street_ref3 %>
-          </div>
+            <p>List each reference in a separate field.</p>
+            <div class="field">
+              <%= form.label "Reference 1" %>
+              <%= form.text_area :ref1, id: :street_ref1, :maxlength=>"95%" %> <!-- maxlength having no effect -->
+            </div>
 
-          <div class="field">
-            <%= form.label :notes %>
-            <%= form.text_area :notes, id: :street_notes %>
-          </div>
+            <div class="field">
+              <%= form.label "Reference 2" %>
+              <%= form.text_area :ref2, id: :street_ref2 %>
+            </div>
 
-          <div class="actions">
-            <%= form.submit "Create/Update Historical Street", class: "btn btn-primary" %>
-          </div>
+            <div class="field">
+              <%= form.label "Reference 3" %>
+              <%= form.text_area :ref3, id: :street_ref3 %>
+            </div>
+
+            <div class="field">
+              <%= form.label :notes %>
+              <%= form.text_area :notes, id: :street_notes %>
+            </div>
+
+            <div class="actions">
+              <%= form.submit "Create/Update Historical Street", class: "btn btn-primary" %>
+            </div>
+          </div> <!-- end form-inputs -->
+        <% end %> <!-- End of form -->
        </div> <!-- end col-4, the left hand column -->
-  <% end %> <!-- End of form -->
     <div class="col">  <!-- col becomes col-8 in Bootstrap 4, See comment near top -->
       <br/>
       <%= render 'leafletmap_edit' %>
