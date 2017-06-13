@@ -7,3 +7,19 @@
     "tether": "^1.4.0"
   }
 }
+{
+  "scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "app/**/*.{js,es6,jsx}": [
+      "./node_modules/prettier/bin/prettier.js --trailing-comma es5 --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^0.13.4",
+    "lint-staged": "^3.6.0",
+    "prettier": "^1.4.2"
+  }
+}
