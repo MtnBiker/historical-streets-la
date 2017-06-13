@@ -27,6 +27,14 @@ $gray-lighter: lighten(#000, 93.5%); // #eee
 //  background-color: black;
 //}
 
+// GVS
+.font-bold {
+font-weight: bold;}
+
+.font-bold-red {
+font-weight: bold;
+color: red;}
+
 /* universal from Hartl-5 Listing 5-7 except first six lines of body */
 
 body {

@@ -17,6 +17,10 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 - Now that it's deployed, a few problems have to be fixed: 
 
+- Trying to add 18 level tiles when they don't exist and getting errors
+
+- Bing map loading causing some errors
+
 - Confirm that the geographic information storage of the segments is a good choice. It's currently a LINESTRING array stored as a string. 
 
 - Button text formatting

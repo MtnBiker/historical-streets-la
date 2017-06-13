@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <% provide(:title, @street.prevName) %>
-<h2>Historic Street Name</h2>
+<h1>Historic Street Name</h1>
 
   <div class="row">
     <div class="col-4">
@@ -66,6 +66,7 @@
     </div> <!-- end col-4 -->
 
     <div class="col">
+      <p class="font-bold-red">If no map shows up when you choose a map, zoom out. But the map may not cover that region, so try another map.</p>
       <br/>
       <%= render 'leafletmap_show' %>
     </div>
