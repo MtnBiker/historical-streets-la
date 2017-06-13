@@ -3,11 +3,13 @@
 <% provide(:title, @street) %>
 <!-- <h1>Historic Street Name Changes in Los Angeles</h1> -->
 
-<button type="button" class="btn btn-primary-outline" >
-  <%= link_to 'Add New Historic Street', new_street_path %>
-</button>
-
-<!-- < = will_paginate %> <!-- Following Hartl  --> -->
+<% if logged_in? %>
+  <button type="button" class="btn btn-primary-outline" >
+    <%= link_to 'Add New Historic Street', new_street_path %>
+  </button>
+<% end %>
+<br><br>
+<!-- < = will_paginate %> Following Hartl  -->
 
 <!-- table table-striped table-hover table-responsive - - Losses vertical centering -->
 <table class="streets pretty table table-striped table-hover table-responsive">
@@ -67,11 +69,9 @@
   </div>
 </footer>
 
-<br>	
-<!-- < if logged_in? %> Add back % at beginning -->
-<br>
-<button type="button" class="btn btn-primary-outline" >
-  <%= link_to 'New Historical Street Entry', new_street_path %>
-</button>
-
-<!-- end %> Add back % at beginning-->
+<br><br>
+<% if logged_in? %>
+  <button type="button" class="btn btn-primary-outline" >
+    <%= link_to 'New Historic Street Entry', new_street_path %>
+  </button>
+<% end %>

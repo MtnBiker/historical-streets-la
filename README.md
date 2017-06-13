@@ -28,6 +28,8 @@ For more information for now check out the about page at [Croatian Run Restauran
 ### Bigger plans
 - An overview map showing all the changed streets. 
 
+- Indicate that no coverage is available in the field of view when click on a layer.
+
 - A slider to view those segments over time
 
 - Search. Could then add pagination 
@@ -35,8 +37,8 @@ For more information for now check out the about page at [Croatian Run Restauran
 - More historical maps. Particularly Sanborn
 
 #### Nice to haves
-
+- Transparency slider 
 
 ### Technical
-Ruby on Rails 5.1. PostgreSQL database. Mainly Leaflet.js for mapping. Offline QGIS for georeferening maps. Deployed at Heroku. Historic maps mostly served from my domain (not a long term solution). Will expand in Acknowledgements page.
+Ruby on Rails 5.1. PostgreSQL database. Mainly Leaflet.js for mapping. Offline QGIS for georeferening maps. Deployed at Heroku. Will expand in Acknowledgements page. Map tiles served from AWS.
  
