@@ -89,6 +89,8 @@
         <% end %> <!-- End of form -->
        </div> <!-- end col-4, the left hand column -->
     <div class="col">  <!-- col becomes col-8 in Bootstrap 4, See comment near top -->
+      <p><strong>Use controls at right to select basemap.<br>
+        Then use the draw tool (left) <%= image_tag "DrawTool.png", :title => "title", :class => "class", :size => '40px'  %> to trace the portion of the street.</strong></p>
       <br/>
       <%= render 'leafletmap_edit' %>
     </div> <!-- end col-8. right hand column, the map -->
