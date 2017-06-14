@@ -73,7 +73,14 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
     };
     
     // Sets up map, but if there is a segment defined will zoom to that in the next if statement
-    var map = L.map('map').setView([34.05, -118.25], 13);
+    // var map = L.map('map').setView([34.05, -118.25], 13,);
+    
+    var map = new L.map('map', {
+        center: new L.LatLng(34.05, -118.25), 
+        zoom: 13,
+        layers: [osmMap, hill1928],
+        zoomControl: true
+    });
     // gon is a gem which allows reading of gon. variables defined in the controller
     console.log("typeof gon.streetExtentArray: " + typeof gon.streetExtentArray);
     var streetExtentArray = gon.streetExtentArray;
@@ -105,10 +112,10 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
 
     // adds the default map layer. Does this layer remain on when selecting one the layers from control.layer? I don't think so. But you have to select one button anyway 
     // L.tileLayer(osmUrl).addTo(map); // can switch to this, but Bing is easier to read street names.
-  L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
-
-    // Adds control to show other layers. Can't figure out how to get the options collapsed: false
-    L.control.layers( baseLayers, null, {collapsed:false} ).addTo(map);
+  // L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
+  //
+  //   // Adds control to show other layers. Can't figure out how to get the options collapsed: false
+    L.control.layers( baseLayers, null, {collapsed:true} ).addTo(map);
     
 //Create the opacity controls
     var higherOpacity = new L.Control.higherOpacity();
@@ -120,9 +127,9 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
 
 //Specify the layer for which you want to modify the opacity. Note that the setOpacityLayer() method applies to all the controls.
 //You only need to call it once. 
-    opacitySlider.setOpacityLayer(baistKM);
+    opacitySlider.setOpacityLayer(hill1928);
     
 //Set initial opacity to 0.5 (Optional)
-    baistKM.setOpacity(0.5);
+    hill1928.setOpacity(0.5);
     
     
