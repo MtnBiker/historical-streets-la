@@ -1,16 +1,14 @@
 <!-- Bootstrap Fixed top inverse Not sure about toggleable part -->
 <!-- Modeled after bootstrap-4.0.0-alpha.6/docs/examples/navbars/index.html -->
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <%= link_to "Historic Street Names in Los Angeles", root_path, id: "logo", class: "navbar-brand" %>
-  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-
+  <%= link_to "Historic Street Names in Los Angeles", root_path, class: "navbar-brand" %>
   <div class="collapse navbar-collapse" id="navbarCollapse"> <!-- Is navbarCollapse styled? -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <%= link_to "Home",  root_path, class: "nav-link" %><span class="sr-only">(current)</span></a>
+        <%= link_to "Home", root_path, class: "nav-link" %><span class="sr-only">(current)</span></a>
         <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
       </li>
       <li class="nav-item"><%= link_to "Street List",  streets_path, class: "nav-link" %></li>

@@ -44,8 +44,19 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
-  padding-top: 60px;
+//  latter two from navbar-top-fixed Bootstrap, but second changed by
+  min-height: 75rem;
+//  padding-top: 4.5rem;
+// bootstrap-4.0.0-alpha.6/docs/examples/navbars/navbar.css
+  padding-bottom: 20px;
+//  padding-top: 60px; Was Hartle
 }
+
+// From  bootstrap-4.0.0-alpha.6/docs/examples/navbars/navbar.css
+.navbar {
+  margin-bottom: 20px;
+}
+
 
 section {
   overflow: auto;
