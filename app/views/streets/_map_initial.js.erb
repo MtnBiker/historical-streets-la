@@ -110,3 +110,19 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
     // Adds control to show other layers. Can't figure out how to get the options collapsed: false
     L.control.layers( baseLayers, null, {collapsed:false} ).addTo(map);
     
+//Create the opacity controls
+    var higherOpacity = new L.Control.higherOpacity();
+    map.addControl(higherOpacity);
+    var lowerOpacity = new L.Control.lowerOpacity();
+    map.addControl(lowerOpacity);
+    var opacitySlider = new L.Control.opacitySlider();
+    map.addControl(opacitySlider);
+
+//Specify the layer for which you want to modify the opacity. Note that the setOpacityLayer() method applies to all the controls.
+//You only need to call it once. 
+    opacitySlider.setOpacityLayer(baistKM);
+    
+//Set initial opacity to 0.5 (Optional)
+    baistKM.setOpacity(0.5);
+    
+    
