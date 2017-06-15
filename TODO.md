@@ -19,6 +19,4 @@ Make the signup and password reset emails and HTML a bit more professional
 
 Look at puma.rb and see if hidden stuff is needed
 
-Mobile
-
 Login should take you back to the page you were on

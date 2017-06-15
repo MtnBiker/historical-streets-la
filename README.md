@@ -17,14 +17,14 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 - Now that it's deployed, some issues need to be addressed. List growing instead of shrinking. 
 
-    * When select a map, 'web' trying to add 18 level tiles when they don't exist and getting errors
+    * When select a map, 'web' trying to add 18 level tiles when they don't exist and getting errors or allow 'overzooming', i.e., allow the highest available zoom image to be enlarged. Don't want to put in thousands of higher level zoom tiles that contain no new information.
     * If zoomed in beyond what's available, no indication of what's going on.
     * Bing map loading causing some errors
     * Confirm that the geographic information storage of the segments is a good choice. It's currently a LINESTRING array stored as a string. 
     * Button text formatting
-    * Mobile:  home page doesn't fit, the image that is
     * Can localhost and Heroku databases be synced? Nice if I could work on localhost.
     * Acknowledgements page TBD, linked to [acknowledgements at Croatian Run Restaurants in Los Angeles 1880&ndash;1930](https://secure-shore-68966.herokuapp.com) and notes on home page cover the basics
+    - Transparency (opacity) slider. Or something to allow quickly going back and forth between current and historic map
 
 ### Bigger plans
 - An overview map showing all the changed streets. 
@@ -38,9 +38,8 @@ For more information for now check out the about page at [Croatian Run Restauran
 - More historical maps. Particularly Sanborn
 
 #### Nice to haves
-- Transparency slider
 
-- Toggle back and forth between two maps—useful in editing, although the transparency slider probably will largely solve the problem
+- Toggle back and forth between two maps—useful in editing, although the transparency (opacity) slider probably will largely solve the problem
 
 ### Technical
 Ruby on Rails 5.1. PostgreSQL database. Mainly Leaflet.js for mapping. Offline QGIS for georeferencing maps. Deployed at Heroku. Will expand in Acknowledgements page. Map tiles served from AWS.

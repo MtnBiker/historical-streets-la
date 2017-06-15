@@ -1,6 +1,6 @@
 // https://github.com/lizardtechblog/Leaflet.OpacityControls/blob/master/lib/opacity/Control.Opacity.css
 .higher_opacity_control {
-	background-image: url(images/higherOpacity.png);
+	background-image: url(higherOpacity.png); // removed images/ since couldn't find it. I don't find these images very intuitive
 	width: 20px;
     height: 20px;
     background-position: 50% 50%;
@@ -21,7 +21,7 @@
 }
 
 .lower_opacity_control {
-	background-image: url(images/lowerOpacity.png);
+	background-image: url(lowerOpacity.png); //removed images/
 	width: 20px;
     height: 20px;
     background-position: 50% 50%;

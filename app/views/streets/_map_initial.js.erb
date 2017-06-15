@@ -2,7 +2,7 @@
 // Map tile URLs
   var 
     hamlin1908url = 'https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg', 
-    Hill1928aws =    'http://crores.s3.amazonaws.com/1928Hills/{z}/{x}/{y}.png',
+    Hill1928aws =    'http://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
     baistDetailAws = 'http://crores.s3.amazonaws.com/tiles/baistDetail/{z}/{x}/{y}.png', 
     baistKMaws     = "http://crores.s3.amazonaws.com/tiles/bkm/{z}/{x}/{y}.png",
     rueger1902aws  = "http://crores.s3.amazonaws.com/tiles/1902rueger/{z}/{x}/{y}.png",
@@ -36,7 +36,8 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
     mwAttrib ='https://thinkwhere.wordpress.com',
     rumseyAttrib = rumseyLink,
     csunAttrib = csunLink,
-    bigBlogMapAttrib = bigBlogMapLink
+    bigBlogMapAttrib = bigBlogMapLink,
+    hamlinAttrib = ""
     
 // Putting together. First variable is the URL of the tiles
   var rueger1902Map       = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
@@ -73,12 +74,13 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
     };
     
     // Sets up map, but if there is a segment defined will zoom to that in the next if statement
+    // Original general case
     // var map = L.map('map').setView([34.05, -118.25], 13,);
-    
+    // Experimenting with slider, FIXED TO hill1928. Not viable in general.
     var map = new L.map('map', {
         center: new L.LatLng(34.05, -118.25), 
         zoom: 13,
-        layers: [osmMap, hill1928],
+        layers: [osmMap, woods1908],
         zoomControl: true
     });
     // gon is a gem which allows reading of gon. variables defined in the controller
@@ -114,7 +116,10 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
     // L.tileLayer(osmUrl).addTo(map); // can switch to this, but Bing is easier to read street names.
   // L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
   //
-  //   // Adds control to show other layers. Can't figure out how to get the options collapsed: false
+  //   // Adds control to show other layers.
+     // collapsed: false is good because reveals the option of selecting layers. Have it true because the opacity slider is buried by it.
+    // L.control.layers(baseLayers, overlays).addTo(map); // null: so no overlays are being specified. Are overlays points, for example. Null needed or it doesn't work.
+
     L.control.layers( baseLayers, null, {collapsed:true} ).addTo(map);
     
 //Create the opacity controls
@@ -127,9 +132,9 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
 
 //Specify the layer for which you want to modify the opacity. Note that the setOpacityLayer() method applies to all the controls.
 //You only need to call it once. 
-    opacitySlider.setOpacityLayer(hill1928);
+    opacitySlider.setOpacityLayer(woods1908);
     
 //Set initial opacity to 0.5 (Optional)
-    hill1928.setOpacity(0.5);
+    woods1908.setOpacity(0.5);
     
     
