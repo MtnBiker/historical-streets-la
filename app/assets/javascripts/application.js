@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 // Bootstrap tooltips and popovers depend on popper.js for positioning. The bootstrap gem already depends on the popper_js gem.
+// turbolinks should come after jquery. With tree they load in alphabetical order, so this is OK either way
   
 // Is rail-ujs in conflict with jquery_ujs? Doesn't seem to be
 //= require rails-ujs
@@ -21,6 +22,6 @@
 //  require jquery_ujs
 //= require leaflet
 //= require leaflet.draw
-  
+
 //= require turbolinks
 //= require_tree .

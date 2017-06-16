@@ -1,6 +1,12 @@
 <!-- Should be able to eliminate this intermediate step. Was here from refactoring before -->
 <div id="map">
   <script>
-    <%= render 'map_initial.js' %>
+    // < = render 'map_initial.js' %>
+  // $(document).on('ready page:load', function(event) { Changed to below which I got from Murach, but don't know if it has the same functionality. The map still loads, so may be OK
+     // makeMap() is in assets/javascripts/streets.js 
+    $(document).ready(function() {
+      makeMap();
+    });
+    
   </script>
 </div>

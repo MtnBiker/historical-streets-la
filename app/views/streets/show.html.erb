@@ -68,7 +68,24 @@
     <div class="col">
       <p class="font-bold-red">If no map shows up when you choose a map, zoom out. But the map may not cover that region, so try another map.</p>
       <br/>
-      <%= render 'leafletmap_show' %>
+      <!-- <= render 'leafletmap_show' %> -->
+      
+      <div id="map"></div>
+        <script>
+        // $(document).on('ready page:load', function(event) { Changed to below which I got from Murach, but don't know if it has the same functionality. The map still loads, so may be OK
+           // makeMap() is in assets/javascripts/streets.js 
+          // $(document).ready(function() {
+          // $(document).on('turbolinks:load', function() { // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
+            
+          $(document).on('ready page:load', function() {
+             console.log('(document).turbolinks:load')
+            makeMap();
+          });
+    
+        </script>
+
+      
+      
     </div>
   </div>
   <% if logged_in? %>

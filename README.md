@@ -25,6 +25,7 @@ For more information for now check out the about page at [Croatian Run Restauran
     * Can localhost and Heroku databases be synced? Nice if I could work on localhost.
     * Acknowledgements page TBD, linked to [acknowledgements at Croatian Run Restaurants in Los Angeles 1880&ndash;1930](https://secure-shore-68966.herokuapp.com) and notes on home page cover the basics
     - Transparency (opacity) slider. Or something to allow quickly going back and forth between current and historic map
+    - Add city, so cities beyond the boundaries of the City of Los Angeles can be included. No rules, but keeping it within the county makes some sense.
 
 ### Bigger plans
 - An overview map showing all the changed streets. 
