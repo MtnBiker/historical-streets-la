@@ -1,12 +1,14 @@
 <!-- Should be able to eliminate this intermediate step. Was here from refactoring before -->
+<!-- Called from show.html.erb in the original version, but not the 25.1-leaflet-opacity trial -->
+<!-- So doing nothing now in the 25.1 trial. Confirmed by commenting out and testing -->
 <div id="map">
   <script>
     // < = render 'map_initial.js' %>
   // $(document).on('ready page:load', function(event) { Changed to below which I got from Murach, but don't know if it has the same functionality. The map still loads, so may be OK
-     // makeMap() is in assets/javascripts/streets.js 
+     // makeMap() is in assets/javascripts/streets.js
     $(document).ready(function() {
       makeMap();
     });
-    
+
   </script>
 </div>
