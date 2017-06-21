@@ -71,9 +71,9 @@
       //
       // // Finally, show the poly as a geojson object in the console
       // console.log(JSON.stringify(geojson));
-      $("#street_extent_array").val("[" + coordinates + "]");
+      $("#street_extent_array").val("[" + coordinates + "]"); // writes coordinate array into field on form ready for save
        // here you add it to a layer to display it in the map
-          drawnItems.addLayer(layer);
+      drawnItems.addLayer(layer);
     // var collection = drawnItems.toGeoJSON();
     // console.log(collection);
     // $("#street_ref2").next().text("Testing writing to DOM in window.onload")  ; // This works writing to span. Removed span after test
