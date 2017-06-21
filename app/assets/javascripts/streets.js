@@ -3,8 +3,8 @@
 // Called from show.html.erb in this trial (needs to be called from edit too)
 // Used to be _map.initial.js.erb, but moved here since easier to debug and is "better" practice
 // Called from _leafletmap.show.html.erb in the version before this
-function makeMap() {
-
+function makeMap(dateEarliest, currentName, dateLatest) {
+  var dateEarliest, currentName, dateLatest;
 // Map tile URLs
 var hamlin1908url = 'https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg', 
   Hill1928aws =    'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
@@ -98,38 +98,13 @@ console.log("95. typeof gon.streetExtentArray: " + typeof gon.streetExtentArray)
 var streetExtentArray = gon.streetExtentArray;
 console.log("99. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
 
-// Contortions to get the bounds if the streetExtentArray has data and coerce to the needed types
-// May not be correctly leveraging gon. I'M GETTING erb NOT gon.
-// TODO. Go back to gon, may be easier that what I've got here
-// if ( streetExtentArray == null ) {
-//   console.log("105. streetExtentArray is null");
-// } else {
-//   console.log("107. streetExtentArray.length: " + streetExtentArray.length);
-//   // L.polyline(streetExtentArray).addTo(map)
-//   //     .bindPopup("<%= @street.dateEarliest %><br><%= @street.currentName %><br><%= @street.dateLatest %>")
-//   //      // .openPopup("< = @street.extent_array.getCenter() %>") // need to parse to get coordinate getCenter works on latlng in Leaflet, but not on simple array
-//   // ;
-//   if (streetExtentArray == undefined) {
-//     console.log("113. streetExtentArray is undefined: ")
-//   } else {
-//     console.log("115. streetExtentArray not null and not undefined: " + streetExtentArray + ". typeOf: "+ streetExtentArray.typeOf);
     
-    var arrayStreetExtent = JSON.parse(streetExtentArray); // using intermediary for testing
-    // arrayStreetExtent = streetExtentArray; // using intermediary for testing
-    
-    
-    console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
-    
-    
-    // Can't do the following in js. Maybe can create some variable and pass them in, but maybe won't need to once figure out how to find the variable needed to set the map of interest
-    map.fitBounds(arrayStreetExtent); // zooms to area of interest
-    L.polyline(arrayStreetExtent).addTo(map);
-    // L.polyline(<%= @street.extent_array %>).addTo(map)
-    //     .bindPopup("&le;<%= @street.dateEarliest %><br><%= @street.currentName %><br>&ge;<%=@street.dateLatest %>")
-         // .openPopup("< = @street.extent_array.getCenter() %>") // need to parse to get coordinate getCenter works on latlng in Leaflet, but not on simple array
-//     ;
-//   }
-// };
+var arrayStreetExtent = JSON.parse(streetExtentArray);
+console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
+map.fitBounds(arrayStreetExtent); // zooms to area of interest
+L.polyline(arrayStreetExtent).addTo(map)
+    .bindPopup("&le;" + dateEarliest + "<br>" + currentName + "<br>&ge;" + dateLatest);
+    // .openPopup(arrayStreetExtent.getCenter()); // need to parse to get coordinate getCenter works on latlng in Leaflet, but not on simple array
 
 // adds the default map layer. Does this layer remain on when selecting one the layers from control.layer? I don't think so. But you have to select one button anyway 
 // L.tileLayer(osmUrl).addTo(map); // can switch to this, but Bing is easier to read street names.
@@ -140,7 +115,12 @@ L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91j
 // L.control.layers(baseLayers, overlays).addTo(map); // null: so no overlays are being specified. Are overlays points, for example. Null needed or it doesn't work.
 
 L.control.layers( baseLayers, overlayLayers, {collapsed:true} ).addTo(map);
-// var control = L.control.activeLayers(baseLayers, overlayLayers).addTo(map)
+
+// Need to display with active layers once select a layer which must be trigged by an event.
+// So the above is the initial display and then after selecting layer we get the opacity slider.
+
+
+// var control = L.control.activeLayers(baseLayers, overlayLayers).addTo(map);
 //
 // var overlayLayers = control.getActiveOverlayLayers()
 // for (var overlayId in overlayLayers) {

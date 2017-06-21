@@ -79,7 +79,10 @@
             
           $(document).on('ready page:load', function() {
              console.log('(document).turbolinks:load')
-            makeMap();
+             var dateEarliest = <%= @street.dateEarliest %>;
+             var currentName = "<%= @street.currentName %>";
+             var dateLatest = <%= @street.dateLatest %>;
+             makeMap(dateEarliest, currentName, dateLatest);
           });
     
         </script>
