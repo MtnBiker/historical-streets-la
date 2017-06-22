@@ -53,6 +53,7 @@
       // here you can get it in geojson format
       var geojson = layer.toGeoJSON();  // is an object Object
       console.log("type of layer.toJSON: " + typeof geojson); // object
+      console.log("56. JSON.stringify(geojson):\n" + JSON.stringify(geojson)) // maybe write to an json
       var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc. 
       console.log("type of layer.getLatLngs(): " + typeof layer.getLatLngs() + ". But it displays as a partial JSON ()");
       console.log(latlngs);

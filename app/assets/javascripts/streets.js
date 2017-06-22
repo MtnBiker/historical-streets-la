@@ -3,8 +3,8 @@
 // Called from show.html.erb in this trial (needs to be called from edit too)
 // Used to be _map.initial.js.erb, but moved here since easier to debug and is "better" practice
 // Called from _leafletmap.show.html.erb in the version before this
-function makeMap(dateEarliest, currentName, dateLatest, popupText) {
-// May not need all the variables. Right now only using last one
+// Was function makeMap(dateEarliest, currentName, dateLatest, popupText) {
+function makeMap(popupText) {
 // Map tile URLs
 var hamlin1908url = 'https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg', 
   Hill1928aws =    'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
@@ -95,7 +95,7 @@ var map = L.map('map').setView([34.05, -118.25], 13,);
 // var streetExtentArray = new Array();
 // console.log("97. typeof streetExtentArray= new Array();: " + typeof streetExtentArray); // => object
 L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
-// var streetExtentArray = gon.streetExtentArray;
+var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated below
 // console.log("99. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
 var arrayStreetExtent = JSON.parse(gon.streetExtentArray);
 // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);

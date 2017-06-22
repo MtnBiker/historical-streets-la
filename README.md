@@ -20,7 +20,9 @@ For more information for now check out the about page at [Croatian Run Restauran
     * When select a map, 'web' trying to add 18 level tiles when they don't exist and getting errors or allow 'overzooming', i.e., allow the highest available zoom image to be enlarged. Don't want to put in thousands of higher level zoom tiles that contain no new information.
     * If zoomed in beyond what's available, no indication of what's going on.
     * Bing map loading causing some errors
-    * Confirm that the geographic information storage of the segments is a good choice. It's currently a LINESTRING array stored as a string. 
+    * Confirm that the geographic information storage of the segments is a good choice. It's currently a LINESTRING array stored as a string. JSON might be more portable between Postgres and JavaScript. Rails and Postgres have :line_string, but JavaScript not so much. How to write to the json field?
+    *rails generate migration AddJsonToStreets json_path:json line_string:line_string (have both available*)
+    
     * Button text formatting
     * Can localhost and Heroku databases be synced? Nice if I could work on localhost.
     * Acknowledgements page TBD, linked to [acknowledgements at Croatian Run Restaurants in Los Angeles 1880&ndash;1930](https://secure-shore-68966.herokuapp.com) and notes on home page cover the basics
@@ -43,6 +45,6 @@ For more information for now check out the about page at [Croatian Run Restauran
 - Toggle back and forth between two maps—useful in editing, although the transparency (opacity) slider probably will largely solve the problem
 
 ### Technical
-Ruby on Rails 5.1. PostgreSQL database. Mainly Leaflet.js for mapping. Offline QGIS for georeferencing maps. Deployed at Heroku. Will expand in Acknowledgements page. Map tiles served from AWS.
+Ruby on Rails 5.1. PostgreSQL (PostGIS) database. Mainly Leaflet.js for mapping. Offline QGIS for georeferencing maps. Deployed at Heroku. Will expand in Acknowledgements page. Map tiles served from AWS.
 More details to come in Acknowledgements
  

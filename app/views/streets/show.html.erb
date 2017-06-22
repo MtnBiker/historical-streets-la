@@ -10,17 +10,17 @@
       </p>
 
       <p>
-        <strong>'Current' Street Name:</strong>
+        <strong>'Current/Next' Street Name:</strong>
         <%= @street.currentName %>
       </p>
 
       <p>
-        <strong>Earliest Date for 'Current' Name:</strong>
+        <strong>Earliest Date for 'Previous' Name:</strong>
         <%= @street.dateEarliest %>
       </p>
 
       <p>
-        <strong>Latest Date for 'Current' Name:</strong>
+        <strong>Latest Date for 'Previous' Name:</strong>
         <%= @street.dateLatest %>
       </p>
 
@@ -30,8 +30,8 @@
       </p>
 
       <p>
-        <strong>FYI: Extent as Geometry:</strong>
-        <%= @street.extent %>
+        <strong>Extent as JSON:</strong>
+        <%= @street.extent_json %>
       </p>
 
       <p>
@@ -78,11 +78,11 @@
           // $(document).on('turbolinks:load', function() { // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
             // popupText = "&le;<%= @street.dateEarliest %><br><%= @street.currentName %><br>&ge;<%= @street.dateLatest %>"
           $(document).on('ready page:load', function() {
-             var dateEarliest = <%= @street.dateEarliest %>;
-             var currentName  = "<%= @street.currentName %>";
-             var dateLatest   = <%= @street.dateLatest %>;
-             var popupText = "&le;<%= @street.dateEarliest %><br><%= @street.currentName %><br>&ge;<%= @street.dateLatest %>";
-             makeMap(dateEarliest, currentName, dateLatest, popupText);
+             // var dateEarliest = <%= @street.dateEarliest %>;
+             // var currentName  = "<%= @street.currentName %>";
+             // var dateLatest   = <%= @street.dateLatest %>;
+             var popupText = "&le;<%= @street.dateEarliest %><br><%= @street.prevName %><br>&ge;<%= @street.dateLatest %><br><%= @street.currentName %>";
+             makeMap(popupText);
           });
         </script>
 
