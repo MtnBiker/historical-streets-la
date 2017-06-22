@@ -40,14 +40,11 @@
       }
     });
     map.addControl(drawControl);
-
-// What is  the pop up?
+    
     map.on('draw:created', function(e) {
+          // featureGroup.addLayer(e.layer); // might be equivalent to the following two lines
       var type = e.layerType,
         layer = e.layer;
-      // if (type === 'marker') {
-      //   layer.bindPopup('A popup!');
-      // }
 
       // from https://gis.stackexchange.com/questions/133379/how-to-export-to-all-points-within-leaflet-polygon
       var points = layer._latlngs; // No longer needed, but shows alt way to get lat lng, need to check type
