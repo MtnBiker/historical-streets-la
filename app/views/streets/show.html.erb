@@ -72,17 +72,14 @@
       
       <div id="map"></div>
         <script>
-        // $(document).on('ready page:load', function(event) { Changed to below which I got from Murach, but don't know if it has the same functionality. The map still loads, so may be OK
-           // makeMap() is in assets/javascripts/streets.js 
-          // $(document).ready(function() {
-          // $(document).on('turbolinks:load', function() { // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
-            // popupText = "&le;<%= @street.dateEarliest %><br><%= @street.currentName %><br>&ge;<%= @street.dateLatest %>"
-          $(document).on('ready page:load', function() {
+          // showMap() is in assets/javascripts/streets.js 
              // var dateEarliest = <%= @street.dateEarliest %>;
              // var currentName  = "<%= @street.currentName %>";
              // var dateLatest   = <%= @street.dateLatest %>;
-             var popupText = "&le;<%= @street.dateEarliest %><br><%= @street.prevName %><br>&ge;<%= @street.dateLatest %><br><%= @street.currentName %>";
-             makeMap(popupText);
+          var popupText = "&le;<%= @street.dateEarliest %><br><%= @street.prevName %><br>&ge;<%= @street.dateLatest %><br><%= @street.currentName %>";
+          // $(document).on('ready page:load', function() { // have to reload to get page to show
+          $(document).on('turbolinks:load', function() { // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
+             showMap(popupText);
           });
         </script>
 
