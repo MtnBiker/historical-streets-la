@@ -79,15 +79,31 @@ var baseLayers = {
 // Original. But need a baselayer and a overlayLayer for opacitySlider to load 
 var map = L.map('map').setView([34.05, -118.25], 13,);
 L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
+
+
 var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated below
-// console.log("99. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
-var arrayStreetExtent = JSON.parse(gon.streetExtentArray);
-// console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
-map.fitBounds(arrayStreetExtent); // zooms to area of interest
+// console.log("191. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
+
+if (streetExtentArray.length > 2) {
+  var arrayStreetExtent = JSON.parse(gon.streetExtentArray); // If not inside if, errors when streetExtentArray doesn't exist, but TODO seems to need to be reloaded to show page
+  // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
+  map.fitBounds(arrayStreetExtent); // zooms to area of interest
+  L.polyline(arrayStreetExtent).addTo(map)
+                               .bindPopup(popupText).openPopup()
+  ;
+}
+
+
+
+// var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated below
+// // console.log("99. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
+// var arrayStreetExtent = JSON.parse(gon.streetExtentArray);
+// // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
+// map.fitBounds(arrayStreetExtent); // zooms to area of interest
+// // L.polyline(arrayStreetExtent).addTo(map)
+// // .bindPopup("&le;" + dateEarliest + "<br>" + currentName + "<br>&ge;" + dateLatest); // Could have passed the whole statement as a variable which is tried out below and it worked. TODO can delete the first three variables.
 // L.polyline(arrayStreetExtent).addTo(map)
-// .bindPopup("&le;" + dateEarliest + "<br>" + currentName + "<br>&ge;" + dateLatest); // Could have passed the whole statement as a variable which is tried out below and it worked. TODO can delete the first three variables.
-L.polyline(arrayStreetExtent).addTo(map)
-                             .bindPopup(popupText).openPopup(); 
+//                              .bindPopup(popupText).openPopup();
 
 
 }  // end makeMap
@@ -282,7 +298,7 @@ switch (currentLayer) {
   default:
     currentLayer = baistKM;
     break;
-}
+} // end switch
   opacitySlider.setOpacityLayer(currentLayer); // overlayLayers: opacity_layer.setOpacity is not a function. All the layers are sent, need to just have the selected layer
 
   //Set initial opacity to 0.5 (Optional)
@@ -300,6 +316,62 @@ map.on('overlayadd', function (event) {
   addOpacitySlider(currentLayer);
 });
 
-// map.on('overlayadd', addOpacitySlider); // http://leafletjs.com/reference-1.0.3.html#map-baselayerchange
+// Initial map draws the map and adds control to select basemaps.
+// Now we add what's needed to draw the extent and save to database
+// See old _leafletmap.edit.erb for earlier version of the following
+
+// Initialise the FeatureGroup to store editable layers
+var drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+  
+// Initialise the draw control for only polyline and pass it the FeatureGroup of editable layers
+var drawControl = new L.Control.Draw({
+  position: 'topleft',
+  draw: {
+    polyline :  true,
+    marker:     false,
+    polygon :   false,
+    rectangle : false,
+    circle :    false
+  },
+  edit: {
+    featureGroup: drawnItems
+  }
+}); // end drawControl
+map.addControl(drawControl);
+
+map.on('draw:created', function(e) {
+  // featureGroup.addLayer(e.layer); // might be equivalent to the following two lines
+  var type = e.layerType,
+    layer = e.layer;
+
+  // from https://gis.stackexchange.com/questions/133379/how-to-export-to-all-points-within-leaflet-polygon
+  var points = layer._latlngs; // No longer needed, but shows alt way to get lat lng, need to check type
+  console.log("type of layer._latlngs: " + typeof layer._latlngs); //object, what about string?
+  console.log("type of points = to above: " + typeof points); //object
+  // here you can get it in geojson format
+  var geojson = layer.toGeoJSON();  // is an object Object
+  console.log("type of layer.toJSON: " + typeof geojson); // object
+  console.log("56. JSON.stringify(geojson):\n" + JSON.stringify(geojson)) // maybe write to an json
+  var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc. 
+  console.log("type of layer.getLatLngs(): " + typeof layer.getLatLngs() + ". But it displays as a partial JSON ()");
+  console.log(latlngs);
+  // export the coordinates from the layer
+  var coordinates = [];
+  latlngs = layer.getLatLngs();
+  for (var i = 0; i < latlngs.length; i++) {
+    coordinates.push("[" + [latlngs[i].lat, latlngs[i].lng] + "]")
+  }
+  console.log("coordinates: " + coordinates);
+  // push the coordinates to the json geometry
+  // geojson['geometry']['coordinates'] = [coordinates];
+  //
+  // Finally, show the poly as a geojson object in the console
+  // console.log(JSON.stringify(geojson));
+  $("#street_extent_array").val("[" + coordinates + "]"); // writes coordinate array into field on form ready for save
+  // here you add it to a layer to display it in the map
+  drawnItems.addLayer(layer);
+}); // end of map.on
+
 
 }  // end editMap

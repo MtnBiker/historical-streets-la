@@ -22,3 +22,11 @@ Make the signup and password reset emails and HTML a bit more professional
 Look at puma.rb and see if hidden stuff is needed
 
 Login should take you back to the page you were on
+
+TODO Have so can only select one overlay
+
+  Overlay controls don't appear on show and base layer may not appear on first loading
+
+  Need to reload page to edit
+
+  Opacity slider doesn't appear on first loading of edit, only after change overlayLayer
