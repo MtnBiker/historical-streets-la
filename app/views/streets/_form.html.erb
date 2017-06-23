@@ -93,7 +93,23 @@
         Then use the draw tool (left) <%= image_tag "DrawTool.png", :title => "title", :class => "class", :size => '40px'  %> to trace the portion of the street.</strong></p>
         <p class="font-bold-red">If no map shows up when you choose a map, zoom out. But the map may not cover that region, so try another map.</p>
       <br/>
-      <%= render 'leafletmap_edit' %>
+
+      <!-- < = render 'leafletmap_edit' %> -->
+      
+      <div id="map"></div>
+      <script>
+        $(document).on('ready page:load', function() {
+          var popupText = "&le;<%= @street.dateEarliest %><br><%= @street.prevName %><br>&ge;<%= @street.dateLatest %><br><%= @street.currentName %>";
+          editMap(popupText); // in streets.js
+        });
+        // the following three lines had no effect 
+        // window.onload = function() {
+        //   $(".leaflet-control-layers-selector").onclick = addOpacitySlider;
+        // }
+      </script>
+      
+      
+      
     </div> <!-- end col-8. right hand column, the map -->
   </div> <!-- end row -->
 
