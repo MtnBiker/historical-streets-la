@@ -3,6 +3,7 @@
 // Called from show.html.erb and edit.html.erb
 // First set up common variables, then function specific to each show and edit
 // Used to be _map.initial.js.erb and  _leafletmap.show.html.erb
+var map; // so can call show from edit. map needs to be global
 //URLs
 var hamlin1908url = 'https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg', 
     Hill1928aws =    'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
@@ -83,7 +84,7 @@ function showMap(popupText) {
   // Sets up map, but if there is a segment defined will zoom to that in the next if statement
   // Original. But need a baselayer and a overlayLayer for opacitySlider to load 
   // var map = L.map('map').setView([34.05, -118.25], 13,);
-  var map = L.map('map', {
+  map = L.map('map', {
       center: new L.LatLng(34.05, -118.25),
       zoom: 13,
       layers: [osmMap, hill1928], // have to figure out how to make the second item a blank map. Probably need to find a more robust solution and acturally figure out how to make it work right
@@ -201,132 +202,7 @@ function showMap(popupText) {
 // editMap. Streets > Edit
 function editMap(popupText) {
 
-  // Sets up map, but if there is a segment defined will zoom to that in the next if statement
-  // Original. But need a baselayer and a overlayLayer for opacitySlider to load 
-  // var map = L.map('map').setView([34.05, -118.25], 13,);
-  // Experimenting with slider, FIXED TO hill1928. Not viable in general since an overlayLayer is preselected.
-  var map = L.map('map', {
-      center: new L.LatLng(34.05, -118.25),
-      zoom: 13,
-      layers: [osmMap, hill1928], // have to figure out how to make the second item a blank map. Probably need to find a more robust solution and acturally figure out how to make it work right
-      zoomControl: true
-  });
-  // gon is a gem which allows reading of gon. variables defined in the controller
-  // console.log("95. typeof gon.streetExtentArray: " + typeof gon.streetExtentArray);
-  // var streetExtentArray = new Array();
-  // console.log("97. typeof streetExtentArray= new Array();: " + typeof streetExtentArray); // => object
-  L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map); // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
-  var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated below
-  // console.log("191. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
-
-  if (streetExtentArray.length > 2) {
-    var arrayStreetExtent = JSON.parse(gon.streetExtentArray); // If not inside if, errors when streetExtentArray doesn't exist, but TODO seems to need to be reloaded to show page
-    // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
-    map.fitBounds(arrayStreetExtent); // zooms to area of interest
-    L.polyline(arrayStreetExtent).addTo(map)
-                                 .bindPopup(popupText).openPopup()
-    ;
-  } // end if
-
-  //   // Adds control to show other layers.
-   // collapsed: false is good because reveals the option of selecting layers. Have it true because the opacity slider is buried by it.
-  // L.control.layers(baseLayers, overlayLayers).addTo(map); // null: so no overlays are being specified. Are overlays points, for example. Null needed or it doesn't work.
-
-  // console.log("113. baseLayers: " + baseLayers.to_string + ". overlayLayers: " + overlayLayers.to_string);
-  // if (baseLayers == "undefined" || overlayLayers == undefined) open curly bracket
-  //   overlayLayers = "";
-  //   baseLayers = "";
-  //   console.log("118. got inside if"); // not happening with undefined in or out of quotes
-  //   // L.control.layers( baseLayers, overlayLayers).addTo(map); // Don't get controls. Maybe not in the if
-  //   L.control.activeLayers(baseLayers, overlayLayers).addTo(map); // Don't get controls. Maybe not in the if
-  // }
-  // L.control.layers( baseLayers, overlayLayers, {collapsed:true} ).addTo(map); // works and shows controls, but then what? Need to have transparency slider come on
-  L.control.activeLayers(baseLayers, overlayLayers).addTo(map); // Uncaught Error: Control doesn't have any active base layer! But may want to be in this mode
-
-  // The above is the initial display and then after selecting layer we get the opacity slider.
-  // Need to display with active layers once select a layer which must be trigged by an event.
-
-  // The event handler for changing the display after the selection of an overlayLayer
-  var addOpacitySlider = function(currentLayer) {
-    console.log("218. Got into addOpacitySlider. currentLayer: " + currentLayer);
-    // var control = L.control.activeLayers(baseLayers, overlayLayers).addTo(map); // simplier? Do I need control
-    var control = L.control.activeLayers(baseLayers, overlayLayers);
-    // control.addTo(map); // if add, get two controls, maybe need to clear the first one if need to add this one
-  
-    // console.log("224. control: " + control); // somewhat to say we got here
-    // console.log("225. control.getActiveBaseLayer().name: " + control.getActiveBaseLayer().name);
-    var overlayLayersX = control.getActiveOverlayLayers();
-    // for (var overlayId in overlayLayersX) {
-   //    console.log("228. overlayLayer: " + overlayLayersX[overlayId].name); // gets the "long" name including formatting (name is on left in definition)
-   //    console.log("228. overlayLayer ID: " + overlayLayersX[overlayId]);
-   //  }
-    //
-    // var overlayLayers = control.getActiveOverlayLayers()
-    // for (var overlayId in overlayLayers) {
-    //     console.log("overlayLayer: " + overlayLayers[overlayId].name)
-    // }
-    //
-    //
-    // //Create the opacity controls—the slider
-    // // Better if I can place opacitySlider to the right of the layer control
-    // // Only needs to be loaded after select a layer, so some on.xxx
-    var opacitySlider = new L.Control.opacitySlider(); // ,{position: 'bottomright'} Works but maybe too hard to see
-    map.addControl(opacitySlider);
-    //
-    // //Specify the layer for which you want to modify the opacity. Note that the setOpacityLayer() method applies to all the controls.
-    // //You only need to call it once.
-    // console.log("237. overlayLayer: " + overlayLayers[overlayId].name)
-    switch (currentLayer) {
-    case "1921 Baist detail":
-      currentLayer = baistDetail;
-      break;
-    case "<span style='color: blue'>1921 Baist detail</span>":
-      currentLayer = baistDetail;
-      break;
-    case "<span style='color: blue'>1921 Baist Key Map</span>":
-      currentLayer = baistKM;
-      break;
-    case "1921 Baist Key Map":
-      currentLayer = baistKM;
-      break;
-    case "1928 Hill":
-      currentLayer = hill1928;
-      break;
-    case "1908 Wood":
-      currentLayer = woods1908;
-      break;
-    case "1908 Hamlin":
-      currentLayer = hamlin1908;
-      break;
-    case "1902 Rueger":
-      currentLayer = rueger1902;
-      break;
-    case "1894 Sanborn":
-      currentLayer = sanborn1894km1a;
-      break;
-    case "1888 Sanborn":
-      currentLayer = sanborn1888km1a;
-      break;
-    default:
-      currentLayer = baistKM;
-      break;
-  } // end switch
-    opacitySlider.setOpacityLayer(currentLayer); // overlayLayers: opacity_layer.setOpacity is not a function. All the layers are sent, need to just have the selected layer
-
-    //Set initial opacity to 0.5 (Optional)
-    // overlayLayers.setOpacity(0.5);
-  } // end addOpacitySlider
-
-  map.on('baselayerchange', function (event) {
-    // Returns 'CartoDB Positron' or 'CartoDB Dark Matter'
-    console.log("257. baselayerchange event.name: " + event.name);
-  });
-  map.on('overlayadd', function (event) {
-    // Returns 'CartoDB Positron' or 'CartoDB Dark Matter'
-    console.log("261. overlayadd event.name: " + event.name);
-    var currentLayer = event.name;
-    addOpacitySlider(currentLayer);
-  });
+  showMap(popupText);
 
   // Initial map draws the map and adds control to select basemaps.
   // Now we add what's needed to draw the extent and save to database
