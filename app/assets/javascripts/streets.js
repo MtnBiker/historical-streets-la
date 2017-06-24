@@ -78,16 +78,16 @@ var baseLayers = {
     "<span style='color: green' >Google Satellite</span>"  : google
 }                             
 
-// For street > show. Called from 
+// For street > show. Used for show and called by editMap to get all the initial stuff 
 function showMap(popupText) {
 
-  // Sets up map, but if there is a segment defined will zoom to that in the next if statement
+  // Sets up map, but if there is a linestring defined will zoom to that in the next if statement
   // Original. But need a baselayer and a overlayLayer for opacitySlider to load 
   // var map = L.map('map').setView([34.05, -118.25], 13,);
   map = L.map('map', {
       center: new L.LatLng(34.05, -118.25),
       zoom: 13,
-      layers: [osmMap, hill1928], // have to figure out how to make the second item a blank map. Probably need to find a more robust solution and acturally figure out how to make it work right
+      layers: [osmMap, hill1928], // have to figure out how to make the second item a blank map. Probably need to find a more robust solution and actually figure out how to make it work right TODO
       zoomControl: true
   });
   
@@ -97,7 +97,7 @@ function showMap(popupText) {
   // console.log("191. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
 
 // If linestring exists, draw it
-  if (streetExtentArray.length > 2) {
+  if (streetExtentArray != null && streetExtentArray.length > 2) {
     var arrayStreetExtent = JSON.parse(gon.streetExtentArray); // If not inside if, errors when streetExtentArray doesn't exist, but TODO seems to need to be reloaded to show page
     // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
     map.fitBounds(arrayStreetExtent); // zooms to area of interest
@@ -118,20 +118,8 @@ function showMap(popupText) {
     // console.log("224. control: " + control); // somewhat to say we got here
     // console.log("225. control.getActiveBaseLayer().name: " + control.getActiveBaseLayer().name);
     var overlayLayersX = control.getActiveOverlayLayers();
-    // for (var overlayId in overlayLayersX) {
-   //    console.log("228. overlayLayer: " + overlayLayersX[overlayId].name); // gets the "long" name including formatting (name is on left in definition)
-   //    console.log("228. overlayLayer ID: " + overlayLayersX[overlayId]);
-   //  }
-    //
-    // var overlayLayers = control.getActiveOverlayLayers()
-    // for (var overlayId in overlayLayers) {
-    //     console.log("overlayLayer: " + overlayLayers[overlayId].name)
-    // }
-    //
-    //
-    // //Create the opacity controls—the slider
-    // // Better if I can place opacitySlider to the right of the layer control
-    // // Only needs to be loaded after select a layer, so some on.xxx
+    //C reate the opacity controls—the slider
+    // Better if I can place opacitySlider to the right of the layer control
     var opacitySlider = new L.Control.opacitySlider(); // ,{position: 'bottomright'} Works but maybe too hard to see
     map.addControl(opacitySlider);
     //
@@ -176,38 +164,27 @@ function showMap(popupText) {
     opacitySlider.setOpacityLayer(currentLayer); // overlayLayers: opacity_layer.setOpacity is not a function. All the layers are sent, need to just have the selected layer
 
     //Set initial opacity to 0.5 (Optional)
-    // overlayLayers.setOpacity(0.5);
+    // overlayLayers.setOpacity(0.5); // error TODO
   } // end addOpacitySlider
 
-  map.on('baselayerchange', function (event) {
-    // Returns 'CartoDB Positron' or 'CartoDB Dark Matter'
-    console.log("257. baselayerchange event.name: " + event.name);
-  });
+  // map.on('baselayerchange', function (event) {
+  //   console.log("171. baselayerchange event.name: " + event.name);
+  // });
   map.on('overlayadd', function (event) {
-    // Returns 'CartoDB Positron' or 'CartoDB Dark Matter'
-    console.log("261. overlayadd event.name: " + event.name);
+    // console.log("174. overlayadd event.name: " + event.name);
     var currentLayer = event.name;
     addOpacitySlider(currentLayer);
   });
 
-
 }  // end showMap
-
-// ctrLayer = L.control.activeLayers(baseMaps, overlayMaps, {position: 'topright'}).addTo(map);
-// .....
-// tilemapLayer = ctrLayer.getActiveBaseLayer().layer;
-// tilemapLayer.setOpacity(actualOpacityValue);
-
 
 // editMap. Streets > Edit
 function editMap(popupText) {
 
-  showMap(popupText);
+  showMap(popupText); // showMap draws the map and adds control to select basemaps.
 
-  // Initial map draws the map and adds control to select basemaps.
   // Now we add what's needed to draw the extent and save to database
-  // See old _leafletmap.edit.erb for earlier version of the following
-
+ 
   // Initialise the FeatureGroup to store editable layers
   var drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
@@ -259,7 +236,6 @@ function editMap(popupText) {
     $("#street_extent_array").val("[" + coordinates + "]"); // writes coordinate array into field on form ready for save
     // here you add it to a layer to display it in the map
     drawnItems.addLayer(layer);
-}); // end of map.on
-
+  }); // end map.on which writes the linestring after it's drawn
 
 }  // end editMap
