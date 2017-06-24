@@ -23,5 +23,4 @@ Look at puma.rb and see if hidden stuff is needed
 
 Login should take you back to the page you were on
 
-TODO Have so can only select one overlay
-
+TODO Only one overlay at a time

@@ -15,7 +15,7 @@
 <table class="streets pretty table table-striped table-hover table-responsive">
   <thead>
     <tr>
-      <th>City</th>
+      <th>City if not LA</th>
       <th>Previous Name</th>
       <th>Earliest Date for Prev Name</th>
       <th>Current (Latest)</th>
@@ -34,7 +34,7 @@
   <tbody>
     <% @streets.each do |street| %>
       <tr>
-        <td><%= street.city %></td>
+        <td><% if street.city != "Los Angeles" %><%= street.city %><% end %></td>
         <td><%= street.prevName %></td>
         <td><%= street.dateEarliest %></td>
         <td><%= street.currentName %></td>

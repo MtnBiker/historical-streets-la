@@ -13,6 +13,9 @@
 
 .byebug_history
 
+# Syncing of databases
+myrubyrep.conf
+
 # Compiled source #
 ###################
 *.com
