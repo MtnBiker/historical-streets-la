@@ -115,7 +115,6 @@ heroku addons:create sendgrid:starter
 
 In pgAdmin copied and pasted activation_digest and activated_at from Example User. Still says account not activated
 
-
 -- SET idle_in_transaction_session_timeout = 0; -- Causing a testing error. I think this gets reset. TODO
 
 Done with Hartl I hope. No doubt some loose ends. Mainly have to get deployed.
@@ -138,5 +137,5 @@ https://github.com/vogdb/Leaflet.ActiveLayers
 http://leafletjs.com/reference-1.0.3.html#map-baselayerchange
 
 rails generate migration AddJsonToStreets extent_json:json (Didn't set SRID)
-
+rails generate migration AddCityToStreets city:string added default: "Los Angeles"
    

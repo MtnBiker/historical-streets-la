@@ -19,6 +19,11 @@
           
           <div class="form-inputs">
             <div class="field">
+              <%= form.label "City" %>
+              <%= form.text_field :city, id: :street_city %>
+            </div>
+
+            <div class="field">
               <%= form.label "Previous Name" %>
               <%= form.text_field :prevName, id: :street_prevName %>
             </div>

@@ -25,8 +25,3 @@ Login should take you back to the page you were on
 
 TODO Have so can only select one overlay
 
-  Overlay controls don't appear on show and base layer may not appear on first loading
-
-  Need to reload page to edit
-
-  Opacity slider doesn't appear on first loading of edit, only after change overlayLayer
