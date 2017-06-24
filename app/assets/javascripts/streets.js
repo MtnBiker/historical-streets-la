@@ -82,13 +82,20 @@ function showMap(popupText) {
 
   // Sets up map, but if there is a segment defined will zoom to that in the next if statement
   // Original. But need a baselayer and a overlayLayer for opacitySlider to load 
-  var map = L.map('map').setView([34.05, -118.25], 13,);
+  // var map = L.map('map').setView([34.05, -118.25], 13,);
+  var map = L.map('map', {
+      center: new L.LatLng(34.05, -118.25),
+      zoom: 13,
+      layers: [osmMap, hill1928], // have to figure out how to make the second item a blank map. Probably need to find a more robust solution and acturally figure out how to make it work right
+      zoomControl: true
+  });
+  
   L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
-
 
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated below
   // console.log("191. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
 
+// If linestring exists, draw it
   if (streetExtentArray.length > 2) {
     var arrayStreetExtent = JSON.parse(gon.streetExtentArray); // If not inside if, errors when streetExtentArray doesn't exist, but TODO seems to need to be reloaded to show page
     // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
@@ -98,9 +105,11 @@ function showMap(popupText) {
     ;
   }
 
+  L.control.activeLayers(baseLayers, overlayLayers).addTo(map);
+  
   // The event handler for changing the display after the selection of an overlayLayer
   var addOpacitySlider = function(currentLayer) {
-    console.log("218. Got into addOpacitySlider. currentLayer: " + currentLayer);
+    console.log("102. Got into addOpacitySlider. currentLayer: " + currentLayer);
     // var control = L.control.activeLayers(baseLayers, overlayLayers).addTo(map); // simplier? Do I need control
     var control = L.control.activeLayers(baseLayers, overlayLayers);
     // control.addTo(map); // if add, get two controls, maybe need to clear the first one if need to add this one
@@ -129,40 +138,40 @@ function showMap(popupText) {
     // //You only need to call it once.
     // console.log("237. overlayLayer: " + overlayLayers[overlayId].name)
     switch (currentLayer) {
-    case "1921 Baist detail":
-      currentLayer = baistDetail;
-      break;
-    case "<span style='color: blue'>1921 Baist detail</span>":
-      currentLayer = baistDetail;
-      break;
-    case "<span style='color: blue'>1921 Baist Key Map</span>":
-      currentLayer = baistKM;
-      break;
-    case "1921 Baist Key Map":
-      currentLayer = baistKM;
-      break;
-    case "1928 Hill":
-      currentLayer = hill1928;
-      break;
-    case "1908 Wood":
-      currentLayer = woods1908;
-      break;
-    case "1908 Hamlin":
-      currentLayer = hamlin1908;
-      break;
-    case "1902 Rueger":
-      currentLayer = rueger1902;
-      break;
-    case "1894 Sanborn":
-      currentLayer = sanborn1894km1a;
-      break;
-    case "1888 Sanborn":
-      currentLayer = sanborn1888km1a;
-      break;
-    default:
-      currentLayer = baistKM;
-      break;
-  } // end switch
+      case "1921 Baist detail":
+        currentLayer = baistDetail;
+        break;
+      case "<span style='color: blue'>1921 Baist detail</span>":
+        currentLayer = baistDetail;
+        break;
+      case "<span style='color: blue'>1921 Baist Key Map</span>":
+        currentLayer = baistKM;
+        break;
+      case "1921 Baist Key Map":
+        currentLayer = baistKM;
+        break;
+      case "1928 Hill":
+        currentLayer = hill1928;
+        break;
+      case "1908 Wood":
+        currentLayer = woods1908;
+        break;
+      case "1908 Hamlin":
+        currentLayer = hamlin1908;
+        break;
+      case "1902 Rueger":
+        currentLayer = rueger1902;
+        break;
+      case "1894 Sanborn":
+        currentLayer = sanborn1894km1a;
+        break;
+      case "1888 Sanborn":
+        currentLayer = sanborn1888km1a;
+        break;
+      default:
+        currentLayer = baistKM;
+        break;
+    } // end switch
     opacitySlider.setOpacityLayer(currentLayer); // overlayLayers: opacity_layer.setOpacity is not a function. All the layers are sent, need to just have the selected layer
 
     //Set initial opacity to 0.5 (Optional)
