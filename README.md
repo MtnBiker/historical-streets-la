@@ -19,6 +19,7 @@ For more information for now check out the about page at [Croatian Run Restauran
     * Selecting and changing overlays is buggy. Doesn't seem to cause any loss of data, just annoying. 
     * If zoomed in beyond what's available, no indication of what's going on.
     * Implement JSON storage of extent. It's currently a LINESTRING array stored as a string which is a bit flaky. JSON seems most portable between Postgres and JavaScript. Rails and Postgres have :line_string, but JavaScript not so much. 
+    * List of maps available too narrow (because button is not in line with text hard to figure out what the button goes with) and makes the list too long. 
 
 ### Bigger plans
 - An overview map showing all the changed streets. 
@@ -34,6 +35,7 @@ For more information for now check out the about page at [Croatian Run Restauran
 #### Nice to haves
   * Button text formatting
   * Can localhost and Heroku databases be synced? Nice if I could work on localhost.
+  * Add attribution and dates to changes (history of changes)
 
 ### Technical
 Ruby on Rails 5.1. 

@@ -2,8 +2,9 @@
 
 // Called from show.html.erb and edit.html.erb
 // First set up common variables, then function specific to each show and edit
-// Used to be _map.initial.js.erb and  _leafletmap.show.html.erb
-var map; // so can call show from edit. map needs to be global
+// Used to be _map.initial.js.erb and _leafletmap.show.html.erb
+// Declare global variables used by both functions
+var map;
 //URLs
 var hamlin1908url = 'https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg', 
     Hill1928aws =    'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
@@ -31,7 +32,7 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
     csunLink = "",
     bigBlogMapLink = 'http://www.bigmapblog.com'
 
-  // Attribution
+// Attribution
 var osmAttrib = '&copy; ' + osmLink + ' Contributors',
     esriAttrib = 'i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP,\
                   and the GIS User Community & '+ esriLink,
@@ -76,25 +77,26 @@ var baseLayers = {
     "<span style='color: orange'>OSM Street</span>"        : osmMap, 
     "<span style='color: green' >ESRI Satellite</span>"    : esriMap,
     "<span style='color: green' >Google Satellite</span>"  : google
-}                             
+}
 
+// One function for edit and one for show which is also used by edit
 // For street > show. Used for show and called by editMap to get all the initial stuff 
 function showMap(popupText) {
 
   // Sets up map, but if there is a linestring defined will zoom to that in the next if statement
-  // Original. But need a baselayer and a overlayLayer for opacitySlider to load 
-  // var map = L.map('map').setView([34.05, -118.25], 13,);
+  // But need a baselayer and a overlayLayer for opacitySlider to load 
+  // map = L.map('map').setView([34.05, -118.25], 13,);
   map = L.map('map', {
       center: new L.LatLng(34.05, -118.25),
       zoom: 13,
-      layers: [osmMap, hill1928], // have to figure out how to make the second item a blank map. Probably need to find a more robust solution and actually figure out how to make it work right TODO
+      layers: [osmMap, hill1928], // have to figure out how to make the second item a blank map. Probably need to find a more robust solution and actually figure out how to make it work right TODO. Need these layers for activeLayers to work [the error: "Control doesn't have any active base layer!"]
       zoomControl: true
   });
   
   L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
 
-  var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated below
-  // console.log("191. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
+  var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.. must declare the var 
+    // console.log("191. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
 
 // If linestring exists, draw it
   if (streetExtentArray != null && streetExtentArray.length > 2) {
@@ -106,15 +108,17 @@ function showMap(popupText) {
     ;
   }
 
+// Put the layer selection control on the map. Note that we need two `layers` from the map defintion
+  // var currentLayer = "1921 Baist Key Map"; // trying to fake out activeLayer
   L.control.activeLayers(baseLayers, overlayLayers).addTo(map);
-  
+
   // The event handler for changing the display after the selection of an overlayLayer
   var addOpacitySlider = function(currentLayer) {
-    console.log("102. Got into addOpacitySlider. currentLayer: " + currentLayer);
-    // var control = L.control.activeLayers(baseLayers, overlayLayers).addTo(map); // simplier? Do I need control
+    console.log("117. Got into addOpacitySlider. currentLayer: " + currentLayer);
+    // var control = L.control.activeLayers(baseLayers, overlayLayers).addTo(map); // simpler? Do I need control
     var control = L.control.activeLayers(baseLayers, overlayLayers);
     // control.addTo(map); // if add, get two controls, maybe need to clear the first one if need to add this one
-  
+
     // console.log("224. control: " + control); // somewhat to say we got here
     // console.log("225. control.getActiveBaseLayer().name: " + control.getActiveBaseLayer().name);
     var overlayLayersX = control.getActiveOverlayLayers();
@@ -122,7 +126,7 @@ function showMap(popupText) {
     // Better if I can place opacitySlider to the right of the layer control
     var opacitySlider = new L.Control.opacitySlider(); // ,{position: 'bottomright'} Works but maybe too hard to see
     map.addControl(opacitySlider);
-    //
+
     // //Specify the layer for which you want to modify the opacity. Note that the setOpacityLayer() method applies to all the controls.
     // //You only need to call it once.
     // console.log("237. overlayLayer: " + overlayLayers[overlayId].name)
@@ -161,7 +165,7 @@ function showMap(popupText) {
         currentLayer = baistKM;
         break;
     } // end switch
-    opacitySlider.setOpacityLayer(currentLayer); // overlayLayers: opacity_layer.setOpacity is not a function. All the layers are sent, need to just have the selected layer
+    opacitySlider.setOpacityLayer(currentLayer);
 
     //Set initial opacity to 0.5 (Optional)
     // overlayLayers.setOpacity(0.5); // error TODO
@@ -173,6 +177,8 @@ function showMap(popupText) {
   map.on('overlayadd', function (event) {
     // console.log("174. overlayadd event.name: " + event.name);
     var currentLayer = event.name;
+    // console.log("179. currentLayer: " + currentLayer);  // 1921 Baist Key Map
+    // control.remove(); // see http://leafletjs.com/reference-1.0.3.html#control, but didn't work here as I thought it might. Trying to kill bugs
     addOpacitySlider(currentLayer);
   });
 
@@ -212,12 +218,14 @@ function editMap(popupText) {
 
     // from https://gis.stackexchange.com/questions/133379/how-to-export-to-all-points-within-leaflet-polygon
     var points = layer._latlngs; // No longer needed, but shows alt way to get lat lng, need to check type
-    console.log("type of layer._latlngs: " + typeof layer._latlngs); //object, what about string?
+    console.log("215. Got to here.");
+    console.log("215. type of layer._latlngs: " + typeof layer._latlngs); //object, what about string?
     console.log("type of points = to above: " + typeof points); //object
-    // here you can get it in geojson format
+
+    // layer (the drawn line) as GeoJSON
     var geojson = layer.toGeoJSON();  // is an object Object
-    console.log("type of layer.toJSON: " + typeof geojson); // object
-    console.log("56. JSON.stringify(geojson):\n" + JSON.stringify(geojson)) // maybe write to an json
+    // console.log("type of layer.toJSON: " + typeof geojson); // object
+    console.log("220. JSON.stringify(geojson):\n" + JSON.stringify(geojson)) // maybe write to an json
     var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc. 
     console.log("type of layer.getLatLngs(): " + typeof layer.getLatLngs() + ". But it displays as a partial JSON ()");
     console.log(latlngs);
@@ -230,12 +238,15 @@ function editMap(popupText) {
     console.log("coordinates: " + coordinates);
     // push the coordinates to the json geometry
     // geojson['geometry']['coordinates'] = [coordinates];
-    //
-    // Finally, show the poly as a geojson object in the console
-    // console.log(JSON.stringify(geojson));
-    $("#street_extent_array").val("[" + coordinates + "]"); // writes coordinate array into field on form ready for save
-    // here you add it to a layer to display it in the map
+    
+    // writes coordinate array into field on form ready for save
+    $("#street_extent_array").val("[" + coordinates + "]");
+    
+    // Write GeoJSON to steet.extent_json for saving from the form. Not working, but not creating an error
+    $("#street_extent_json").value = JSON.stringify(geojson);
+    
+    // Add the drawn line to a layer to display it in the map
     drawnItems.addLayer(layer);
-  }); // end map.on which writes the linestring after it's drawn
+  }); // end map.on
 
 }  // end editMap

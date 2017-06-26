@@ -19,8 +19,10 @@
           
           <div class="form-inputs">
             <div class="field">
-              <%= form.label "City" %>
-              <%= form.text_field :city, id: :street_city %>
+              <%= form.label "City unless LA" %>
+              <% if street.city != "Los Angeles" %>
+                <%= form.text_field :city, id: :street_city %>
+              <% end %>
             </div>
 
             <div class="field">
@@ -52,8 +54,8 @@
             </div>
 
             <div class="field">
-              <%= form.label "To come: GIS description (geometry) of the section of street" %>
-              <%= form.text_field :extent, id: :street_extent, disabled: true %>
+              <%= form.label "Extent as GeoJSON" %>
+              <%= form.text_field :extent_json, id: :street_extend_json, disabled: true, placeholder: "Will be automagically filled in when line is drawn" %>
             </div>
 
             <div class="field">
@@ -96,7 +98,7 @@
     <div class="col">  <!-- col becomes col-8 in Bootstrap 4, See comment near top -->
       <p><strong>Use controls at right to select basemap.<br>
         Then use the draw tool (left) <%= image_tag "DrawTool.png", :title => "title", :class => "class", :size => '40px'  %> to trace the portion of the street.</strong></p>
-        <p class="font-bold-red">If no map shows up when you choose a map, zoom out. But the map may not cover that region, so try another map.</p>
+        <p class="font-bold-red">If no map shows up when you choose a map, zoom out. But the map may not cover that region, so try another map.<br>Or refresh page (a bug yet to squashed TODO).</p>
       <br/>
 
       <!-- < = render 'leafletmap_edit' %> -->

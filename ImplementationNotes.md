@@ -138,4 +138,6 @@ http://leafletjs.com/reference-1.0.3.html#map-baselayerchange
 
 rails generate migration AddJsonToStreets extent_json:json (Didn't set SRID)
 rails generate migration AddCityToStreets city:string added default: "Los Angeles"
+
+L.ActiveLayers depends on L.control.layers which has baselayers as buttons (only one) and overlayLayers as checkbox (multiple—since normally points or lines, not tile maps). Therefore to have only one overlay map, probably need to hack L.activeLayers (ActiveLayers.js—it's only 150 lines) to not have to load an overlay to begin with (I've done this) and only turn off all the overlayLayers when adding another one. And ignore the fact that it's a button—put a note on the page. Can't hack L.control.layers because it's part of the 14k lines of leaflet.js.
    
