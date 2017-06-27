@@ -248,5 +248,7 @@ function editMap(popupText) {
     // Add the drawn line to a layer to display it in the map
     drawnItems.addLayer(layer);
   }); // end map.on
+  
+  $('map').imageMapResize();
 
 }  // end editMap
