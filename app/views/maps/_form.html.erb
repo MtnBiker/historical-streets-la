@@ -1,0 +1,42 @@
+<%= form_with(model: map, local: true) do |form| %>
+  <% if map.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(map.errors.count, "error") %> prohibited this map from being saved:</h2>
+
+      <ul>
+      <% map.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :map_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.text_field :year, id: :map_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_area :url, id: :map_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :attribLink %>
+    <%= form.text_area :attribLink, id: :map_attribLink %>
+  </div>
+
+  <div class="field">
+    <%= form.label :attrib %>
+    <%= form.text_field :attrib, id: :map_attrib %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

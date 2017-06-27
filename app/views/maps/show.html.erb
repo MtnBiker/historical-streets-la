@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @map.name %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @map.year %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @map.url %>
+</p>
+
+<p>
+  <strong>Attriblink:</strong>
+  <%= @map.attribLink %>
+</p>
+
+<p>
+  <strong>Attrib:</strong>
+  <%= @map.attrib %>
+</p>
+
+<%= link_to 'Edit', edit_map_path(@map) %> |
+<%= link_to 'Back', maps_path %>

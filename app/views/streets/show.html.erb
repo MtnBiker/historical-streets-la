@@ -95,8 +95,15 @@
           });
         </script>
 
-    </div>
-  </div>
+    </div>  <!-- col middle -->
+
+    <!-- <div class="col-1">
+      <  @maps.each do |map| %>
+        <p>< = @map.name %></p>
+      <  end %>
+    </div> --><!-- end col-1 last -->
+
+  </div> <!-- end row which is basically the page -->
   <% if logged_in? %>
     <button type="button" class="btn btn-primary-outline" >
       <%= link_to 'Edit', edit_street_path(@street) %>
