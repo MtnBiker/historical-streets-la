@@ -112,67 +112,18 @@ function showMap(popupText) {
     ;
   }
 
-// Put the layer selection control on the map. Note that we need two `layers` from the map defintion
-  // var currentLayer = "1921 Baist Key Map"; // trying to fake out activeLayer
-  // L.control.activeLayers(baseLayers, overlayLayers).addTo(map);
+// Put the layer selection control on the map. Note that we need two `layers` from the map definition
 
   // The event handler for changing the display after the selection of an overlayLayer
   var addOpacitySlider = function(currentLayer) {
-    console.log("117. Got into addOpacitySlider. currentLayer: %o", currentLayer);
-    
-    // next six lines should go away withRails approach to overlayLayers    
-    // var control = L.control.activeLayers(baseLayers, overlayLayers).addTo(map); // simpler? Do I need control
-    // var control = L.control.activeLayers(baseLayers, overlayLayers);
-    // control.addTo(map); // if add, get two controls, maybe need to clear the first one if need to add this one
-    // console.log("224. control: " + control); // somewhat to say we got here
-    // console.log("225. control.getActiveBaseLayer().name: " + control.getActiveBaseLayer().name);
-    // var overlayLayersX = control.getActiveOverlayLayers();
 
     // Create the opacity controls—the slider
     // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
-    
     opacitySlider = new L.Control.opacitySlider();
     map.addControl(opacitySlider);
 
-    // //Specify the layer for which you want to modify the opacity. Note that the setOpacityLayer() method applies to all the controls.
-    // //You only need to call it once.
-    // console.log("237. overlayLayer: " + overlayLayers[overlayId].name)
-    // switch (currentLayer) {
-    //   case "1921 Baist detail":
-    //     currentLayer = baistDetail;
-    //     break;
-    //   case "<span style='color: blue'>1921 Baist detail</span>":
-    //     currentLayer = baistDetail;
-    //     break;
-    //   case "<span style='color: blue'>1921 Baist Key Map</span>":
-    //     currentLayer = baistKM;
-    //     break;
-    //   case "1921 Baist Key Map":
-    //     currentLayer = baistKM;
-    //     break;
-    //   case "1928 Hill":
-    //     currentLayer = hill1928;
-    //     break;
-    //   case "1908 Wood":
-    //     currentLayer = woods1908;
-    //     break;
-    //   case "1908 Hamlin":
-    //     currentLayer = hamlin1908;
-    //     break;
-    //   case "1902 Rueger":
-    //     currentLayer = rueger1902;
-    //     break;
-    //   case "1894 Sanborn":
-    //     currentLayer = sanborn1894km1a;
-    //     break;
-    //   case "1888 Sanborn":
-    //     currentLayer = sanborn1888km1a;
-    //     break;
-    //   default:
-    //     currentLayer = baistKM;
-    //     break;
-    // }// end switch
-    // console.log("170. currentLayer %o. URL: %o", currentLayer, currentLayer.url) // how get URL
+    //Specify the layer for which you want to modify the opacity. Note that the setOpacityLayer() method applies to all the controls.
+    //You only need to call it once.
     opacitySlider.setOpacityLayer(currentLayer);
 
     //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
@@ -192,19 +143,16 @@ function showMap(popupText) {
   });
 
   // Adding a listener to id="select-overlay". Remove the CONTROL, not layer if it exists and then add the selected layer. 
-  // TODO get the selected layer
   $( "#select-overlay" ).change(function() {
-    // Get layer selected, could pass in the tile layer name in the format below, may need to add or get URL from maps, i.e. Rails—better approach because easier to manage in Rails
-    
-    // alert($('input[name=radio]:checked', '#select-overlay').val()); // undefined
-    // console.log($("input[type='radio']:checked").attr('id') )  // name_1. OK, but then have to map, can I go direct? name_http:__crores.s3.amazonaws.com_tiles_1909gates__z___x___y_.png from   http://crores.s3.amazonaws.com/tiles/1908woods/{z}/{x}/{y}.png
-    // console.log($("#select-overlay input[type='radio']:checked").val())
+    // Get layer selected
+    console.log("148. Next line is $(#select-overlay input[type='radio']:checked. Some of the URLs aren't working")
+    console.log($("#select-overlay input[type='radio']:checked").val())
     
     var changeLayerTo = $("#select-overlay input[type='radio']:checked").val();
     var currentLayer = L.tileLayer(changeLayerTo).addTo(map)
-    $('.opacity_slider_control').is(':visible') ? console.log("203. Opacity slide is visible") : console.log("Opacity slide is NOT visible") // this test works how to deal with removing.
+    // $('.opacity_slider_control').is(':visible') ? console.log("206. Opacity slide is visible") : console.log("Opacity slide is NOT visible") // this test works how to deal with removing.
     if ($('.opacity_slider_control').is(':visible')) {
-      previousLayer.setOpacity(0.0) // opacity doesn't quite right if just do the step below. Klug, but it works. The opacity info is being saved somewhere and doesn't go away when the control is removed.
+      previousLayer.setOpacity(0.0) // opacity doesn't quite right if just do the step below. Kluge, but it works. The opacity info is being saved somewhere and doesn't go away when the control is removed.
       opacitySlider.remove() // remove any existing opacitySlider and then add the new one in the next step
     }
     // $('.opacity_slider_control').is(':visible') ? opacitySlider.remove() : console.log("207. Opacity slide is NOT visible"); // opacitySlider not defined even if declared. if true. false works.
