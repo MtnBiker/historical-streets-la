@@ -2,7 +2,7 @@
 
 // Called from show.html.erb and edit.html.erb
 // First set up common variables, then function specific to each show and edit
-// Used to be _map.initial.js.erb and _leafletmap.show.html.erb
+// Used to be _map.initial.js.erb and _leafletmap.show.html.erb which may be able to delete TODO
 // Declare global variables used by both functions
 var map;
 //URLs
@@ -60,18 +60,19 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     sanborn1888km1a = L.tileLayer(sanborn1888km1aURL,  {attribution: csunAttrib})
 
 // Define layers for the Layer.control selector
-var overlayLayers = {
-    // "<span style='color: blue'>1921 Baist detail</span>"   : baistDetail,
-    // "<span style='color: blue'>1921 Baist Key Map</span>"  : baistKM,
-    "1921 Baist detail"   : baistDetail,
-    "1921 Baist Key Map"  : baistKM,
-    "1928 Hill"    : hill1928,
-    "1908 Wood"    : woods1908,
-    "1908 Hamlin"  : hamlin1908,
-    "1902 Rueger"  : rueger1902,
-    "1894 Sanborn" : sanborn1894km1a,
-    "1888 Sanborn" : sanborn1888km1a
-};
+    // Now define in Rails
+// var overlayLayers = {
+//     // "<span style='color: blue'>1921 Baist detail</span>"   : baistDetail,
+//     // "<span style='color: blue'>1921 Baist Key Map</span>"  : baistKM,
+//     "1921 Baist detail"   : baistDetail,
+//     "1921 Baist Key Map"  : baistKM,
+//     "1928 Hill"    : hill1928,
+//     "1908 Wood"    : woods1908,
+//     "1908 Hamlin"  : hamlin1908,
+//     "1902 Rueger"  : rueger1902,
+//     "1894 Sanborn" : sanborn1894km1a,
+//     "1888 Sanborn" : sanborn1888km1a
+// };
 var baseLayers = {
     "<span style='color: green'>Bing</span>"               : bing,
     "<span style='color: orange'>OSM Street</span>"        : osmMap, 
@@ -85,16 +86,17 @@ function showMap(popupText) {
 
   // Sets up map, but if there is a linestring defined will zoom to that in the next if statement
   // But need a baselayer and a overlayLayer for opacitySlider to load 
-  // map = L.map('map').setView([34.05, -118.25], 13,);
-  map = L.map('map', {
-      center: new L.LatLng(34.05, -118.25),
-      zoom: 13,
-      layers: [osmMap, hill1928], // have to figure out how to make the second item a blank map. Probably need to find a more robust solution and actually figure out how to make it work right TODO. Need these layers for activeLayers to work [the error: "Control doesn't have any active base layer!"]
-      zoomControl: true
-  });
+  // Now trying to add the overlayLayer without L.control.activeLayers
+  map = L.map('map').setView([34.05, -118.25], 13,);
+  // map = L.map('map', {
+  //     center: new L.LatLng(34.05, -118.25),
+  //     zoom: 13,
+  //     layers: [osmMap, hill1928], // have to figure out how to make the second item a blank map. Probably need to find a more robust solution and actually figure out how to make it work right TODO. Need these layers for activeLayers to work [the error: "Control doesn't have any active base layer!"]
+  //     zoomControl: true
+  // });
   
   L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
-
+  L.control.layers(baseLayers).addTo(map);
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.. must declare the var 
     // console.log("191. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
 
@@ -110,65 +112,69 @@ function showMap(popupText) {
 
 // Put the layer selection control on the map. Note that we need two `layers` from the map defintion
   // var currentLayer = "1921 Baist Key Map"; // trying to fake out activeLayer
-  L.control.activeLayers(baseLayers, overlayLayers).addTo(map);
+  // L.control.activeLayers(baseLayers, overlayLayers).addTo(map);
 
   // The event handler for changing the display after the selection of an overlayLayer
   var addOpacitySlider = function(currentLayer) {
-    console.log("117. Got into addOpacitySlider. currentLayer: " + currentLayer);
+    console.log("117. Got into addOpacitySlider. currentLayer: %o", currentLayer);
+    
+    // next six lines should go away withRails approach to overlayLayers    
     // var control = L.control.activeLayers(baseLayers, overlayLayers).addTo(map); // simpler? Do I need control
-    var control = L.control.activeLayers(baseLayers, overlayLayers);
+    // var control = L.control.activeLayers(baseLayers, overlayLayers);
     // control.addTo(map); // if add, get two controls, maybe need to clear the first one if need to add this one
-
     // console.log("224. control: " + control); // somewhat to say we got here
     // console.log("225. control.getActiveBaseLayer().name: " + control.getActiveBaseLayer().name);
-    var overlayLayersX = control.getActiveOverlayLayers();
-    //C reate the opacity controls—the slider
-    // Better if I can place opacitySlider to the right of the layer control
+    // var overlayLayersX = control.getActiveOverlayLayers();
+
+    // Create the opacity controls—the slider
+    // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
+    
     var opacitySlider = new L.Control.opacitySlider(); // ,{position: 'bottomright'} Works but maybe too hard to see
     map.addControl(opacitySlider);
 
     // //Specify the layer for which you want to modify the opacity. Note that the setOpacityLayer() method applies to all the controls.
     // //You only need to call it once.
     // console.log("237. overlayLayer: " + overlayLayers[overlayId].name)
-    switch (currentLayer) {
-      case "1921 Baist detail":
-        currentLayer = baistDetail;
-        break;
-      case "<span style='color: blue'>1921 Baist detail</span>":
-        currentLayer = baistDetail;
-        break;
-      case "<span style='color: blue'>1921 Baist Key Map</span>":
-        currentLayer = baistKM;
-        break;
-      case "1921 Baist Key Map":
-        currentLayer = baistKM;
-        break;
-      case "1928 Hill":
-        currentLayer = hill1928;
-        break;
-      case "1908 Wood":
-        currentLayer = woods1908;
-        break;
-      case "1908 Hamlin":
-        currentLayer = hamlin1908;
-        break;
-      case "1902 Rueger":
-        currentLayer = rueger1902;
-        break;
-      case "1894 Sanborn":
-        currentLayer = sanborn1894km1a;
-        break;
-      case "1888 Sanborn":
-        currentLayer = sanborn1888km1a;
-        break;
-      default:
-        currentLayer = baistKM;
-        break;
-    } // end switch
+    // switch (currentLayer) {
+    //   case "1921 Baist detail":
+    //     currentLayer = baistDetail;
+    //     break;
+    //   case "<span style='color: blue'>1921 Baist detail</span>":
+    //     currentLayer = baistDetail;
+    //     break;
+    //   case "<span style='color: blue'>1921 Baist Key Map</span>":
+    //     currentLayer = baistKM;
+    //     break;
+    //   case "1921 Baist Key Map":
+    //     currentLayer = baistKM;
+    //     break;
+    //   case "1928 Hill":
+    //     currentLayer = hill1928;
+    //     break;
+    //   case "1908 Wood":
+    //     currentLayer = woods1908;
+    //     break;
+    //   case "1908 Hamlin":
+    //     currentLayer = hamlin1908;
+    //     break;
+    //   case "1902 Rueger":
+    //     currentLayer = rueger1902;
+    //     break;
+    //   case "1894 Sanborn":
+    //     currentLayer = sanborn1894km1a;
+    //     break;
+    //   case "1888 Sanborn":
+    //     currentLayer = sanborn1888km1a;
+    //     break;
+    //   default:
+    //     currentLayer = baistKM;
+    //     break;
+    // }// end switch
+    console.log("170. currentLayer %o. URL: %o", currentLayer, currentLayer.url) // how get URL
     opacitySlider.setOpacityLayer(currentLayer);
 
-    //Set initial opacity to 0.5 (Optional)
-    // overlayLayers.setOpacity(0.5); // error TODO
+    //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
+    currentLayer.setOpacity(0.5);
   } // end addOpacitySlider
 
   // map.on('baselayerchange', function (event) {
@@ -180,6 +186,23 @@ function showMap(popupText) {
     // console.log("179. currentLayer: " + currentLayer);  // 1921 Baist Key Map
     // control.remove(); // see http://leafletjs.com/reference-1.0.3.html#control, but didn't work here as I thought it might. Trying to kill bugs
     addOpacitySlider(currentLayer);
+  });
+
+  // Adding a listener to id="select-overlay" and put overlay on map and activate opacity slider.
+  // For some reason the following doesn't work, but the one below does. https://api.jquery.com/change/
+  // var changeOverlay = function () {
+  //   console.log("189. Change overlay needs to happen");
+  //   alert("changeOverlay");
+  // }
+  // $("name_1").onclick = changeOverlay;
+  
+  $( "#select-overlay" ).change(function() {
+    // Get layer selected, could pass in the tile layer name in the format below, may need to add or get URL from maps, i.e. Rails—better approach because easier to manage in Rails
+    var changeLayerTo = baistKMaws
+    var currentLayer = L.tileLayer(changeLayerTo).addTo(map)
+    // $('.opacity_slider_control').is(':visible') ? console.log("Opacity slide is visible") : console.log("Opacity slide is NOT visible")
+    // $('.opacity_slider_control').is(':visible') ? opacitySlider.removeFrom(map) : addOpacitySlider(currentLayer); // opacitySlider not defined even if declared
+    addOpacitySlider(currentLayer)
   });
 
 }  // end showMap

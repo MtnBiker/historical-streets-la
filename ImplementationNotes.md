@@ -141,5 +141,5 @@ rails generate migration AddCityToStreets city:string added default: "Los Angele
 
 L.ActiveLayers depends on L.control.layers which has baselayers as buttons (only one) and overlayLayers as checkbox (multiple—since normally points or lines, not tile maps). Therefore to have only one overlay map, probably need to hack L.activeLayers (ActiveLayers.js—it's only 150 lines) to not have to load an overlay to begin with (I've done this) and only turn off all the overlayLayers when adding another one. And ignore the fact that it's a button—put a note on the page. Can't hack L.control.layers because it's part of the 14k lines of leaflet.js. Have a hacked version and the console.logs are a start. Need to find out how to tell hide all layers except the one of interest
 
-https://github.com/davidjbradshaw/image-map-resizer 
+https://github.com/davidjbradshaw/image-map-resizer  to allow map to grow with window. Seems to work in width only, probably because I have length contstained? TODO
    

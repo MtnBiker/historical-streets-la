@@ -88,21 +88,28 @@
              // var dateEarliest = <%= @street.dateEarliest %>;
              // var currentName  = "<%= @street.currentName %>";
              // var dateLatest   = <%= @street.dateLatest %>;
+           var changeOverlay = function () {
+             console.log("92. Change overlay needs to happen");
+             alert("changeOverlay");
+           } 
+             
           var popupText = "&le;<%= @street.dateEarliest %><br><%= @street.prevName %><br>&ge;<%= @street.dateLatest %><br><%= @street.currentName %>";
           // $(document).on('ready page:load', function() { // have to reload to get page to show
-          $(document).on('turbolinks:load', function() { // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
+          $(document).on('turbolinks:load', function() { 
+            // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
              showMap(popupText);
           });
         </script>
 
     </div>  <!-- col middle -->
 
-    <div class="col-2 "><!-- border not doing anything look at cards in v4, but didn't help on simple try -->
-      <p class = "border-0 rounded">Select map for overlay [Not functioning yet]</p>
+    <div id="select-overlay" class="col-1">
+      <!-- Need to make stand out. border not doing anything look at cards in v4, but didn't help on simple try -->
+      <p class="border-0 rounded">Select map for overlay [Not functioning yet].<br>
+                                  Select basemap using control on top right of map.</p>
       <% @maps.each do |map| %>
         <%= radio_button_tag(:name, map.id) %> <!-- by first field being the same for all (:name) only one can be selected.  -->
         <%= label_tag(:map_name, map.name) %>
-        
       <% end %>
       
       <!-- Example and output -->
