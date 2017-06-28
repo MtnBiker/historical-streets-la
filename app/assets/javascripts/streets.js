@@ -6,7 +6,7 @@
 // Declare global variables used by both functions
 var map;
 var previousLayer;
-var opacitySlider;
+var opacitySlider; // global so works for remove
 //URLs
 var hamlin1908url = 'https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg', 
     Hill1928aws =    'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
@@ -165,7 +165,7 @@ function showMap(popupText) {
 
 }  // end showMap
 
-// editMap. Streets > Edit
+// editMap. Streets > Edit. Note uses showMap
 function editMap(popupText) {
 
   showMap(popupText); // showMap draws the map and adds control to select basemaps.
@@ -199,14 +199,14 @@ function editMap(popupText) {
 
     // from https://gis.stackexchange.com/questions/133379/how-to-export-to-all-points-within-leaflet-polygon
     var points = layer._latlngs; // No longer needed, but shows alt way to get lat lng, need to check type
-    console.log("215. Got to here.");
-    console.log("215. type of layer._latlngs: " + typeof layer._latlngs); //object, what about string?
+    console.log("202. Got to here.");
+    console.log("203. type of layer._latlngs: " + typeof layer._latlngs); //object, what about string?
     console.log("type of points = to above: " + typeof points); //object
 
     // layer (the drawn line) as GeoJSON
     var geojson = layer.toGeoJSON();  // is an object Object
     // console.log("type of layer.toJSON: " + typeof geojson); // object
-    console.log("220. JSON.stringify(geojson):\n" + JSON.stringify(geojson)) // maybe write to an json
+    console.log("209. JSON.stringify(geojson):\n" + JSON.stringify(geojson)) // maybe write to an json
     var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc. 
     console.log("type of layer.getLatLngs(): " + typeof layer.getLatLngs() + ". But it displays as a partial JSON ()");
     console.log(latlngs);
