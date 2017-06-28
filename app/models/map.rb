@@ -1,5 +1,5 @@
 class Map < ApplicationRecord
-  belongs_to :street
+  # belongs_to :streets
   
   def attribText
     "#{attribLink} #{attrib}"

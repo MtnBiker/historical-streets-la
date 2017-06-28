@@ -1,6 +1,8 @@
 class StreetsController < ApplicationController
   before_action :set_street, only: [:show, :edit, :update, :destroy]
-
+  
+  # using a before_action callback (just as you did with set_street ) if you plan to access @maps from more action TODO https://stackoverflow.com/questions/44790845/display-data-from-unrelated-table-model-in-rails
+  
   # GET /streets
   # GET /streets.json
   def index
@@ -11,6 +13,7 @@ class StreetsController < ApplicationController
   # GET /streets/1
   # GET /streets/1.json
   def show
+    @maps = Map.all
     gon.streetExtentArray = @street.extent_array
   end
 
@@ -22,6 +25,7 @@ class StreetsController < ApplicationController
 
   # GET /streets/1/edit
   def edit
+    @maps = Map.all
     gon.streetExtentArray = @street.extent_array
   end
 

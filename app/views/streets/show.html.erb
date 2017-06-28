@@ -77,7 +77,7 @@
   		</p>
     </div> <!-- end col-4 -->
 
-    <div class="col">
+    <div class="col card">
       <p class="font-bold-red">If no map shows up when you choose a map, zoom out. But the map may not cover that region, so try another map.</p>
       <br/>
       <!-- <= render 'leafletmap_show' %> -->
@@ -97,11 +97,20 @@
 
     </div>  <!-- col middle -->
 
-    <!-- <div class="col-1">
-      <  @maps.each do |map| %>
-        <p>< = @map.name %></p>
-      <  end %>
-    </div> --><!-- end col-1 last -->
+    <div class="col-2 "><!-- border not doing anything look at cards in v4, but didn't help on simple try -->
+      <p class = "border-0 rounded">Select map for overlay [Not functioning yet]</p>
+      <% @maps.each do |map| %>
+        <%= radio_button_tag(:name, map.id) %> <!-- by first field being the same for all (:name) only one can be selected.  -->
+        <%= label_tag(:map_name, map.name) %>
+        
+      <% end %>
+      
+      <!-- Example and output -->
+        <!-- < = radio_button_tag(:age, "child") %>
+        < = label_tag(:age_child, "I am younger than 21") %> -->
+        <!-- <input type="radio" name="age" id="age_child" value="child" />
+        <label for="age_child">I am younger than 21</label> -->
+    </div> <!-- end col-1 last -->
 
   </div> <!-- end row which is basically the page -->
   <% if logged_in? %>
