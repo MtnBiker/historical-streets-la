@@ -5,6 +5,8 @@
 // Used to be _map.initial.js.erb and _leafletmap.show.html.erb which may be able to delete TODO
 // Declare global variables used by both functions
 var map;
+var previousLayer;
+var opacitySlider;
 //URLs
 var hamlin1908url = 'https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg', 
     Hill1928aws =    'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
@@ -129,7 +131,7 @@ function showMap(popupText) {
     // Create the opacity controls—the slider
     // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
     
-    var opacitySlider = new L.Control.opacitySlider(); // ,{position: 'bottomright'} Works but maybe too hard to see
+    opacitySlider = new L.Control.opacitySlider();
     map.addControl(opacitySlider);
 
     // //Specify the layer for which you want to modify the opacity. Note that the setOpacityLayer() method applies to all the controls.
@@ -170,11 +172,12 @@ function showMap(popupText) {
     //     currentLayer = baistKM;
     //     break;
     // }// end switch
-    console.log("170. currentLayer %o. URL: %o", currentLayer, currentLayer.url) // how get URL
+    // console.log("170. currentLayer %o. URL: %o", currentLayer, currentLayer.url) // how get URL
     opacitySlider.setOpacityLayer(currentLayer);
 
     //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
     currentLayer.setOpacity(0.5);
+    previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
   } // end addOpacitySlider
 
   // map.on('baselayerchange', function (event) {
@@ -188,20 +191,22 @@ function showMap(popupText) {
     addOpacitySlider(currentLayer);
   });
 
-  // Adding a listener to id="select-overlay" and put overlay on map and activate opacity slider.
-  // For some reason the following doesn't work, but the one below does. https://api.jquery.com/change/
-  // var changeOverlay = function () {
-  //   console.log("189. Change overlay needs to happen");
-  //   alert("changeOverlay");
-  // }
-  // $("name_1").onclick = changeOverlay;
-  
+  // Adding a listener to id="select-overlay". Remove the CONTROL, not layer if it exists and then add the selected layer. 
+  // TODO get the selected layer
   $( "#select-overlay" ).change(function() {
     // Get layer selected, could pass in the tile layer name in the format below, may need to add or get URL from maps, i.e. Rails—better approach because easier to manage in Rails
     var changeLayerTo = baistKMaws
     var currentLayer = L.tileLayer(changeLayerTo).addTo(map)
-    // $('.opacity_slider_control').is(':visible') ? console.log("Opacity slide is visible") : console.log("Opacity slide is NOT visible")
-    // $('.opacity_slider_control').is(':visible') ? opacitySlider.removeFrom(map) : addOpacitySlider(currentLayer); // opacitySlider not defined even if declared
+    $('.opacity_slider_control').is(':visible') ? console.log("203. Opacity slide is visible") : console.log("Opacity slide is NOT visible") // this test works how to deal with removing.
+    if ($('.opacity_slider_control').is(':visible')) {
+      previousLayer.setOpacity(0.0) // opacity doesn't quite right if just do the step below. Klug, but it works. The opacity info is being saved somewhere and doesn't go away when the control is removed.
+      opacitySlider.remove() // remove any existing opacitySlider and then add the new one in the next step
+    }
+    // $('.opacity_slider_control').is(':visible') ? opacitySlider.remove() : console.log("207. Opacity slide is NOT visible"); // opacitySlider not defined even if declared. if true. false works.
+    // Tried to define the DOM as blank. Just made the slider non functional. Maybe didnt' quite have it:
+    // opacity_slider_control ui-slider ui-corner-all ui-slider-vertical ui-widget ui-widget-content leaflet-control and their is not higher level div that is exclusive
+    // opacitySlider.removeFrom(map) => opacitySlider.removeFrom is not a function
+    // opacitySlider.remove() Sort of works, only one control, but opacity can't go to zero
     addOpacitySlider(currentLayer)
   });
 
