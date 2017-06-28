@@ -78,7 +78,7 @@
     </div> <!-- end col-4 -->
 
     <div class="col card">
-      <p class="font-bold-red">If no map shows up when you choose a map, zoom out. But the map may not cover that region, so try another map.</p>
+      <p class="font-bold-red">If no map shows up when you choose a map, zoom out. But the map may not cover that region, so try another map. TODO-put up a notice</p>
       <br/>
       <!-- <= render 'leafletmap_show' %> -->
       
@@ -105,10 +105,10 @@
 
     <div id="select-overlay" class="col-1">
       <!-- Need to make stand out. border not doing anything look at cards in v4, but didn't help on simple try -->
-      <p class="border-0 rounded">Select map for overlay [Not functioning yet].<br>
-                                  Select basemap using control on top right of map.</p>
+      <p class="border-0 rounded">Select map for overlay [Selection not really working. Only one map can be shown. Last fix to do.].<br>
+                                  Select basemap using control on top right of the map itself.</p>
       <% @maps.each do |map| %>
-        <%= radio_button_tag(:name, map.id) %> <!-- by first field being the same for all (:name) only one can be selected.  -->
+        <%= radio_button_tag(:name, map.url) %> <!-- by first field being the same for all (:name) only one can be selected.  last item becomes id which JQuery can access-->
         <%= label_tag(:map_name, map.name) %>
       <% end %>
       

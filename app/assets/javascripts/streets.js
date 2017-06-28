@@ -195,7 +195,12 @@ function showMap(popupText) {
   // TODO get the selected layer
   $( "#select-overlay" ).change(function() {
     // Get layer selected, could pass in the tile layer name in the format below, may need to add or get URL from maps, i.e. Rails—better approach because easier to manage in Rails
-    var changeLayerTo = baistKMaws
+    
+    // alert($('input[name=radio]:checked', '#select-overlay').val()); // undefined
+    // console.log($("input[type='radio']:checked").attr('id') )  // name_1. OK, but then have to map, can I go direct? name_http:__crores.s3.amazonaws.com_tiles_1909gates__z___x___y_.png from   http://crores.s3.amazonaws.com/tiles/1908woods/{z}/{x}/{y}.png
+    // console.log($("#select-overlay input[type='radio']:checked").val())
+    
+    var changeLayerTo = $("#select-overlay input[type='radio']:checked").val();
     var currentLayer = L.tileLayer(changeLayerTo).addTo(map)
     $('.opacity_slider_control').is(':visible') ? console.log("203. Opacity slide is visible") : console.log("Opacity slide is NOT visible") // this test works how to deal with removing.
     if ($('.opacity_slider_control').is(':visible')) {

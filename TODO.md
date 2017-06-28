@@ -2,8 +2,6 @@ Add search for street and return to map at center of the segment
 
 1928 Hill's needs more detailed georeferencing
 
-Current vs Previous name in third and fourth field is wrong?
-
 Add another page with all the segments mapped. Maybe can do a SQL to find all the segments and make a JSON or maybe it happens automagically. Need  popups. 
 And then have date slider.
 
@@ -23,6 +21,8 @@ Look at puma.rb and see if hidden stuff is needed
 
 Login should take you back to the page you were on
 
-TODO Only one overlay at a time
+TODO Only one overlay at a time. Almost done or maybe by now done
 
 Add attribution to changes
+
+Put up a notice if no coverage available for the map selected.
