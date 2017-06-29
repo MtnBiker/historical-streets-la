@@ -9,6 +9,32 @@
       }
 */
 
+//radio button and label were appearing on two lines. Didn't help
+//input[type="radio"], label{
+//     float:left;
+//    }
+//input{ // tried label still didn't work
+// clear:left;
+//}
+
+//The following two still kept on two lines, but they are closer together and easy to figure out what goes with what
+input[type=radio],
+input.radio {
+  float: left;
+  clear: none;
+  margin: 2px 0 0 2px;
+//  display: inline-block; // didn't help
+}
+label {
+  float: left;
+  clear: none;
+  display: block;
+//  display: inline; // didn't help at least in conjunction with line below
+  padding: 2px 1em 0 0;
+}
+
+
+
 /* Leaflet*/
 #map { height: 800px; } // set to match right hand selector
 
