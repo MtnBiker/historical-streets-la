@@ -8,17 +8,16 @@ var map;
 var previousLayer;
 var opacitySlider; // global so works for remove
 //URLs
-var hamlin1908url = 'https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg', 
-    Hill1928aws =    'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
-    baistDetailAws = 'https://crores.s3.amazonaws.com/tiles/baistDetail/{z}/{x}/{y}.png', 
+var hamlin1908url = "https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg",
+    Hill1928aws    = 'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
+    baistDetailAws = 'https://crores.s3.amazonaws.com/tiles/baistDetail/{z}/{x}/{y}.png',
     baistKMaws     = "https://crores.s3.amazonaws.com/tiles/bkm/{z}/{x}/{y}.png",
     rueger1902aws  = "https://crores.s3.amazonaws.com/tiles/1902rueger/{z}/{x}/{y}.png",
     woods1908url   = "https://crores.s3.amazonaws.com/tiles/1908woods/{z}/{x}/{y}.png",
     sanborn1888km1aURL = "https://crores.s3.amazonaws.com/tiles/1888SanbornKM1a/{z}/{x}/{y}.png",
     sanborn1894km1aURL = "https://crores.s3.amazonaws.com/tiles/1894SanbornKM1a/{z}/{x}/{y}.png",
     osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        esriUrl   = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServe\
-    r/tile/{z}/{y}/{x}',
+        esriUrl   = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     googleUrl = 'http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}'
     // bingUrl = "baseMapUrl = new L.BingLayer('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav, {type: 'Road'});"
     // bingUrl = "http://bing.com/maps/default.aspx?cp=34.05~118.25&lvl=12&style=r",
@@ -36,8 +35,7 @@ var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
 
 // Attribution
 var osmAttrib = '&copy; ' + osmLink + ' Contributors',
-    esriAttrib = 'i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP,\
-                  and the GIS User Community & '+ esriLink,
+    esriAttrib = "i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community" & + esriLink,
     mapboxAttrib = '&copy; ' + mapboxCopy + '&copy;' + osmCopy,
     mwAttrib ='https://thinkwhere.wordpress.com',
     rumseyAttrib = rumseyLink,
@@ -62,7 +60,7 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     sanborn1888km1a = L.tileLayer(sanborn1888km1aURL,  {attribution: csunAttrib})
 
 // Define layers for the Layer.control selector
-    // Now define in Rails
+// Now defined in Rails maps
 // var overlayLayers = {
 //     // "<span style='color: blue'>1921 Baist detail</span>"   : baistDetail,
 //     // "<span style='color: blue'>1921 Baist Key Map</span>"  : baistKM,
@@ -77,29 +75,31 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
 // };
 var baseLayers = {
     "<span style='color: green'>Bing</span>"               : bing,
-    "<span style='color: orange'>OSM Street</span>"        : osmMap, 
+    "<span style='color: orange'>OSM Street</span>"        : osmMap,
     "<span style='color: green' >ESRI Satellite</span>"    : esriMap,
     "<span style='color: green' >Google Satellite</span>"  : google
 }
 
 // One function for edit and one for show which is also used by edit
-// For street > show. Used for show and called by editMap to get all the initial stuff 
+// For street > show. Used for show and called by editMap to get all the initial stuff
 function showMap(popupText) {
 
   // Sets up map, but if there is a linestring defined will zoom to that in the next if statement
-  // But need a baselayer and a overlayLayer for opacitySlider to load 
+  // But need a baselayer and a overlayLayer for opacitySlider to load
   // Now trying to add the overlayLayer without L.control.activeLayers
-  map = L.map('map').setView([34.05, -118.25], 13,);
+  map = L.map('map', {zoomDelta: 0.25,
+        zoomSnap: 0.25
+  }).setView([34.05, -118.25], 13);
   // map = L.map('map', {
   //     center: new L.LatLng(34.05, -118.25),
   //     zoom: 13,
   //     layers: [osmMap, hill1928], // have to figure out how to make the second item a blank map. Probably need to find a more robust solution and actually figure out how to make it work right TODO. Need these layers for activeLayers to work [the error: "Control doesn't have any active base layer!"]
   //     zoomControl: true
   // });
-  
+
   L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
   L.control.layers(baseLayers).addTo(map);
-  var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.. must declare the var 
+  var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.. must declare the var
     // console.log("191. typeof streetExtentArray = gon.streetExtentArray: " + typeof streetExtentArray);
 
 // If linestring exists, draw it
@@ -109,8 +109,28 @@ function showMap(popupText) {
     map.fitBounds(arrayStreetExtent); // zooms to area of interest
     L.polyline(arrayStreetExtent).addTo(map)
                                  .bindPopup(popupText).openPopup()
-    ;
-  }
+  ;
+
+  // Shows zoom level which I find useful. Like to have in on the lower right
+  // http://leafletjs.com/examples/zoom-levels/example-fractional.html
+  var ZoomViewer = L.Control.extend({
+  		onAdd: function(){
+  			var container= L.DomUtil.create('div');
+  			var gauge = L.DomUtil.create('div');
+  			container.style.width = '200px';
+  			container.style.background = 'rgba(255,255,255,0.5)';
+  			container.style.textAlign = 'left';
+  			map.on('zoomstart zoom zoomend', function(ev){
+  				gauge.innerHTML = 'Zoom level: ' + map.getZoom();
+  			})
+  			container.appendChild(gauge);
+
+  			return container;
+  		}
+  	});
+
+  	(new ZoomViewer).addTo(map);
+  } // end ZoomViewer
 
 // Put the layer selection control on the map. Note that we need two `layers` from the map definition
 
@@ -142,12 +162,12 @@ function showMap(popupText) {
     addOpacitySlider(currentLayer);
   });
 
-  // Adding a listener to id="select-overlay". Remove the CONTROL, not layer if it exists and then add the selected layer. 
+  // Adding a listener to id="select-overlay". Remove the CONTROL, not layer if it exists and then add the selected layer.
   $( "#select-overlay" ).change(function() {
     // Get layer selected
     console.log("148. Next line is $(#select-overlay input[type='radio']:checked. Some of the URLs aren't working")
     console.log($("#select-overlay input[type='radio']:checked").val())
-    
+
     var changeLayerTo = $("#select-overlay input[type='radio']:checked").val();
     var currentLayer = L.tileLayer(changeLayerTo).addTo(map)
     // $('.opacity_slider_control').is(':visible') ? console.log("206. Opacity slide is visible") : console.log("Opacity slide is NOT visible") // this test works how to deal with removing.
@@ -171,11 +191,11 @@ function editMap(popupText) {
   showMap(popupText); // showMap draws the map and adds control to select basemaps.
 
   // Now we add what's needed to draw the extent and save to database
- 
+
   // Initialise the FeatureGroup to store editable layers
   var drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
-  
+
   // Initialise the draw control for only polyline and pass it the FeatureGroup of editable layers
   var drawControl = new L.Control.Draw({
     position: 'topleft',
@@ -207,7 +227,7 @@ function editMap(popupText) {
     var geojson = layer.toGeoJSON();  // is an object Object
     // console.log("type of layer.toJSON: " + typeof geojson); // object
     console.log("209. JSON.stringify(geojson):\n" + JSON.stringify(geojson)) // maybe write to an json
-    var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc. 
+    var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc.
     console.log("type of layer.getLatLngs(): " + typeof layer.getLatLngs() + ". But it displays as a partial JSON ()");
     console.log(latlngs);
     // export the coordinates from the layer
@@ -219,17 +239,17 @@ function editMap(popupText) {
     console.log("coordinates: " + coordinates);
     // push the coordinates to the json geometry
     // geojson['geometry']['coordinates'] = [coordinates];
-    
+
     // writes coordinate array into field on form ready for save
     $("#street_extent_array").val("[" + coordinates + "]");
-    
+
     // Write GeoJSON to steet.extent_json for saving from the form. Not working, but not creating an error
     $("#street_extent_json").value = JSON.stringify(geojson);
-    
+
     // Add the drawn line to a layer to display it in the map
     drawnItems.addLayer(layer);
   }); // end map.on
-  
+
   $('map').imageMapResize();
 
 }  // end editMap
