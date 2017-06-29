@@ -89,7 +89,9 @@ function showMap(popupText) {
   // Sets up map, but if there is a linestring defined will zoom to that in the next if statement
   // But need a baselayer and a overlayLayer for opacitySlider to load 
   // Now trying to add the overlayLayer without L.control.activeLayers
-  map = L.map('map').setView([34.05, -118.25], 13,);
+  map = L.map('map', {zoomDelta: 0.25,
+        zoomSnap: 0.25
+  }).setView([34.05, -118.25], 13);
   // map = L.map('map', {
   //     center: new L.LatLng(34.05, -118.25),
   //     zoom: 13,
@@ -109,7 +111,27 @@ function showMap(popupText) {
     map.fitBounds(arrayStreetExtent); // zooms to area of interest
     L.polyline(arrayStreetExtent).addTo(map)
                                  .bindPopup(popupText).openPopup()
-    ;
+  ;
+  
+  // Shows zoom level which I find useful. Like to have in on the lower right
+  // http://leafletjs.com/examples/zoom-levels/example-fractional.html
+  var ZoomViewer = L.Control.extend({
+  		onAdd: function(){
+  			var container= L.DomUtil.create('div');
+  			var gauge = L.DomUtil.create('div');
+  			container.style.width = '200px';
+  			container.style.background = 'rgba(255,255,255,0.5)';
+  			container.style.textAlign = 'left';
+  			map.on('zoomstart zoom zoomend', function(ev){
+  				gauge.innerHTML = 'Zoom level: ' + map.getZoom();
+  			})
+  			container.appendChild(gauge);
+
+  			return container;
+  		}
+  	});
+
+  	(new ZoomViewer).addTo(map);
   }
 
 // Put the layer selection control on the map. Note that we need two `layers` from the map definition

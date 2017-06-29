@@ -2,6 +2,8 @@ Add search for street and return to map at center of the segment
 
 1928 Hill's needs more detailed georeferencing
 
+1902 Rueger needs trimming. Unfortunately probably have to georef again.
+
 Add another page with all the segments mapped. Maybe can do a SQL to find all the segments and make a JSON or maybe it happens automagically. Need  popups. 
 And then have date slider.
 
@@ -26,3 +28,5 @@ TODO Only one overlay at a time. Almost done or maybe by now done
 Add attribution to changes
 
 Put up a notice if no coverage available for the map selected.
+
+Indicate zoom level
