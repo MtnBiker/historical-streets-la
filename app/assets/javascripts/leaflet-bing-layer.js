@@ -368,7 +368,7 @@ module.exports = function(bbox1, bbox2){
       throw new Error('polyfill failed because global object is unavailable in this environment');
     }
   }
-  
+
   local.fetchJsonp = fetchJsonp;
   */
 
