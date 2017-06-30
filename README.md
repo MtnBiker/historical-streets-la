@@ -17,6 +17,7 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 - Now that it's deployed, some issues need to be addressed before opening it up.  
     * If zoomed in beyond what's available, no indication of what's going on.
+    
     * Implement JSON storage of extent. It's currently a LINESTRING array stored as a string which is a bit flaky. JSON seems most portable between Postgres and JavaScript. Rails and Postgres have :line_string, but JavaScript not so much.  Started this.
 
 

@@ -75,6 +75,12 @@
   		  <strong>Updated:</strong>
   		  <%= @street.updated_at.to_formatted_s(:long) %>
   		</p>
+      
+  		<p>
+  		  <strong>Current User [Testing]</strong>
+  		  <%= current_user.name %>
+  		</p>
+      
     </div> <!-- end col-4 -->
 
   <%= render 'map_and_control' %>  <!-- the right two columns -->
