@@ -1,7 +1,5 @@
 * Add search for street and return to map at center of the segment
 
-* Map list in reverse chronological order.  
-
 * 1928 Hill's needs more detailed georeferencing
  
 * 1902 Rueger needs trimming. Unfortunately probably have to georef again.
@@ -30,3 +28,5 @@
 * Put up a notice if no coverage available for the map selected.
  
 * The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. Maybe with next version I'll did into it.
+
+* Two maps aren't working
