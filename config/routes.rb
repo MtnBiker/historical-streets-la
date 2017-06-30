@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
 
-  get  '/home',   to: 'static_pages#home'
-  get  '/contact',   to: 'static_pages#contact'
-  get  '/acknowledgements',   to: 'static_pages#acknowledgements'
+  get '/home',      to: 'static_pages#home'
+  get '/contact',   to: 'static_pages#contact'
+  get '/acknowledgements',   to: 'static_pages#acknowledgements'
   get 'about' => 'static_pages#about'
   get 'acknowledgments' => 'static_pages#acknowledgments'
   

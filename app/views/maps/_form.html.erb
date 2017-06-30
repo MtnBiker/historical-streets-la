@@ -22,6 +22,16 @@
   </div>
 
   <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :map_notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thomasGuide %>
+    <%= form.text_field ":thomasGuide", id: :map_thomasGuide %>
+  </div>
+
+  <div class="field">
     <%= form.label :url %>
     <%= form.text_area :url, id: :map_url %>
   </div>

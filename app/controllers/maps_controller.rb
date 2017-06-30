@@ -4,7 +4,7 @@ class MapsController < ApplicationController
   # GET /maps
   # GET /maps.json
   def index
-    @maps = Map.all
+    @maps = Map.all.order(:year)
   end
 
   # GET /maps/1
@@ -69,6 +69,6 @@ class MapsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def map_params
-      params.require(:map).permit(:name, :year, :url, :attribLink, :attrib)
+      params.require(:map).permit(:name, :year, :url, :attribLink, :attrib, :notes, :thomasGuide)
     end
 end

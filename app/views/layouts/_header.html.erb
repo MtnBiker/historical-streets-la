@@ -14,8 +14,8 @@
       <li class="nav-item"><%= link_to "Street List",  streets_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "About",  about_path, class: "nav-link" %></li>
       <% if logged_in? %>
-        <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link"  %></li>
-        
+        <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link" %></li>
+
         <!-- Dropdown starts -->
         <!-- Accessible Rich Internet Applications (ARIA) for accesibility -->
          <li class="nav-item dropdown">
@@ -24,6 +24,8 @@
             <%= link_to "Profile", current_user, class: "dropdown-item" %>
             <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>
+            
+        <li class="nav-item"><%= link_to "Map list", maps_path, class: "nav-link" %></li>
       <% else %>
         <%= link_to "Log in", login_path, class: "dropdown-item" %>
       <% end %>
