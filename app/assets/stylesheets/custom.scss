@@ -226,7 +226,7 @@ input {
 .field_with_errors {
 //  @extend .has-error; // Error on any page load TODO
   .form-control {
-    color: $state-danger-text;
+//    color: $state-danger-text; // error. Is this a Bootstrap issue?
   }
 }
 

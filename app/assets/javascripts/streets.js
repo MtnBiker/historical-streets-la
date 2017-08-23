@@ -165,8 +165,8 @@ function showMap(popupText) {
   // Adding a listener to id="select-overlay". Remove the CONTROL, not layer if it exists and then add the selected layer.
   $( "#select-overlay" ).change(function() {
     // Get layer selected
-    console.log("148. Next line is $(#select-overlay input[type='radio']:checked. Some of the URLs aren't working")
-    console.log($("#select-overlay input[type='radio']:checked").val())
+    // console.log("148. Next line is $(#select-overlay input[type='radio']:checked. Some of the URLs aren't working")
+    // console.log($("#select-overlay input[type='radio']:checked").val())
 
     var changeLayerTo = $("#select-overlay input[type='radio']:checked").val();
     var currentLayer = L.tileLayer(changeLayerTo).addTo(map)
@@ -253,3 +253,13 @@ function editMap(popupText) {
   $('map').imageMapResize();
 
 }  // end editMap
+
+// indexMap. Streets > big_map_html_erb. Note uses showMap
+// TODO this needs to look more like map.js for crores where multiple items are being put up. May need to be on its own file or rework showMap since I do need the basemaps and overlays and opacity.
+function indexMap(popupText) {
+
+  showMap(popupText); // showMap draws the map and adds control to select basemaps.
+
+  var extentLayer  = L.mapbox.featureLayer().loadURL('street/index_data.geojson').addTo(map);
+
+} // end indexMap

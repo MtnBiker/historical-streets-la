@@ -29,4 +29,4 @@
  
 * The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. Maybe with next version I'll did into it.
 
-* Two maps aren't working
+* Two maps aren't working. Ones not at AWS

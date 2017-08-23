@@ -1,15 +1,20 @@
+# number is minimum
+# >= upgrade even to major version, i.e, for ever
+# ~> upgrade but not to the next major version, e.g, if ~> 1.14, upgrade but not to 2.0
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+
 ruby '2.4.0' # Heroku wants this. I have 2.4.0, but is Heroku only to 2.3.4
-gem 'bundler', '1.15.1' # 1.13.7 may be the latest version heroku is supporting 2017.06.03
+gem 'bundler'# , '1.15.1' # 1.13.7 may be the latest version heroku is supporting 2017.06.03. 2017.08.23 removed version requirement
 
 gem 'rails', '~> 5.1.2'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.20'
+gem 'pg' # , '~> 0.20' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23
 # Use Puma as the app server
 gem 'puma', '3.4' # not sure of latest version that will work, but 3.9.1 doesn't work. I thought I had 3.7 before and it worked but now it doesn't
 # Use SCSS for stylesheets
@@ -18,7 +23,7 @@ gem 'puma', '3.4' # not sure of latest version that will work, but 3.9.1 doesn't
 gem 'uglifier', '>= 3.2.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'bootstrap', '~> 4.0.0.alpha6' # Don't think -sass is needed with 4. Causes problems in Header
+gem 'bootstrap', '~> 4.0.0.beta' # Don't think -sass is needed with 4. Causes problems in Header
 # gem 'bootstrap-sass', '3.3.7' # Hartl 5 2017.06.07 No problem as first go. One Stackoverflower said not to have this with gem 'bootstrap', but I want v4
 # Use CoffeeScript for .coffee assets and views
 # gem 'coffee-rails', '~> 4.2'
@@ -28,7 +33,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.11'
-gem 'carrierwave',             '1.1.0'
+gem 'carrierwave', '1.1.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

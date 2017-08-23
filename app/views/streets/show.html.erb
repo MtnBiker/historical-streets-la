@@ -2,102 +2,103 @@
 <% provide(:title, @street.prevName) %>
 <h1>Historic Street Name</h1>
 
-  <div class="row">
-    <div class="col-4">
-      <% if @street.city != "Los Angeles" %>
-        <p>
-          <strong>City:</strong>
-          <%= @street.city %>
-        </p>
-      <% end %>
-      
+<div class="row">
+  <div class="col-4">
+    <% if @street.city != "Los Angeles" %>
       <p>
-        <strong>Previous Street Name:</strong>
-        <%= @street.prevName %>
+        <strong>City:</strong>
+        <%= @street.city %>
       </p>
+    <% end %>
+    
+    <p>
+      <strong>Previous Street Name:</strong>
+      <%= @street.prevName %>
+    </p>
 
-      <p>
-        <strong>'Current/Next' Street Name:</strong>
-        <%= @street.currentName %>
-      </p>
+    <p>
+      <strong>'Current/Next' Street Name:</strong>
+      <%= @street.currentName %>
+    </p>
 
-      <p>
-        <strong>Earliest Date for 'Previous' Name:</strong>
-        <%= @street.dateEarliest %>
-      </p>
+    <p>
+      <strong>Earliest Date for 'Previous' Name:</strong>
+      <%= @street.dateEarliest %>
+    </p>
 
-      <p>
-        <strong>Latest Date for 'Previous' Name:</strong>
-        <%= @street.dateLatest %>
-      </p>
+    <p>
+      <strong>Latest Date for 'Previous' Name:</strong>
+      <%= @street.dateLatest %>
+    </p>
 
-      <p>
-        <strong>Entry covers from cross street to cross street or similar:</strong>
-        <%= @street.where %>
-      </p>
+    <p>
+      <strong>Entry covers from cross street to cross street or similar:</strong>
+      <%= @street.where %>
+    </p>
 
-      <p>
-        <strong>Extent as JSON:</strong>
-        <%= @street.extent_json %>
-      </p>
+    <p>
+      <strong>Extent as JSON:</strong>
+      <%= @street.extent_json %>
+    </p>
 
-      <p>
-        <strong>Extent as Coordinate Array:</strong>
-        <%= @street.extent_array %>
-      </p>
+    <p>
+      <strong>Extent as Coordinate Array:</strong>
+      <%= @street.extent_array %>
+    </p>
 
-      <p>
-        <strong>Approximate Number of Blocks:</strong>
-        <%= @street.numBlocks %>
-      </p>
+    <p>
+      <strong>Approximate Number of Blocks:</strong>
+      <%= @street.numBlocks %>
+    </p>
 
-      <p>
-        <strong>Reference 1:</strong>
-        <%= @street.ref1 %>
-      </p>
+    <p>
+      <strong>Reference 1:</strong>
+      <%= @street.ref1 %>
+    </p>
 
-      <p>
-        <strong>Reference 2:</strong>
-        <%= @street.ref2 %>
-      </p>
+    <p>
+      <strong>Reference 2:</strong>
+      <%= @street.ref2 %>
+    </p>
 
-      <p>
-        <strong>Reference 3:</strong>
-        <%= @street.ref3 %>
-      </p>
+    <p>
+      <strong>Reference 3:</strong>
+      <%= @street.ref3 %>
+    </p>
 
-      <p>
-        <strong>Notes:</strong>
-        <%= @street.notes %>
-      </p>
-      
-  		<p>
-  		  <strong>Updated:</strong>
-  		  <%= @street.updated_at.to_formatted_s(:long) %>
-  		</p>
-      
-  		<p>
-  		  <strong>Current User [Testing]</strong>
-  		  <%= current_user.name %>
-  		</p>
-      
-    </div> <!-- end col-4 -->
+    <p>
+      <strong>Notes:</strong>
+      <%= @street.notes %>
+    </p>
+    
+    <p>
+      <strong>Updated:</strong>
+      <%= @street.updated_at.to_formatted_s(:long) %>
+    </p>
+    
+    <p>
+      <strong>Current User [Testing]</strong>
+      <%= current_user.name %>
+    </p>
+    
+  </div> <!-- end col-4 -->
 
-  <%= render 'map_and_control' %>  <!-- the right two columns -->
+<%= render 'map_and_control' %>  <!-- the right two columns -->
 
-  </div> <!-- end row which is basically the page -->
-  <% if logged_in? %>
-    <button type="button" class="btn btn-primary-outline" >
-      <%= link_to 'Edit', edit_street_path(@street) %>
-    </button>
-  <% end  %>
+</div> <!-- end row which is basically the page -->
 
+<% if logged_in? %>
   <button type="button" class="btn btn-primary-outline" >
-    <%= link_to 'Back to Street List', streets_path %> 
+    <%= link_to 'Edit', edit_street_path(@street) %>
   </button>
+<% end  %>
 
-  <% if logged_in? %>
-    <button type="button" class="btn btn-primary-outline" >
-      <%= link_to 'New Historic Street Entry', new_street_path %>
-    </button>
-  <% end  %>
+<button type="button" class="btn btn-primary-outline" >
+  <%= link_to 'Back to Street List', streets_path %> 
+</button>
+
+<% if logged_in? %>
+  <button type="button" class="btn btn-primary-outline" >
+    <%= link_to 'New Historic Street Entry', new_street_path %>
+  </button>
+<% end  %>
