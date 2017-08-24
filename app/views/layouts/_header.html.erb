@@ -1,16 +1,18 @@
-<!-- Bootstrap Fixed top inverse Not sure about toggleable part -->
-<!-- Modeled after bootstrap-4.0.0-alpha.6/docs/examples/navbars/index.html -->
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!-- Bootstrap Fixed top.  Not sure about toggleable part -->
+<!-- Modeled after /Users/gscar/Downloads/bootstrap-4.0.0-beta/docs/4.0/examples/navbar-top-fixed/index.html-->
+<!-- Massively screwed up after maybe upgrading to beta, first first nav and button sections copied over-->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
   <%= link_to "Historic Street Names in Los Angeles", root_path, class: "navbar-brand" %>
   <div class="collapse navbar-collapse" id="navbarCollapse"> <!-- Is navbarCollapse styled? -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <%= link_to "Home", root_path, class: "nav-link" %><span class="sr-only">(current)</span></a>
-        <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
       </li>
+      <li><%= link_to "Map", map_path, class: "nav-link" %> </li>
       <li class="nav-item"><%= link_to "Street List",  streets_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "About",  about_path, class: "nav-link" %></li>
       <% if logged_in? %>
@@ -33,9 +35,9 @@
       </li>
     </ul>
     <!-- Placeholder for search. Search shows twice. What is placeholder="Search". Note that two items labeled Search show up. -->
-    <!-- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
+        <!-- <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
   </div>
 </nav>

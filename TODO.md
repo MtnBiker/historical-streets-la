@@ -1,3 +1,5 @@
+* Add a field so we know who edited the item
+
 * Add search for street and return to map at center of the segment
 
 * 1928 Hill's needs more detailed georeferencing
@@ -29,4 +31,4 @@
  
 * The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. Maybe with next version I'll did into it.
 
-* Two maps aren't working
+* Two maps aren't working. Ones not at AWS
