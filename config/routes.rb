@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   
-  resources :maps
+  root 'static_pages#home'
   get 'password_resets/new'
 
   get 'password_resets/edit'
 
   get 'signup' => 'users#new'
-  get 'map'=> 'streets#big_map'
-  root 'static_pages#home'
+  get 'map', to: 'streets#big_map'
+  resources :maps
   resources :streets
   resources :users
   resources :account_activations, only: [:edit]
