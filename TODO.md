@@ -1,3 +1,5 @@
+* Add a field so we know who edited the item
+
 * Add search for street and return to map at center of the segment
 
 * 1928 Hill's needs more detailed georeferencing
