@@ -146,4 +146,6 @@ https://github.com/davidjbradshaw/image-map-resizer  to allow map to grow with w
 Put the list of available historic overlay maps to the right of the map. Two advantages: can see which layer is currently selected and plays nicer with the opacity slider. Two disadvantage: Have controls on the map and off the map—may confuse experienced users of maps, and  have map definitions (name, url, etc.) in JavaScript and Rails. Although maybe can move all to Rails and manage there. TODO
 
 To select radio button clicked https://stackoverflow.com/questions/596351/how-can-i-know-which-radio-button-is-selected-via-jquery Comnent with 3000+ checks
+
+Maps not loading at Heroku. Upload goes fine and only one error TypeError: `Attempted to assign to readonly property`
    
