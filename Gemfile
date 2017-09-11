@@ -38,7 +38,7 @@ gem 'carrierwave', '1.1.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# gem 'leaflet-rails' # with statements in application.js/.scss, loads leaflet. 1.1 as of Sept 17 (current is 1.2 which might fix my leaflet.draw problem). Therefore try loading directly from the we.
+gem 'leaflet-rails' # with statements in application.js/.scss, loads leaflet. 1.1 as of Sept 17 (current is 1.2 which might fix my leaflet.draw problem). Therefore try loading directly from the we. Caused other problems
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-geojson'
 gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.10 (July 3, 2017)

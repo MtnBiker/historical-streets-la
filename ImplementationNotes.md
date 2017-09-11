@@ -148,4 +148,6 @@ Put the list of available historic overlay maps to the right of the map. Two adv
 To select radio button clicked https://stackoverflow.com/questions/596351/how-can-i-know-which-radio-button-is-selected-via-jquery Comnent with 3000+ checks
 
 Maps not loading at Heroku. Upload goes fine and only one error TypeError: `Attempted to assign to readonly property`
+
+Getting errors because leaflet-rails isn't using latest version (1.1 vs. 1.2), but when I switched caused other problems (I probably didn't put in the reference in the right file.); but decided to wait for a while and see if the gem gets fixed.
    
