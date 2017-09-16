@@ -15,9 +15,9 @@ Rails.application.routes.draw do
 
   get '/home',      to: 'static_pages#home'
   get '/contact',   to: 'static_pages#contact'
-  get '/acknowledgements',   to: 'static_pages#acknowledgements'
-  get 'about' => 'static_pages#about'
+  get '/acknowledgements',   to: 'static_pages#acknowledgements' # Redundant TODO ?
   get 'acknowledgments' => 'static_pages#acknowledgments'
+  get 'about' => 'static_pages#about'
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   # so overview.html.erb and indexMap can find what index_data.json.jbuilder created
  get 'street/index_data', :defaults => { :format => 'json' }
- get 'map/index_data', :defaults => { :format => 'json' } # this is probably not needed. Added as a test TODO
+ get 'map/index_data',    :defaults => { :format => 'json' } # this is probably not needed. Added as a test TODO
  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

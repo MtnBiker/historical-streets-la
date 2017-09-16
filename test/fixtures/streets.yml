@@ -1,10 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  prevName: MyString
-  currentName: MyString
-  dateEarliest: MyString
-  dateLatest: MyString
+  prevName: MyString1
+  currentName: MyString2
+  dateEarliest: MyString3
+  dateLatest: MyString3
   where: MyString
   extent: 
   numBlocks: MyString
@@ -14,10 +14,10 @@ one:
   notes: MyText
 
 two:
-  prevName: MyString
-  currentName: MyString
-  dateEarliest: MyString
-  dateLatest: MyString
+  prevName: MyString4
+  currentName: MyString5
+  dateEarliest: MyString6
+  dateLatest: MyString7
   where: MyString
   extent: 
   numBlocks: MyString
