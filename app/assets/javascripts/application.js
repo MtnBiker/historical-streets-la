@@ -15,7 +15,8 @@
 
 // Is rail-ujs in conflict with jquery_ujs? Doesn't seem to be
 //= require rails-ujs
-//= require jquery
+// https://github.com/twbs/bootstrap-rubygem bootstrap possible instead of bootstrap-sprockets. Use jquery3 instead of jquery?. v3 is current. Will try with that change
+//= require jquery3
 //= require popper
 //= require tether
 //= require bootstrap-sprockets

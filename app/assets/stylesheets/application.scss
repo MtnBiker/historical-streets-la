@@ -16,6 +16,11 @@
  *= require tether
  *= require leaflet
  *= require leaflet.draw
- *= require_tree .
+ *= require custom
+ *= require scaffold
+ *= require static_pages
+ *= require streets
+ * No require tree with bootstrap see https://github.com/twbs/bootstrap-rubygem
+ *  require_tree .
  *= require_self
  */
