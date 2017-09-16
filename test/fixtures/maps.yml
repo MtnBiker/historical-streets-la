@@ -8,8 +8,8 @@ one:
   attrib: MyString
 
 two:
-  name: MyString
-  year: MyString
+  name: map_name_2
+  year: 1902
   url: http://this_site.com
   attribLink: MyText
   attrib: MyString

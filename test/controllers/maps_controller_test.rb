@@ -3,6 +3,8 @@ require 'test_helper'
 class MapsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @map = maps(:one)
+    @name = "The map name #{rand(1000)}" # Needed to prevent error at should_create_map due to uniquenss. From Copeland p102.
+    # making the names unique in maps.yml didn't help
   end
 
   test "should get index" do
@@ -17,7 +19,15 @@ class MapsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create map" do
     assert_difference('Map.count') do
-      post maps_url, params: { map: { attrib: @map.attrib, attribLink: @map.attribLink, name: @map.name, url: @map.url, year: @map.year } }
+      post maps_url, params: {
+         map: {
+            attrib: @map.attrib, 
+            attribLink: @map.attribLink, 
+            name: @name, # Changed from default Copeland p102
+            url: @map.url, 
+            year: @map.year
+         }
+      }
     end
 
     assert_redirected_to map_url(Map.last)
