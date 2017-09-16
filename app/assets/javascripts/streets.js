@@ -254,7 +254,7 @@ function editMap(popupText) {
 
 }  // end editMap
 
-// indexMap. Streets > big_map_html_erb. Note uses showMap
+// indexMap. Streets > overview_html_erb. Note uses showMap
 // TODO this needs to look more like map.js for crores where multiple items are being put up. May need to be on its own file or rework showMap since I do need the basemaps and overlays and opacity.
 function indexMap(popupText) {
 

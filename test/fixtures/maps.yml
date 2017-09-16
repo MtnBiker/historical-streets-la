@@ -2,7 +2,7 @@
 
 one:
   name: map_name_1
-  year: MyString
+  year: 1888
   url: https://that_site.com
   attribLink: MyText
   attrib: MyString
