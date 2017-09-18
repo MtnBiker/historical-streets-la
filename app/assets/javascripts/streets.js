@@ -1,6 +1,6 @@
 "use strict";
 
-// Called from show.html.erb and edit.html.erb
+// Called from show.html.erb and edit.html.erb and maybe new.html.erb
 // First set up common variables, then function specific to each show and edit
 // Used to be _map.initial.js.erb and _leafletmap.show.html.erb which may be able to delete TODO
 // Declare global variables used by both functions

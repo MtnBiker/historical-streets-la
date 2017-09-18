@@ -5,7 +5,7 @@ https://github.com/MtnBiker/historical-streets-la.git
 
 These notes can be incomplete because of things tried in branches that were abandoned. I forget to note those trials in here sometimes.
 #### Moving database to Heroku—at some points Heroku will become the master
-See Evernote > PostreSQL databases at bottom. 
+See Evernote > PostreSQL databases at bottom.
 
 Wiped out old rails app except folder and .gitignore
 Git 3- , may have forgotten to merge
@@ -33,7 +33,7 @@ SET updated_at = 'Sat, 27 May 2017 15:51:14 GMT';
 UPDATE Streets
 SET created_at = 'Sat, 27 May 2017 15:51:00 GMT';
 
-in pgAdmin changed definition of created_at and updated_at to 'not NULL ' 
+in pgAdmin changed definition of created_at and updated_at to 'not NULL '
 
 Index to Bootstrap 4. Use crores5 people as an example which is Bootstrap 3
 
@@ -67,7 +67,7 @@ leaflet-draw in place via gem which seems to be kept up to date. Drawing now wor
 
 See git for progress. Drawing works and results to Postgres
 
-**Had to do a stash because messed up a save and merge.** Pulled the pieces back into the test fork. 
+**Had to do a stash because messed up a save and merge.** Pulled the pieces back into the test fork.
 
 Added Guard, but didn't explore. Seems to give odd results. Adding items with line is working. Not very native Postgres or anything. Is stored as text.
 
@@ -86,15 +86,15 @@ git checkout master
 git merge 9-formatting            # fast-forward master up to the merge
 
 Got message "Your branch is ahead of 'origin/master' by 5 commits.
-  (use "git push" to publish your local commits)" after git co master. And changes to this file 
-  
+  (use "git push" to publish your local commits)" after git co master. And changes to this file
+
   Error if edit from streets. Probably in the ugly decision tree. Look at gon
 #### 11-Hartl-Users
 10 was short lived because edited in master and decided better just to go with new branch. 10- was in master
 
 ~~Need to remove Users from database, but migrations are somewhere else. Which is probably good, not clogging up Rails. Do it in PgAdmin.~~ Done. Right click on Users and drop.
 Guess it will be easier to do Hartl step by step even though means many revisions.
-Pasted Listing 5.1 (layout) container class causes problems so one is commented out, 5.2 (home), already had gem bootstrap, 
+Pasted Listing 5.1 (layout) container class causes problems so one is commented out, 5.2 (home), already had gem bootstrap,
 File to import not found or unreadable: bootstrap-sprockets, so leaving out p189
 Instead of custom.css.scss, I'm using scaffolds.scss
 Listing 5.5 Didn't add gem 'bootstrap-sass but maybe I should
@@ -150,5 +150,5 @@ To select radio button clicked https://stackoverflow.com/questions/596351/how-ca
 Maps not loading at Heroku. Upload goes fine and only one error TypeError: `Attempted to assign to readonly property`
 
 Getting errors because leaflet-rails isn't using latest version (1.1 vs. 1.2), but when I switched caused other problems (I probably didn't put in the reference in the right file.); but decided to wait for a while and see if the gem gets fixed.
-   
+
 big_map changed to (streets) overview. Map is the list of background maps. Overview  shows all the streets. Made to change to avoid potential confusion in testing, map meant two things. This got rid of a test error!

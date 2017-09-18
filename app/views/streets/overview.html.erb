@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 <% provide(:title) %>
-<h1>Historic Street Name</h1>
+<h1>Historic Street Names</h1>
+
+<!-- Formerly called big_map. Trying to show all the segments. This may just be _map_and_control except for the first four lines -->
 
 <p>This is not working yet. And need to add all segments. Ultimately add a link so will go to 'show' of that segment </p>
 
@@ -22,26 +24,6 @@
       </script>
 </div>  <!-- col middle -->
 
-<div id="select-overlay" class="col-1">
-<!-- Trying to format the button from <label class="form-check-label"> /bootstrap-4.0.0-alpha.6/docs/components/forms.md -->
-  <!-- Look at bootstrap-4.0.0-alpha.6/js/tests/visual/button.html Trial gave wonky results. would take work -->
-  <!-- There is also some modified streets.csss that changes some of the appearance -->
-  <fieldset class="form-group">
-  <legend>Historic Map Overlay</legend>
-  <!-- Need to make stand out. border not doing anything look at cards in v4, but didn't help on simple try -->
-  <p class="border-0 rounded">Select map for overlay†.<br>
-                              Select basemap using control on top right of the map itself.</p>
+<%= render 'basemap_selector' %>
 
-<!-- Problem below. NEED TO REMEMBER WHAT THIS IS FOR. Is this making the selection list for the maps? -->
-  <!-- <  @maps.each do |map| %>
-    <label class="form-check-label">
-      < = radio_button_tag(:name, map.url,  class: "form-check-input" ) %>
-      <!-- by first field being the same for all (:name) only one can be selected. Last item becomes id which JQuery can access-->
-  !<--    < = label_tag(:map_name, map.name) %>
-    </label>
-  < end %> -->
-  <br>
-  </fieldset>
-  <p>† Two maps don't display-TODO</p>
-</div> <!-- end col-1 last -->
 </div> <!-- end row which is basically the page -->
