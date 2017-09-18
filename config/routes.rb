@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   # Whats does one use in link_to to use this link, crores_path or _url doesn't work
   get 'crores' => redirect("https://secure-shore-68966.herokuapp.com")
 
-  # so overview.html.erb and indexMap can find what index_data.json.jbuilder created
+  # so overview.html.erb and overviewMap can find what index_data.json.jbuilder created
  get 'street/index_data', :defaults => { :format => 'json' }
  get 'map/index_data',    :defaults => { :format => 'json' } # this is probably not needed. Added as a test TODO
  

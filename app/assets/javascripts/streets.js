@@ -254,12 +254,12 @@ function editMap(popupText) {
 
 }  // end editMap
 
-// indexMap. Streets > overview_html_erb. Note uses showMap
+// overviewMap. Streets > overview_html_erb. Note uses showMap
 // TODO this needs to look more like map.js for crores where multiple items are being put up. May need to be on its own file or rework showMap since I do need the basemaps and overlays and opacity.
-function indexMap(popupText) {
+function overviewMap(popupText) {
 
   showMap(popupText); // showMap draws the map and adds control to select basemaps.
 
   var extentLayer  = L.mapbox.featureLayer().loadURL('street/index_data.geojson').addTo(map);
 
-} // end indexMap
+} // end overviewMap
