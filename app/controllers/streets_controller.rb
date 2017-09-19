@@ -1,5 +1,6 @@
 class StreetsController < ApplicationController
-  before_action :set_street, only: [:show, :edit, :update, :destroy]
+  # include ActionView::Rendering # https://github.com/rails/jbuilder/issues/405 was a fix for the API version. Didn't help for me, i.e., no geojson
+  before_action :set_street, only: [:show, :edit, :update, :destroy, :overview_data] # No doubt this should be on, but turning off to see about an error with overview map. Adding :overview results in bigger error TODO
 
   # using a before_action callback (just as you did with set_street ) if you plan to access @maps from more action TODO https://stackoverflow.com/questions/44790845/display-data-from-unrelated-table-model-in-rails
 
@@ -71,11 +72,18 @@ class StreetsController < ApplicationController
     end
   end
 
-  # GET /streets/overview. Not sure if all lines are needed, but certainly the last. Any harm done? TODO
+  # GET /streets/overview. Not sure if all lines are needed, but certainly the first (error) and last. Any harm done? TODO
+  # needed to get /overview to work
   def overview
     @street = Street.new
     gon.streetExtentArray = @street.extent_array
     @maps = Map.all.order(:year)
+  end
+
+  # SWAG to get jBuilder to go. Paralleling crores, but can't remember how I figured this out originally
+  # Didn't work the first time or the second
+  def overview_data
+    @overview_inputs = Street.select("dateEarliest, prevName, dateLatest, currentName")
   end
 
 

@@ -120,6 +120,8 @@ bower.json
 testNotes.txt
 implementation_notes.md
 coverage
+*.sublime-project
+*.sublime-workspace
 
 # aliases to dot files
 dot.*

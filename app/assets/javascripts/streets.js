@@ -7,6 +7,7 @@
 var map;
 var previousLayer;
 var opacitySlider; // global so works for remove
+L.mapbox.accessToken = 'pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg';
 //URLs
 var hamlin1908url = "https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg",
     Hill1928aws    = 'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
@@ -17,7 +18,7 @@ var hamlin1908url = "https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5
     sanborn1888km1aURL = "https://crores.s3.amazonaws.com/tiles/1888SanbornKM1a/{z}/{x}/{y}.png",
     sanborn1894km1aURL = "https://crores.s3.amazonaws.com/tiles/1894SanbornKM1a/{z}/{x}/{y}.png",
     osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        esriUrl   = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    esriUrl   = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     googleUrl = 'http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}'
     // bingUrl = "baseMapUrl = new L.BingLayer('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav, {type: 'Road'});"
     // bingUrl = "http://bing.com/maps/default.aspx?cp=34.05~118.25&lvl=12&style=r",
@@ -128,7 +129,7 @@ function showMap(popupText) {
   			return container;
   		}
   	}); // end ZoomViewer
-  	(new ZoomViewer).addTo(map);
+  	(new ZoomViewer).addTo(map); // unknown to me syntax  TODO, not currently showing up
 
 // Put the layer selection control on the map. Note that we need two `layers` from the map definition
 
@@ -259,5 +260,7 @@ function overviewMap(popupText) {
   showMap(); // showMap draws the map and adds control to select basemaps.
 
   var extentLayer  = L.mapbox.featureLayer().loadURL('street/overview.geojson').addTo(map);
+  // var featureLayer  = L.mapbox.featureLayer().addTo(map);
+  // featureLayer.loadURL('street/overview.geojson');
 
 } // end overviewMap
