@@ -2,7 +2,7 @@
 <% provide(:title) %>
 <h1>Historic Street Names</h1>
 
-<!-- Formerly called big_map. Trying to show all the segments.  -->
+<!-- Trying to show all the segments.  -->
 
 <p>This is not working yet. And need to add all segments. Ultimately add a link so will go to 'show' of that segment </p>
 
@@ -16,13 +16,12 @@
 
     <div id="map"></div>
       <script>
-        // overviewMap() is in assets/javascripts/streets.js
 
         var popupText = "&le;< = @street.dateEarliest %><br>< = @street.prevName %><br>&ge;< = @street.dateLatest %><br>< = @street.currentName %>";
         // $(document).on("ready page:load", function() { // have to reload to get page to show
         // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
         $(document).on("turbolinks:load", function() {
-           overviewMap();
+           overviewMap(); // overviewMap() is in assets/javascripts/streets.js
         });
       </script>
 </div>  <!-- col middle -->

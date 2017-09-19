@@ -82,6 +82,7 @@ var baseLayers = {
 
 // One function for edit and one for show which is also used by edit
 // For street > show. Used for show and called by editMap to get all the initial stuff
+// Used also by overviewMap below
 function showMap(popupText) {
 
   // Sets up map, but if there is a linestring defined will zoom to that in the next if statement
@@ -107,9 +108,8 @@ function showMap(popupText) {
     var arrayStreetExtent = JSON.parse(gon.streetExtentArray); // If not inside if, errors when streetExtentArray doesn't exist, but TODO seems to need to be reloaded to show page
     // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
     map.fitBounds(arrayStreetExtent); // zooms to area of interest
-    L.polyline(arrayStreetExtent).addTo(map)
-                                 .bindPopup(popupText).openPopup()
-  ;
+    L.polyline(arrayStreetExtent).addTo(map).bindPopup(popupText).openPopup();
+  } // end if(streetExtentArray…)
 
   // Shows zoom level which I find useful. Like to have in on the lower right
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html
@@ -127,10 +127,8 @@ function showMap(popupText) {
 
   			return container;
   		}
-  	});
-
+  	}); // end ZoomViewer
   	(new ZoomViewer).addTo(map);
-  } // end ZoomViewer
 
 // Put the layer selection control on the map. Note that we need two `layers` from the map definition
 
@@ -258,8 +256,8 @@ function editMap(popupText) {
 // TODO this needs to look more like map.js for crores where multiple items are being put up. May need to be on its own file or rework showMap since I do need the basemaps and overlays and opacity.
 function overviewMap(popupText) {
 
-  showMap(popupText); // showMap draws the map and adds control to select basemaps.
+  showMap(); // showMap draws the map and adds control to select basemaps.
 
-  var extentLayer  = L.mapbox.featureLayer().loadURL('street/index_data.geojson').addTo(map);
+  var extentLayer  = L.mapbox.featureLayer().loadURL('street/overview.geojson').addTo(map);
 
 } // end overviewMap

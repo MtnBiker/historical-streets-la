@@ -3,7 +3,8 @@
 # Copied from CroRes, so some of it may be left over from that
 
 # Trying to get segments to show on map if they exist
-json.type "FeatureCollection"
+console.log("Reporting from overview.json.jbuilder");
+json.type "FeatureCollection" if street.extent_array
 json.features @streets do |street|
   if (street.extent_array)
     json.type "Feature"
@@ -11,12 +12,11 @@ json.features @streets do |street|
      # Only want an entry if coordinates exist for location. Should log missing results
        json.type "LineString"
        json.coordinates street.extent_array
-    end # json.geomtry extent…
+    end # json.geometry
 
     json.properties do
-       json.date street.date_earliest
-       json.date street.dateLatest
-       # json.title street.popup # a method in resto_resid_line.rb
+       json.text street.date_earliest
+       json.text street.dateLatest
     end
 
   end  # if
