@@ -37,7 +37,8 @@ gem 'carrierwave', '1.1.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'leaflet-rails' # with statements in application.js/.scss, loads leaflet. 1.1 as of Sept 17 (current is 1.2 which might fix my leaflet.draw problem). Therefore try loading directly from the we. Caused other problems
+# Leaflet included in mapbox 3.1.1
+# gem 'leaflet-rails' # with statements in application.js/.scss, loads leaflet. 1.1 as of Sept 17 (current is 1.2 which might fix my leaflet.draw problem). Therefore try loading directly from the we. Caused other problems
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-geojson'
 gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.10 (July 3, 2017)
@@ -67,7 +68,7 @@ group :development do
   gem 'awesome_print' # Prefs in ~/.irbrc
   # http://undefined-reference.org/2016/01/31/super_awesome_print-as-debugger.html
   gem 'super_awesome_print' # Gilmore just uses awesome_print may be enough.
-  
+
   # Copy db from (and to?) Heroku
   # To see an updated list of tasks and descriptions: rake heroku_db_restore -T heroku_db_restore
   gem 'heroku_db_restore'
@@ -94,6 +95,6 @@ group :test do
   # Creates /coverage/index.html which details MiniTest coverage
   gem 'simplecov', :require => false
 end
- 
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem. Do I need these?
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

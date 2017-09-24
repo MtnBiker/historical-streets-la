@@ -7,25 +7,21 @@
 <p>This is not working yet. And need to add all segments. Ultimately add a link so will go to 'show' of that segment </p>
 
 <div class="row">
-<!-- This is just _map_and_control except calls overviewMap, but leaving as is until get the segments showing. -->
-<!-- < = render 'map_and_control' %> would take care of the following div and its contents -->
-<!-- except map_and_control calls showMap which only shows one segment. Need to build the iterative part -->
+<!-- This is  _map_and_control except popupText isn't put in here. -->
   <div class="col card">
     <p class="font-bold-red">If no map shows up when you choose a map, zoom out. Or the map may not cover that region, so try another map, particularly if not near downtown. TODO-put up a notice</p>
     <br/>
 
     <div id="map"></div>
       <script>
-
-        var popupText = "&le;< = @street.dateEarliest %><br>< = @street.prevName %><br>&ge;< = @street.dateLatest %><br>< = @street.currentName %>";
         // $(document).on("ready page:load", function() { // have to reload to get page to show
         // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
         $(document).on("turbolinks:load", function() {
-           overviewMap(); // overviewMap() is in assets/javascripts/streets.js
+           overviewMap(); // overviewMap() is in assets/javascripts/overview.js.erb
         });
       </script>
 </div>  <!-- col middle -->
 
-<%= render 'basemap_selector' %>
+<!-- <= render 'streets/basemap_selector' %> --> <!-- Need this but turning off for a moment -->
 
 </div> <!-- end row which is basically the page -->

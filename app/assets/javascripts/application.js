@@ -22,7 +22,7 @@
 //= require bootstrap-sprockets
 //= require jquery-ui
 //  require jquery_ujs
-//= require leaflet
+//  require leaflet
 //= require leaflet.draw
 
 //= require turbolinks

@@ -1,5 +1,6 @@
 "use strict";
 
+// .erb to process Ruby MAPBOX_TOKEN with ENV
 // Called from show.html.erb and edit.html.erb and maybe new.html.erb
 // First set up common variables, then function specific to each show and edit
 // Used to be _map.initial.js.erb and _leafletmap.show.html.erb which may be able to delete TODO
@@ -7,7 +8,7 @@
 var map;
 var previousLayer;
 var opacitySlider; // global so works for remove
-L.mapbox.accessToken = 'pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg';
+// L.mapbox.accessToken = "<%= ENV["MAPBOX_TOKEN"] %>"; // error because maybe Mapbox isn't setup yet. The Ruby works even when (jS) commented out
 //URLs
 var hamlin1908url = "https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg",
     Hill1928aws    = 'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
@@ -259,8 +260,10 @@ function overviewMap(popupText) {
 
   showMap(); // showMap draws the map and adds control to select basemaps.
 
-  var extentLayer  = L.mapbox.featureLayer().loadURL('street/overview.geojson').addTo(map);
+// overview_data matches def in streets_controller.rb and the route. Clark 157ff
+  // probably don't need to have the `var extentLayer  = ` since not reusing extentLayer, although Clark p162 used it to set the bounds TODO
+  var extentLayer  = L.mapbox.featureLayer().loadURL('streets/overview_data.geojson').addTo(map);
   // var featureLayer  = L.mapbox.featureLayer().addTo(map);
-  // featureLayer.loadURL('street/overview.geojson');
+  // featureLayer.loadURL('streets/overview.geojson');
 
 } // end overviewMap
