@@ -1,13 +1,12 @@
 class OverviewController < ApplicationController
-  # layout "overview"
-  # before_action :set_overview, only: [:show, :edit, :update, :destroy]
+  # before_action :set_overview, only: [:show, :edit, :update, :destroy] # doesn't seem to affect what I'm trying to do. Delete
 
   def index
   end
 
   def overview_data
     # @segments = Street.select("dateEarliest, prevName, dateLatest, currentName, extent_array")
-    @segments = Street.all # SWAG again
+    @segments = Street.all # produces json. Becomes: SELECT "streets".* FROM "streets"
   end
 
   private

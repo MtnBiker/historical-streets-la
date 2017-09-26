@@ -244,7 +244,8 @@ function editMap(popupText) {
     $("#street_extent_array").val("[" + coordinates + "]");
 
     // Write GeoJSON to steet.extent_json for saving from the form. Not working, but not creating an error
-    $("#street_extent_json").value = JSON.stringify(geojson);
+    // $("#street_extent_json").value = JSON.stringify(geojson);
+    $("#street_extent_json").val(geojson); // SWAG
 
     // Add the drawn line to a layer to display it in the map
     drawnItems.addLayer(layer);

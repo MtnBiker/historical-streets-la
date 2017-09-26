@@ -16,7 +16,7 @@
               </ul>
             </div>
           <% end %>
-          
+
           <div class="form-inputs">
             <div class="field">
               <%= form.label "City unless LA" %>
@@ -60,7 +60,7 @@
 
             <div class="field">
               <%= form.label "Extent as (Line) String" %>
-              <%= form.text_area :extent_array, id: :street_extent_array, placeholder: "Will be automagically filled in when line is drawn", :maxlength=>"95%" %>
+              <%= form.text_area :extent_array, id: :street_extent_array, placeholder: "Will be automagically filled in when line is drawn" %>
             </div>
 
             <div class="field">
@@ -95,10 +95,10 @@
           </div> <!-- end form-inputs -->
         <% end %> <!-- End of form -->
        </div> <!-- end col-4, the left hand column -->
-       
+
        <!-- The next two columns -->
        <%= render 'map_and_control' %>
-       
+
   </div> <!-- end row -->
 
 </div>  <!-- end container-fluid -->
