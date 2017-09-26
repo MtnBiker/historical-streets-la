@@ -1,16 +1,18 @@
 class OverviewController < ApplicationController
   # layout "overview"
+  # before_action :set_overview, only: [:show, :edit, :update, :destroy]
 
   def index
   end
 
-  def show
-    @maps = Map.all.order(:year)
-    @users = User.all
-    gon.streetExtentArray = @street.extent_array
+  def overview_data
+    # @segments = Street.select("dateEarliest, prevName, dateLatest, currentName, extent_array")
+    @segments = Street.all # SWAG again
   end
 
-  def overview_data
-    @segments = Street.select("dateEarliest, prevName, dateLatest, currentName")
-  end
+  private
+
+  # def set_overview
+  #   # @street = Street.find(params[:id])
+  # end
 end

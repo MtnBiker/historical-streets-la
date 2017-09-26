@@ -3,7 +3,7 @@
 # Copied from CroRes, so some of it may be left over from that
 
 # Trying to get segments to show on map if they exist
-console.log("Reporting from overview.json.jbuilder");
+
 json.type "FeatureCollection" # if street.extent_array
 
 json.features @segments do |street|

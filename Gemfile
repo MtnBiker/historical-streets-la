@@ -37,7 +37,7 @@ gem 'carrierwave', '1.1.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Leaflet included in mapbox 3.1.1
+# Leaflet included in mapbox 3.1.1 which is loaded in application.html.erb. PS: mapbox-rails is a year or two behind
 # gem 'leaflet-rails' # with statements in application.js/.scss, loads leaflet. 1.1 as of Sept 17 (current is 1.2 which might fix my leaflet.draw problem). Therefore try loading directly from the we. Caused other problems
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-geojson'

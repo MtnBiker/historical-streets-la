@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
 
   get 'signup' => 'users#new'
-  resources :overview
+  # resources :overview
+  get 'overview', to: 'overview#index' # above doesn't work
   resources :maps
   resources :streets
   resources :users
@@ -26,8 +27,8 @@ Rails.application.routes.draw do
   # Whats does one use in link_to to use this link, crores_path or _url doesn't work
   get 'crores' => redirect("https://secure-shore-68966.herokuapp.com")
 
-  # so overview.html.erb and overviewMap can find what overview.json.jbuilder created
- get 'overview/overview_data', :defaults => { :format => 'json' } # Clark p159. For the overview.data action in streets_controller.
+  # so overview.html.erb and overviewMap can find what overview.json.jbuilder created.
+ get 'overview/overview_data', :defaults => { :format => 'json' } # Clark p159.
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
