@@ -218,25 +218,25 @@ function editMap(popupText) {
       layer = e.layer;
 
     // from https://gis.stackexchange.com/questions/133379/how-to-export-to-all-points-within-leaflet-polygon
-    var points = layer._latlngs; // No longer needed, but shows alt way to get lat lng, need to check type
-    console.log("202. Got to here.");
-    console.log("203. type of layer._latlngs: " + typeof layer._latlngs); //object, what about string?
-    console.log("type of points = to above: " + typeof points); //object
+    // var points = layer._latlngs; // No longer needed, but shows alt way to get lat lng, need to check type
+    // console.log("202. Got to here.");
+    // console.log("203. type of layer._latlngs: " + typeof layer._latlngs); //object, what about string?
+    // console.log("type of points = to above: " + typeof points); //object
 
     // layer (the drawn line) as GeoJSON
     var geojson = layer.toGeoJSON();  // is an object Object
     // console.log("type of layer.toJSON: " + typeof geojson); // object
-    console.log("209. JSON.stringify(geojson):\n" + JSON.stringify(geojson)) // maybe write to an json
-    var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc.
-    console.log("type of layer.getLatLngs(): " + typeof layer.getLatLngs() + ". But it displays as a partial JSON ()");
-    console.log(latlngs);
+    // console.log("209. JSON.stringify(geojson):\n" + JSON.stringify(geojson)) // maybe write to an json
+   //  var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc.
+   //  console.log("type of layer.getLatLngs(): " + typeof layer.getLatLngs() + ". But it displays as a partial JSON ()");
+   //  console.log(latlngs);
     // export the coordinates from the layer
     var coordinates = [];
     latlngs = layer.getLatLngs();
     for (var i = 0; i < latlngs.length; i++) {
       coordinates.push("[" + [latlngs[i].lat, latlngs[i].lng] + "]")
     }
-    console.log("coordinates: " + coordinates);
+    // console.log("coordinates: " + coordinates);
     // push the coordinates to the json geometry
     // geojson['geometry']['coordinates'] = [coordinates];
 

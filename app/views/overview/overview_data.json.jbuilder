@@ -10,7 +10,7 @@ json.features @segments do |street|
     json.geometry do
      # Only want an entry if coordinates exist for location. Should log missing results
        json.type "LineString"
-       json.coordinates street.extent_array # adds quotes arround extent_array which mapbox doesn't like TODO
+       json.coordinates street.extent_array # adds quotes arround extent_array which mapbox doesn't like or maybe it's something else mapbox doesn't like TODO
     end # json.geometry
 
     json.properties do

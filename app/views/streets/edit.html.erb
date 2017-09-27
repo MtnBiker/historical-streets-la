@@ -2,7 +2,6 @@
 <% provide(:title, "Drawing and Editing Historic Streets") %>
 <h1>Drawing and Editing Historic Streets</h1>
 
-<%= render 'form', street: @street %>
-
+<%= render 'form_edit', street: @street %>
 <%= link_to 'Cancel', @street %> |
 <%= link_to 'To Street List Without Saving', streets_path %>

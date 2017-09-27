@@ -153,4 +153,6 @@ Getting errors because leaflet-rails isn't using latest version (1.1 vs. 1.2), b
 
 big_map changed to (streets) overview. Map is the list of background maps. Overview  shows all the streets. Made to change to avoid potential confusion in testing, map meant two things. This got rid of a test error!
 
-Clark has some of geojson/json with routes etc. jbuilder, not; but does have controller definition
+json now working for overview. Call to create seems to be when mapbox/leaflet asks for overview_data.json. But routes and controller has to be setup correctly too.
+
+Got rid of Leaflet explicitly, Leaflet is included in mapbox and since I'm using some Mapbox. Having both was causing some conflicts. Mapbox is added in application.html.erb. mapbox-rails is not being kept up to date.

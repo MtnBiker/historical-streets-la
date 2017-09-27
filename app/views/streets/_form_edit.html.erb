@@ -1,0 +1,104 @@
+<!-- _form.html.erb used by Street > Edit (but largely duplicates _form.html.erb TODO take out the ) -->
+<div class="container-fluid">
+
+  <p>This is for a street name from Previous Name/Earliest Date to Current Name/Latest Date</p>
+    <div class="row"> <!-- Setting up to have two columns -->
+       <div class="col-4"> <!--Left hand column. Set one row width and the others will fit in Bootstrap 4.  https://v4-alpha.getbootstrap.com/layout/grid/#setting-one-column-width -->
+        <%= form_with(model: street, local: true) do |form| %>
+          <% if street.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(street.errors.count, "error") %> prohibited this street from being saved:</h2>
+
+              <ul>
+              <% street.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="form-inputs">
+            <div class="field">
+              <%= form.label "City unless LA" %>
+              <% if street.city != "Los Angeles" %>
+                <%= form.text_field :city, id: :street_city %>
+              <% end %>
+            </div>
+
+            <div class="field">
+              <%= form.label "Previous Name" %>
+              <%= form.text_field :prevName, id: :street_prevName %>
+            </div>
+
+            <div class="field">
+              <%= form.label "Current Street Name" %>
+              <%= form.text_field :currentName, id: :street_currentName, placeholder: "Name at end of period (Latest confirmed date)", :size=>"95%" %> <!-- whether size or maxlength it goes full -->
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12 text-center font-bold">For Previous Street Name</div>
+                <div class="field col-lg-6">
+                  <%= form.label "Earliest Confirmed Date" %>
+                  <%= form.text_field :dateEarliest, id: :street_dateEarliest %>
+                </div>
+
+                <div class="field col">
+                  <%= form.label "Latest Confirmed Date" %>
+                  <%= form.text_field :dateLatest, id: :street_dateLatest %>
+                </div>
+            </div>
+
+            <div class="field">
+              <%= form.label "Entry covers from cross street to cross street or similar" %>
+              <%= form.text_field :where, id: :street_where, :maxlength=>"100%" %>
+            </div>
+
+            <div class="field">
+              <%= form.label "Extent as GeoJSON" %>
+              <%= form.text_field :extent_json, id: :street_extend_json, disabled: true, placeholder: "Will be automagically filled in when line is drawn" %>
+            </div>
+
+            <div class="field">
+              <%= form.label "Extent as (Line) String" %>
+              <%= form.text_area :extent_array, id: :street_extent_array, placeholder: "Will be automagically filled in when line is drawn" %>
+            </div>
+
+            <div class="field">
+              <%= form.label "Approximate Number of Blocks this entry is about" %>
+              <%= form.text_field :numBlocks, id: :street_numBlocks %>
+            </div>
+
+            <p>List each reference in a separate field.</p>
+            <div class="field">
+              <%= form.label "Reference 1" %>
+              <%= form.text_area :ref1, id: :street_ref1, :maxlength=>"95%" %> <!-- maxlength having no effect -->
+            </div>
+
+            <div class="field">
+              <%= form.label "Reference 2" %>
+              <%= form.text_area :ref2, id: :street_ref2 %>
+            </div>
+
+            <div class="field">
+              <%= form.label "Reference 3" %>
+              <%= form.text_area :ref3, id: :street_ref3 %>
+            </div>
+
+            <div class="field">
+              <%= form.label :notes %>
+              <%= form.text_area :notes, id: :street_notes %>
+            </div>
+
+            <div class="actions">
+              <%= form.submit "Create/Update Historical Street", class: "btn btn-primary" %>
+            </div>
+          </div> <!-- end form-inputs -->
+        <% end %> <!-- End of form -->
+       </div> <!-- end col-4, the left hand column -->
+
+       <!-- The next two columns -->
+       <%= render 'map_and_control_and_draw' %>
+
+  </div> <!-- end row -->
+
+</div>  <!-- end container-fluid -->
