@@ -155,4 +155,8 @@ big_map changed to (streets) overview. Map is the list of background maps. Overv
 
 json now working for overview. Call to create seems to be when mapbox/leaflet asks for overview_data.json. But routes and controller has to be setup correctly too.
 
-Got rid of Leaflet explicitly, Leaflet is included in mapbox and since I'm using some Mapbox. Having both was causing some conflicts. Mapbox is added in application.html.erb. mapbox-rails is not being kept up to date.
+Got rid of Leaflet explicitly (no leaflet-rails, not in application.js/.scss), Leaflet is included in mapbox and since I'm using some Mapbox. Having both was causing some conflicts. Mapbox is added in application.html.erb. mapbox-rails is not being kept up to date.
+
+Saving `extent` as json. extent_array started causing errors and json is probably going to be easier to work with in the long run. var geojson = layer.toGeoJSON(); … JSON.stringify(geojson.geometry).
+
+
