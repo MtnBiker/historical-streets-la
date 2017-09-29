@@ -159,4 +159,4 @@ Got rid of Leaflet explicitly (no leaflet-rails, not in application.js/.scss), L
 
 Saving `extent` as json. extent_array started causing errors and json is probably going to be easier to work with in the long run. var geojson = layer.toGeoJSON(); … JSON.stringify(geojson.geometry).
 
-
+extent.json is GeoJSON LineString. I could make a Feature and store other information, but for now just keeping it separately in the dB seems fine. Just have to deal with how JavaScript (Leaflet specifically) handles GeoJSON (I'm not using any PostGIS aspects. )

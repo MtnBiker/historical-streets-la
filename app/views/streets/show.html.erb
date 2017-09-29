@@ -10,7 +10,7 @@
         <%= @street.city %>
       </p>
     <% end %>
-    
+
     <p>
       <strong>Previous Street Name:</strong>
       <%= @street.prevName %>
@@ -36,12 +36,12 @@
       <%= @street.where %>
     </p>
 
-    <p>
+    <p class="json-extent">
       <strong>Extent as JSON:</strong>
       <%= @street.extent_json %>
     </p>
 
-    <p>
+    <p class="json-extent">
       <strong>Extent as Coordinate Array:</strong>
       <%= @street.extent_array %>
     </p>
@@ -70,20 +70,22 @@
       <strong>Notes:</strong>
       <%= @street.notes %>
     </p>
-    
+
     <p>
       <strong>Updated:</strong>
       <%= @street.updated_at.to_formatted_s(:long) %>
     </p>
-    
+
     <p>
       <strong>Current User [Testing]</strong>
       < = current_user.name %>
     </p>
-    
+
   </div> <!-- end col-4 -->
 
-<%= render 'map_and_control' %>  <!-- the right two columns -->
+<%= render 'map_and_control' %>  <!-- middle column with map (should be named map or show_map)-->
+
+<%= render 'basemap_selector' %> <!-- last column with basemap selector -->
 
 </div> <!-- end row which is basically the page -->
 
@@ -94,7 +96,7 @@
 <% end  %>
 
 <button type="button" class="btn btn-primary-outline" >
-  <%= link_to 'Back to Street List', streets_path %> 
+  <%= link_to 'Back to Street List', streets_path %>
 </button>
 
 <% if logged_in? %>

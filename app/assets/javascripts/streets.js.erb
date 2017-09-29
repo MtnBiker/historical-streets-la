@@ -82,9 +82,10 @@ var baseLayers = {
     "<span style='color: green' >Google Satellite</span>"  : google
 }
 
-// One function for edit and one for show which is also used by edit
-// For street > show. Used for show and called by editMap to get all the initial stuff
-// Used also by overviewMap below
+// ############################################################################################
+// One function for edit and one for show. editMap is added to the bottom of showMap
+// For street > show. Used for show and called by editMap and overviewMap to get all the initial stuff
+// Used also by overviewMap
 function showMap(popupText) {
 
   // Sets up map, but if there is a linestring defined will zoom to that in the next if statement
@@ -104,15 +105,20 @@ function showMap(popupText) {
   L.control.layers(baseLayers).addTo(map);
 
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
-  var streetExtentJson = gon.streetExtentJson; // is this needed?
+  var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring
 
-// If linestring exists, draw it. But also have to pick between streetExtentArray and streetExtentJson (should be able to eliminate streetExtentArray when data all in streetExtentJson. I had both because had trouble getting one or the other working.)
+// If linestring exists, draw it.
+  // But also have to pick between streetExtentArray and streetExtentJson (should be able to eliminate streetExtentArray when data all in streetExtentJson. I had both because had trouble getting one or the other working.)
 
   if (streetExtentJson != null && streetExtentJson.length > 2) {
-    var jsonStreetExtent = JSON.parse(gon.streetExtentJson); // If not inside if, errors when streetExtentArray doesn't exist, but TODO seems to need to be reloaded to show page
-    // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
-    map.fitBounds(jsonStreetExtent); // zooms to area of interest
-    L.polyline(jsonStreetExtent).addTo(map).bindPopup(popupText).openPopup();
+    var streetExtentJson = JSON.parse(streetExtentJson);
+    // console.log("121. jsonStreetExtent: " + jsonStreetExtent + ". typeOf: "+ jsonStreetExtent.typeOf);
+    // map.fitBounds(streetExtentJson.coordinates); // zooms to area of interest. Added coordinates to help fitBounds
+    // // lat long flipped for polyline from json
+    // L.polyline(streetExtentJson.coordinates).addTo(map).bindPopup(popupText).openPopup();
+     // L.polyline(streetExtentJson).addTo(map); // no error, but no map shows and no line
+
+     L.geoJSON(streetExtentJson).addTo(map).bindPopup(popupText).openPopup();
 
   } else if (streetExtentArray != null && streetExtentArray.length > 2) {
     var arrayStreetExtent = JSON.parse(gon.streetExtentArray); // If not inside if, errors when streetExtentArray doesn't exist, but TODO seems to need to be reloaded to show page
@@ -193,7 +199,8 @@ function showMap(popupText) {
 
 }  // end showMap
 
-// editMap. Streets > Edit. Note uses showMap
+// #############################################################################################
+// editMap. Streets > Edit. Note uses showMap, essentially editMap is added to the bottom of showMap
 function editMap(popupText) {
 
   showMap(popupText); // showMap draws the map and adds control to select basemaps.
@@ -221,6 +228,7 @@ function editMap(popupText) {
     }
   }); // end drawControl
   map.addControl(drawControl);
+  // finished adding drawing controls
 
   map.on('draw:created', function(e) {
     // featureGroup.addLayer(e.layer); // might be equivalent to the following two lines
@@ -253,10 +261,12 @@ function editMap(popupText) {
     // layer (the drawn line) as GeoJSON
     var geojson = layer.toGeoJSON();  // is an object Object, therefore stringify below.
 
-    // Write GeoJSON to steet.extent_json for saving from the form. Not working, but not creating an error
-    $("#street_extent_json").val(JSON.stringify(geojson.geometry)); // not setting anything =
+    // Write GeoJSON to steet.extent_json for saving from the form.
+    $("#street_extent_json").val(JSON.stringify(geojson.geometry));
 
-    // Add the drawn line to a layer to display it in the map
+    // This GeoJSON seems contorted. why not using featureGroup or drawnItems instead of layer. Why go val(JSON.stringify(layer.toGeoJSON))? Maybe stringify is needed. I think I'm getting the right result though
+
+    // Add the drawn line to a layer to display it in the map.
     drawnItems.addLayer(layer);
   }); // end map.on
 
@@ -267,6 +277,7 @@ function editMap(popupText) {
 // overviewMap. Streets > overview_html_erb. Note uses showMap
 // TODO this needs to look more like map.js for crores where multiple items are being put up. May need to be on its own file or rework showMap since I do need the basemaps and overlays and opacity.
 
+// ######################################################################################
 // Now in overview.js
 function overviewMap(popupText) {
 

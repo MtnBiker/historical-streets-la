@@ -17,6 +17,7 @@ class StreetsController < ApplicationController
     @maps = Map.all.order(:year)
     @users = User.all
     gon.streetExtentArray = @street.extent_array
+    gon.streetExtentJson = @street.extent_json
   end
 
   # GET /streets/new
