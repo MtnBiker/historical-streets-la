@@ -112,35 +112,13 @@ function showMap(popupText) {
 
   if (streetExtentJson != null && streetExtentJson.length > 2) {
     var streetExtentJson = JSON.parse(streetExtentJson);
-     // fitBounds expects lat lng, but GeoJSON is lng lat, so have to have this added step, but not working quite right
-    // var bounds = L.latLngBounds([streetExtentJson.coordinates]); // DUH this is lat lng and I'm feeding it lng, lat
-    // bounds = [[34.035546195508864,-118.2511],[34.03663976724366,-118.25104052200915]]; // testing this is lat lng and itworks
-    // map.fitBounds(bounds); //   { padding: 20 } results in Uncaught Error: Invalid LatLng object: (NaN, 34.036092981376235);  { paddingTopLeft: [100, 200] zooms in but not correctly and doesn't matter what the values are}; {maxZoom:16} works but still offset. flyToBounds goes somewhere else suggesting bounds are weird.
     var geojsonLayer = L.geoJSON(streetExtentJson).addTo(map).bindPopup(popupText).openPopup();
-    map.fitBounds(geojsonLayer.getBounds()); // this is in place of fitBounds which doesn't work with GeoJSON because of the lat lng transposition (probably could be made to work, but would require handcrafting the coords)
-
-  } else {  if (streetExtentArray != null && streetExtentArray.length > 2)
-    var arrayStreetExtent = JSON.parse(gon.streetExtentArray); // If not inside if, errors when streetExtentArray doesn't exist, but TODO seems to need to be reloaded to show page
-    // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
+    map.fitBounds(geojsonLayer.getBounds()); // this is in place of fitBounds which doesn't work with GeoJSON because of the lat lng transposition
+  } else {  if (streetExtentArray != null && streetExtentArray.length > 2) // can get rid of this when done with streetExtentArray
+    var arrayStreetExtent = JSON.parse(gon.streetExtentArray);
     map.fitBounds(arrayStreetExtent); // zooms to area of interest
     L.polyline(arrayStreetExtent).addTo(map).bindPopup(popupText).openPopup();
   } // end if(streetExtentArray…/json)
-
-// Above is what I want, but below is for TESTING for fitBounds.
-  // if (streetExtentArray != null && streetExtentArray.length > 2) {
-  //   var arrayStreetExtent = JSON.parse(gon.streetExtentArray); // If not inside if, errors when streetExtentArray doesn't exist, but TODO seems to need to be reloaded to show page
-  //   // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
-  //   map.fitBounds(arrayStreetExtent); // zooms to area of interest
-  //   L.polyline(arrayStreetExtent).addTo(map).bindPopup(popupText).openPopup();
-  // } else  { // (streetExtentJson != null && streetExtentJson.length > 2)
-  //   var streetExtentJson = JSON.parse(streetExtentJson);
-  //    // fitBounds expects lat lng, but GeoJSON is lng lat, so have to have this added step
-  //   var bounds = L.latLngBounds([streetExtentJson.coordinates]);
-  //   map.fitBounds(bounds, { paddingTopLeft: [100, 200] }); // , { padding: 20 }  // zooms to area of interest.
-  //   L.geoJSON(streetExtentJson).addTo(map).bindPopup(popupText).openPopup();
-  // }// end if(streetExtentArray…/json)
-
-
 
   // Shows zoom level which I find useful. Like to have in on the lower right
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html
