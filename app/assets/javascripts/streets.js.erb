@@ -112,20 +112,35 @@ function showMap(popupText) {
 
   if (streetExtentJson != null && streetExtentJson.length > 2) {
     var streetExtentJson = JSON.parse(streetExtentJson);
-    // console.log("121. jsonStreetExtent: " + jsonStreetExtent + ". typeOf: "+ jsonStreetExtent.typeOf);
-    // map.fitBounds(streetExtentJson.coordinates); // zooms to area of interest. Added coordinates to help fitBounds
-    // // lat long flipped for polyline from json
-    // L.polyline(streetExtentJson.coordinates).addTo(map).bindPopup(popupText).openPopup();
-     // L.polyline(streetExtentJson).addTo(map); // no error, but no map shows and no line
+     // fitBounds expects lat lng, but GeoJSON is lng lat, so have to have this added step, but not working quite right
+    // var bounds = L.latLngBounds([streetExtentJson.coordinates]); // DUH this is lat lng and I'm feeding it lng, lat
+    // bounds = [[34.035546195508864,-118.2511],[34.03663976724366,-118.25104052200915]]; // testing this is lat lng and itworks
+    // map.fitBounds(bounds); //   { padding: 20 } results in Uncaught Error: Invalid LatLng object: (NaN, 34.036092981376235);  { paddingTopLeft: [100, 200] zooms in but not correctly and doesn't matter what the values are}; {maxZoom:16} works but still offset. flyToBounds goes somewhere else suggesting bounds are weird.
+    var geojsonLayer = L.geoJSON(streetExtentJson).addTo(map).bindPopup(popupText).openPopup();
+    map.fitBounds(geojsonLayer.getBounds()); // this is in place of fitBounds which doesn't work with GeoJSON because of the lat lng transposition (probably could be made to work, but would require handcrafting the coords)
 
-     L.geoJSON(streetExtentJson).addTo(map).bindPopup(popupText).openPopup();
-
-  } else if (streetExtentArray != null && streetExtentArray.length > 2) {
+  } else {  if (streetExtentArray != null && streetExtentArray.length > 2)
     var arrayStreetExtent = JSON.parse(gon.streetExtentArray); // If not inside if, errors when streetExtentArray doesn't exist, but TODO seems to need to be reloaded to show page
     // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
     map.fitBounds(arrayStreetExtent); // zooms to area of interest
     L.polyline(arrayStreetExtent).addTo(map).bindPopup(popupText).openPopup();
   } // end if(streetExtentArray…/json)
+
+// Above is what I want, but below is for TESTING for fitBounds.
+  // if (streetExtentArray != null && streetExtentArray.length > 2) {
+  //   var arrayStreetExtent = JSON.parse(gon.streetExtentArray); // If not inside if, errors when streetExtentArray doesn't exist, but TODO seems to need to be reloaded to show page
+  //   // console.log("121. arrayStreetExtent: " + arrayStreetExtent + ". typeOf: "+ arrayStreetExtent.typeOf);
+  //   map.fitBounds(arrayStreetExtent); // zooms to area of interest
+  //   L.polyline(arrayStreetExtent).addTo(map).bindPopup(popupText).openPopup();
+  // } else  { // (streetExtentJson != null && streetExtentJson.length > 2)
+  //   var streetExtentJson = JSON.parse(streetExtentJson);
+  //    // fitBounds expects lat lng, but GeoJSON is lng lat, so have to have this added step
+  //   var bounds = L.latLngBounds([streetExtentJson.coordinates]);
+  //   map.fitBounds(bounds, { paddingTopLeft: [100, 200] }); // , { padding: 20 }  // zooms to area of interest.
+  //   L.geoJSON(streetExtentJson).addTo(map).bindPopup(popupText).openPopup();
+  // }// end if(streetExtentArray…/json)
+
+
 
   // Shows zoom level which I find useful. Like to have in on the lower right
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html
@@ -206,7 +221,8 @@ function editMap(popupText) {
   showMap(popupText); // showMap draws the map and adds control to select basemaps.
 
   // Now we add what's needed to draw the extent and save to database
-
+// https://github.com/michaelguild13/Leaflet.draw
+// https://github.com/Leaflet/Leaflet.draw/wiki/API-Reference#ldrawhandlers
   // Initialise the FeatureGroup to store editable layers
   var drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
@@ -245,7 +261,7 @@ function editMap(popupText) {
    //  console.log("type of layer.getLatLngs(): " + typeof layer.getLatLngs() + ". But it displays as a partial JSON ()");
    //  console.log(latlngs);
     // export the coordinates from the layer
-    var coordinates = [];
+    // var coordinates = [];
     // COMMENTING OUT THE NEXT FOUR LINES TO PREVENT ERROR. TRYING JUST TO GET GEOJSON WORKING AND CAN DROP STREET_EXTENT_ARRAY
     // latlngs = layer.LatLngs();
     // for (var i = 0; i < latlngs.length; i++) {
@@ -256,15 +272,14 @@ function editMap(popupText) {
     // geojson['geometry']['coordinates'] = [coordinates];
 
     // writes coordinate array into field on form ready for save
-    $("#street_extent_array").val("[" + coordinates + "]"); // TODO, remove after retrace so stored as extend_json
+    // $("#street_extent_array").val("[" + coordinates + "]"); // TODO, remove after retrace so stored as extend_json
 
     // layer (the drawn line) as GeoJSON
     var geojson = layer.toGeoJSON();  // is an object Object, therefore stringify below.
 
     // Write GeoJSON to steet.extent_json for saving from the form.
     $("#street_extent_json").val(JSON.stringify(geojson.geometry));
-
-    // This GeoJSON seems contorted. why not using featureGroup or drawnItems instead of layer. Why go val(JSON.stringify(layer.toGeoJSON))? Maybe stringify is needed. I think I'm getting the right result though
+    // This GeoJSON seems contorted. why not using featureGroup (not the same as GeoJSON feature) or drawnItems instead of layer. Why go val(JSON.stringify(layer.toGeoJSON))? Maybe stringify is needed. I think I'm getting the right result though
 
     // Add the drawn line to a layer to display it in the map.
     drawnItems.addLayer(layer);
@@ -285,6 +300,11 @@ function overviewMap(popupText) {
 
 // overview_data matches def in streets_controller.rb and the route. Clark 157ff
   // probably don't need to have the `var extentLayer  = ` since not reusing extentLayer, although Clark p162 used it to set the bounds TODO
+  // Next three lines are trying to get rid of the \ that are occuring for some reason in the overview_data,
+  // but loadURL is a Leaflet thing, not jS and causes an error
+  // overviewData = loadURL('overview/overview_data.geojson')
+ //  var replaceRegex = /\\/g;
+ //  overviewData = overviewData.replace(replaceRegex,"");
   var extentLayer  = L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map);
   // var featureLayer  = L.mapbox.featureLayer().addTo(map);
   // featureLayer.loadURL('streets/overview.geojson');
