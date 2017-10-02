@@ -1,5 +1,5 @@
 # README
-A  compilation of the history of the street name changes in Los Angeles. 
+A compilation of the history of the street name changes in Los Angeles.
 
 And showing those changed segments  of the streets on a map.
 
@@ -15,20 +15,20 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 - [Beta deployment](https://stark-cove-20051.herokuapp.com/). √
 
-- Now that it's deployed, some issues need to be addressed before opening it up.  
+- Now that it's deployed, some issues need to be addressed before opening it up.
     * If zoomed in beyond what's available, no indication of what's going on.
-    
+
     * Implement JSON storage of extent. It's currently a LINESTRING array stored as a string which is a bit flaky. JSON seems most portable between Postgres and JavaScript. Rails and Postgres have :line_string, but JavaScript not so much.  Started this.
 
 
 ### Bigger plans
-- An overview map showing all the changed streets. 
+- Downloads page to download all data
 
 - Indicate that no coverage is available in the field of view when click on a layer.
 
 - A slider to view those segments over time
 
-- Search. Could then add pagination 
+- Search. Could then add pagination
 
 - More historical maps. Particularly Sanborn
 
@@ -37,18 +37,15 @@ For more information for now check out the about page at [Croatian Run Restauran
   * Can localhost and Heroku databases be synced? Nice if I could work on localhost.
   * Add attribution and dates to changes (history of changes)
 
-### Technical
-Ruby on Rails 5.1. 
+### Technical&mdash;links on [acknowledgements page](https://stark-cove-20051.herokuapp.com/about)
+Ruby on Rails 5.1.
 
-PostgreSQL (PostGIS) database. 
+PostgreSQL (PostGIS) database.
 
-Mainly Leaflet.js for mapping. 
+Leaflet.js and Mapbox.js for mapping.
 
-Offline QGIS for georeferencing maps. 
+Offline QGIS for georeferencing maps.
 
-Deployed at Heroku. 
+Deployed at Heroku.
 
 Map tiles served from AWS.
-
-More details to come in Acknowledgements
- 
