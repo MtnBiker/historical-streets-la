@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   # so overview.html.erb and overviewMap can find what overview.json.jbuilder created.
  get 'overview/overview_data', :defaults => { :format => 'json' } # Clark p159.
+ get 'overview/segments_data', :defaults => { :format => 'json' } # Clark p159.
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

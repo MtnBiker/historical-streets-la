@@ -29,7 +29,7 @@ gem 'bootstrap', '~> 4.0.0.beta' # 4.0.0.beta current as of mid-Sept 17. bootstr
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder' , '~> 2.7'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.11'
 gem 'carrierwave', '1.1.0'
@@ -45,8 +45,8 @@ gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.
 
 # jQuery
 gem 'jquery-rails' # without this jQuery runs fine except I can't upload to heroku. This needed by Bootstrap 4
-gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. Still getting error, but no jquery error `yarn add tether` didn't help.Sprockets::FileNotFound: couldn't find file 'tether' with type 'application/javascript'.
 gem 'jquery-ui-rails' # Does this also bring in jQuery
+gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. Still getting error, but no jquery error `yarn add tether` didn't help.Sprockets::FileNotFound: couldn't find file 'tether' with type 'application/javascript'.
 
 # Added for Hartl tutorial and can be used with streets, but I want an option. May be better with edit in table
 gem 'will_paginate',           '3.1.5'

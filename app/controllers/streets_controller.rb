@@ -73,18 +73,6 @@ class StreetsController < ApplicationController
     end
   end
 
-  # GET /streets/overview. Not sure if all lines are needed, but certainly the first (error) and last. Any harm done? TODO
-  # needed to get /overview to work
-  # def overview
-  #   @street = Street.new
-  #   gon.streetExtentArray = @street.extent_array
-  #   @maps = Map.all.order(:year)
-  # end
-  #
-  # # SWAG to get jBuilder to go. Paralleling crores, but can't remember how I figured this out originally
-  # # Didn't work the first time or the second
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_street
