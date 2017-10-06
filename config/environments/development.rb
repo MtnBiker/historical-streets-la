@@ -54,3 +54,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: host, protocol: 'https' }
   
 end
+
+# replacing irb with pry per Josh Creek 
+# uninitialized constant Pry::WorkSpace (NameError
+# silence_warnings do
+#   require 'pry'
+#   IRB = Pry
+# end

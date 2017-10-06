@@ -249,10 +249,9 @@ function overviewMap() {
 
   showMap(); // showMap draws the map and adds control to select basemaps.
 
- var segmentLayer = L.mapbox.featureLayer().loadURL('overview_data.geojson').addTo(map); 
- // L.geoJSON(geojsonFeature).addTo(map);
-// L.geoJSON(geojsonFeature).addTo(map).bindPopup(geojsonFeature(title)).openPopup();
-// The line above is equivalent to the two below. Intermediate step may help me later thoug
- // var myLayer = L.geoJSON().addTo(map);
+  // var segmentLayer = L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map);
+  
+  // May need to openPopup
+  L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map).bindPopup(link).openPopup();
  
 } // end overviewMap

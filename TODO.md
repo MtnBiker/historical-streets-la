@@ -6,8 +6,7 @@
  
 * 1902 Rueger needs trimming. Unfortunately probably have to georef again.
 
-* Add another page with all the segments mapped. Maybe can do a SQL to find all the segments and make a JSON or maybe it happens automagically. Need  popups. 
-* And then have date slider.
+* Date slider on overview map. Even better if overview maps synced by date.
  
 * Error if edit from streets. Probably in the ugly decision tree. Look at gon
 
@@ -32,3 +31,7 @@
 * The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. Maybe with next version I'll did into it.
 
 * Two maps aren't working. Ones not at AWS
+
+* Scan and OCR street information in City Directories. The Los Angeles City Directories had a section that listed street names and their extent (beginning and end.) Add this to site as searchable. Scan any maps too. The scans may be available where the directories are, e.g., LAPL, Ancestry
+
+* Edit OCR Baist index. Saved as text file with the maps
