@@ -231,31 +231,7 @@ function editMap(popupText) {
     var type = e.layerType,
       layer = e.layer;
 
-    // from https://gis.stackexchange.com/questions/133379/how-to-export-to-all-points-within-leaflet-polygon
-    // var points = layer._latlngs; // No longer needed, but shows alt way to get lat lng, need to check type
-    // console.log("202. Got to here.");
-    // console.log("203. type of layer._latlngs: " + typeof layer._latlngs); //object, what about string?
-    // console.log("type of points = to above: " + typeof points); //object
-
-   //  var latlngs = layer.getLatLngs(); // LatLng(34.04953, -118.29912),LatLng(34 etc.
-   //  console.log("type of layer.getLatLngs(): " + typeof layer.getLatLngs() + ". But it displays as a partial JSON ()");
-   //  console.log(latlngs);
-    // export the coordinates from the layer
-    // var coordinates = [];
-    // COMMENTING OUT THE NEXT FOUR LINES TO PREVENT ERROR. TRYING JUST TO GET GEOJSON WORKING AND CAN DROP STREET_EXTENT_ARRAY
-    // latlngs = layer.LatLngs();
-    // for (var i = 0; i < latlngs.length; i++) {
-    //   coordinates.push("[" + [latlngs[i].lat, latlngs[i].lng] + "]")
-    // }
-    // console.log("coordinates: " + coordinates);
-    // push the coordinates to the json geometry
-    // geojson['geometry']['coordinates'] = [coordinates];
-
-    // writes coordinate array into field on form ready for save
-    // $("#street_extent_array").val("[" + coordinates + "]"); // TODO, remove after retrace so stored as extend_json
-
-    // layer (the drawn line) as GeoJSON
-    var geojson = layer.toGeoJSON();  // is an object Object, therefore stringify below.
+   var geojson = layer.toGeoJSON();  // is an object Object, therefore stringify below.
 
     // Write GeoJSON to steet.extent_json for saving from the form.
     $("#street_extent_json").val(JSON.stringify(geojson.geometry));
@@ -269,64 +245,14 @@ function editMap(popupText) {
 
 }  // end editMap
 
-// overviewMap. Streets > overview_html_erb. Note uses showMap
-// TODO this needs to look more like map.js for crores where multiple items are being put up. May need to be on its own file or rework showMap since I do need the basemaps and overlays and opacity.
-
-// ######################################################################################
-// Now in overview.js
 function overviewMap() {
 
   showMap(); // showMap draws the map and adds control to select basemaps.
 
-// overview_data matches def in streets_controller.rb and the route. Clark 157ff
-  // probably don't need to have the `var extentLayer  = ` since not reusing extentLayer, although Clark p162 used it to set the bounds TODO
-  // Next three lines are trying to get rid of the \ that are occuring for some reason in the overview_data,
-  // but loadURL is a Leaflet thing, not jS and causes an error
-  // overviewData = loadURL('overview/overview_data.geojson')
- //  var replaceRegex = /\\/g;
- //  overviewData = overviewData.replace(replaceRegex,"");
-
- // Another SWAG
- //Uncaught SyntaxError: Unexpected token o in JSON at position 0 at JSON.parse (<anonymous>)
- // var geojsonLayer = JSON.parse('overview/overview_data.geojson'); // The JSON.parse method parses a JSON string, constructing the JavaScript value or object described by the string.
- // L.geoJSON(geojsonLayer).addTo(map);
-
- // Another go. https://gis.stackexchange.com/questions/68489/how-to-load-external-geojson-file-into-leaflet-map
- // requires leaflet.ajax.min.js which I put in app>resources>javascript
- // not loaded but no errors
- var segmentLayer = L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map); // how get into crores
- //
-
-
-// L.geoJSON(geojsonFeature).addTo(map);
+ var segmentLayer = L.mapbox.featureLayer().loadURL('overview_data.geojson').addTo(map); 
+ // L.geoJSON(geojsonFeature).addTo(map);
 // L.geoJSON(geojsonFeature).addTo(map).bindPopup(geojsonFeature(title)).openPopup();
 // The line above is equivalent to the two below. Intermediate step may help me later thoug
  // var myLayer = L.geoJSON().addTo(map);
- // myLayer.addData(geojsonFeature);
- // The above works with correctly formatted geojsonFeature above
- // Then get link to overview/overview_data.geojson working right.
-
-
-
-
- // var segmentLayer = new L.GeoJSON.AJAX("overview/overview_data.geojson");
- // // // geojsonLayer = JSON.parse(geojsonLayer); // trying to change from object Object
- // segmentLayer = JSON.stringify(segmentLayer);
- // // document.write(geojsonLayer); // object Object without JSON.parse
- // L.geoJSON(segmentLayer).addTo(map);
- // geojsonFeature.addTo(map); // if direct form var segmentLayer, no error, no segmentLayer
- // L.geoJSON("overview/segments_json").addTo(map);
-
- // var segmentsLayer = JSON.parse('overview/segments_data'); // The JSON.parse method parses a JSON string, constructing the JavaScript value or object described by the string.
- //  L.geoJSON(segmentsLayer).addTo(map);
-
-
- // Yet again
-//  $.getJSON("overview/overview_data.geojson", function(data) {
-//     L.geoJson(data)}.addTo(map);
-// }
-  // L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map);
-  // var featureLayer  = L.mapbox.featureLayer().addTo(map);
-  // featureLayer.loadURL('overview/overview_data.geojson'); // Uncaught Error: Invalid LatLng object: (undefined, {) lat lngproblem
-
+ 
 } // end overviewMap
