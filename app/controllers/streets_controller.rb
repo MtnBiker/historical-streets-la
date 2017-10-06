@@ -1,8 +1,9 @@
 class StreetsController < ApplicationController
+  # include ActionView::Rendering # https://github.com/rails/jbuilder/issues/405 was a fix for the API version. Didn't help for me, i.e., no geojson
   before_action :set_street, only: [:show, :edit, :update, :destroy]
-  
+
   # using a before_action callback (just as you did with set_street ) if you plan to access @maps from more action TODO https://stackoverflow.com/questions/44790845/display-data-from-unrelated-table-model-in-rails
-  
+
   # GET /streets
   # GET /streets.json
   def index
@@ -16,12 +17,14 @@ class StreetsController < ApplicationController
     @maps = Map.all.order(:year)
     @users = User.all
     gon.streetExtentArray = @street.extent_array
+    gon.streetExtentJson = @street.extent_json
   end
 
   # GET /streets/new
   def new
     @street = Street.new
     gon.streetExtentArray = @street.extent_array
+    @maps = Map.all.order(:year) # Needed for streets/new.
   end
 
   # GET /streets/1/edit

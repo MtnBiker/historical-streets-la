@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<% provide(:title) %>
+<h1>Historic Street Names</h1>
+
+<!-- Trying to show all the segments.  -->
+
+<p>This is not working yet. And need to add all segments. Ultimately add a link so will go to 'show' of that segment </p>
+
+<div class="row">
+<!-- This is  _map_and_control except popupText isn't put in here. -->
+  <div class="col card">
+    <p class="font-bold-red">If no map shows up when you choose a map, zoom out. Or the map may not cover that region, so try another map, particularly if not near downtown. TODO-put up a notice</p>
+    <br/>
+
+    <div id="map"></div>
+      <script>
+        // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
+        $(document).on("turbolinks:load", function() {
+           overviewMap(); // overviewMap() is in assets/javascripts/streets.js.erb (had in overview.js, but it pulled in from street.js, so didn't make sense to have the separate file)
+        });
+      </script>
+</div>  <!-- col middle -->
+
+<!-- <= render 'streets/basemap_selector' %> --> <!-- Need this but turning off for a moment as it has a problem TODO -->
+
+</div> <!-- end row which is basically the page -->

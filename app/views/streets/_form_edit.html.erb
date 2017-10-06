@@ -1,4 +1,4 @@
-<!-- _form.html.erb used by Street > Edit and New —  -->
+<!-- _form.html.erb used by Street > Edit (but largely duplicates _form.html.erb TODO take out the ) -->
 <div class="container-fluid">
 
   <p>This is for a street name from Previous Name/Earliest Date to Current Name/Latest Date</p>
@@ -54,8 +54,8 @@
             </div>
 
             <div class="field">
-              <%= form.label "Extent as GeoJSON" %>
-              <%= form.text_field :extent_json, id: :street_extent_json, disabled: true, placeholder: "Will be automagically filled in when line is drawn" %>
+              <%= form.label "Extent as GeoJSON [lng lat]" %>
+              <%= form.text_field :extent_json, id: :street_extent_json, placeholder: "Will be automagically filled in when line is drawn" %>
             </div>
 
             <div class="field">
@@ -97,7 +97,9 @@
        </div> <!-- end col-4, the left hand column -->
 
        <!-- The next two columns -->
-       <%= render 'map_and_control' %>
+       <%= render 'map_and_control_and_draw' %> <!-- middle column with map -->
+       <%= render 'basemap_selector' %>   <!-- the third column for selector basemap -->
+
 
   </div> <!-- end row -->
 

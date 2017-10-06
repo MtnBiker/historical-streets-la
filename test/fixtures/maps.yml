@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  year: MyString
-  url: MyText
+  name: map_name_1
+  year: 1888
+  url: https://that_site.com
   attribLink: MyText
   attrib: MyString
 
 two:
-  name: MyString
-  year: MyString
-  url: MyText
+  name: map_name_2
+  year: 1902
+  url: http://this_site.com
   attribLink: MyText
   attrib: MyString

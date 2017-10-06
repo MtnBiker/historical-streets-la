@@ -5,14 +5,14 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+
   <%= link_to "Historic Street Names in Los Angeles", root_path, class: "navbar-brand" %>
   <div class="collapse navbar-collapse" id="navbarCollapse"> <!-- Is navbarCollapse styled? -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <%= link_to "Home", root_path, class: "nav-link" %><span class="sr-only">(current)</span></a>
       </li>
-      <li><%= link_to "Map-NOT working", map_path, class: "nav-link" %> </li>
+      <li><%= link_to "Map", overview_path, class: "nav-link" %> </li>
       <li class="nav-item"><%= link_to "Street List",  streets_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "About",  about_path, class: "nav-link" %></li>
       <% if logged_in? %>
@@ -26,7 +26,7 @@
             <%= link_to "Profile", current_user, class: "dropdown-item" %>
             <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>
-            
+
         <li class="nav-item"><%= link_to "Map list", maps_path, class: "nav-link" %></li>
       <% else %>
         <%= link_to "Log in", login_path, class: "dropdown-item" %>

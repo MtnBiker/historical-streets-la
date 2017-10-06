@@ -129,7 +129,7 @@ L.control.layers( baseLayers, overlayLayers, {collapsed:true} ).addTo(map); // w
 // The event handler for changing the display after the selection of an overlayLayer
 var addOpacitySlider = function() {
   var control = L.control.activeLayers(baseLayers, overlayLayers).addTo(map);
-  console.log("131. control: " + control);
+  // console.log("132. control: " + control);
 
   //
   // var overlayLayers = control.getActiveOverlayLayers()
@@ -154,5 +154,5 @@ var addOpacitySlider = function() {
 }
 // The following is what contains the control layers selections and has to appear after the event handler is defined
 //  <div class="leaflet-control-layers leaflet-control" aria-haspopup="true"> When this is clicked
-$("leaflet-control-layers leaflet-control").onclick = addOpacitySlider; // Not working
+$("leaflet-control-layers leaflet-control").onclick = addOpacitySlider; // Map moves when use slider. Need to disengage map movement. 
 

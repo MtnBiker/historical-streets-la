@@ -1,5 +1,4 @@
 /*
-
    GVS removed button controls leaving only slider
         Leaflet.OpacityControls, a plugin for adjusting the opacity of a Leaflet map.
         (c) 2013, Jared Dominguez

@@ -13,4 +13,11 @@ class StreetTest < ActiveSupport::TestCase
     # assert_select "title", "New Historical Street | Historical Street Names in Los Angeles"
   end
   
+  #following Sam Ruby-Copeland pg94
+  test "street must have current, previous" do
+    street = Street.new
+    assert street.invalid?
+    assert street.errors[:currentName].any?
+    assert street.errors[:prevName].any?
+  end
 end

@@ -31,6 +31,8 @@ class MapsController < ApplicationController
         format.html { redirect_to @map, notice: 'Map was successfully created.' }
         format.json { render :show, status: :created, location: @map }
       else
+        # for fixing test. from Copeland p101. Doesn't show up unless an error, so maybe leave in
+        puts "X W X M W  Expanded error message: #{@map.errors.full_messages}. @map.name: #{@map.name} WWWWWW\r"
         format.html { render :new }
         format.json { render json: @map.errors, status: :unprocessable_entity }
       end

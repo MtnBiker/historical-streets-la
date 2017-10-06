@@ -23,14 +23,13 @@ gem 'puma', '3.4' # not sure of latest version that will work, but 3.9.1 doesn't
 gem 'uglifier', '>= 3.2.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'bootstrap', '~> 4.0.0.beta' # Don't think -sass is needed with 4. Causes problems in Header
-# gem 'bootstrap-sass', '3.3.7' # Hartl 5 2017.06.07 No problem as first go. One Stackoverflower said not to have this with gem 'bootstrap', but I want v4
+gem 'bootstrap', '~> 4.0.0.beta' # 4.0.0.beta current as of mid-Sept 17. bootstrap-sass is not compatiable with 4 (https://github.com/twbs/bootstrap-rubygem)
 # Use CoffeeScript for .coffee assets and views
 # gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder' , '~> 2.7'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.11'
 gem 'carrierwave', '1.1.0'
@@ -38,15 +37,16 @@ gem 'carrierwave', '1.1.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'leaflet-rails'
+# Leaflet included in mapbox 3.1.1 which is loaded in application.html.erb. PS: mapbox-rails is a year or two behind
+# gem 'leaflet-rails' # with statements in application.js/.scss, loads leaflet. 1.1 as of Sept 17 (current is 1.2 which might fix my leaflet.draw problem). Therefore try loading directly from the we. Caused other problems
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-geojson'
-gem 'leaflet-draw-rails'
+gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.10 (July 3, 2017)
 
 # jQuery
 gem 'jquery-rails' # without this jQuery runs fine except I can't upload to heroku. This needed by Bootstrap 4
-gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. Still getting error, but no jquery error `yarn add tether` didn't help.Sprockets::FileNotFound: couldn't find file 'tether' with type 'application/javascript'.
 gem 'jquery-ui-rails' # Does this also bring in jQuery
+gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. Still getting error, but no jquery error `yarn add tether` didn't help.Sprockets::FileNotFound: couldn't find file 'tether' with type 'application/javascript'.
 
 # Added for Hartl tutorial and can be used with streets, but I want an option. May be better with edit in table
 gem 'will_paginate',           '3.1.5'
@@ -68,7 +68,7 @@ group :development do
   gem 'awesome_print' # Prefs in ~/.irbrc
   # http://undefined-reference.org/2016/01/31/super_awesome_print-as-debugger.html
   gem 'super_awesome_print' # Gilmore just uses awesome_print may be enough.
-  
+
   # Copy db from (and to?) Heroku
   # To see an updated list of tasks and descriptions: rake heroku_db_restore -T heroku_db_restore
   gem 'heroku_db_restore'
@@ -95,6 +95,6 @@ group :test do
   # Creates /coverage/index.html which details MiniTest coverage
   gem 'simplecov', :require => false
 end
- 
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem. Do I need these?
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
