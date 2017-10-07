@@ -249,9 +249,13 @@ function overviewMap() {
 
   showMap(); // showMap draws the map and adds control to select basemaps.
 
-  // var segmentLayer = L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map);
+// The popup shows with just this , no bindPopup or openPopup
+  var segmentLayer = L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map);
+    
+  // May need to openPopup. Read the following and ??
+  // https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-leaflet
+  // https://gis.stackexchange.com/questions/229723/how-to-display-properties-of-geojson-in-popup-on-leaflet
   
-  // May need to openPopup
-  L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map).bindPopup(link).openPopup();
+  // L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map).bindPopup(feature.properties.title).openPopup();
  
 } // end overviewMap

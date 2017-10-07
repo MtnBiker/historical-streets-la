@@ -1,7 +1,7 @@
 # README
 A compilation of the history of the street name changes in Los Angeles.
 
-And showing those changed segments  of the streets on a map.
+And showing those changed segments of the streets on a map.
 
 Intially to support [Croatian Run Restaurants in Los Angeles 1880&ndash;1930](https://secure-shore-68966.herokuapp.com),
 but then saw a general need and was able to leverage the extensive list published by Steve Morse: [Los Angeles in the 1900s&mdash;Streets of a Hundred Years Ago](http://stevemorse.org/census/changes/LosAngelesChanges2.htm)." [Morse's site](http://stevemorse.org/) is a treasure trove of historical and geneological information. Almost all of the information is from this resource. I've added the ability to put that information on a map and have started to do that for some of the 500 or so entries. After launching the site, anyone will be able to add or edit the entries.
@@ -17,9 +17,6 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 - Now that it's deployed, some issues need to be addressed before opening it up.
     * If zoomed in beyond what's available, no indication of what's going on.
-
-    * Implement JSON storage of extent. It's currently a LINESTRING array stored as a string which is a bit flaky. JSON seems most portable between Postgres and JavaScript. Rails and Postgres have :line_string, but JavaScript not so much.  Started this.
-
 
 ### Bigger plans
 - Downloads page to download all data

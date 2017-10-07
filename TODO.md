@@ -35,3 +35,10 @@
 * Scan and OCR street information in City Directories. The Los Angeles City Directories had a section that listed street names and their extent (beginning and end.) Add this to site as searchable. Scan any maps too. The scans may be available where the directories are, e.g., LAPL, Ancestry
 
 * Edit OCR Baist index. Saved as text file with the maps
+
+* Look at later for popup
+https://gis.stackexchange.com/questions/229723/how-to-display-properties-of-geojson-in-popup-on-leaflet
+https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-leaflet
+
+* Color of lines on overview map.
+

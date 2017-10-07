@@ -165,4 +165,3 @@ Editing is now GeoJSON stored in extent_json. Legacy extent_array still there un
 
 https://gis.stackexchange.com/questions/166863/how-to-calculate-the-bounding-box-of-a-geojson-object-using-python-or-javascript to get fitBounds to work. Using another function
 
-
