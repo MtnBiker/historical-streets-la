@@ -116,12 +116,15 @@ function showMap(popupText) {
       var streetExtentJson = JSON.parse(streetExtentJson); // without this "Invalid GeoJSON object." Even though look the same.
       var geojsonLayer = L.geoJSON(streetExtentJson).addTo(map).bindPopup(popupText).openPopup();
       map.fitBounds(geojsonLayer.getBounds()); // this is in place of fitBounds which doesn't work with GeoJSON because of the lat lng transposition
-    } else { if (streetExtentArray != null && streetExtentArray.length > 2) // can get rid of this when done with streetExtentArray
+    } else { 
+      if (streetExtentArray != undefined && streetExtentArray.length > 2)
+        { // can get rid of this when done with streetExtentArray
       var arrayStreetExtent = JSON.parse(gon.streetExtentArray);
       map.fitBounds(arrayStreetExtent); // zooms to area of interest
       L.polyline(arrayStreetExtent).addTo(map).bindPopup(popupText).openPopup();
     } // end if(streetExtentArray…/json)
-  }
+  } // end if (streetExtentArray != undefined |...
+}
 
   // Shows zoom level which I find useful. Like to have in on the lower right
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html

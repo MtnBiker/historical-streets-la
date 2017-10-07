@@ -30,8 +30,6 @@
  
 * The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. Maybe with next version I'll did into it.
 
-* Two maps aren't working. Ones not at AWS
-
 * Scan and OCR street information in City Directories. The Los Angeles City Directories had a section that listed street names and their extent (beginning and end.) Add this to site as searchable. Scan any maps too. The scans may be available where the directories are, e.g., LAPL, Ancestry
 
 * Edit OCR Baist index. Saved as text file with the maps
@@ -42,3 +40,4 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * Color of lines on overview map.
 
+* Add other Baist detail maps to existing served set
