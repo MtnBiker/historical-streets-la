@@ -1,4 +1,4 @@
-* Add a field so we know who edited the item
+* Add a field so we know who edited the item. Check that this works
 
 * Add search for street and return to map at center of the segment
 
@@ -19,6 +19,8 @@
 * Get rid of example user when I get myself set up on localhost
  
 * Make the signup and password reset emails and HTML a bit more professional
+
+* A page to view paper_trail. Probably looks like other index list pages. Static or view of its own?
  
 * Look at puma.rb and see if hidden stuff is needed
  

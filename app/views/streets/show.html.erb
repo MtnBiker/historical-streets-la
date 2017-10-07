@@ -76,12 +76,12 @@
       <%= @street.updated_at.to_formatted_s(:long) %>
     </p>
 
-    <p>
-      <strong>Current User [Testing]</strong>
-      <%= current_user.name %>
-    </p>
-
     <% if logged_in? %>
+      <p>
+        <strong>Current User [Testing-remove when working]</strong>
+        <%= current_user.name %>
+      </p>
+      
       <button type="button" class="btn btn-primary-outline" >
         <%= link_to 'Edit', edit_street_path(@street) %>
       </button>
@@ -95,7 +95,7 @@
       <button type="button" class="btn btn-primary-outline" >
         <%= link_to 'New Historic Street Entry', new_street_path %>
       </button>
-    <% end  %>
+    <% end %>
 
   </div> <!-- end col-4 Left col-->
 

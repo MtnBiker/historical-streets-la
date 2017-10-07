@@ -76,7 +76,7 @@ class StreetsController < ApplicationController
   private
   
   def undo_link
-    view_context.link_to("undo", revert_version_path(@street.versions.last), :method => :post)
+    view_context.link_to("Undo", revert_version_path(@street.versions.reload.last), :method => :post)
   end
   
     # Use callbacks to share common setup or constraints between actions.
