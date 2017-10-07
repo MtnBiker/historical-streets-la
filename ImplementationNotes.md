@@ -166,3 +166,5 @@ Editing is now GeoJSON stored in extent_json. Legacy extent_array still there un
 https://gis.stackexchange.com/questions/166863/how-to-calculate-the-bounding-box-of-a-geojson-object-using-python-or-javascript to get fitBounds to work. Using another function
 
 (Paper Trail )[https://github.com/airblade/paper_trail] including undo http://railscasts.com/episodes/255-undo-with-paper-trail and product.versions.reload (I think the passing true to the scope/relation is getting phased out in favor of reload, which I think is better), from the comments. Also namespacing:  @version =  PaperTrail::Version.find(params[:id]) in version.controller
+
+Two things needed. Color of lines. fitBounds for overview; although this is less critical as map gets filled up
