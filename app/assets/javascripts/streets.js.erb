@@ -9,9 +9,8 @@ var map;
 var previousLayer;
 var opacitySlider; // global so works for remove
 // L.mapbox.accessToken = "<%= ENV["MAPBOX_TOKEN"] %>"; // error because maybe Mapbox isn't setup yet. The Ruby works even when (jS) commented out
-//URLs
-var hamlin1908url = "https://api.mapbox.com/styles/v1/mtnbiker/cj3gnezpq00152rt5o6g3kyqp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRuYmlrZXIiLCJhIjoiNmI5ZmZjMzAyNzJhY2Q0N2ZlN2E1ZTdkZjBiM2I1MTUifQ.6R3ptz9ejWpxcdZetLLRqg",
-    Hill1928aws    = 'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
+//URLs. I'm not sure these are used anymore. See Map list
+var Hill1928aws    = 'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
     baistDetailAws = 'https://crores.s3.amazonaws.com/tiles/baistDetail/{z}/{x}/{y}.png',
     baistKMaws     = "https://crores.s3.amazonaws.com/tiles/bkm/{z}/{x}/{y}.png",
     rueger1902aws  = "https://crores.s3.amazonaws.com/tiles/1902rueger/{z}/{x}/{y}.png",
@@ -56,7 +55,9 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     baistDetail = L.tileLayer(baistDetailAws, {attribution: rumseyAttrib, layers: 'BaistDetail', maxZoom:19 }),
     baistKM     = L.tileLayer(baistKMaws,   {attribution: rumseyAttrib}),
     rueger1902  = L.tileLayer(rueger1902aws),
-    hamlin1908   = L.tileLayer(hamlin1908url),
+    // hamlin1908   = L.tileLayer(hamlin1908url),
+    // hamlin1908   = L.mapbox.styleLayer('mtnbiker.ng4kio7i'),
+    // hamlin1908   = L.mapbox.map('map', 'mtnbiker.ng4kio7i'),
     woods1908    = L.tileLayer(woods1908url,  {attribution: rumseyAttrib, maxZoom:17 }),
     sanborn1894km1a = L.tileLayer(sanborn1894km1aURL,  {attribution: csunAttrib}),
     sanborn1888km1a = L.tileLayer(sanborn1888km1aURL,  {attribution: csunAttrib})
