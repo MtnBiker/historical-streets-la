@@ -40,7 +40,7 @@ class StreetsController < ApplicationController
 
     respond_to do |format|
       if @street.save
-        format.html { redirect_to @street, notice: 'Street was successfully created.' }
+        format.html { redirect_to @street, notice: "Street was successfully created.  #{undo_link}" }
         format.json { render :show, status: :created, location: @street }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class StreetsController < ApplicationController
   def update
     respond_to do |format|
       if @street.update(street_params)
-        format.html { redirect_to @street, notice: 'Street was successfully updated.' }
+        format.html { redirect_to @street, notice: "Street was successfully updated.  #{undo_link}" }
         format.json { render :show, status: :ok, location: @street }
       else
         format.html { render :edit }
@@ -68,12 +68,17 @@ class StreetsController < ApplicationController
   def destroy
     @street.destroy
     respond_to do |format|
-      format.html { redirect_to streets_url, notice: 'Street was successfully destroyed.' }
+      format.html { redirect_to streets_url, notice: "Street was successfully destroyed.  #{undo_link}" }
       format.json { head :no_content }
     end
   end
 
   private
+  
+  def undo_link
+    view_context.link_to("undo", revert_version_path(@street.versions.scoped.last), :method => :post)
+  end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_street
       @street = Street.find(params[:id])

@@ -14,4 +14,8 @@ class AccountActivationsController < ApplicationController
   end
 end
 
-# Listing 11.37
+def info_for_paper_trail
+  { ip: request.remote_ip }
+end
+
+# Listing 11.37 plus paper trail

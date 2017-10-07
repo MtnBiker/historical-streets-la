@@ -32,6 +32,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder' , '~> 2.7'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.11'
+# Undo changes and record of who changed what
+gem 'paper_trail'
 gem 'carrierwave', '1.1.0'
 
 # Use Capistrano for deployment

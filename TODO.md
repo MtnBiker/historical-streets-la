@@ -7,8 +7,8 @@
 * 1902 Rueger needs trimming. Unfortunately probably have to georef again.
 
 * Date slider on overview map. Even better if overview maps synced by date.
- 
-* Error if edit from streets. Probably in the ugly decision tree. Look at gon
+
+* Overlay maps don't display when clicked on if not in zoom range.
 
 * Section 5.3.4 testing mostly not working
  

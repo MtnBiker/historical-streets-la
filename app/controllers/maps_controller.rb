@@ -28,7 +28,7 @@ class MapsController < ApplicationController
 
     respond_to do |format|
       if @map.save
-        format.html { redirect_to @map, notice: 'Map was successfully created.' }
+        format.html { redirect_to @map, notice: "Map was successfully created.  #{undo_link}" }
         format.json { render :show, status: :created, location: @map }
       else
         # for fixing test. from Copeland p101. Doesn't show up unless an error, so maybe leave in
@@ -44,7 +44,7 @@ class MapsController < ApplicationController
   def update
     respond_to do |format|
       if @map.update(map_params)
-        format.html { redirect_to @map, notice: 'Map was successfully updated.' }
+        format.html { redirect_to @map, notice: "Map was successfully updated.  #{undo_link}" }
         format.json { render :show, status: :ok, location: @map }
       else
         format.html { render :edit }
@@ -58,12 +58,18 @@ class MapsController < ApplicationController
   def destroy
     @map.destroy
     respond_to do |format|
-      format.html { redirect_to maps_url, notice: 'Map was successfully destroyed.' }
+      format.html { redirect_to maps_url, notice: "Map was successfully destroyed.  #{undo_link}" }
       format.json { head :no_content }
     end
   end
 
   private
+  
+  # paper_trails
+  def undo_link
+    view_context.link_to("undo", revert_version_path(@map.versions.scoped.last), :method => :post)
+  end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_map
       @map = Map.find(params[:id])

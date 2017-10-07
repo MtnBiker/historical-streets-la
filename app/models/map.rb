@@ -1,5 +1,6 @@
 class Map < ApplicationRecord
   # belongs_to :streets
+  has_paper_trail
   
   def attribText
     "#{attribLink} #{attrib}"
