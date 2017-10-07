@@ -3,7 +3,7 @@
 <h1>Historic Street Name</h1>
 
 <div class="row">
-  <div class="col-4">
+  <div class="col-4">  <!-- Data list  Col 1 of 3-->
     <% if @street.city != "Los Angeles" %>
       <p>
         <strong>City:</strong>
@@ -97,7 +97,7 @@
       </button>
     <% end  %>
 
-  </div> <!-- end col-4 -->
+  </div> <!-- end col-4 Left col-->
 
 <%= render 'map_and_control' %>  <!-- middle column with map (should be named map or show_map)-->
 

@@ -2,6 +2,7 @@ class OverviewController < ApplicationController
   # before_action :set_overview, only: [:show, :edit, :update, :destroy] # doesn't seem to affect what I'm trying to do. Delete
 
   def index
+    @maps = Map.all.order(:year) # so can be used by basemap_selector
   end
 
   def overview_data
