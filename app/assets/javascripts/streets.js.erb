@@ -254,7 +254,18 @@ function overviewMap() {
   showMap(); // showMap draws the map and adds control to select basemaps.
 
 // The popup shows with just this , no bindPopup or openPopup
+  
   var segmentLayer = L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map);
+  
+  // Getting out of mapbox into Leaflet so can work with color, etc.
+  // var data = loadURL('overview/overview_data.geojson');
+  // L.geoJSON(data, {
+  //     style: function (feature) {
+  //         return {color: 'red'};
+  //     }
+  // }).bindPopup(function (layer) {
+  //     return layer.feature.properties.description;
+  // }).addTo(map);
     
   // May need to openPopup. Read the following and ??
   // https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-leaflet
