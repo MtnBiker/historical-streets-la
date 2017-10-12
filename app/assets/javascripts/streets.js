@@ -1,6 +1,6 @@
 "use strict";
 
-// .erb to process Ruby MAPBOX_TOKEN with ENV
+// .erb to process Ruby MAPBOX_TOKEN with ENV. Removed .erb 2017.10.11 since not using MapBox
 // Called from show.html.erb and edit.html.erb and maybe new.html.erb
 // First set up common variables, then function specific to each show and edit
 // Used to be _map.initial.js.erb and _leafletmap.show.html.erb which may be able to delete TODO
@@ -95,18 +95,12 @@ function showMap(popupText) {
   map = L.map('map', {zoomDelta: 0.25,
         zoomSnap: 0.25
   }).setView([34.05, -118.25], 13);
-  // map = L.map('map', {
-  //     center: new L.LatLng(34.05, -118.25),
-  //     zoom: 13,
-  //     layers: [osmMap, hill1928], // have to figure out how to make the second item a blank map. Probably need to find a more robust solution and actually figure out how to make it work right TODO. Need these layers for activeLayers to work [the error: "Control doesn't have any active base layer!"]
-  //     zoomControl: true
-  // });
 
   L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
-  L.control.layers(baseLayers).addTo(map);
+  L.control.layers(baseLayers).addTo(map); // baseLayers defined about ten lines above
 
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
-  var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring
+  var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring. True even if just declare `var streetExtensionJson;`
 
 // Don't want to do the following for overviewMap. A bit of a work around since calling this for overview
   if (streetExtentArray != undefined || streetExtentJson != undefined) {
@@ -196,7 +190,7 @@ function showMap(popupText) {
     addOpacitySlider(currentLayer)
   });
 
-}  // end showMap
+};  // end showMap
 
 // #############################################################################################
 // editMap. Streets > Edit. Note uses showMap, essentially editMap is added to the bottom of showMap
@@ -247,7 +241,7 @@ function editMap(popupText) {
 
   $('map').imageMapResize();
 
-}  // end editMap
+};  // end editMap
 
 function overviewMap() {
 
@@ -273,4 +267,4 @@ function overviewMap() {
   
   // L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map).bindPopup(feature.properties.title).openPopup();
  
-} // end overviewMap
+}; // end overviewMap

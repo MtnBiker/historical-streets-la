@@ -7,7 +7,7 @@
     "jquery": "^3.2.1",
     "tether": "^1.4.0"
   },
-  "homepage": "ttps://stark-cove-20051.herokuapp.com",
+  "homepage": "https://stark-cove-20051.herokuapp.com",
   "repository": {
     "url": "https://github.com/MtnBiker/historical-streets-la",
     "type": "git"
@@ -22,7 +22,7 @@
     "geo",
     "Sanborn",
     "Baist"
-  ],
+    ],
   "devDependencies": {
     "lint-staged": "^4.0.0",
     "pre-commit": "^1.2.2",
@@ -30,17 +30,27 @@
   }
 }
 {
-  "scripts": {
+  "scripts": 
+  {
     "precommit": "lint-staged"
   },
-  "lint-staged": {
-    "app/**/*.{js,es6,jsx,scss,css}": [
+  "lint-staged": 
+  {
+    "app/**/*.{js,es6,jsx,scss,css}": 
+    [
       "./node_modules/prettier/bin/prettier.js --trailing-comma es5 --write",
       "git add"
     ],
-    "{app,test}/**/*.rb": [
+    "{app,test}/**/*.rb": 
+    [
       "bundle exec rubocop -a",
       "git add"
     ]
   },
+  "devDependencies": 
+  {
+    "husky": "^0.13.4",
+    "lint-staged": "^3.6.0",
+    "prettier": "^1.4.2"
+  }
 }
