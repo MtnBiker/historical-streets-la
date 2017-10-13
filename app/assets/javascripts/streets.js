@@ -62,21 +62,7 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     sanborn1894km1a = L.tileLayer(sanborn1894km1aURL,  {attribution: csunAttrib}),
     sanborn1888km1a = L.tileLayer(sanborn1888km1aURL,  {attribution: csunAttrib})
 
-// Define layers for the Layer.control selector
-// Now defined in Rails maps
-// var overlayLayers = {
-//     // "<span style='color: blue'>1921 Baist detail</span>"   : baistDetail,
-//     // "<span style='color: blue'>1921 Baist Key Map</span>"  : baistKM,
-//     "1921 Baist detail"   : baistDetail,
-//     "1921 Baist Key Map"  : baistKM,
-//     "1928 Hill"    : hill1928,
-//     "1908 Wood"    : woods1908,
-//     "1908 Hamlin"  : hamlin1908,
-//     "1902 Rueger"  : rueger1902,
-//     "1894 Sanborn" : sanborn1894km1a,
-//     "1888 Sanborn" : sanborn1888km1a
-// };
-var baseLayers = {
+    var baseLayers = {
     "<span style='color: green'>Bing</span>"               : bing,
     "<span style='color: orange'>OSM Street</span>"        : osmMap,
     "<span style='color: green' >ESRI Satellite</span>"    : esriMap,
@@ -96,7 +82,7 @@ function showMap(popupText) {
         zoomSnap: 0.25
   }).setView([34.05, -118.25], 13);
 
-  L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav').addTo(map) // , {type: 'Road'} doesn't work, had to set in the leaflet-bing-layer.js
+  bing.addTo(map); // May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing
   L.control.layers(baseLayers).addTo(map); // baseLayers defined about ten lines above
 
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
@@ -118,24 +104,27 @@ function showMap(popupText) {
       L.polyline(arrayStreetExtent).addTo(map).bindPopup(popupText).openPopup();
     } // end if(streetExtentArray…/json)
   } // end if (streetExtentArray != undefined |...
-}
+};
 
   // Shows zoom level which I find useful. Like to have in on the lower right
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html
-  var ZoomViewer = L.Control.extend({
-  		onAdd: function(){
-  			var container= L.DomUtil.create('div');
-  			var gauge = L.DomUtil.create('div');
-  			container.style.width = '200px';
-  			container.style.background = 'rgba(255,255,255,0.5)';
-  			container.style.textAlign = 'left';
-  			map.on('zoomstart zoom zoomend', function(ev){
-  				gauge.innerHTML = 'Zoom level: ' + map.getZoom();
-  			})
-  			container.appendChild(gauge);
+  var ZoomViewer = L.Control.extend(
+    {
+  		onAdd: function()
+        {
+          var container= L.DomUtil.create('div');
+          var gauge = L.DomUtil.create('div');
+          container.style.width = '200px';
+          container.style.background = 'rgba(255,255,255,0.5)';
+          container.style.textAlign = 'left';
+          map.on('zoomstart zoom zoomend', function(ev)
+          {
+          	gauge.innerHTML = 'Zoom level: ' + map.getZoom();
+          })
+          container.appendChild(gauge);
 
-  			return container;
-  		}
+          return container;
+        }
   	}); // end ZoomViewer
   	(new ZoomViewer).addTo(map); // unknown to me syntax  TODO, not currently showing up
 
