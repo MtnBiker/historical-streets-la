@@ -16,7 +16,7 @@
 // Is rail-ujs in conflict with jquery_ujs? Doesn't seem to be
 //= require rails-ujs
 // https://github.com/twbs/bootstrap-rubygem bootstrap possible instead of bootstrap-sprockets. 
-// Use jquery3 instead of jquery?. v3 is current. I think jQuery3 means no v1 which supports older browsers
+// Use jquery3 instead of jquery?. v3 is current. I think jQuery3 means no v1 which supports older browsers. Bootstrap gem says use jquery3
 //= require jquery3
 //= require turbolinks
 //= require popper
