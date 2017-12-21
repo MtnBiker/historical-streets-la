@@ -42,4 +42,6 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * Color of lines on overview map. L.mapbox.featureLayer doesn't have color option. Can it be added to json? If not need a whole new approach. Adding polylines in Leaflet. Has path options which includes color. Probably need to do this if going to change colors by year. And PolyLine is lat-lng not lng-lat like GeoJSON. No key on lat or lon, so would have to parse. Maybe need to go back to drawing with lat-lng polylines
 
-* Add other Baist detail maps to existing served set
+* Add other Baist detail maps to existing served set?
+
+* Is jQuery UI being used? If so remove unused effects and widgets
