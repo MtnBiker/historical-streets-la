@@ -5,16 +5,17 @@
     <fieldset class="form-group">
       <legend>Historic Map Overlay</legend>
       <!-- Need to make stand out. border not doing anything look at cards in v4, but didn't help on simple try -->
-      <p class="border-0 rounded">Select map for overlay.<br>
-                                  Select basemap using control on top right of the map itself.</p>
+      <p class="border-0 rounded">Select overlay map below. &larr;<br>
+                                  Select basemap using control on top right of the map itself. &#8595;</p>
       <% @maps.each do |map| %>
         <label class="form-check-label">
           <%= radio_button_tag(:name, map.url, class: "form-check-input" ) %>
-           <!-- by first field being the same for all (:name) only one can be selected.
-                   last item becomes id which JQuery can access -->
+         
           <%= label_tag(:map_name, map.name) %>
         </label>
       <% end %>
       <br>
   </fieldset>
 </div> <!-- end col-1 last of three columns in a row -->
+
+<!-- Re: radio_button_tab by first field being the same for all (:name) only one can be selected. last item becomes id which JQuery can access. Comment is at bottom because was part of each label when placed directly under the radio_button_tag -->
