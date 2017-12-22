@@ -15,7 +15,7 @@
     <%= csrf_meta_tags %>
     <!-- Changed to below 23 Sept 17 based on GitHub gon (was just include_gon) Although they appear to give the same result for now. -->
     <%= Gon::Base.render_data %>
-    <%= render 'layouts/shim' %>
+    <%= render 'layouts/shim' %> <!-- for IE9 -->
   </head>
 
   <body>

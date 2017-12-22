@@ -47,3 +47,5 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 * Is jQuery UI being used? If so remove unused effects and widgets
 
 * Notices appear twice. Note that in Map>show after an edit, one of the notices is borked, so only get rid of that one
+
+* Some if not all maps give errors for tiles that don't exist. E.g., 1909gates/13/1406/… at least when load outside its range

@@ -173,3 +173,5 @@ Trying to debug `Uncaught Error: Map container is already initialized.`  when mo
 
 Trying to add feature that map will zoom to max level instead of showing a blank. And keep zoom level if adequate. Also when select a new base map, the overlay maps become hidden. 
  The radio button input and also a value="https://api.mapbox…" etc, ie my map
+ - Looking through streets.js. I can see that it is a mess. showMap is called when the page first loads, but stuff is higgely pigly in there that is called later.
+   
