@@ -40,7 +40,7 @@ gem 'carrierwave', '1.1.0'
 # gem 'capistrano-rails', group: :development
 
 # Leaflet included in mapbox 3.1.1 which is loaded in application.html.erb. PS: mapbox-rails is a year or two behind
-# gem 'leaflet-rails' # with statements in application.js/.scss, loads leaflet. 1.1 as of Sept 17 (current is 1.2 which might fix my leaflet.draw problem). Therefore try loading directly from the we. Caused other problems
+# gem 'leaflet-rails' # with statements in application.js/.scss, loads leaflet. 1.1 as of Sept 17 (current is 1.2 (released 8 August 2017 and current 21 Dec 17) which might fix my leaflet.draw problem). Therefore try loading directly from the web, but is supposed to be included in mapbox.js. Caused other problems
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-geojson'
 gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.10 (July 3, 2017)
