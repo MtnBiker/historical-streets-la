@@ -12,7 +12,7 @@ end
 ruby '2.4.1' # Heroku wants this. I have 2.4.1, but is Heroku only to 2.3.4
 gem 'bundler'# , '1.15.1' # 1.13.7 may be the latest version heroku is supporting 2017.06.03. 2017.08.23 removed version requirement
 
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg' # , '~> 0.20' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23
 # Use Puma as the app server
