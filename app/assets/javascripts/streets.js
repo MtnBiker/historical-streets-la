@@ -6,6 +6,8 @@
 // Used to be _map.initial.js.erb and _leafletmap.show.html.erb which may be able to delete TODO
 // Declare global variables used by both functions
 var map;
+// var bing;
+var imagerySet = "Road"; // AerialWithLabels | Birdseye | BirdseyeWithLabels | Road -- select one forBing map. Using this with L.BingLayer. Could use with L.tileLayer.bing too
 var previousLayer;
 var opacitySlider; // global so works for remove
 // L.mapbox.accessToken = "<%= ENV["MAPBOX_TOKEN"] %>"; // error because maybe Mapbox isn't setup yet. The Ruby works even when (jS) commented out
@@ -48,8 +50,9 @@ var osmAttrib = '&copy; ' + osmLink + ' Contributors',
 var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     osmMap      = L.tileLayer(osmUrl,       {attribution: osmAttrib}),
     esriMap     = L.tileLayer(esriUrl,      {attribution: esriAttrib}),
-    // bing        = L.tileLayer(bingUrl), // This approach doesn't seem to work, but the following does. bing is easier to read than OSM because many major street names don't show up in OSM
-    bing = L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav'),
+    // bing        = L.tileLayer(bingUrl), // This approach doesn't seem to work, but the following two do. bing is easier to read than OSM because many major street names don't show up in OSM
+    bing = new L.BingLayer("AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav", {type: imagerySet}), // both this and the following work. 
+    // bing = L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav'), // Road may be default
     google      = L.tileLayer(googleUrl,      {attribution: 'Google'}),
     hill1928 = L.tileLayer(Hill1928aws,  {attribution: bigBlogMapAttrib, layers: 'Hill1928', maxZoom:18 }),
     baistDetail = L.tileLayer(baistDetailAws, {attribution: rumseyAttrib, layers: 'BaistDetail', maxZoom:19 }),
@@ -82,8 +85,8 @@ function showMap(popupText) {
                       zoomSnap: 0.25
   }).setView([34.05, -118.25], 13);
 
-  osmMap.addTo(map); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
-  // bing.addTo(map); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
+  // osmMap.addTo(map); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
+  bing.addTo(map); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
   L.control.layers(baseLayers).addTo(map); // baseLayers defined about ten lines above
 
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
