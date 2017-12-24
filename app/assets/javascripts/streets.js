@@ -82,7 +82,8 @@ function showMap(popupText) {
                       zoomSnap: 0.25
   }).setView([34.05, -118.25], 13);
 
-  bing.addTo(map); // May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing
+  osmMap.addTo(map); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
+  // bing.addTo(map); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
   L.control.layers(baseLayers).addTo(map); // baseLayers defined about ten lines above
 
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
@@ -221,7 +222,7 @@ $(document).ready(function() {
   $( "#select-overlay" ).change(function() {
     // Get layer selected
     console.log("223. Next line is $(#select-overlay input[type='radio']:checked. Some of the URLs aren't working")
-    console.log($("#select-overlay input[type='radio']:checked").val())
+    console.log($("#select-overlay input[type='radio']:checked").val()) // [object Object]
 
     let changeLayerTo = $("#select-overlay input[type='radio']:checked").val();
     let currentLayer = L.tileLayer(changeLayerTo).addTo(map)
@@ -234,8 +235,9 @@ $(document).ready(function() {
       opacitySlider = new L.Control.opacitySlider();
       map.addControl(opacitySlider);
 
-      //Specify the layer for which you want to modify the opacity. Note that the setOpacityLayer() method applies to all the controls.
-      //You only need to call it once.
+      // Specify the layer for which you want to modify the opacity. 
+      // Note that the setOpacityLayer() method applies to all the controls.
+      // You only need to call it once.
       opacitySlider.setOpacityLayer(currentLayer);
 
       //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
@@ -259,7 +261,7 @@ $(document).ready(function() {
     if ($('.opacity_slider_control').is(':visible')) {
       previousLayer.setOpacity(0.0) // opacity doesn't quite right if just do the step below. Kluge, but it works. The opacity info is being saved somewhere and doesn't go away when the control is removed.
       opacitySlider.remove() // remove any existing opacitySlider and then add the new one in the next step
-    }
+    } // end if
     // $('.opacity_slider_control').is(':visible') ? opacitySlider.remove() : console.log("207. Opacity slide is NOT visible"); // opacitySlider not defined even if declared. if true. false works.
     // Tried to define the DOM as blank. Just made the slider non functional. Maybe didnt' quite have it:
     // opacity_slider_control ui-slider ui-corner-all ui-slider-vertical ui-widget ui-widget-content leaflet-control and their is not higher level div that is exclusive

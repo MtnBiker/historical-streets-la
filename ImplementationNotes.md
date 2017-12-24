@@ -175,3 +175,4 @@ Trying to add feature that map will zoom to max level instead of showing a blank
  The radio button input and also a value="https://api.mapbox…" etc, ie my map
  - Looking through streets.js. Need to take stuff out of showMap that doesn't happen until overlay maps are added
    
+jQuery UI needed by Leaflet.OpacityControls (slider)

@@ -17,7 +17,7 @@ L.Control.opacitySlider = L.Control.extend({
         position: 'topright'
     },
     setOpacityLayer: function (layer) {
-      opacity_layer = layer; // opacity_layer is all the layers, not just the selected one. Can see in source when rollove
+      opacity_layer = layer; // opacity_layer is all the layers, not just the selected one. Can see in source when rollovers
     },
     onAdd: function (map) {
         var opacity_slider_div = L.DomUtil.create('div', 'opacity_slider_control');

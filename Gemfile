@@ -47,7 +47,7 @@ gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.
 
 # jQuery
 gem 'jquery-rails' # This needed by Bootstrap 4. Includes versions 1,2,3. Can select one or the other in application.js. Bootstrap 4 says use jquery3
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails' # needed by Leaflet.OpacityControls (slider)
 gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. Still getting error, but no jquery error `yarn add tether` didn't help.Sprockets::FileNotFound: couldn't find file 'tether' with type 'application/javascript'.
 
 # Added for Hartl tutorial and can be used with streets, but I want an option. May be better with edit in table
