@@ -85,8 +85,8 @@ function showMap(popupText) {
                       zoomSnap: 0.25
   }).setView([34.05, -118.25], 13);
 
-  // osmMap.addTo(map); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
-  bing.addTo(map); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
+  osmMap.addTo(map); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
+  // bing.addTo(map); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
   L.control.layers(baseLayers).addTo(map); // baseLayers defined about ten lines above
 
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
@@ -247,18 +247,23 @@ $(document).ready(function() {
       currentLayer.setOpacity(0.5);
       previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
     } // end addOpacitySlider
-
+    
+    // This is bringing the overlay map on top
+    currentLayer.bringToFront();
     // map.on('baselayerchange', function (event) {
     //   console.log("171. baselayerchange event.name: " + event.name);
     // });
-    // What is this doing?
-    map.on('overlayadd', function (event) {
-      // console.log("174. overlayadd event.name: " + event.name);
-      let currentOverlayLayer = event.name;  // variable used with addOpacitySlider
-      console.log("253. currentOverlayLayer: " + currentOverlayLayer);  // 1921 Baist Key Map
-      // control.remove(); // see http://leafletjs.com/reference-1.0.3.html#control, but didn't work here as I thought it might. Trying to kill bugs
-      addOpacitySlider(currentOverlayLayer);
-    });
+    // What is this doing? http://leafletjs.com/reference-1.2.0.html#evented 
+    // Seems to be used to make sure layer desired stays on top 
+    // https://gis.stackexchange.com/questions/183914/how-to-keep-vector-layer-on-top-of-all-layers-despite-toggling-order
+    // map.on('overlayadd', function (event) {
+    //   // console.log("174. overlayadd event.name: " + event.name);
+    //   let currentOverlayLayer = event.name;  // variable used with addOpacitySlider
+    //   alert("260. currentLayer: " + currentLayer);
+    //   console.log("261. currentOverlayLayer: " + currentOverlayLayer);  // 1921 Baist Key Map
+    //   // control.remove(); // see http://leafletjs.com/reference-1.0.3.html#control, but didn't work here as I thought it might. Trying to kill bugs
+    //   addOpacitySlider(currentOverlayLayer);
+    // });
   
   
     if ($('.opacity_slider_control').is(':visible')) {
