@@ -9,7 +9,7 @@
                                   &nwarr;Select basemap using control on top right of the map itself.</p>
       <% @maps.each do |map| %>
         <label class="form-check-label">
-          <%= radio_button_tag(:map_name, map.url, class: "form-check-input", id: map.name) %> <!-- Second item seems to be value -->
+          <%= radio_button_tag(:map_name, map.url, class: "form-check-input") %> <!-- Second item seems to be value , id: map.name results in _map_name_https etc, so note helpful-->
          
           <%= label_tag(:map_name, map.name) %>
         </label>
