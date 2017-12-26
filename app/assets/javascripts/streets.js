@@ -5,11 +5,12 @@
 // First set up common variables, then function specific to each show and edit
 // Used to be _map.initial.js.erb and _leafletmap.show.html.erb which may be able to delete TODO
 // Declare global variables used by both functions
-var map;
+let map;
 // var bing;
 var imagerySet = "Road"; // AerialWithLabels | Birdseye | BirdseyeWithLabels | Road -- select one forBing map. Using this with L.BingLayer. Could use with L.tileLayer.bing too
-var previousLayer;
-var opacitySlider; // global so works for remove
+let previousLayer;
+let opacitySlider; // global so works for remove
+let changeLayerTo;
 // L.mapbox.accessToken = "<%= ENV["MAPBOX_TOKEN"] %>"; // error because maybe Mapbox isn't setup yet. The Ruby works even when (jS) commented out
 //URLs. I'm not sure these are used anymore. See Map list
 var Hill1928aws    = 'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
@@ -85,8 +86,8 @@ function showMap(popupText) {
                       zoomSnap: 0.25
   }).setView([34.05, -118.25], 13);
 
-  osmMap.addTo(map); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
-  // bing.addTo(map); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
+  // osmMap.addTo(map); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
+  bing.addTo(map); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
   L.control.layers(baseLayers).addTo(map); // baseLayers defined about ten lines above
 
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
@@ -224,10 +225,10 @@ $(document).ready(function() {
   // Adding a listener to id="select-overlay". Remove the CONTROL, not layer if it exists and then add the selected layer.
   $( "#select-overlay" ).change(function() {
     // Get layer selected
-    console.log("223. Next line is $(#select-overlay input[type='radio']:checked. Some of the URLs aren't working")
-    console.log($("#select-overlay input[type='radio']:checked").val()) // [object Object]
+    // console.log("223. Next line is $(#select-overlay input[type='radio']:checked. Some of the URLs aren't working")
+    // console.log($("#select-overlay input[type='radio']:checked").val()) // [object Object]
 
-    let changeLayerTo = $("#select-overlay input[type='radio']:checked").val();
+    changeLayerTo = $("#select-overlay input[type='radio']:checked").val();
     let currentLayer = L.tileLayer(changeLayerTo).addTo(map)
     // $('.opacity_slider_control').is(':visible') ? console.log("206. Opacity slide is visible") : console.log("Opacity slide is NOT visible") // this test works how to deal with removing.
     console.log("229. currentLayer: " + currentLayer);
@@ -248,7 +249,7 @@ $(document).ready(function() {
       previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
     } // end addOpacitySlider
     
-    // This is bringing the overlay map on top
+    // This is bringing the overlay map on top, otherwise it ends up behind the base layer
     currentLayer.bringToFront();
     // map.on('baselayerchange', function (event) {
     //   console.log("171. baselayerchange event.name: " + event.name);
@@ -267,14 +268,9 @@ $(document).ready(function() {
   
   
     if ($('.opacity_slider_control').is(':visible')) {
-      previousLayer.setOpacity(0.0) // opacity doesn't quite right if just do the step below. Kluge, but it works. The opacity info is being saved somewhere and doesn't go away when the control is removed.
-      opacitySlider.remove() // remove any existing opacitySlider and then add the new one in the next step
-    } // end if
-    // $('.opacity_slider_control').is(':visible') ? opacitySlider.remove() : console.log("207. Opacity slide is NOT visible"); // opacitySlider not defined even if declared. if true. false works.
-    // Tried to define the DOM as blank. Just made the slider non functional. Maybe didnt' quite have it:
-    // opacity_slider_control ui-slider ui-corner-all ui-slider-vertical ui-widget ui-widget-content leaflet-control and their is not higher level div that is exclusive
-    // opacitySlider.removeFrom(map) => opacitySlider.removeFrom is not a function
-    // opacitySlider.remove() Sort of works, only one control, but opacity can't go to zero
+      previousLayer.setOpacity(0.0);
+      opacitySlider.remove(); // remove any existing opacitySlider and then add the new one in the next step
+    } // end if 
     addOpacitySlider(currentLayer)
   }); // end $( "#select-overlay" ).
 }); // end ready
