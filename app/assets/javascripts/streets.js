@@ -224,27 +224,28 @@ function overviewMap() {
 //  #############################
 // pulled out this function to help debug overlaySelector
 function findSelectedMap(mapID) {
-  console.log('227. findSelectedMap was called, but jumps out before finishing. ')
+  console.log('227. findSelectedMap was called, but jumps out and then comes back after the rest of the calling function finishes. As if it saves the place and comes back. ')
   $.getJSON('maps.json', function(json) {
-    let i = 1;
-    $.each(json, function(map, mapInfo) {
+    console.log(`229. in getJSON json: ${JSON.stringify(json)}`)
+    let i = 1; // i is only for console.log, not getting the needed data
+    $(json).each(function(map, mapInfo) {
       console.log(`230-${i}. inside loop looking for matching map id`)
       // Should stop the if once a match is found, but the loop is set by the each and not sure how to stop 
       if (mapInfo.maps.id == mapID) {
+        console.log('234. triple checking callling order');
         changeLayerTo = mapInfo.maps.url;
         maxZoom = mapInfo.maps.zoom;
         console.log(`235-${i}. mapID: ${mapID}. A match for the selected overview map has been found.`)
-        console.log(`       url: ${mapInfo.maps.url}`);
-        console.log(`   maxZoom: ${maxZoom}. for the map selected`);
+        console.log(`         url: ${mapInfo.maps.url}`);
+        console.log(`     maxZoom: ${maxZoom}. for the map selected`);
+        return false; // acts like a break inside a $().each. It does work
       } // end if
         i += 1;
-      // return (mapInfo.maps.id !== mapID); // acts like break. Maybe
     }); // end $.each
   }); // end $.getJSON
-}; // end iterateMap
+}; // end findSelectedMap
 
 // called by _overlaymap_selector.html.erb which is on streets > overview, show and edit. So ready to respond
-
 function overlaySelector() {
   // Adding overlays. This doesn't happen until one of the overlays is selected.  
   $( "#select-overlay" ).change(function() {
@@ -253,7 +254,8 @@ function overlaySelector() {
     console.log(`251. mapID (map.id): ${mapID}`);
     findSelectedMap(mapID); // using mapID, find the url, zoom for overlayMap selected
     console.log('253. Seems to be called before above loop happens, i.e., should see line 230 before this.')
-    console.log(`255. changeLayerTo ${changeLayerTo}`) 
+    console.log(`255. changeLayerTo ${changeLayerTo}. TODO. When not undefined, remove following line.`) 
+    changeLayerTo = 'https://crores.s3.amazonaws.com/tiles/1857Bancroft/{z}/{x}/{y}.png'; // DEBUG
     currentLayer = L.tileLayer(changeLayerTo).addTo(map);
     currentZoom = map.getZoom();
     // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
@@ -264,8 +266,7 @@ function overlaySelector() {
     }    
     // $('.opacity_slider_control').is(':visible') ? console.log("206. Opacity slide is visible") : console.log("Opacity slide is NOT visible") // this test works how to deal with removing.
     // console.log("229. currentLayer: " + currentLayer);
-    let addOpacitySlider = function(currentLayer) { // current layer is defined below. Say what?
-
+    let addOpacitySlider = function(currentLayer) {
       // Create the opacity controls—the slider
       // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
       opacitySlider = new L.Control.opacitySlider();
@@ -303,7 +304,7 @@ function overlaySelector() {
       previousLayer.setOpacity(0.0);
       opacitySlider.remove(); // remove any existing opacitySlider and then add the new one in the next step
     } // end if 
-    addOpacitySlider(currentLayer)
+    addOpacitySlider(currentLayer);
   }); // end $( "#select-overlay" ).
   
 }; // end overlaySelector function
