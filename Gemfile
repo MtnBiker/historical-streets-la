@@ -23,9 +23,7 @@ gem 'puma', '3.4' # not sure of latest version that will work, but 3.9.1 doesn't
 gem 'uglifier', '>= 3.2.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'bootstrap', '~> 4.0.0.beta2' # 4.0.0.beta2 new as of Oct 2017. bootstrap-sass is not compatiable with 4 (https://github.com/twbs/bootstrap-rubygem)
-# Use CoffeeScript for .coffee assets and views
-# gem 'coffee-rails', '~> 4.2'
+gem 'bootstrap', '~> 4.0.0.beta3' # 4.0.0.beta3 new as of Dec 2017 (but not available to rubygems). bootstrap-sass is not compatiable with 4 (https://github.com/twbs/bootstrap-rubygem)
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
