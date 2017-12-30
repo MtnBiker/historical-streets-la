@@ -1,1 +1,1 @@
-json.extract! map, :id, :name, :year, :url
+json.maps map, :id, :name, :zoom, :url

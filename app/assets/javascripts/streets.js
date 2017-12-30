@@ -10,6 +10,7 @@ let map;
 var imagerySet = "Road"; // AerialWithLabels | Birdseye | BirdseyeWithLabels | Road -- select one forBing map. Using this with L.BingLayer. Could use with L.tileLayer.bing too
 let previousLayer;
 let opacitySlider; // global so works for remove
+let mapID;
 let changeLayerTo;
 // L.mapbox.accessToken = "<%= ENV["MAPBOX_TOKEN"] %>"; // error because maybe Mapbox isn't setup yet. The Ruby works even when (jS) commented out
 //URLs. I'm not sure these are used anymore. See Map list
@@ -224,14 +225,25 @@ $(document).ready(function() {
 
   // Adding a listener to id="select-overlay". Remove the CONTROL, not layer if it exists and then add the selected layer.
   $( "#select-overlay" ).change(function() {
-    // Get layer selected
-    // console.log("223. Next line is $(#select-overlay input[type='radio']:checked. Some of the URLs aren't working")
-    // console.log($("#select-overlay input[type='radio']:checked").val()) // [object Object]
-
-    changeLayerTo = $("#select-overlay input[type='radio']:checked").val();
-    let currentLayer = L.tileLayer(changeLayerTo).addTo(map)
+    // Get layer selected. Identify by map.id as set in _overlay_selector.html.erb    
+    mapID = $("#select-overlay input[type='radio']:checked").val();
+    // console.log(`232. mapID (map.id): ${mapID}`);
+    
+    $.getJSON('maps.json', function(json) {
+      $.each(json, function(map, mapInfo) {
+        if (mapInfo.maps.id == mapID) {
+          console.log(`mapID: ${mapID}`)
+          changeLayerTo = mapInfo.maps.url;
+          console.log(changeLayerTo);
+          var mapZoom = mapInfo.maps.zoom;
+          console.log(mapZoom);
+        } 
+      });
+    });
+    let currentLayer = L.tileLayer(changeLayerTo).addTo(map);
+    map.setZoom(mapZoom); // not working yet.
     // $('.opacity_slider_control').is(':visible') ? console.log("206. Opacity slide is visible") : console.log("Opacity slide is NOT visible") // this test works how to deal with removing.
-    console.log("229. currentLayer: " + currentLayer);
+    // console.log("229. currentLayer: " + currentLayer);
     let addOpacitySlider = function(currentLayer) { // current layer is defined below. Say what?
 
       // Create the opacity controls—the slider
