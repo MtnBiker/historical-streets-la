@@ -11,6 +11,9 @@ var imagerySet = "Road"; // AerialWithLabels | Birdseye | BirdseyeWithLabels | R
 let previousLayer;
 let opacitySlider; // global so works for remove
 let mapID;
+let maxZoom;
+let currentLayer;
+let currentZoom;
 let changeLayerTo;
 // L.mapbox.accessToken = "<%= ENV["MAPBOX_TOKEN"] %>"; // error because maybe Mapbox isn't setup yet. The Ruby works even when (jS) commented out
 //URLs. I'm not sure these are used anymore. See Map list
@@ -72,14 +75,14 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     "<span style='color: orange'>OSM Street</span>"        : osmMap,
     "<span style='color: green' >ESRI Satellite</span>"    : esriMap,
     "<span style='color: green' >Google Satellite</span>"  : google
-}
+	}
 
 // ############################################################################################
 // One function for edit and one for show. editMap is added to the bottom of showMap
 // For street > show. Used for show and called by editMap and overviewMap to get all the initial stuff
 // Used also by overviewMap
-function showMap(popupText) {
 
+function showMap(popupText) {
   // Sets up map, but if there is a linestring defined will zoom to that in the next if statement
   // But need a baselayer and a overlayLayer for opacitySlider to load
   // Now trying to add the overlayLayer without L.control.activeLayers
@@ -91,6 +94,7 @@ function showMap(popupText) {
   bing.addTo(map); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
   L.control.layers(baseLayers).addTo(map); // baseLayers defined about ten lines above
 
+// Above established the basemap as Bing or OSM. Now add street segments
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
   var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring. True even if just declare `var streetExtensionJson;`
 
@@ -108,9 +112,9 @@ function showMap(popupText) {
       var arrayStreetExtent = JSON.parse(gon.streetExtentArray);
       map.fitBounds(arrayStreetExtent); // zooms to area of interest
       L.polyline(arrayStreetExtent).addTo(map).bindPopup(popupText).openPopup();
-    } // end if(streetExtentArray…/json)
-  } // end if (streetExtentArray != undefined |...
-};
+    } // end if within the else (streetExtentArray…/json)
+  } // end else
+}; // end if 15 lines above
 
   // Shows zoom level which I find useful. Like to have in on the lower right
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html
@@ -191,9 +195,8 @@ function editMap(popupText) {
 };  // end editMap
 
 // ######################
-// All the segments shown on one map
+// All the segments shown on one map. Called from overview.index.html
 function overviewMap() {
-
   showMap(); // showMap draws the map and adds control to select basemaps.
 
 // The popup shows with just this , no bindPopup or openPopup
@@ -219,29 +222,46 @@ function overviewMap() {
 }; // end overviewMap
 
 //  #############################
-$(document).ready(function() {
-  // Adding overlays. This doesn't happen until one of the overlays is selected.
-  // The selection menu is installed with show map however, otherwise there would be nothing to change.
+// pulled out this function to help debug overlaySelector
+function findSelectedMap(mapID) {
+  console.log('227. findSelectedMap was called, but jumps out before finishing. ')
+  $.getJSON('maps.json', function(json) {
+    let i = 1;
+    $.each(json, function(map, mapInfo) {
+      console.log(`230-${i}. inside loop looking for matching map id`)
+      // Should stop the if once a match is found, but the loop is set by the each and not sure how to stop 
+      if (mapInfo.maps.id == mapID) {
+        changeLayerTo = mapInfo.maps.url;
+        maxZoom = mapInfo.maps.zoom;
+        console.log(`235-${i}. mapID: ${mapID}. A match for the selected overview map has been found.`)
+        console.log(`       url: ${mapInfo.maps.url}`);
+        console.log(`   maxZoom: ${maxZoom}. for the map selected`);
+      } // end if
+        i += 1;
+      // return (mapInfo.maps.id !== mapID); // acts like break. Maybe
+    }); // end $.each
+  }); // end $.getJSON
+}; // end iterateMap
 
-  // Adding a listener to id="select-overlay". Remove the CONTROL, not layer if it exists and then add the selected layer.
+// called by _overlaymap_selector.html.erb which is on streets > overview, show and edit. So ready to respond
+
+function overlaySelector() {
+  // Adding overlays. This doesn't happen until one of the overlays is selected.  
   $( "#select-overlay" ).change(function() {
     // Get layer selected. Identify by map.id as set in _overlay_selector.html.erb    
     mapID = $("#select-overlay input[type='radio']:checked").val();
-    // console.log(`232. mapID (map.id): ${mapID}`);
-    
-    $.getJSON('maps.json', function(json) {
-      $.each(json, function(map, mapInfo) {
-        if (mapInfo.maps.id == mapID) {
-          console.log(`mapID: ${mapID}`)
-          changeLayerTo = mapInfo.maps.url;
-          console.log(changeLayerTo);
-          var mapZoom = mapInfo.maps.zoom;
-          console.log(mapZoom);
-        } 
-      });
-    });
-    let currentLayer = L.tileLayer(changeLayerTo).addTo(map);
-    map.setZoom(mapZoom); // not working yet.
+    console.log(`251. mapID (map.id): ${mapID}`);
+    findSelectedMap(mapID); // using mapID, find the url, zoom for overlayMap selected
+    console.log('253. Seems to be called before above loop happens, i.e., should see line 230 before this.')
+    console.log(`255. changeLayerTo ${changeLayerTo}`) 
+    currentLayer = L.tileLayer(changeLayerTo).addTo(map);
+    currentZoom = map.getZoom();
+    // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
+    // may want to just set the zoom so can be seen and let people overzoom
+    if (currentZoom > maxZoom) {
+      map.setMaxZoom(maxZoom+1); // not working yet.
+      map.setZoom(maxZoom);
+    }    
     // $('.opacity_slider_control').is(':visible') ? console.log("206. Opacity slide is visible") : console.log("Opacity slide is NOT visible") // this test works how to deal with removing.
     // console.log("229. currentLayer: " + currentLayer);
     let addOpacitySlider = function(currentLayer) { // current layer is defined below. Say what?
@@ -285,4 +305,5 @@ $(document).ready(function() {
     } // end if 
     addOpacitySlider(currentLayer)
   }); // end $( "#select-overlay" ).
-}); // end ready
+  
+}; // end overlaySelector function
