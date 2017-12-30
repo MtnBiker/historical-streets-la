@@ -18,9 +18,9 @@ gem 'pg' # , '~> 0.20' # removed qualification to try an help with heroku push p
 # Use Puma as the app server
 gem 'puma', '3.4' # not sure of latest version that will work, but 3.9.1 doesn't work. I thought I had 3.7 before and it worked but now it doesn't
 # Use SCSS for stylesheets
-# gem 'sass-rails', '~> 5.0' # I have a note that may not need with Bootstrap 4
+# gem 'sass-rails', '~> 5.0' # Not compatible with Bootstrap 4
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 3.2.0'
+gem 'uglifier'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'bootstrap', '~> 4.0.0.beta3' # 4.0.0.beta3 new as of Dec 2017 (but not available to rubygems). bootstrap-sass is not compatiable with 4 (https://github.com/twbs/bootstrap-rubygem)
@@ -46,7 +46,7 @@ gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.
 # jQuery
 gem 'jquery-rails' # This needed by Bootstrap 4. Includes versions 1,2,3. Can select one or the other in application.js. Bootstrap 4 says use jquery3
 gem 'jquery-ui-rails' # needed by Leaflet.OpacityControls (slider)
-gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. Still getting error, but no jquery error `yarn add tether` didn't help.Sprockets::FileNotFound: couldn't find file 'tether' with type 'application/javascript'.
+gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. 
 
 # Added for Hartl tutorial and can be used with streets, but I want an option. May be better with edit in table
 gem 'will_paginate',           '3.1.5'
