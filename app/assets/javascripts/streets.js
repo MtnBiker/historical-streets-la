@@ -224,28 +224,19 @@ function overviewMap() {
 //  #############################
 // pulled out this function to help debug overlaySelector
 function findSelectedMap(mapID, cb) {
-  console.log('227. findSelectedMap was called, but jumps out and then comes back after the rest of the calling function finishes. As if it saves the place and comes back. ')
   $.getJSON('maps.json', function(json) { // not sure what this json is, but without it, the each never happens
-    console.log(`229. in getJSON json[1]: ${JSON.stringify(json[1])}`); // [1] since is shorter than the whole json
-    let i = 1; // i is only for console.log, not getting the needed data
-    
-    // an easier to comprehend loop than the $(json).each( ), json is the array/json being operated on
+    let i = 1;
     json.forEach(function(entry) {
-      console.log(`234-${i}. inside loop looking for matching map id`)
+      // console.log(`234-${i}. inside loop looking for matching map id`)
       // Should stop the if once a match is found, but the loop is set by the each and not sure how to stop 
       if (entry.maps.id == mapID) {
-        // console.log('237. triple checking calling order'); // get here if get in the forEach loop
         changeLayerTo = entry.maps.url;
         maxZoom = entry.maps.zoom;
-        console.log(`240-${i}. mapID: ${mapID}. A match for the selected overview map has been found.`)
-        console.log(`         url: ${entry.maps.url}`);
-        console.log(`     maxZoom: ${maxZoom}. for the map selected`);
         // return false; // acts like a break inside a $().each, but not a forEach loop
       } // end if
-        i += 1;
-       
+      i =+ 1;
     }); // end json.forEach
-    cb();
+    cb(); // the function passed in now goes. Which is putting the overlayMap and associated pieces on the page https://stackoverflow.com/questions/48039169/execution-order-of-javascript#48039220
   }); // end $.getJSON
 }; // end findSelectedMap
 
@@ -256,62 +247,43 @@ function overlaySelector() {
     // Get layer selected. Identify by map.id as set in _overlay_selector.html.erb    
     mapID = $("#select-overlay input[type='radio']:checked").val();
     console.log(`251. mapID (map.id): ${mapID}`);
-    // findSelectedMap(mapID); // using mapID, find the url, zoom for overlayMap selected
+    // The function that is passed in is executed after the json.forEach is executed.
     findSelectedMap(mapID, function() {
         currentLayer = L.tileLayer(changeLayerTo).addTo(map);
-    }); // using mapID, find the url, zoom for overlayMap selected    
-    console.log('253. Seems to be called before above loop happens, i.e., should see line 230 before this.')
-    console.log(`255. changeLayerTo ${changeLayerTo}. TODO. When not undefined, remove following line.`) 
-    // changeLayerTo = 'https://crores.s3.amazonaws.com/tiles/1857Bancroft/{z}/{x}/{y}.png'; // DEBUG
-    // currentLayer = L.tileLayer(changeLayerTo).addTo(map);
-    currentZoom = map.getZoom();
-    // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
-    // may want to just set the zoom so can be seen and let people overzoom
-    if (currentZoom > maxZoom) {
-      map.setMaxZoom(maxZoom+1); // not working yet.
-      map.setZoom(maxZoom);
-    }    
-    // $('.opacity_slider_control').is(':visible') ? console.log("206. Opacity slide is visible") : console.log("Opacity slide is NOT visible") // this test works how to deal with removing.
-    // console.log("229. currentLayer: " + currentLayer);
-    let addOpacitySlider = function(currentLayer) {
-      // Create the opacity controls—the slider
-      // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
-      opacitySlider = new L.Control.opacitySlider();
-      map.addControl(opacitySlider);
+        currentZoom = map.getZoom();
+        // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
+        // may want to just set the zoom so can be seen and let people overzoom
+        console.log(`255. currentZoom: ${currentZoom} and maxZoom: ${maxZoom}`)
+        if (currentZoom > maxZoom) {
+          // map.setMaxZoom(maxZoom+1); // not sure about doing this. In theory stops zooming past what can be shown
+          map.setZoom(maxZoom);
+        }    
+        let addOpacitySlider = function(currentLayer) {
+          // Create the opacity controls—the slider
+          // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
+          opacitySlider = new L.Control.opacitySlider();
+          map.addControl(opacitySlider);
 
-      // Specify the layer for which you want to modify the opacity. 
-      // Note that the setOpacityLayer() method applies to all the controls.
-      // You only need to call it once.
-      opacitySlider.setOpacityLayer(currentLayer);
+          // Specify the layer for which you want to modify the opacity. 
+          // Note that the setOpacityLayer() method applies to all the controls.
+          // You only need to call it once.
+          opacitySlider.setOpacityLayer(currentLayer);
 
-      //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
-      currentLayer.setOpacity(0.5);
-      previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
-    } // end addOpacitySlider
+          //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
+          currentLayer.setOpacity(0.5);
+          previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
+        } // end addOpacitySlider
     
-    // This is bringing the overlay map on top, otherwise it ends up behind the base layer
-    currentLayer.bringToFront();
-    // map.on('baselayerchange', function (event) {
-    //   console.log("171. baselayerchange event.name: " + event.name);
-    // });
-    // What is this doing? http://leafletjs.com/reference-1.2.0.html#evented 
-    // Seems to be used to make sure layer desired stays on top 
-    // https://gis.stackexchange.com/questions/183914/how-to-keep-vector-layer-on-top-of-all-layers-despite-toggling-order
-    // map.on('overlayadd', function (event) {
-    //   // console.log("174. overlayadd event.name: " + event.name);
-    //   let currentOverlayLayer = event.name;  // variable used with addOpacitySlider
-    //   alert("260. currentLayer: " + currentLayer);
-    //   console.log("261. currentOverlayLayer: " + currentOverlayLayer);  // 1921 Baist Key Map
-    //   // control.remove(); // see http://leafletjs.com/reference-1.0.3.html#control, but didn't work here as I thought it might. Trying to kill bugs
-    //   addOpacitySlider(currentOverlayLayer);
-    // });
-  
-  
-    if ($('.opacity_slider_control').is(':visible')) {
-      previousLayer.setOpacity(0.0);
-      opacitySlider.remove(); // remove any existing opacitySlider and then add the new one in the next step
-    } // end if 
-    addOpacitySlider(currentLayer);
+        // This is bringing the overlay map on top, otherwise it ends up behind the base layer
+        currentLayer.bringToFront();
+   
+        if ($('.opacity_slider_control').is(':visible')) {
+          previousLayer.setOpacity(0.0);
+          opacitySlider.remove(); // remove any existing opacitySlider and then add the new one in the next step
+        } // end if 
+        addOpacitySlider(currentLayer);
+    }); // using mapID, find the url, zoom for overlayMap selected    
+
   }); // end $( "#select-overlay" ).
   
 }; // end overlaySelector function
