@@ -16,8 +16,8 @@ Rails.application.routes.draw do
 
   get '/home',      to: 'static_pages#home'
   get '/contact',   to: 'static_pages#contact'
-  get '/acknowledgements',   to: 'static_pages#acknowledgements' # Redundant TODO ?
-  get 'acknowledgments' => 'static_pages#acknowledgments'
+  get '/acknowledgements',   to: 'static_pages#acknowledgements'
+  get 'acknowledgments' => 'static_pages#acknowledgments' # missing e and is probalby not needed
   get 'about' => 'static_pages#about'
 
   get    '/login',   to: 'sessions#new'

@@ -79,7 +79,10 @@ class StreetsController < ApplicationController
     view_context.link_to("Undo", revert_version_path(@street.versions.reload.last), :method => :post)
   end
   
-    # Use callbacks to share common setup or constraints between actions.
+    # Use callbacks to share common setup or constraints between actions. See comment above where called
+    # ActiveRecord::RecordNotFound - Couldn't find Street with 'id'=maps: [from rails server log]
+    # If remove get other errors
+    # undefined method `extent_array' for nil:NilClass
     def set_street
       @street = Street.find(params[:id])
     end

@@ -224,10 +224,9 @@ function overviewMap() {
 //  #############################
 // pulled out this function to help debug overlaySelector
 function findSelectedMap(mapID, cb) {
-  $.getJSON('maps.json', function(json) { // not sure what this json is, but without it, the each never happens
-    let i = 1;
+   $.getJSON('/maps.json', function(json) { // not sure what this json is, but without it, the each never happens. The leading slash says that map.json is at the top level
+     let i = 1; // only for console.log
     json.forEach(function(entry) {
-      // console.log(`234-${i}. inside loop looking for matching map id`)
       // Should stop the if once a match is found, but the loop is set by the each and not sure how to stop 
       if (entry.maps.id == mapID) {
         changeLayerTo = entry.maps.url;
@@ -246,7 +245,6 @@ function overlaySelector() {
   $( "#select-overlay" ).change(function() {
     // Get layer selected. Identify by map.id as set in _overlay_selector.html.erb    
     mapID = $("#select-overlay input[type='radio']:checked").val();
-    console.log(`251. mapID (map.id): ${mapID}`);
     // The function that is passed in is executed after the json.forEach is executed.
     findSelectedMap(mapID, function() {
         currentLayer = L.tileLayer(changeLayerTo).addTo(map);
@@ -263,12 +261,10 @@ function overlaySelector() {
           // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
           opacitySlider = new L.Control.opacitySlider();
           map.addControl(opacitySlider);
-
           // Specify the layer for which you want to modify the opacity. 
           // Note that the setOpacityLayer() method applies to all the controls.
           // You only need to call it once.
           opacitySlider.setOpacityLayer(currentLayer);
-
           //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
           currentLayer.setOpacity(0.5);
           previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
@@ -283,7 +279,5 @@ function overlaySelector() {
         } // end if 
         addOpacitySlider(currentLayer);
     }); // using mapID, find the url, zoom for overlayMap selected    
-
-  }); // end $( "#select-overlay" ).
-  
+  }); // end $( "#select-overlay" ).  
 }; // end overlaySelector function
