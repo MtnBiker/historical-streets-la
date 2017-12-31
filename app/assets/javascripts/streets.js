@@ -223,7 +223,7 @@ function overviewMap() {
 
 //  #############################
 // pulled out this function to help debug overlaySelector
-function findSelectedMap(mapID) {
+function findSelectedMap(mapID, cb) {
   console.log('227. findSelectedMap was called, but jumps out and then comes back after the rest of the calling function finishes. As if it saves the place and comes back. ')
   $.getJSON('maps.json', function(json) { // not sure what this json is, but without it, the each never happens
     console.log(`229. in getJSON json[1]: ${JSON.stringify(json[1])}`); // [1] since is shorter than the whole json
@@ -240,26 +240,12 @@ function findSelectedMap(mapID) {
         console.log(`240-${i}. mapID: ${mapID}. A match for the selected overview map has been found.`)
         console.log(`         url: ${entry.maps.url}`);
         console.log(`     maxZoom: ${maxZoom}. for the map selected`);
-        return false; // acts like a break inside a $().each, but not a forEach loop
+        // return false; // acts like a break inside a $().each, but not a forEach loop
       } // end if
         i += 1;
        
-    });
-    
-    // $(json).each(function(map, mapInfo) { // (key= 0,1,2, value=from database about item 0 in the list, i.e., id, name, zoom, url as object literal)
-    //   console.log(`230-${i}. inside loop looking for matching map id`)
-    //   // Should stop the if once a match is found, but the loop is set by the each and not sure how to stop
-    //   if (mapInfo.maps.id == mapID) {
-    //     console.log('234. triple checking callling order');
-    //     changeLayerTo = mapInfo.maps.url;
-    //     maxZoom = mapInfo.maps.zoom;
-    //     console.log(`235-${i}. mapID: ${mapID}. A match for the selected overview map has been found.`)
-    //     console.log(`         url: ${mapInfo.maps.url}`);
-    //     console.log(`     maxZoom: ${maxZoom}. for the map selected`);
-    //     return false; // acts like a break inside a $().each. It does work
-    //   } // end if
-    //     i += 1;
-    // }); // end $.each
+    }); // end json.forEach
+    cb();
   }); // end $.getJSON
 }; // end findSelectedMap
 
@@ -270,11 +256,14 @@ function overlaySelector() {
     // Get layer selected. Identify by map.id as set in _overlay_selector.html.erb    
     mapID = $("#select-overlay input[type='radio']:checked").val();
     console.log(`251. mapID (map.id): ${mapID}`);
-    findSelectedMap(mapID); // using mapID, find the url, zoom for overlayMap selected
+    // findSelectedMap(mapID); // using mapID, find the url, zoom for overlayMap selected
+    findSelectedMap(mapID, function() {
+        currentLayer = L.tileLayer(changeLayerTo).addTo(map);
+    }); // using mapID, find the url, zoom for overlayMap selected    
     console.log('253. Seems to be called before above loop happens, i.e., should see line 230 before this.')
     console.log(`255. changeLayerTo ${changeLayerTo}. TODO. When not undefined, remove following line.`) 
-    changeLayerTo = 'https://crores.s3.amazonaws.com/tiles/1857Bancroft/{z}/{x}/{y}.png'; // DEBUG
-    currentLayer = L.tileLayer(changeLayerTo).addTo(map);
+    // changeLayerTo = 'https://crores.s3.amazonaws.com/tiles/1857Bancroft/{z}/{x}/{y}.png'; // DEBUG
+    // currentLayer = L.tileLayer(changeLayerTo).addTo(map);
     currentZoom = map.getZoom();
     // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
     // may want to just set the zoom so can be seen and let people overzoom
