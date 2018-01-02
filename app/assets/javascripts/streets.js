@@ -87,6 +87,7 @@ function showMap(popupText) {
   // Sets up map, but if there is a linestring defined will zoom to that in the next if statement
   // But need a baselayer and a overlayLayer for opacitySlider to load
   // Now trying to add the overlayLayer without L.control.activeLayers
+  if (map != undefined) { map.remove(); } // is this too crude? TODO find out why this happening
   map = L.map('map', {zoomDelta: 0.25,
                       zoomSnap: 0.25
   }).setView([34.05, -118.25], 13);
