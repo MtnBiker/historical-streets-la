@@ -1,5 +1,3 @@
-* Add a field so we know who edited the item. Check that this works
-
 * Add search for street and return to map at center of the segment
 
 * 1928 Hill's needs more detailed georeferencing
@@ -7,8 +5,6 @@
 * 1902 Rueger needs trimming. Unfortunately probably have to georef again.
 
 * Date slider on overview map. Even better if overview maps synced by date.
-
-* Overlay maps don't display when clicked on if not in zoom range.
 
 * Section 5.3.4 testing mostly not working
  
@@ -26,8 +22,6 @@
  
 * Login should take you back to the page you were on
  
-* Add attribution to changes
-
 * Put up a notice if no coverage available for the map selected.
  
 * The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. Maybe with next version I'll did into it.
@@ -49,3 +43,4 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 * Notices appear twice. Note that in Map>show after an edit, one of the notices is borked, so only get rid of that one
 
 * Some if not all maps give errors for tiles that don't exist. E.g., 1909gates/13/1406/… at least when load outside its range
+

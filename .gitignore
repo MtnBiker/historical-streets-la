@@ -113,8 +113,9 @@ bower.json
 /spring/*pid
 
 # A map of how map is created and other macOS app files stored here for convenience
-.intaglio
+*.intaglio/
 .numbers
+/JavaScript program flow.intaglio/
 
 # Specific files like notes
 testNotes.txt
