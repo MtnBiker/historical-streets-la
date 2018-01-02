@@ -13,8 +13,7 @@
       var popupText = "&le;<%= @street.dateEarliest %><br><%= @street.prevName %><br>&ge;<%= @street.dateLatest %><br><%= @street.currentName %>";
       // $(document).on("ready page:load", function() { // have to reload to get page to show
       // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
-      $(document).on("turbolinks:load", function() 
-      {
+      $(document).on("turbolinks:load", function() {
          showMap(popupText);
       });
     </script>

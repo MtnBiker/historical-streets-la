@@ -10,8 +10,9 @@ let map;
 var imagerySet = "Road"; // AerialWithLabels | Birdseye | BirdseyeWithLabels | Road -- select one forBing map. Using this with L.BingLayer. Could use with L.tileLayer.bing too
 let previousLayer;
 let opacitySlider; // global so works for remove
-let mapID;
+// let mapID;
 let maxZoom;
+let maxMapZoom;
 let currentLayer;
 let currentZoom;
 let changeLayerTo;
@@ -231,6 +232,7 @@ function findSelectedMap(mapID, cb) {
       if (entry.maps.id == mapID) {
         changeLayerTo = entry.maps.url;
         maxZoom = entry.maps.zoom;
+        maxMapZoom = entry.maps.zoom;
         // return false; // acts like a break inside a $().each, but not a forEach loop
       } // end if
       i =+ 1;
@@ -244,7 +246,7 @@ function overlaySelector() {
   // Adding overlays. This doesn't happen until one of the overlays is selected.  
   $( "#select-overlay" ).change(function() {
     // Get layer selected. Identify by map.id as set in _overlay_selector.html.erb    
-    mapID = $("#select-overlay input[type='radio']:checked").val();
+    let mapID = $("#select-overlay input[type='radio']:checked").val();
     // The function that is passed in is executed after the json.forEach is executed.
     findSelectedMap(mapID, function() {
         currentLayer = L.tileLayer(changeLayerTo).addTo(map);
@@ -252,9 +254,9 @@ function overlaySelector() {
         // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
         // may want to just set the zoom so can be seen and let people overzoom
         console.log(`255. currentZoom: ${currentZoom} and maxZoom: ${maxZoom}`)
-        if (currentZoom > maxZoom) {
-          // map.setMaxZoom(maxZoom+1); // not sure about doing this. In theory stops zooming past what can be shown
-          map.setZoom(maxZoom);
+        if (currentZoom > maxMapZoom) {
+          // map.setMaxZoom(maxMapZoom+1); // not sure about doing this. In theory stops zooming past what can be shown
+          map.setZoom(maxMapZoom);
         }    
         let addOpacitySlider = function(currentLayer) {
           // Create the opacity controls—the slider

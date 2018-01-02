@@ -149,7 +149,7 @@ To select radio button clicked https://stackoverflow.com/questions/596351/how-ca
 
 Maps not loading at Heroku. Upload goes fine and only one error TypeError: `Attempted to assign to readonly property`
 
-Getting errors because leaflet-rails isn't using latest version (1.1 vs. 1.2), but when I switched caused other problems (I probably didn't put in the reference in the right file.); but decided to wait for a while and see if the gem gets fixed.
+~~Getting errors because leaflet-rails isn't using latest version (1.1 vs. 1.2), but when I switched caused other problems (I probably didn't put in the reference in the right file.); but decided to wait for a while and see if the gem gets fixed. NOTE: moot, see below for Leaflet~~ 
 
 big_map changed to (streets) overview. Map is the list of background maps. Overview  shows all the streets. Made to change to avoid potential confusion in testing, map meant two things. This got rid of a test error!
 
@@ -165,7 +165,7 @@ Editing is now GeoJSON stored in extent_json. Legacy extent_array still there un
 
 https://gis.stackexchange.com/questions/166863/how-to-calculate-the-bounding-box-of-a-geojson-object-using-python-or-javascript to get fitBounds to work. Using another function
 
-(Paper Trail )[https://github.com/airblade/paper_trail] including undo http://railscasts.com/episodes/255-undo-with-paper-trail and product.versions.reload (I think the passing true to the scope/relation is getting phased out in favor of reload, which I think is better), from the comments. Also namespacing:  @version =  PaperTrail::Version.find(params[:id]) in version.controller
+(Paper Trail )[https://github.com/airblade/paper_trail] including **undo** http://railscasts.com/episodes/255-undo-with-paper-trail and product.versions.reload (I think the passing true to the scope/relation is getting phased out in favor of reload, which I think is better), from the comments. Also namespacing:  @version =  PaperTrail::Version.find(params[:id]) in version.controller
 
 Two things needed. Color of lines. fitBounds for overview; although this is less critical as map gets filled up
 
@@ -176,3 +176,5 @@ Trying to add feature that map will zoom to max level instead of showing a blank
  - Looking through streets.js. Need to take stuff out of showMap that doesn't happen until overlay maps are added
    
 jQuery UI needed by Leaflet.OpacityControls (slider)
+
+**JavaScript program flow.intaglio** to see how the parts fit together
