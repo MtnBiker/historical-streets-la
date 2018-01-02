@@ -21,7 +21,7 @@ a {
 }
 
 a:visited {
-  color: #666;
+  color: white;  //Was #666 which didn't work well. Presuaabley Rails did this
 }
 
 a:hover {
