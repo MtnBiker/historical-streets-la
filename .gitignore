@@ -116,6 +116,9 @@ bower.json
 *.intaglio/
 .numbers
 /JavaScript program flow.intaglio/
+"JavaScript program flow.intaglio/Drawing"
+"JavaScript program flow.intaglio/Export.svg"
+30.trans.cp.tif
 
 # Specific files like notes
 testNotes.txt
