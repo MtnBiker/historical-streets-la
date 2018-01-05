@@ -32,7 +32,8 @@
   </thead>
 
   <tbody>
-    <% @streets.each do |street| %>
+    <% for street in @streets %>
+    <!-- < @streets.each do |street|  >  works too add  percent signs back in, the other one looks better -->
       <tr>
         <td><% if street.city != "Los Angeles" %><%= street.city %><% end %></td>
         <td><%= street.prevName %></td>

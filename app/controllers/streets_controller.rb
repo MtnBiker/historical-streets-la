@@ -9,6 +9,11 @@ class StreetsController < ApplicationController
   def index
     @streets = Street.all # Without pagination. Added Listing 10.46
     # @streets = Street.paginate(page: params[:page]) # With pagination
+    if params[:search]
+      @streets = Street.search(params[:search]) # .order("created_at DESC") # sorting is elsewhere but search is messing it up
+    else
+      @streets = Street.all #  .order("created_at DESC")
+    end
   end
 
   # GET /streets/1
