@@ -5,18 +5,35 @@ class Street < ApplicationRecord
   
   # alias_attribute :first_name, :FirstName
   
+  # def self.search(search)
+  #   search = "%" + "#{search}" + "%"  # otherwise have to have "%#{search}%" below instead of one word
+  #       # failed when tried "%#{search}%" or '%#{search}%' can put space around between the #{} but then the space is there and don't know if that messes up SQL
+  #       # More complicated syntax is needed for camelCase fields. But seems to be needed for all fields. If use shorter syntax those fields are missed--not sure what's going on ref1, ref2 and ref3 don't seem to be being searched.
+  #       # Ahh, only searching on the last field in the list
+  #   self.where('"streets"."prevName" ILIKE ?' , search)
+  #   self.where('"streets"."currentName" ILIKE ?' , search)
+  #   self.where('"streets"."dateEarliest" ILIKE ?' , search)
+  #   self.where('"streets"."dateLatest" ILIKE ?' , search)
+  #   self.where('"streets"."ref1" ILIKE ?', search)
+  #   self.where('"streets"."ref2" ILIKE ?', search)
+  #   self.where('"streets"."ref3" ILIKE ?', search)
+  #   self.where('"streets"."notes" ILIKE ?', search)
+  #   self.where('"streets"."where" ILIKE ?', search)
+  # end
+  
   def self.search(search)
-    search = "%" + "#{search}" + "%"  # otherwise have to have "%#{search}%" below instead of one word
-        # failed when tried "%#{search}%" or '%#{search}%' can put space around between the #{} but then the space is there and don't know if that messes up SQL
-    self.where('"streets"."prevName" ILIKE ?' , search)
-    # self.where('"streets"."currentName" ILIKE ?' , search)
-    # self.where('"streets"."dateEarliest" ILIKE ?' , search)
-    # self.where('"streets"."dateLatest" ILIKE ?' , search)
-    # self.where("ref1 ILIKE ?", search)
-    # self.where("ref2 ILIKE ?", search)
-    # self.where("ref3 ILIKE ?", search)
-    # self.where("notes ILIKE ?", search)
+    where("ref1 ILIKE ? OR ref2 ILIKE ? OR ref3 ILIKE ? OR notes ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")     
   end
+
+# Trying a different concatenation of multiple. Didn't work
+  # def self.search(search)
+  #   search = "%" + "#{search}" + "%"  # otherwise have to have "%#{search}%" below instead of one word
+  #       # failed when tried "%#{search}%" or '%#{search}%' can put space around between the #{} but then the space is there and don't know if that messes up SQL
+  #       # More complicated syntax is needed for camelCase fields. But seems to be needed for all fields. If use shorter syntax those fields are missed--not sure what's going on ref1, ref2 and ref3 don't seem to be being searched. Ahh, only searching on the last field in the list
+  #   # self.where('"streets"."prevName" ILIKE ?' OR '"streets"."currentName" ILIKE ?', search, search) # syntax error, unexpected tCONSTANT, expecting ')' treets"."prevName" ILIKE ?' OR '"streets"."currentName" ILIK
+  #   self.where('"streets"."where" ILIKE ?', search); # this does work
+  # end
+  
 end
 
 
