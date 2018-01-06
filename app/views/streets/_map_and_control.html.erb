@@ -10,7 +10,7 @@
     <script>
       // showMap() is in assets/javascripts/streets.js
 
-      var popupText = "&le;<%= @street.dateEarliest %><br><%= @street.prevName %><br>&ge;<%= @street.dateLatest %><br><%= @street.currentName %>";
+      var popupText = "&le;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&ge;<%= @street.date_latest %><br><%= @street.current_name %>";
       // $(document).on("ready page:load", function() { // have to reload to get page to show
       // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
       $(document).on("turbolinks:load", function() {

@@ -1,4 +1,4 @@
-<% provide(:title, @street.prevName) %>
+<% provide(:title, @street.previous_name) %>
 <h1>Historic Street Name</h1>
 
 <div class="row">
@@ -12,22 +12,22 @@
 
     <p>
       <strong>Previous Street Name:</strong>
-      <%= @street.prevName %>
+      <%= @street.previous_name %>
     </p>
 
     <p>
       <strong>'Current/Next' Street Name:</strong>
-      <%= @street.currentName %>
+      <%= @street.current_name %>
     </p>
 
     <p>
       <strong>Earliest Date for 'Previous' Name:</strong>
-      <%= @street.dateEarliest %>
+      <%= @street.date_earliest %>
     </p>
 
     <p>
       <strong>Latest Date for 'Previous' Name:</strong>
-      <%= @street.dateLatest %>
+      <%= @street.date_latest %>
     </p>
 
     <p>
@@ -47,7 +47,7 @@
 
     <p>
       <strong>Approximate Number of Blocks:</strong>
-      <%= @street.numBlocks %>
+      <%= @street.number_of_blocks %>
     </p>
 
     <p>

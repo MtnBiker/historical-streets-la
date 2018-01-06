@@ -6,7 +6,7 @@ class OverviewController < ApplicationController
   end
 
   def overview_data
-    # @segments = Street.select("dateEarliest, prevName, dateLatest, currentName, extent_json")
+    # @segments = Street.select("date_earliest, previous_name, date_latest, current_name, extent_json")
     @segments = Street.all # produces json. SQL via console: SELECT "streets".* FROM "streets"
   end
   

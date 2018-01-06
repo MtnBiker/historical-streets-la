@@ -92,13 +92,13 @@ label {
 }
 
 // Trying to set width of field in new and edit
-// #street_currentName {
+// #street_current_name {
 //   max-width: 280px;
 // }
 
 // Following doesn't work. I have it set in the _form.html.erb
-#street_currentName
-.field.currentName {
+#street_current_name
+.field.current_name {
   width:95%;
   size: 200px;
 }

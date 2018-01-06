@@ -18,6 +18,6 @@ class StreetTest < ActiveSupport::TestCase
     street = Street.new
     assert street.invalid?
     assert street.errors[:currentName].any?
-    assert street.errors[:prevName].any?
+    assert street.errors[:previous_name].any?
   end
 end

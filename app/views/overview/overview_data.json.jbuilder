@@ -10,7 +10,7 @@ json.features @segments do |street|
 
     json.properties do
        # title is for popup/rollover
-       json.title h("Was #{street.prevName} before #{street.dateEarliest} and now is #{street.currentName} #{street.dateLatest}.")
+       json.title h("Was #{street.previous_name} before #{street.date_earliest} and now is #{street.current_name} #{street.date_latest}.")
        # This breaks it, but fixable.
        # json.link = h(<a href=\"street/#{link}\">link</a>)  # if add this to above it comes across as is without the \, but no real link
        json.link = street.id # to use to make link in .js

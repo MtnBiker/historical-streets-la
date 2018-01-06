@@ -36,12 +36,12 @@
     <!-- < @streets.each do |street|  >  works too add  percent signs back in, the other one looks better -->
       <tr>
         <td><% if street.city != "Los Angeles" %><%= street.city %><% end %></td>
-        <td><%= street.prevName %></td>
-        <td><%= street.dateEarliest %></td>
-        <td><%= street.currentName %></td>
-        <td><%= street.dateLatest %></td>
+        <td><%= street.previous_name %></td>
+        <td><%= street.date_earliest %></td>
+        <td><%= street.current_name %></td>
+        <td><%= street.date_latest %></td>
         <td><%= street.where %></td>
-        <td><%= street.numBlocks %></td>
+        <td><%= street.number_of_blocks %></td>
           <% if street.extent? || street.extent_array? %>
             <td class="extent-yes">Yes</td>
           <% else %>

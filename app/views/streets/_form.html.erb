@@ -27,24 +27,24 @@
 
             <div class="field">
               <%= form.label "Previous Name" %>
-              <%= form.text_field :prevName, id: :street_prevName %>
+              <%= form.text_field :previous_name, id: :street_previous_name %>
             </div>
 
             <div class="field">
               <%= form.label "Current Street Name" %>
-              <%= form.text_field :currentName, id: :street_currentName, placeholder: "Name at end of period (Latest confirmed date)", :size=>"95%" %> <!-- whether size or maxlength it goes full -->
+              <%= form.text_field :current_name, id: :street_current_name, placeholder: "Name at end of period (Latest confirmed date)", :size=>"95%" %> <!-- whether size or maxlength it goes full -->
             </div>
 
             <div class="row">
               <div class="col-lg-12 text-center font-bold">For Previous Street Name</div>
                 <div class="field col-lg-6">
                   <%= form.label "Earliest Confirmed Date" %>
-                  <%= form.text_field :dateEarliest, id: :street_dateEarliest %>
+                  <%= form.text_field :date_earliest, id: :street_date_earliest %>
                 </div>
 
                 <div class="field col">
                   <%= form.label "Latest Confirmed Date" %>
-                  <%= form.text_field :dateLatest, id: :street_dateLatest %>
+                  <%= form.text_field :date_latest, id: :street_date_latest %>
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
 
             <div class="field">
               <%= form.label "Approximate Number of Blocks this entry is about" %>
-              <%= form.text_field :numBlocks, id: :street_numBlocks %>
+              <%= form.text_field :number_of_blocks, id: :street_number_of_blocks %>
             </div>
 
             <p>List each reference in a separate field.</p>
