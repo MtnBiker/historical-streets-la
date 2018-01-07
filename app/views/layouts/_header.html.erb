@@ -29,34 +29,17 @@
         <li class="nav-item"><%= link_to "Map list", maps_path, class: "nav-link" %></li>
       <% else %>
         <li class="nav-item"><%= link_to "Log in", login_path, class: "nav-link" %></li>
-      <% end %>
-      </div> <!-- end drop down menu which also has log in which shows without logging in -->
+      <% end %>  <!-- if logged_in -->
       </li>
     </ul>
-    <!-- Placeholder for search from Bootstrap. Search shows twice--one is the box, the other is a button. -->
-        <!-- <form class="form-inline mt-2 mt-md-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> --> 
+   
 <!-- A Rails search from http://guides.rubyonrails.org/form_helpers.html#a-generic-search-form and classes from Bootstrap-->
-<!--http://www.rymcmahon.com/articles/2 See also Rails Cast -->
-          
+<!-- http://www.rymcmahon.com/articles/2 See also Rails Cast -->
 
-    <span class="form-inline mt-2 mt-md-0">
-      <%= form_tag(streets_path, method: "get", class:"", id: "search-form") do %>
+      <%= form_tag(streets_path, method: "get", class:"form-inline mt-2 mt-md-0", id: "search-form") do %>
       <%= text_field_tag :search, params[:search], placeholder: "Search…", class: "form-control mr-sm-2"  %>
-      <%= submit_tag("Search", class: "btn btn-outline-success my-2 my-sm-0", :name => nil) %>
-      <% end %>
-    </span>
+      <%= button_tag("Search", class: "btn btn-outline-success my-2 my-sm-0", :name => nil) %><i class="icon-repeat"></i>
+      <% end %> <!-- end do. Search form -->
 
   </div>
 </nav>
-
-
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Just testing how this looks and see if can apply to search above" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button">Test for Search Formatting Button</button>
-  </div>
-</div>
-
