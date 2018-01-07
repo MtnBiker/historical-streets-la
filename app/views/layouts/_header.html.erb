@@ -1,37 +1,36 @@
 <!-- Bootstrap Fixed top.  Not sure about toggleable part -->
 <!-- Modeled after /Users/gscar/Downloads/bootstrap-4.0.0-beta/docs/4.0/examples/navbar-top-fixed/index.html-->
 <!-- Massively screwed up after maybe upgrading to beta, first first nav and button sections copied over-->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <%= link_to "Historic Street Names in Los Angeles", root_path, class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+
   <div class="collapse navbar-collapse" id="navbarCollapse"> <!-- Is navbarCollapse styled? -->
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <%= link_to "Home", root_path, class: "nav-link" %><span class="sr-only">(current)</span></a>
-      </li>
+      <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %><span class="sr-only">(current)</span></a></li>
       <li><%= link_to "Map", overview_path, class: "nav-link" %> </li>
-      <li class="nav-item"><%= link_to "Street List",  streets_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "Streets",  streets_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "About",  about_path, class: "nav-link" %></li>
       <% if logged_in? %>
         <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link" %></li>
 
-        <!-- Dropdown starts -->
+        <!-- Dropdown starts Confusing because a dropdown menu and Map List item appear when logged in-->
         <!-- Accessible Rich Internet Applications (ARIA) for accesibility -->
          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a> <!-- <a c href="#">Action</a> -->
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <%= link_to "Profile", current_user, class: "dropdown-item" %>
-            <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>
-
+           <a class="nav-link dropdown-toggle"  id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Profile",  current_user, class: "dropdown-item" %>
+              <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Log out",  logout_path, method: :delete, class: "dropdown-item" %>
+           </div>
+          </li>
         <li class="nav-item"><%= link_to "Map list", maps_path, class: "nav-link" %></li>
       <% else %>
-        <%= link_to "Log in", login_path, class: "dropdown-item" %>
+        <li class="nav-item"><%= link_to "Log in", login_path, class: "nav-link" %></li>
       <% end %>
-      </div>
+      </div> <!-- end drop down menu which also has log in which shows without logging in -->
       </li>
     </ul>
     <!-- Placeholder for search from Bootstrap. Search shows twice--one is the box, the other is a button. -->
@@ -42,9 +41,22 @@
 <!-- A Rails search from http://guides.rubyonrails.org/form_helpers.html#a-generic-search-form and classes from Bootstrap-->
 <!--http://www.rymcmahon.com/articles/2 See also Rails Cast -->
           
-      <%= form_tag(streets_path, method: "get", class:"form-inline mt-2 mt-md-0", id: "search-form") do %>
-         <%= text_field_tag :search, params[:search], placeholder: "Search…", class: "form-control mr-sm-2"  %>
-        <%= submit_tag("Search", class: "btn btn-outline-success my-2 my-sm-0", :name => nil) %>
+
+    <span class="form-inline mt-2 mt-md-0">
+      <%= form_tag(streets_path, method: "get", class:"", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search…", class: "form-control mr-sm-2"  %>
+      <%= submit_tag("Search", class: "btn btn-outline-success my-2 my-sm-0", :name => nil) %>
       <% end %>
+    </span>
+
   </div>
 </nav>
+
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Just testing how this looks and see if can apply to search above" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button">Test for Search Formatting Button</button>
+  </div>
+</div>
+
