@@ -37,8 +37,8 @@
 <!-- http://www.rymcmahon.com/articles/2 See also Rails Cast -->
 
       <%= form_tag(streets_path, method: "get", class:"form-inline mt-2 mt-md-0", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Search…", class: "form-control mr-sm-2"  %>
-      <%= button_tag("Search", class: "btn btn-outline-success my-2 my-sm-0", :name => nil) %><i class="icon-repeat"></i>
+      <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2", placeholder: "Search…"  %>
+      <%= button_tag("Search", class: "btn btn-outline-success my-2 my-sm-0", :name => nil) %>
       <% end %> <!-- end do. Search form -->
 
   </div>

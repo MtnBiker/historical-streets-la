@@ -99,6 +99,8 @@ GEM
     erubi (1.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -299,6 +301,7 @@ DEPENDENCIES
   carrierwave (= 1.1.0)
   database_cleaner
   dotenv-rails
+  font-awesome-rails
   gon
   guard (= 2.14.1)
   guard-minitest (= 2.4.6)
