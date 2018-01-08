@@ -19,10 +19,8 @@
 
           <div class="form-inputs">
             <div class="field">
-              <%= form.label "City unless LA" %>
-              <% if street.city != "Los Angeles" %>
-                <%= form.text_field :city, id: :street_city %>
-              <% end %>
+              <%= form.label "City" %>
+              <%= form.text_field :city, id: :street_city %>
             </div>
 
             <div class="field">

@@ -32,15 +32,5 @@
       <% end %>  <!-- if logged_in -->
       </li>
     </ul>
-
-<!-- A Rails search from http://guides.rubyonrails.org/form_helpers.html#a-generic-search-form and classes from Bootstrap-->
-<!-- http://www.rymcmahon.com/articles/2 See also Rails Cast -->
-
-    <%= link_to 'Show All Streets', streets_path, class: "btn btn-outline-warning my-2 my-sm-0" %>
-&nbsp;&nbsp;
-      <%= form_tag(streets_path, method: "get", class:"form-inline mt-2 mt-md-0", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2", placeholder: "Search for…"  %>
-      <%= button_tag(('<i class="fa fa-search"> Submit Search</i>').html_safe, class: "btn btn-outline-success my-2 my-sm-0", :name => nil) %>
-      <% end %> <!-- end do. Search form -->
   </div>
 </nav>
