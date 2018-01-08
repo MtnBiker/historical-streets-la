@@ -50,7 +50,7 @@
           <td><%= street.date_latest %></td>
           <td><%= street.cross_streets %></td>
           <td><%= street.number_of_blocks %></td>
-            <% if street.extent? || street.extent_array? %>
+            <% if street.extent_json? || street.extent_array? %>
               <td class="extent-yes">Yes</td>
             <% else %>
               <td class='extent-no'>No</td>
