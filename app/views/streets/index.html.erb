@@ -11,67 +11,74 @@
 <br><br>
 <!-- < = will_paginate %> Following Hartl  -->
 
-<!-- table table-striped table-hover table-responsive - - Losses vertical centering -->
-<table class="streets pretty table table-striped table-hover table-responsive">
-  <thead>
-    <tr>
-      <th>City if not LA</th>
-      <th>Previous Name</th>
-      <th>Earliest Date for Prev Name</th>
-      <th>Current (Latest)</th>
-      <th>Latest Date</th>
-      <th>Cross Streets</th>
-      <th>Approx. Number of Blocks</th>
-      <th>Section Drawn?</th>
-      <th>Ref. 1</th>
-      <th>Ref. 2</th>
-      <th>Ref. 3</th>
-      <th>Notes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% if @streets.blank? %>
+  <h5 class="font-bold-red">No search results for "<%= params[:search]%>"</h5>
+  Search again above right or 
+  <button type="button" class="btn btn-primary" >
+    <%= link_to 'List All Streets', streets_path %>
+  </button>
+<% else %>  <!-- Show the table of found or all streets -->
 
-  <tbody>
-    <% for street in @streets %>
-    <!-- < @streets.each do |street|  >  works too add  percent signs back in, the other one looks better -->
+  <!-- table table-striped table-hover table-responsive - - Losses vertical centering -->
+  <table class="streets pretty table table-striped table-hover table-responsive">
+    <thead>
       <tr>
-        <td><% if street.city != "Los Angeles" %><%= street.city %><% end %></td>
-        <td><%= street.previous_name %></td>
-        <td><%= street.date_earliest %></td>
-        <td><%= street.current_name %></td>
-        <td><%= street.date_latest %></td>
-        <td><%= street.cross_streets %></td>
-        <td><%= street.number_of_blocks %></td>
-          <% if street.extent? || street.extent_array? %>
-            <td class="extent-yes">Yes</td>
-          <% else %>
-            <td class='extent-no'>No</td>
-          <% end %>
-        <td><%= street.ref1 %></td>
-        <td><%= street.ref2 %></td>
-        <td><%= street.ref3 %></td>
-        <td><%= street.notes %></td>
-        <td><%= link_to 'Show', street %></td>
-        <% if logged_in? %>
-          <td><%= link_to 'Edit', edit_street_path(street) %></td>
-          <td><%= link_to 'Destroy', street, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <th>City if not LA</th>
+        <th>Previous Name</th>
+        <th>Earliest Date for Prev Name</th>
+        <th>Current (Latest)</th>
+        <th>Latest Date</th>
+        <th>Cross Streets</th>
+        <th>Approx. Number of Blocks</th>
+        <th>Section Drawn?</th>
+        <th>Ref. 1</th>
+        <th>Ref. 2</th>
+        <th>Ref. 3</th>
+        <th>Notes</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<!-- < = will_paginate %> -->
+    <tbody>
+      <% for street in @streets %>
+        <tr>
+          <td><% if street.city != "Los Angeles" %><%= street.city %><% end %></td>
+          <td><%= street.previous_name %></td>
+          <td><%= street.date_earliest %></td>
+          <td><%= street.current_name %></td>
+          <td><%= street.date_latest %></td>
+          <td><%= street.cross_streets %></td>
+          <td><%= street.number_of_blocks %></td>
+            <% if street.extent_json? || street.extent_array? %>
+              <td class="extent-yes">Yes</td>
+            <% else %>
+              <td class='extent-no'>No</td>
+            <% end %>
+          <td><%= street.ref1 %></td>
+          <td><%= street.ref2 %></td>
+          <td><%= street.ref3 %></td>
+          <td><%= street.notes %></td>
+          <td><%= link_to 'Show', street %></td>
+          <% if logged_in? %>
+            <td><%= link_to 'Edit', edit_street_path(street) %></td>
+            <td><%= link_to 'Destroy', street, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<footer class="footer">
-  <div class="container">
-    <p>References</p>
-    <p class="text-muted">Baist: Georeferenced against 1921 Baist Insurance maps to contemporary (~ 2017 Bing and OSM)</p>
-    <p class="text-muted">* Morse:	http://stevemorse.org/census/changes/LosAngelesChanges2.htm</p>
-    <p class="text-muted">** Morse: http://stevemorse.org/census/changes/LosAngelesChanges1.htm</p>
-  </div>
-</footer>
+  <!-- < = will_paginate %> -->
 
+  <footer class="footer">
+    <div class="container">
+      <p>References</p>
+      <p class="text-muted">Baist: Georeferenced against 1921 Baist Insurance maps to contemporary (~ 2017 Bing and OSM)</p>
+      <p class="text-muted">* Morse:	http://stevemorse.org/census/changes/LosAngelesChanges2.htm</p>
+      <p class="text-muted">** Morse: http://stevemorse.org/census/changes/LosAngelesChanges1.htm</p>
+    </div>
+  </footer>
+  <% end %> <!-- if @streets.blank? -->
 <br><br>
 <% if logged_in? %>
   <button type="button" class="btn btn-primary-outline" >

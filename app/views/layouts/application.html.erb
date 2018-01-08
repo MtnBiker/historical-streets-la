@@ -25,10 +25,6 @@
         <%= content_tag(:div, raw(message), class: "alert alert-#{message_type}") %>
       <% end %>
 
-      <% if @streets.blank? %>
-        <h5 class="font-bold-red center">No search results for "<%= params[:search]%>"</h5>
-      <% end %>
-
       <%= yield %>
 
     </div>

@@ -178,3 +178,7 @@ Trying to add feature that map will zoom to max level instead of showing a blank
 jQuery UI needed by Leaflet.OpacityControls (slider)
 
 **JavaScript program flow.intaglio** to see how the parts fit together
+
+change-camelcase-column-names to underscore so search would work. Some fixes worked but not all. Wasn't that bad.
+
+To get search icon: gem "font-awesome-rails" @import "font-awesome"; <i class="fa fa-search"></i> , but can also use <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">. Although not the Rails way, is simpler. Still don't have icon inside the search text box.
