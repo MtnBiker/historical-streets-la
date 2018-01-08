@@ -3,22 +3,37 @@
 <% provide(:title, @street) %>
 <!-- <h1>Historic Street Name Changes in Los Angeles</h1> -->
 
-<% if logged_in? %>
-  <button type="button" class="btn btn-primary-outline" >
-    <%= link_to 'Add New Historic Street', new_street_path %>
-  </button>
-<% end %>
+<!-- Four columns to organize buttons and such on top of the page -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <% if logged_in? %>
+        <button type="button" class="btn btn-primary" >
+          <%= link_to 'Add New Historic Street', new_street_path %>
+        </button>
+      <% end %>
+    </div>
+    <div class="col-sm"> <!-- Note that an if else is in this column and affects the rest of the page -->
+      <% if @streets.blank? %>
+        <p class="font-bold-red">Nothing found.</p>
+        <%= render 'search_streets' %>
+        <button type="button" class="btn btn-primary" >
+          <%= link_to 'Back to all Streets', streets_path %>
+        </button>
+      <% else %>  <!-- Show the table of found or all streets -->
+    </div>
+<!-- Search broken into two columns to get side by side. TODO should be able to use _search_streets.html.erb but it stacks in this format -->
+    <div class="col-sm float-right">
+      <%= form_tag(streets_path, method: "get", class:"form-inline mt-2 mt-md-0", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2", placeholder: "Search for…"  %>
+    </div>
+    <div class="col-sm">
+      <%= button_tag(('<i class="fa fa-search"> Submit Search</i>').html_safe, class: "btn btn-outline-success my-2 my-sm-0", :name => nil) %>
+      <% end %>
+  </div>
+</div>
 
 <!-- < = will_paginate %> Following Hartl  -->
-
-<% if @streets.blank? %>
-  <p class="font-bold-red">Nothing found.</p>
-  <%= render 'search_streets' %>
-  <button type="button" class="btn btn-primary" >
-    <%= link_to 'Back to all Streets', streets_path %>
-  </button>
-<% else %>  <!-- Show the table of found or all streets -->
-<%= render 'search_streets' %>
   <!-- table table-striped table-hover table-responsive - - Losses vertical centering -->
   <table class="streets pretty table table-striped table-hover table-responsive">
     <thead>
@@ -81,7 +96,7 @@
   <% end %> <!-- if @streets.blank? -->
 <br><br>
 <% if logged_in? %>
-  <button type="button" class="btn btn-primary-outline" >
+  <button type="button" class="btn btn-primary" >
     <%= link_to 'New Historic Street Entry', new_street_path %>
   </button>
 <% end %>

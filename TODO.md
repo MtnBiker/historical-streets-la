@@ -1,5 +1,3 @@
-* Add search for street and return to map at center of the segment
-
 * 1928 Hill's needs more detailed georeferencing
  
 * 1902 Rueger needs trimming. Unfortunately probably have to georef again.
@@ -23,6 +21,7 @@
 * Login should take you back to the page you were on
  
 * Put up a notice if no coverage available for the map selected.
+* Some if not all maps give errors for tiles that don't exist. E.g., 1909gates/13/1406/… at least when load outside its range
  
 * The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. Maybe with next version I'll did into it.
 
@@ -42,6 +41,4 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * Notices appear twice. Note that in Map>show after an edit, one of the notices is borked, so only get rid of that one
 
-* Some if not all maps give errors for tiles that don't exist. E.g., 1909gates/13/1406/… at least when load outside its range
-
-* Maybe `where`  should be renamed to something like `cross_streets` since where has meaning in SQL but it works now
+* Add a column for segment length

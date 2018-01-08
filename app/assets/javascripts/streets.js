@@ -5,8 +5,8 @@
 // First set up common variables, then function specific to each show and edit
 // Used to be _map.initial.js.erb and _leafletmap.show.html.erb which may be able to delete TODO
 // Declare global variables used by both functions
-let map;
-console.log(`8. streets.js. Declaring variables. map: ${map}`)
+let laMap;
+console.log(`8. streets.js. Declaring variables. laMap: ${laMap}`)
 // var bing;
 var imagerySet = "Road"; // AerialWithLabels | Birdseye | BirdseyeWithLabels | Road -- select one forBing map. Using this with L.BingLayer. Could use with L.tileLayer.bing too
 let previousLayer;
@@ -85,18 +85,23 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
 // Used also by overviewMap
 
 function showMap(popupText) {
-  console.log(`88. streets.js. Top of showMap. map: ${map}`)
+  console.log(`88. streets.js. Top of showMap. laMap: ${laMap}`)
   // Sets up map, but if there is a linestring defined will zoom to that in the next if statement
   // But need a baselayer and a overlayLayer for opacitySlider to load
   // Now trying to add the overlayLayer without L.control.activeLayers
-  if (map != undefined) { map.remove(); } // is this too crude? TODO find out why this happening
-  map = L.map('map', {zoomDelta: 0.25,
+  if (laMap != undefined) {
+    laMap.remove();
+    let laMap;
+  } else {
+  } 
+  // It shouldn't be necessary as map is reassigned in the next line, why does it matter if it's already defined.
+  laMap = L.map('map', {zoomDelta: 0.25,
                       zoomSnap: 0.25
   }).setView([34.05, -118.25], 13);
-  console.log(`96. streets.js. showMap. map just defined: ${map}`)
-  // osmMap.addTo(map); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
-  bing.addTo(map); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
-  L.control.layers(baseLayers).addTo(map); // baseLayers defined about ten lines above
+  console.log(`96. streets.js. showMap. laMap just defined: ${laMap}`)
+  // osmMap.addTo(laMap); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
+  bing.addTo(laMap); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
+  L.control.layers(baseLayers).addTo(laMap); // baseLayers defined about ten lines above
 
 // Above established the basemap as Bing or OSM. Now add street segments
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
@@ -108,14 +113,14 @@ function showMap(popupText) {
     // But also have to pick between streetExtentArray and streetExtentJson (should be able to eliminate streetExtentArray when data all in streetExtentJson. I had both because had trouble getting one or the other working.)
     if (streetExtentJson != null && streetExtentJson.length > 2) {
       var streetExtentJson = JSON.parse(streetExtentJson); // without this "Invalid GeoJSON object." Even though look the same.
-      var geojsonLayer = L.geoJSON(streetExtentJson).addTo(map).bindPopup(popupText).openPopup();
-      map.fitBounds(geojsonLayer.getBounds()); // this is in place of fitBounds which doesn't work with GeoJSON because of the lat lng transposition
+      var geojsonLayer = L.geoJSON(streetExtentJson).addTo(laMap).bindPopup(popupText).openPopup();
+      laMap.fitBounds(geojsonLayer.getBounds()); // this is in place of fitBounds which doesn't work with GeoJSON because of the lat lng transposition
     } else { 
       if (streetExtentArray != undefined && streetExtentArray.length > 2)
         { // can get rid of this when done with streetExtentArray
       var arrayStreetExtent = JSON.parse(gon.streetExtentArray);
-      map.fitBounds(arrayStreetExtent); // zooms to area of interest
-      L.polyline(arrayStreetExtent).addTo(map).bindPopup(popupText).openPopup();
+      laMap.fitBounds(arrayStreetExtent); // zooms to area of interest
+      L.polyline(arrayStreetExtent).addTo(laMap).bindPopup(popupText).openPopup();
     } // end if within the else (streetExtentArray…/json)
   } // end else
 }; // end if 15 lines above
@@ -131,16 +136,16 @@ function showMap(popupText) {
           container.style.width = '200px';
           container.style.background = 'rgba(255,255,255,0.5)';
           container.style.textAlign = 'left';
-          map.on('zoomstart zoom zoomend', function(ev)
+          laMap.on('zoomstart zoom zoomend', function(ev)
           {
-          	gauge.innerHTML = 'Zoom level: ' + map.getZoom();
+          	gauge.innerHTML = 'Zoom level: ' + laMap.getZoom();
           })
           container.appendChild(gauge);
 
           return container;
         }
   	}); // end ZoomViewer
-  	(new ZoomViewer).addTo(map); // unknown to me syntax  TODO, not currently showing up
+  	(new ZoomViewer).addTo(laMap); // unknown to me syntax  TODO, not currently showing up
 
 // Put the layer selection control on the map. Note that we need two `layers` from the map definition
   // The event handler for changing the display after the selection of an overlayLayer?? Is this comment orphaned?
@@ -158,7 +163,7 @@ function editMap(popupText) {
 // https://github.com/Leaflet/Leaflet.draw/wiki/API-Reference#ldrawhandlers
   // Initialise the FeatureGroup to store editable layers
   var drawnItems = new L.FeatureGroup();
-  map.addLayer(drawnItems);
+  laMap.addLayer(drawnItems);
 
   // Initialise the draw control for only polyline and pass it the FeatureGroup of editable layers
   var drawControl = new L.Control.Draw({
@@ -176,10 +181,10 @@ function editMap(popupText) {
       featureGroup: drawnItems
     }
   }); // end drawControl
-  map.addControl(drawControl);
+  laMap.addControl(drawControl);
   // finished adding drawing controls
 
-  map.on('draw:created', function(e) {
+  laMap.on('draw:created', function(e) {
     // featureGroup.addLayer(e.layer); // might be equivalent to the following two lines
     var type = e.layerType,
       layer = e.layer;
@@ -192,7 +197,7 @@ function editMap(popupText) {
 
     // Add the drawn line to a layer to display it in the map.
     drawnItems.addLayer(layer);
-  }); // end map.on
+  }); // end laMap.on
 
   $('map').imageMapResize();
 
@@ -205,7 +210,7 @@ function overviewMap() {
 
 // The popup shows with just this , no bindPopup or openPopup
   
-  var segmentLayer = L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map);
+  var segmentLayer = L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(laMap);
   
   // Getting out of mapbox into Leaflet so can work with color, etc.
   // var data = loadURL('overview/overview_data.geojson');
@@ -215,7 +220,7 @@ function overviewMap() {
   //     }
   // }).bindPopup(function (layer) {
   //     return layer.feature.properties.description;
-  // }).addTo(map);
+  // }).addTo(laMap);
     
   // May need to openPopup. Read the following and ??
   // https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-leaflet
@@ -229,7 +234,7 @@ function overviewMap() {
 // pulled out this function to help debug overlaySelector
 function findSelectedMap(mapID, cb) {
    $.getJSON('/maps.json', function(json) { // not sure what this json is, but without it, the each never happens. The leading slash says that map.json is at the top level
-     console.log(`232. streets.js. in findSelectedMap and getJSON. map: ${map}`);
+     console.log(`232. streets.js. in findSelectedMap and getJSON. laMap: ${laMap}`);
      let i = 1; // only for console.log
     json.forEach(function(entry) {
       // Should stop the if once a match is found, but the loop is set by the each and not sure how to stop 
@@ -243,35 +248,35 @@ function findSelectedMap(mapID, cb) {
     }); // end json.forEach
     cb(); // the function passed in now goes. Which is putting the overlayMap and associated pieces on the page https://stackoverflow.com/questions/48039169/execution-order-of-javascript#48039220
   }); // end $.getJSON
-  console.log(`247. streets.js. end fo findSelectedMap. map: ${map}`);
+  console.log(`247. streets.js. end fo findSelectedMap. laMap: ${laMap}`);
 }; // end findSelectedMap
 
 // called by _overlaymap_selector.html.erb which is on streets > overview, show and edit. So ready to respond
 function overlaySelector() {
-  console.log(`251. streets.js. Top of overlaySelector. map: ${map}`);
+  console.log(`251. streets.js. Top of overlaySelector. laMap: ${laMap}`);
   // Adding overlays. This doesn't happen until one of the overlays is selected.  
   $( "#select-overlay" ).change(function() {
-    console.log(`254. streets.js. overlaySelector. Event handler set. map: ${map}`);
-    console.log(map)
+    console.log(`254. streets.js. overlaySelector. Event handler set. laMap: ${laMap}`);
+    console.log(laMap)
     // Get layer selected. Identify by map.id as set in _overlay_selector.html.erb    
     let mapID = $("#select-overlay input[type='radio']:checked").val();
     // The function that is passed in is executed after the json.forEach is executed.
     findSelectedMap(mapID, function() {
-      console.log(`259. streets.js. overlaySelector in findSelectedMap call. map: ${map}`);
-        currentLayer = L.tileLayer(changeLayerTo).addTo(map);
-        currentZoom = map.getZoom();
+      console.log(`259. streets.js. overlaySelector in findSelectedMap call. laMap: ${laMap}`);
+        currentLayer = L.tileLayer(changeLayerTo).addTo(laMap);
+        currentZoom = laMap.getZoom();
         // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
         // may want to just set the zoom so can be seen and let people overzoom
         console.log(`264. currentZoom: ${currentZoom} and maxZoom: ${maxZoom}`)
         if (currentZoom > maxMapZoom) {
-          // map.setMaxZoom(maxMapZoom+1); // not sure about doing this. In theory stops zooming past what can be shown
-          map.setZoom(maxMapZoom);
+          // laMap.setMaxZoom(maxMapZoom+1); // not sure about doing this. In theory stops zooming past what can be shown
+          laMap.setZoom(maxMapZoom);
         }    
         let addOpacitySlider = function(currentLayer) {
           // Create the opacity controls—the slider
           // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
           opacitySlider = new L.Control.opacitySlider();
-          map.addControl(opacitySlider);
+          laMap.addControl(opacitySlider);
           // Specify the layer for which you want to modify the opacity. 
           // Note that the setOpacityLayer() method applies to all the controls.
           // You only need to call it once.
