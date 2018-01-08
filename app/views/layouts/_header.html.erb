@@ -34,14 +34,6 @@
     </ul>
 
 <!-- A Rails search from http://guides.rubyonrails.org/form_helpers.html#a-generic-search-form and classes from Bootstrap-->
-<!--http://www.rymcmahon.com/articles/2 See also Rails Cast -->
-          
-      <%= form_tag(streets_path, method: "get", class:"form-inline mt-2 mt-md-0", id: "search-form") do %>
-         <%= text_field_tag :search, params[:search], placeholder: "Search…", class: "form-control mr-sm-2" %>
-        <%= submit_tag("Search", class: "btn btn-outline-success my-2 my-sm-0", :name => nil) %>
-      <% end %>
-   
-<!-- A Rails search from http://guides.rubyonrails.org/form_helpers.html#a-generic-search-form and classes from Bootstrap-->
 <!-- http://www.rymcmahon.com/articles/2 See also Rails Cast -->
 
     <%= link_to 'Show All Streets', streets_path, class: "btn btn-outline-warning my-2 my-sm-0" %>

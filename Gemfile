@@ -24,7 +24,7 @@ gem 'uglifier'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'bootstrap', '~> 4.0.0.beta3' # 4.0.0.beta3 new as of Dec 2017 (but not available to rubygems). bootstrap-sass is not compatiable with 4 (https://github.com/twbs/bootstrap-rubygem)
-gem "font-awesome-rails" # wanted to use an icon for search
+gem "font-awesome-rails" # wanted to use an icon for search. Might be easier to just use CDN
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
