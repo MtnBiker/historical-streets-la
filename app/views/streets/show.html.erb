@@ -16,17 +16,17 @@
     </p>
 
     <p>
-      <strong>'Current/Next' Street Name:</strong>
+      <strong>&lsquo;Current/Next&rsquo; Street Name:</strong>
       <%= @street.current_name %>
     </p>
 
     <p>
-      <strong>Earliest Date for 'Previous' Name:</strong>
+      <strong>Earliest Date for &lsquo;Previous&rsquo; Name:</strong>
       <%= @street.date_earliest %>
     </p>
 
     <p>
-      <strong>Latest Date for 'Previous' Name:</strong>
+      <strong>Latest Date for &lsquo;Previous&rsquo; Name:&nbsp;&nbsp;</strong>
       <%= @street.date_latest %>
     </p>
 
@@ -34,17 +34,6 @@
       <strong>Entry covers from cross street to cross street or similar:</strong>
       <%= @street.cross_streets %>
     </p>
-
-    <p class="json-extent">
-      <strong>Extent as JSON: [lng lat]</strong>
-      <%= @street.extent_json %>
-    </p>
-
-    <p class="json-extent">
-      <strong>Extent as Coordinate Array: [lat lng]</strong>
-      <%= @street.extent_array %>
-    </p>
-
     <p>
       <strong>Approximate Number of Blocks:</strong>
       <%= @street.number_of_blocks %>
@@ -69,6 +58,17 @@
       <strong>Notes:</strong>
       <%= @street.notes %>
     </p>
+<hr>
+    <p class="json-extent">
+      <strong>Extent as JSON: [lng lat]</strong>
+      <%= @street.extent_json %>
+    </p>
+    <% if @street.extent_array? %>
+      <p class="json-extent">
+        <strong>Extent as Coordinate Array: [lat lng]</strong>
+        <%= @street.extent_array %>
+      </p>
+    <% end %>
 
     <p>
       <strong>Updated:</strong>

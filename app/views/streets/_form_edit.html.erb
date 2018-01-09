@@ -52,16 +52,6 @@
             </div>
 
             <div class="field">
-              <%= form.label "Extent as GeoJSON [lng lat]" %>
-              <%= form.text_field :extent_json, id: :street_extent_json, placeholder: "Will be automagically filled in when line is drawn" %>
-            </div>
-
-            <div class="field">
-              <%= form.label "Extent as (Line) String" %>
-              <%= form.text_area :extent_array, id: :street_extent_array, placeholder: "Will be automagically filled in when line is drawn" %>
-            </div>
-
-            <div class="field">
               <%= form.label "Approximate Number of Blocks this entry is about" %>
               <%= form.text_field :number_of_blocks, id: :street_number_of_blocks %>
             </div>
@@ -69,7 +59,7 @@
             <p>List each reference in a separate field.</p>
             <div class="field">
               <%= form.label "Reference 1" %>
-              <%= form.text_area :ref1, id: :street_ref1, :maxlength=>"95%" %> <!-- maxlength having no effect -->
+              <%= form.text_area :ref1, id: :street_ref1, :maxlength=>"95%" %> <!-- maxlength no effect -->
             </div>
 
             <div class="field">
@@ -87,6 +77,16 @@
               <%= form.text_area :notes, id: :street_notes %>
             </div>
 
+            <div class="field">
+              <%= form.label "Extent as GeoJSON [lng lat]" %>
+              <%= form.text_field :extent_json, id: :street_extent_json, placeholder: "Will be automagically filled in when line is drawn!" %>
+            </div>
+            <% if @street.extent_array? %>
+              <div class="field">
+                <%= form.label "This column is replaced by the one above and will be removed." %>
+                <%= form.text_area :extent_array, id: :street_extent_array, placeholder: "Not currently being used except for pre-existing entries." %>
+              </div>
+             <% end %>
             <div class="actions">
               <%= form.submit "Create/Update Historical Street", class: "btn btn-primary" %>
             </div>
