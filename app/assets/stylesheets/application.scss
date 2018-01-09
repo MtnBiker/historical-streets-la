@@ -26,4 +26,4 @@
  *  require_tree .
  *  require_self
  */
-// @import "bootstrap";  // Probably belongs here but if move it from custom.scss will have to make some adjustments. Changes load order or hierarchy
+@import "bootstrap";  // Probably belongs here but if move it from custom.scss will have to make some adjustments. Changes load order or hierarchy

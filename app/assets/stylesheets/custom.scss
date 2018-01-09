@@ -335,4 +335,10 @@ label {
     background-image: none;
     background-color: #646464;
     height: 200px;
-}  
+}
+
+// Buttons for New street and search in streets>index and table padding
+.search-in-index {
+  padding: .5em 0; // only top is working. Not bottom. margin doesn't do anything
+  margin: .5em 0;
+}
