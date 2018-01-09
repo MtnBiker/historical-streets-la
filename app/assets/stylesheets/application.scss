@@ -17,12 +17,12 @@
  *  leaflet is added via mapbox in application.html.erb
  *  require leaflet
  *= require leaflet.draw
+ *= require streets
  *= require custom
  *= require scaffold
- *= require static_pages
- *= require streets
+ *  require static_pages
  *= require font-awesome
  * No require tree with bootstrap see https://github.com/twbs/bootstrap-rubygem
  *  require_tree .
- *= require_self
+ *  require_self
  */

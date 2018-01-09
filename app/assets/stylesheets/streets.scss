@@ -56,9 +56,10 @@ label {
    overflow: auto;
    padding: 2px 6px;
   //   border-bottom: 1px solid $gray-light; these styles not available although they are in crores5
-  //   border-left: 1px solid $gray-lighter;
+  //   border-left: 1px solid $gray-lighter; They are Bootstrap colors that don't seem to be available to this page
    border-bottom: 1px solid teal; // since above not available
    border-left: 1px solid #cacaca;
+   border-right: 1px solid #cacaca;
  }
    .asc {
      background-image: url(/images/up_arrow.png);
@@ -103,9 +104,20 @@ label {
   size: 200px;
 }
 
-button a:link{
- color: white;
-}
+// Bootstrap controlling, but I would like to change to focus color to something other than dark blue
+//button a{
+// color: white;
+//}
+//
+//.button:focus
+//{
+//    color:orange;
+//}
+//
+//.button:visited a
+//{
+//    color:white;
+//}
 
 // Off because links look like regular text and this is supposedly controlling. Need to change in custom.scss too
 //a:link,

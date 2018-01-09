@@ -1,6 +1,5 @@
 // https://github.com/twbs/bootstrap-rubygem
-@import "bootstrap";
-
+@import "bootstrap";  // if move this to application.scss body padding-top is different
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -257,24 +256,26 @@ pre {
   font-size: 11px;
 }
 
-a {
-  color: teal;
+// This doesn't seem to be the right way to get to this. Try to use streets.scss
+//.btn .btn-primary active{
+//  a {
+//    color: white;
+//  }
+//}
 
-  &:visited {
-    color: teal;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: black;
-  }
-}
-
-btn btn-primary active{
-  a {
-    color: white;
-  }
-} 
+// Bootstrap generally controls this, so be careful overriding
+//a {
+//  color: teal;
+//
+//  &:visited {
+//    color: teal;
+//  }
+//
+//  &:hover {
+//    color: #fff;
+//    background-color: black;
+//  }
+//}
 
 th {
   padding-bottom: 5px;
