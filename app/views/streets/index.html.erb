@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-sm">
       <% if logged_in? %>
-        <button type="button" class="btn btn-primary" >
+        <button type="button" class="btn btn-outline-primary" >
           <%= link_to 'Add New Historic Street', new_street_path %>
         </button>
       <% end %>
@@ -23,9 +23,9 @@
       <% else %>  <!-- Show the table of found or all streets -->
     </div>
 <!-- Search broken into two columns to get side by side. TODO should be able to use _search_streets.html.erb but it stacks in this format -->
-    <div class="col-sm float-right">
+    <div class="col-sm">
       <%= form_tag(streets_path, method: "get", class:"form-inline mt-2 mt-md-0", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2", placeholder: "Search for…"  %>
+      <%= text_field_tag :search, params[:search], class: "btn-outline-success form-control mr-sm-2 text-right", placeholder: "Search for…"  %>
     </div>
     <div class="col-sm">
       <%= button_tag(('<i class="fa fa-search"> Submit Search</i>').html_safe, class: "btn btn-outline-success my-2 my-sm-0", :name => nil) %>
@@ -96,7 +96,7 @@
   <% end %> <!-- if @streets.blank? -->
 <br><br>
 <% if logged_in? %>
-  <button type="button" class="btn btn-primary" >
-    <%= link_to 'New Historic Street Entry', new_street_path %>
+  <button type="button" class="btn btn-outline-primary" >
+    <%= link_to 'New Historic Street', new_street_path %>
   </button>
 <% end %>
