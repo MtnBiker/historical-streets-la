@@ -84,6 +84,30 @@ console.log('81. end of variable declaration. laMap:', laMap);
 // For street > show. Used for show and called by editMap and overviewMap to get all the initial stuff
 // Used also by overviewMap
 
+// used by showMap and editMap (if the segment already exists)
+function showSegment(laMap) {
+  var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
+  var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring. True even if just declare `var streetExtensionJson;`
+
+// Don't want to do the following for overviewMap. A bit of a work around since calling this for overview
+  if (streetExtentArray != undefined || streetExtentJson != undefined) {
+    // If linestring exists, draw it. this is for edit and show, but not overview
+    // But also have to pick between streetExtentArray and streetExtentJson (should be able to eliminate streetExtentArray when data all in streetExtentJson. I had both because had trouble getting one or the other working.)
+    if (streetExtentJson != null && streetExtentJson.length > 2) {
+      var streetExtentJson = JSON.parse(streetExtentJson); // without this "Invalid GeoJSON object." Even though look the same.
+      var geojsonLayer = L.geoJSON(streetExtentJson).addTo(laMap).bindPopup(popupText).openPopup();
+      laMap.fitBounds(geojsonLayer.getBounds()); // this is in place of fitBounds which doesn't work with GeoJSON because of the lat lng transposition
+    } else { 
+      if (streetExtentArray != undefined && streetExtentArray.length > 2)
+        { // can get rid of this when done with streetExtentArray
+          var arrayStreetExtent = JSON.parse(gon.streetExtentArray);
+          laMap.fitBounds(arrayStreetExtent); // zooms to area of interest
+          L.polyline(arrayStreetExtent).addTo(laMap).bindPopup(popupText).openPopup();
+        } // end if within the else (streetExtentArray…/json)
+    } // end else
+  }; // end if 15 lines above
+} // end of showSegment
+
 function showMap(popupText) {  
   // console.trace();
   // if (typeof map === 'undefined' || !map){
@@ -111,28 +135,10 @@ function showMap(popupText) {
   bing.addTo(laMap); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
   L.control.layers(baseLayers).addTo(laMap); // baseLayers defined about ten lines above
 
-// Above established the basemap as Bing or OSM. Now add street segments
-  var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
-  var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring. True even if just declare `var streetExtensionJson;`
-
-// Don't want to do the following for overviewMap. A bit of a work around since calling this for overview
-  if (streetExtentArray != undefined || streetExtentJson != undefined) {
-    // If linestring exists, draw it. this is for edit and show, but not overview
-    // But also have to pick between streetExtentArray and streetExtentJson (should be able to eliminate streetExtentArray when data all in streetExtentJson. I had both because had trouble getting one or the other working.)
-    if (streetExtentJson != null && streetExtentJson.length > 2) {
-      var streetExtentJson = JSON.parse(streetExtentJson); // without this "Invalid GeoJSON object." Even though look the same.
-      var geojsonLayer = L.geoJSON(streetExtentJson).addTo(laMap).bindPopup(popupText).openPopup();
-      laMap.fitBounds(geojsonLayer.getBounds()); // this is in place of fitBounds which doesn't work with GeoJSON because of the lat lng transposition
-    } else { 
-      if (streetExtentArray != undefined && streetExtentArray.length > 2)
-        { // can get rid of this when done with streetExtentArray
-      var arrayStreetExtent = JSON.parse(gon.streetExtentArray);
-      laMap.fitBounds(arrayStreetExtent); // zooms to area of interest
-      L.polyline(arrayStreetExtent).addTo(laMap).bindPopup(popupText).openPopup();
-    } // end if within the else (streetExtentArray…/json)
-  } // end else
-}; // end if 15 lines above
-
+// Above established the basemap as Bing or OSM. Now add street segment(s)
+// if (streetExtentArray != undefined || streetExtentJson != undefined) { // didn't work if outside the function
+  showSegment(laMap); // laMap is global, so probably don't need to do this
+// }
   // Shows zoom level which I find useful. Like to have in on the lower right
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html
   var ZoomViewer = L.Control.extend(
