@@ -84,7 +84,7 @@ console.log('81. end of variable declaration. laMap:', laMap);
 // For street > show. Used for show and called by editMap and overviewMap to get all the initial stuff
 // Used also by overviewMap
 
-// used by showMap and editMap (if the segment already exists)
+// used by showMap, but pulls out complicated logic into a function. And seem to work better
 function showSegment(laMap) {
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
   var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring. True even if just declare `var streetExtensionJson;`
@@ -126,7 +126,9 @@ function showMap(popupText) {
   // } else {
   //   console.log("103. laMap is null")
   // }
-  // It shouldn't be necessary as map is reassigned in the next line, why does it matter if it's already defined.
+  // It shouldn't be necessary as laMap is reassigned in the next line, why does it matter if it's already defined.
+  // All the above may not be needed. Still get one error on index, but so what?
+  
   laMap = L.map('map', {zoomDelta: 0.25,
                       zoomSnap: 0.25
   }).setView([34.05, -118.25], 13);
@@ -296,7 +298,7 @@ function overlaySelector() {
           // You only need to call it once.
           opacitySlider.setOpacityLayer(currentLayer);
           //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
-          currentLayer.setOpacity(0.5);
+          currentLayer.setOpacity(0.6);
           previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
         } // end addOpacitySlider
     
