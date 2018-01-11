@@ -9,8 +9,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.5.0' # Heroku wants this. 2.5.0 
-gem 'bundler'# , '1.15.1' # 1.13.7 may be the latest version heroku is supporting 2017.06.03. 2017.08.23 removed version requirement
+ruby '2.5.0' # Heroku wants this.
+gem 'bundler', "1.16.1" # no problem when installed bundler with a new version of Ruby. Maybe if nail it down now
 
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record

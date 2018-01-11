@@ -171,6 +171,7 @@ console.log('152. end of showMap. map:', map, 'laMap:', laMap);
 // #############################################################################################
 // editMap. Streets > Edit. Note uses showMap, essentially editMap is added to the bottom of showMap
 function editMap(popupText) {
+  if (laMap != undefined) { laMap.remove(); } // no reason laMap should exist at this point??
   showMap(popupText); // showMap draws the map and adds control to select basemaps.
   console.log('159. top of editMap, just after calling showMap. map:', map, 'laMap:', laMap);
   // Now we add what's needed to draw the extent and save to database
