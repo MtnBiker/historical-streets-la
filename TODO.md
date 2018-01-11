@@ -44,3 +44,7 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 * Add a column for segment length
 
 * Make column titles sticky
+
+* Buttons One is solid on edit, but using same class on show doesn't work: btn btn-primary. Text isn't white
+
+* Existing segment doesn't show up when go to edit. Should show up as different color or make it editable, but don't want it going away if the segment is not edited

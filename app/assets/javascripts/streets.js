@@ -78,7 +78,7 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     "<span style='color: green' >ESRI Satellite</span>"    : esriMap,
     "<span style='color: green' >Google Satellite</span>"  : google
 	}
-// console.log('81. end of variable declaration. laMap:', laMap);
+console.log('81. end of variable declaration. laMap:', laMap);
 // ############################################################################################
 // One function for edit and one for show. editMap is added to the bottom of showMap
 // For street > show. Used for show and called by editMap and overviewMap to get all the initial stuff
@@ -261,21 +261,21 @@ function findSelectedMap(mapID, cb) {
 
 // called by _overlaymap_selector.html.erb which is on streets > overview, show and edit. So ready to respond
 function overlaySelector() {
-  // console.log('257. Top of overlaySelector. laMap: ', laMap);
+  console.log('257. Top of overlaySelector. laMap: ', laMap);
   // Adding overlays. This doesn't happen until one of the overlays is selected.  
   $( "#select-overlay" ).change(function() {
-     // console.log('260. top of $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);
+     console.log('260. top of $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);
 
     // Get layer selected. Identify by map.id as set in _overlay_selector.html.erb    
     let mapID = $("#select-overlay input[type='radio']:checked").val();
     // The function that is passed in is executed after the json.forEach is executed.
     findSelectedMap(mapID, function() {
-      // console.log('266. top of overlaySelector in findSelectedMap call. laMap:', laMap);
+      console.log('266. top of overlaySelector in findSelectedMap call. laMap:', laMap);
         currentLayer = L.tileLayer(changeLayerTo).addTo(laMap);
         currentZoom = laMap.getZoom();
         // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
         // may want to just set the zoom so can be seen and let people overzoom
-        // console.log(`271. currentZoom: ${currentZoom} and maxZoom: ${maxZoom}. laMap: ${laMap}`)
+        console.log(`271. currentZoom: ${currentZoom} and maxZoom: ${maxZoom}. laMap: ${laMap}`)
         if (currentZoom > maxMapZoom) {
           // laMap.setMaxZoom(maxMapZoom+1); // not sure about doing this. In theory stops zooming past what can be shown
           laMap.setZoom(maxMapZoom);
@@ -302,9 +302,9 @@ function overlaySelector() {
           opacitySlider.remove(); // remove any existing opacitySlider and then add the new one in the next step
         } // end if 
         addOpacitySlider(currentLayer);
-        // console.log('298. end of overlaySelector in findSelectedMap. map:', map, 'currentLayer:', currentLayer, 'laMap:', laMap);
+        console.log('298. end of overlaySelector in findSelectedMap. map:', map, 'currentLayer:', currentLayer, 'laMap:', laMap);
     }); // using mapID, find the url, zoom for overlayMap selected 
-    // console.log('300. end $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);   
+    console.log('300. end $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);   
   }); // end $( "#select-overlay" ).
-  // console.log('302. end of overlaySelector. map:', map, 'laMap:', laMap);  
+  console.log('302. end of overlaySelector. map:', map, 'laMap:', laMap);  
 }; // end overlaySelector function
