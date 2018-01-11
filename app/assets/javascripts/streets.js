@@ -5,7 +5,7 @@
 // First set up common variables, then function specific to each show and edit
 // Used to be _map.initial.js.erb and _leafletmap.show.html.erb which may be able to delete TODO
 // Declare global variables used by both functions
-var laMap;
+var laMap; // can't do it in showMap, because overlayMap selector needs it and no way to pass it in
 console.log('8. streets.js. laMap declared, but not given a value: laMap:', laMap);
 // var bing;
 var imagerySet = "Road"; // AerialWithLabels | Birdseye | BirdseyeWithLabels | Road -- select one forBing map. Using this with L.BingLayer. Could use with L.tileLayer.bing too

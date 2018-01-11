@@ -81,17 +81,17 @@
         <%= current_user.name %>
       </p>
       
-      <button type="button" class="btn btn-primary" >
+      <button type="button" class="btn btn-outline-primary" >
         <%= link_to 'Edit', edit_street_path(@street) %>
       </button>
     <% end  %>
 
-    <button type="button" class="btn btn-primary" >
+    <button type="button" class="btn btn-outline-primary" >
       <%= link_to 'Back to Street List', streets_path %>
     </button>
     <br><br>
     <% if logged_in? %>
-      <button type="button" class="btn btn-primary" >
+      <button type="button" class="btn btn-outline-primary" >
         <%= link_to 'New Historic Street Entry', new_street_path %>
       </button>
     <% end %>
