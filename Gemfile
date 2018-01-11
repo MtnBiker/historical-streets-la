@@ -9,7 +9,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.4.1' # Heroku wants this. I have 2.4.1, but is Heroku only to 2.3.4
+ruby '2.5.0' # Heroku wants this. 2.5.0 
 gem 'bundler'# , '1.15.1' # 1.13.7 may be the latest version heroku is supporting 2017.06.03. 2017.08.23 removed version requirement
 
 gem 'rails', '~> 5.1.4'
