@@ -42,3 +42,5 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 * Notices appear twice. Note that in Map>show after an edit, one of the notices is borked, so only get rid of that one
 
 * Add a column for segment length
+
+* Make column titles sticky
