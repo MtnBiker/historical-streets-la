@@ -5,8 +5,8 @@
 // First set up common variables, then function specific to each show and edit
 // Used to be _map.initial.js.erb and _leafletmap.show.html.erb which may be able to delete TODO
 // Declare global variables used by both functions
-var laMap; // can't do it in showMap, because overlayMap selector needs it and no way to pass it in
-console.log('8. streets.js. laMap declared, but not given a value: laMap:', laMap);
+var laMap; // can't do it in showMap, because overlayMap selector needs it and no way to pass it in, but I'm moving the call to show map
+// console.log('8. streets.js. laMap declared, but not given a value: laMap:', laMap);
 // var bing;
 var imagerySet = "Road"; // AerialWithLabels | Birdseye | BirdseyeWithLabels | Road -- select one forBing map. Using this with L.BingLayer. Could use with L.tileLayer.bing too
 let previousLayer;
@@ -128,7 +128,8 @@ function showMap(popupText) {
   // }
   // It shouldn't be necessary as laMap is reassigned in the next line, why does it matter if it's already defined.
   // All the above may not be needed. Still get one error on index, but so what?
-  
+  // if (map != undefined) { map.remove(); }
+  var laMap;
   laMap = L.map('map', {zoomDelta: 0.25,
                       zoomSnap: 0.25
   }).setView([34.05, -118.25], 13);
@@ -166,14 +167,15 @@ function showMap(popupText) {
 // Put the layer selection control on the map. Note that we need two `layers` from the map definition
   // The event handler for changing the display after the selection of an overlayLayer?? Is this comment orphaned?
 console.log('152. end of showMap. map:', map, 'laMap:', laMap); 
+overlaySelector(laMap); // page is built with _overlaymap_selector.html.erb, but this all puts in the listener. 
 };  // end showMap
 
 // #############################################################################################
 // editMap. Streets > Edit. Note uses showMap, essentially editMap is added to the bottom of showMap
 function editMap(popupText) {
-  if (laMap != undefined) { laMap.remove(); } // no reason laMap should exist at this point??
+  // if (laMap != undefined) { laMap.remove(); } // no reason laMap should exist at this point??
   showMap(popupText); // showMap draws the map and adds control to select basemaps.
-  console.log('159. top of editMap, just after calling showMap. map:', map, 'laMap:', laMap);
+  // console.log('159. top of editMap, just after calling showMap. map:', map, 'laMap:', laMap);
   // Now we add what's needed to draw the extent and save to database
 // https://github.com/michaelguild13/Leaflet.draw
 // https://github.com/Leaflet/Leaflet.draw/wiki/API-Reference#ldrawhandlers
@@ -216,7 +218,7 @@ function editMap(popupText) {
   }); // end laMap.on
 
   $('map').imageMapResize();
-  console.log('203. end of editMap. map:', map, 'laMap:', laMap); 
+  // console.log('203. end of editMap. map:', map, 'laMap:', laMap); 
 };  // end editMap
 
 // ######################
@@ -243,15 +245,15 @@ function overviewMap() {
   // https://gis.stackexchange.com/questions/229723/how-to-display-properties-of-geojson-in-popup-on-leaflet
   
   // L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map).bindPopup(feature.properties.title).openPopup();
- console.log('230. end of overviewMap. map:', map, 'laMap:', laMap); 
+ // console.log('230. end of overviewMap. map:', map, 'laMap:', laMap); 
 }; // end overviewMap
 
 //  #############################
 // pulled out this function to help debug overlaySelector
 function findSelectedMap(mapID, cb) {
-  console.log('236. top of findSelectedMap. map:', map, 'laMap:', laMap);
+  // console.log('236. top of findSelectedMap. map:', map, 'laMap:', laMap);
    $.getJSON('/maps.json', function(json) { // not sure what this json is, but without it, the each never happens. The leading slash says that map.json is at the top level
-     console.log('238. in findSelectedMap and getJSON.map.json. map', map, 'laMap:', laMap); 
+     // console.log('238. in findSelectedMap and getJSON.map.json. map', map, 'laMap:', laMap); 
      let i = 1; // only for console.log
     json.forEach(function(entry) {
       // Should stop the if once a match is found, but the loop is set by the each and not sure how to stop 
@@ -265,26 +267,26 @@ function findSelectedMap(mapID, cb) {
     }); // end json.forEach
     cb(); // the function passed in now goes. Which is putting the overlayMap and associated pieces on the page https://stackoverflow.com/questions/48039169/execution-order-of-javascript#48039220
   }); // end $.getJSON
-  console.log('251. end of findSelectedMap. map:', map, 'laMap:', laMap);
+  // console.log('251. end of findSelectedMap. map:', map, 'laMap:', laMap);
 }; // end findSelectedMap
 
 // called by _overlaymap_selector.html.erb which is on streets > overview, show and edit. So ready to respond
-function overlaySelector() {
-  console.log('257. Top of overlaySelector. laMap: ', laMap);
+function overlaySelector(laMap) {
+  // console.log('257. Top of overlaySelector. laMap: ', laMap);
   // Adding overlays. This doesn't happen until one of the overlays is selected.  
   $( "#select-overlay" ).change(function() {
-     console.log('260. top of $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);
+     // console.log('260. top of $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);
 
     // Get layer selected. Identify by map.id as set in _overlay_selector.html.erb    
     let mapID = $("#select-overlay input[type='radio']:checked").val();
     // The function that is passed in is executed after the json.forEach is executed.
     findSelectedMap(mapID, function() {
-      console.log('266. top of overlaySelector in findSelectedMap call. laMap:', laMap);
+      // console.log('266. top of overlaySelector in findSelectedMap call. laMap:', laMap);
         currentLayer = L.tileLayer(changeLayerTo).addTo(laMap);
         currentZoom = laMap.getZoom();
         // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
         // may want to just set the zoom so can be seen and let people overzoom
-        console.log(`271. currentZoom: ${currentZoom} and maxZoom: ${maxZoom}. laMap: ${laMap}`)
+        // console.log(`271. currentZoom: ${currentZoom} and maxZoom: ${maxZoom}. laMap: ${laMap}`)
         if (currentZoom > maxMapZoom) {
           // laMap.setMaxZoom(maxMapZoom+1); // not sure about doing this. In theory stops zooming past what can be shown
           laMap.setZoom(maxMapZoom);
@@ -311,9 +313,9 @@ function overlaySelector() {
           opacitySlider.remove(); // remove any existing opacitySlider and then add the new one in the next step
         } // end if 
         addOpacitySlider(currentLayer);
-        console.log('298. end of overlaySelector in findSelectedMap. map:', map, 'currentLayer:', currentLayer, 'laMap:', laMap);
+        // console.log('298. end of overlaySelector in findSelectedMap. map:', map, 'currentLayer:', currentLayer, 'laMap:', laMap);
     }); // using mapID, find the url, zoom for overlayMap selected 
-    console.log('300. end $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);   
+    // console.log('300. end $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);   
   }); // end $( "#select-overlay" ).
-  console.log('302. end of overlaySelector. map:', map, 'laMap:', laMap);  
+  // console.log('302. end of overlaySelector. map:', map, 'laMap:', laMap);  
 }; // end overlaySelector function
