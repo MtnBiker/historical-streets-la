@@ -182,3 +182,5 @@ jQuery UI needed by Leaflet.OpacityControls (slider)
 change-camelcase-column-names to underscore so search would work. Some fixes worked but not all. Wasn't that bad.
 
 To get search icon: gem "font-awesome-rails" @import "font-awesome"; <i class="fa fa-search"></i> , but can also use <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">. Although not the Rails way, is simpler. Still don't have icon inside the search text box.
+
+Turbolinks and Leaflet don't get along. The most extreme was getting map related errors on pages without maps. data: {turbolinks: false} in link_to's going to or from map related pages. Maybe better to just remove turbolinks since navbar links can be used from any page.
