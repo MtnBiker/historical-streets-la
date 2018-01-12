@@ -1,4 +1,5 @@
 <% provide(:title, @street.previous_name) %>
+<p></p>
 <h1>Historic Street Name</h1>
 
 <div class="row">
@@ -82,17 +83,17 @@
       </p>
       
       <button type="button" class="btn btn-outline-primary" >
-        <%= link_to 'Edit', edit_street_path(@street) %>
+        <%= link_to 'Edit', edit_street_path(@street), data: {turbolinks: false} %>
       </button>
     <% end  %>
 
     <button type="button" class="btn btn-outline-primary" >
-      <%= link_to 'Back to Street List', streets_path %>
+      <%= link_to 'Back to Street List', streets_path, data: {turbolinks: false} %>
     </button>
     <br><br>
     <% if logged_in? %>
       <button type="button" class="btn btn-outline-primary" >
-        <%= link_to 'New Historic Street Entry', new_street_path %>
+        <%= link_to 'New Historic Street Entry', new_street_path, data: {turbolinks: false} %>
       </button>
     <% end %>
 
