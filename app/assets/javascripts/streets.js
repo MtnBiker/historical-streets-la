@@ -5,6 +5,8 @@
 // First set up common variables, then function specific to each show and edit
 // Used to be _map.initial.js.erb and _leafletmap.show.html.erb which may be able to delete TODO
 // Declare global variables used by both functions
+
+// named laMap instead of map to be very clear about what I was doing when trying to debug JavaScript problems
 var laMap; // can't do it in showMap, because overlayMap selector needs it and no way to pass it in, but I'm moving the call to show map
 // console.log('8. streets.js. laMap declared, but not given a value: laMap:', laMap);
 // var bing;
@@ -37,7 +39,7 @@ var Hill1928aws    = 'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y
 var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
     osmCopy = '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     mapboxCopy = '<a href="https://www.mapbox.com/map-feedback/">Mapbox</a>',
-    esriLink = '<a href="https://www.esri.com/">Esri</a>',
+    esriLink = '<a href="https://www.esri.com/">ESRI</a>',
     mbLink   = '<a href="https://mapbox.com/">OpenStreetMap</a>',
     rumseyLink = '<a href="http://www.davidrumsey.com">The David Rumsey Map Collection</a>',
     csunLink = "",
@@ -78,7 +80,7 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     "<span style='color: green' >ESRI Satellite</span>"    : esriMap,
     "<span style='color: green' >Google Satellite</span>"  : google
 	}
-console.log('81. end of variable declaration. laMap:', laMap);
+// console.log(('81. end of variable declaration. laMap:', laMap);
 // ############################################################################################
 // One function for edit and one for show. editMap is added to the bottom of showMap
 // For street > show. Used for show and called by editMap and overviewMap to get all the initial stuff
@@ -129,11 +131,11 @@ function showMap(popupText) {
   // It shouldn't be necessary as laMap is reassigned in the next line, why does it matter if it's already defined.
   // All the above may not be needed. Still get one error on index, but so what?
   // if (map != undefined) { map.remove(); }
-  var laMap;
+  // var laMap;
   laMap = L.map('map', {zoomDelta: 0.25,
                       zoomSnap: 0.25
   }).setView([34.05, -118.25], 13);
-  console.log('101. showMap. laMap just defined. laMap:', laMap, 'map:', map); 
+  // console.log(('101. showMap. laMap just defined. laMap:', laMap, 'map:', map); 
   // osmMap.addTo(laMap); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
   bing.addTo(laMap); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
   L.control.layers(baseLayers).addTo(laMap); // baseLayers defined about ten lines above
@@ -166,14 +168,14 @@ function showMap(popupText) {
 
 // Put the layer selection control on the map. Note that we need two `layers` from the map definition
   // The event handler for changing the display after the selection of an overlayLayer?? Is this comment orphaned?
-console.log('152. end of showMap. map:', map, 'laMap:', laMap); 
+// console.log(('152. end of showMap. map:', map, 'laMap:', laMap); 
 overlaySelector(laMap); // page is built with _overlaymap_selector.html.erb, but this all puts in the listener. 
 };  // end showMap
 
 // #############################################################################################
 // editMap. Streets > Edit. Note uses showMap, essentially editMap is added to the bottom of showMap
 function editMap(popupText) {
-  // if (laMap != undefined) { laMap.remove(); } // no reason laMap should exist at this point??
+  if (laMap != undefined) { laMap.remove(); } // no reason laMap should exist at this point??
   showMap(popupText); // showMap draws the map and adds control to select basemaps.
   // console.log('159. top of editMap, just after calling showMap. map:', map, 'laMap:', laMap);
   // Now we add what's needed to draw the extent and save to database
