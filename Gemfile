@@ -14,7 +14,7 @@ gem 'bundler', "1.16.1" # no problem when installed bundler with a new version o
 
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
-gem 'pg' , '~> 0.18' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23. Put qualification in to see if helps with server problem, it did. Apparently v1.0.0 just released and something hasn't caught up. 
+gem 'pg' , '~> 0.18' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23. Put qualification in to see if helps with server problem (Jan 2018), it did. Apparently v1.0.0 just released and something hasn't caught up. 
 # Use Puma as the app server
 gem 'puma', '3.4' # not sure of latest version that will work, but 3.9.1 doesn't work. I thought I had 3.7 before and it worked but now it doesn't
 # Use SCSS for stylesheets

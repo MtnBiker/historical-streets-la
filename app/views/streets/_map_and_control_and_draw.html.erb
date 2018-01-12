@@ -1,26 +1,19 @@
-<!-- The middle columns of  edit. See also the functions in streets.js -->
-<!-- Also for new, but line 31 throws an error at the moment. Maybe need to fix the leaflet.draw issue first-->
-<!-- May end up also being overview. If so can bring back in overlaymap_selector TODO -->
+<!-- The middle columns of edit. See also the functions in streets.js -->
+<!-- Also for new?-->
 
 <div class="col card">
-  <p class="font-bold-red">If no map shows up when you choose a map, zoom out. But the map may not cover that region, so try another map. Refresh page may be needed until all bugs squashed.</p>
-  <br/>
+  <p class="font-bold-red">If no map shows up when you choose a map, zoom out. But the map may not cover that region, so try another map.</p>
+  <% if logged_in? %>
+    <p>You can redraw the line and the only the latest one will be saved (even though the older line still shows).
+  <% end %>
 
   <div id="map"></div>
-    <script>
-      // editMap() is in assets/javascripts/streets.js
-
-      var popupText = "&le;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&ge;<%= @street.date_latest %><br><%= @street.current_name %>";
-      // $(document).on("ready page:load", function() { // have to reload to get page to show
-      // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
-      // $(document).on("turbolinks:load", function() {
-      //    editMap(popupText);
-      // });
-      $(document).ready(function() {
-         editMap(popupText);
-      });
-      
-    </script>
+  <script>    
+    var popupText = "&le;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&ge;<%= @street.date_latest %><br><%= @street.current_name %>";
+    $(document).ready(function() {
+       editMap(popupText); // editMap() is in assets/javascripts/streets.js
+    });    
+  </script>
 
 </div>  <!-- col middle -->
 
