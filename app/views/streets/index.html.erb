@@ -13,12 +13,19 @@
         </button>
       <% end %>
     </div>
+    <div class="col-sm">
+      <button type="button" class="btn btn-outline-primary" >
+        <%= link_to 'Show All Streets', streets_path %>
+      </button>
+    </div>
+
     <div class="col-sm"> <!-- Note that an if else is in this column and affects the rest of the page -->
       <% if @streets.blank? %>
         <p class="font-bold-red">Nothing found.</p>
-        <%= render 'search_streets' %>
+        <%= render 'search_streets' %> <!-- Uses models>streets>self.search -->
+<!-- I think the following three lines were part of a trial to have this show up after a search instead of all the time; but is doing nothing now. TODO. As for now shows all the time via the div above this one -->
         <button type="button" class="btn btn-primary" >
-          <%= link_to 'Back to all Streets', streets_path %>
+          <%= link_to 'Back to all Streets TEST', streets_path %>
         </button>
       <% else %>  <!-- Show the table of found or all streets -->
     </div>

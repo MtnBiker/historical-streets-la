@@ -2,16 +2,18 @@
 <!-- Trying to format the button from <label class="form-check-label"> /bootstrap-4.0.0-alpha.6/docs/components/forms.md -->
   <!-- Look at bootstrap-4.0.0-alpha.6/js/tests/visual/button.html Trial gave wonky results. would take work -->
   <!-- There is also some modified streets.scss that changes some of the appearance -->
-    <fieldset class="form-group">
+    <fieldset class="form-group"> <!-- form-group is Bootstrap -->
       <legend>Historic Map Overlay</legend>
       <!-- Need to make stand out. border not doing anything look at cards in v4, but didn't help on simple try -->
       <p class="border-0 rounded">Select overlay map below. &#8595;<br>
                                   &nwarr;Select basemap using control on top right of the map itself.</p>
       <% @maps.each do |map| %>
-        <label class="form-check-label">
-          <%= radio_button_tag(:map_name, map.id, class: "form-check-input") %>
-          <%= label_tag(:map_name, map.name) %>
-        </label>
+        <div class="form-check">
+          <label class="form-check-label">
+            <%= radio_button_tag(:map_name, map.id, false, class: "form-check-input") %>
+            <%= label_tag(:map_name, map.name) %>
+          </label>
+        </div>
       <% end %>
       <br>
   </fieldset>
