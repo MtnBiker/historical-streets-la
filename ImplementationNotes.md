@@ -159,9 +159,9 @@ Got rid of Leaflet explicitly (no leaflet-rails, not in application.js/.scss), L
 
 Saving `extent` as json. extent_array started causing errors and json is probably going to be easier to work with in the long run. var geojson = layer.toGeoJSON(); … JSON.stringify(geojson.geometry).
 
-extent.json is GeoJSON LineString. I could make a Feature and store other information, but for now just keeping it separately in the dB seems fine. Just have to deal with how JavaScript (Leaflet specifically) handles GeoJSON (I'm not using any PostGIS aspects nor Rails. )
+extent.json is ~~GeoJSON~~ JSON as far as Postgres is concerned. It's a LineString by construction. I could make a Feature and store other information, but for now just keeping it separately in the dB seems fine. Just have to deal with how JavaScript (Leaflet specifically) handles GeoJSON (I'm not using any PostGIS aspects nor Rails. )
 
-Editing is now GeoJSON stored in extent_json. Legacy extent_array still there until copy those to GeoJSON (edit and trace.)
+Editing is now GeoJSON stored in extent_json. Legacy extent_array still there until copy those to GeoJSON (edit and trace.). 
 
 https://gis.stackexchange.com/questions/166863/how-to-calculate-the-bounding-box-of-a-geojson-object-using-python-or-javascript to get fitBounds to work. Using another function
 
@@ -183,4 +183,4 @@ change-camelcase-column-names to underscore so search would work. Some fixes wor
 
 To get search icon: gem "font-awesome-rails" @import "font-awesome"; <i class="fa fa-search"></i> , but can also use <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">. Although not the Rails way, is simpler. Still don't have icon inside the search text box.
 
-Turbolinks and Leaflet don't get along. The most extreme was getting map related errors on pages without maps. data: {turbolinks: false} in link_to's going to or from map related pages. Maybe better to just remove turbolinks since navbar links can be used from any page.
+Turbolinks and Leaflet don't get along. The most extreme was getting map related errors on pages without maps. data: {turbolinks: false} in link_to's going to or from map related pages. Maybe better to just remove turbolinks since navbar links can be used from any page. And individual pages can be set to not honor turbolinks (See docs). Decided I probably don't need turbolinks. Easier to just not use turbolinks than be chasing different fixes. 2018.01.12

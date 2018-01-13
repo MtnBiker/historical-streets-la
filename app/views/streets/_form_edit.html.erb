@@ -78,12 +78,12 @@
             </div>
 
             <div class="field">
-              <%= form.label "Extent as GeoJSON [lng lat]" %>
+              <%= form.label "Extent as JSON [lng lat]" %>
               <%= form.text_field :extent_json, id: :street_extent_json, placeholder: "Will be automagically filled in when line is drawn!" %>
             </div>
             <% if @street.extent_array? %>
               <div class="field">
-                <%= form.label "This column is replaced by the one above and will be removed." %>
+                <%= form.label "Extend as string (array lat lng)This column is replaced by the one above and will be removed." %>
                 <%= form.text_area :extent_array, id: :street_extent_array, placeholder: "Not currently being used except for pre-existing entries." %>
               </div>
              <% end %>

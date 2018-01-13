@@ -66,7 +66,7 @@
     </p>
     <% if @street.extent_array? %>
       <p class="json-extent">
-        <strong>Extent as Coordinate Array: [lat lng]</strong>
+        <strong>Extent as Coordinate Array (string): [lat lng]</strong>
         <%= @street.extent_array %>
       </p>
     <% end %>
@@ -88,7 +88,7 @@
     <% end  %>
 
     <button type="button" class="btn btn-outline-primary" >
-      <%= link_to 'Back to Street List', streets_path, data: {turbolinks: false} %>
+      <%= link_to 'Street List', streets_path, data: {turbolinks: false} %>
     </button>
     <br><br>
     <% if logged_in? %>

@@ -1,3 +1,4 @@
+### To Be Done
 * 1928 Hill's needs more detailed georeferencing
  
 * 1902 Rueger needs trimming. Unfortunately probably have to georef again.
@@ -44,6 +45,10 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 * Make column titles sticky
 
 * Buttons One is solid on edit, but using same class on show doesn't work: btn btn-primary. Text isn't white
+
+* Hill 1928 shows as selected in selection menu when first load
+
+### Completed
 
 * Existing segment doesn't show up when go to edit. Should show up as different color or make it editable, but don't want it going away if the segment is not edited
 

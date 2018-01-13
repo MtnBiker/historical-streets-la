@@ -1,7 +1,7 @@
 <div id="select-overlay" class="col-1"> <!-- the third column in show and edit. Second col in overview map -->
 <!-- Trying to format the button from <label class="form-check-label"> /bootstrap-4.0.0-alpha.6/docs/components/forms.md -->
   <!-- Look at bootstrap-4.0.0-alpha.6/js/tests/visual/button.html Trial gave wonky results. would take work -->
-  <!-- There is also some modified streets.csss that changes some of the appearance -->
+  <!-- There is also some modified streets.scss that changes some of the appearance -->
     <fieldset class="form-group">
       <legend>Historic Map Overlay</legend>
       <!-- Need to make stand out. border not doing anything look at cards in v4, but didn't help on simple try -->
@@ -9,7 +9,7 @@
                                   &nwarr;Select basemap using control on top right of the map itself.</p>
       <% @maps.each do |map| %>
         <label class="form-check-label">
-          <%= radio_button_tag(:map_name, map.id, class: "form-check-input") %> <!-- Second item seems to be value , id: map.name results in _map_name_https etc, so note helpful-->         
+          <%= radio_button_tag(:map_name, map.id, class: "form-check-input") %>
           <%= label_tag(:map_name, map.name) %>
         </label>
       <% end %>

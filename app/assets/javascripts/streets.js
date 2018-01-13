@@ -207,16 +207,27 @@ function editMap(popupText) {
   laMap.on('draw:created', function(e) {
     // featureGroup.addLayer(e.layer); // might be equivalent to the following two lines
     var type = e.layerType,
-      layer = e.layer;
-
-  var geojson = layer.toGeoJSON();  // is an object Object, therefore stringify below.
-
+       layer = e.layer;
+   var geojson = layer.toGeoJSON();  // is an object Object, therefore stringify below.
   // Write GeoJSON to steet.extent_json for saving from the form.
   $("#street_extent_json").val(JSON.stringify(geojson.geometry));
-  // This GeoJSON seems contorted. why not using featureGroup (not the same as GeoJSON feature) or drawnItems instead of layer. Why go val(JSON.stringify(layer.toGeoJSON))? Maybe stringify is needed. I think I'm getting the right result though
+  // This GeoJSON seems contorted. why not using featureGroup (not the same as GeoJSON feature) or drawnItems instead of layer. Why go val(JSON.stringify(layer.toGeoJSON))? Maybe stringify is needed. I think I'm getting the right result though. extent_json is just a JSON, not a GeoJSON. but maybe the geojson.geometry is. $('element').val gets the value in that DOM element
+
 
 // Add the drawn line to a layer to display it in the map.
+  console.log("218. layer:", layer);
+  var jsonStrF = JSON.stringify(geojson.geometry)
+  console.log("219. geojson:", geojson, "geojson.geometry", geojson.geometry, "JSON.stringify(geojson.geometry)", jsonStrF); // 
+    console.log("220.  geojson.asFeature", geojson.asFeature); // geojson and layer are gone once click Update, ie when the page goes away.
+    // var feature = RGeo::GeoJSON.decode(jsonStrF); // Ruby, not jS
+   //  console.log("222. feature", feature);
+  
+  
     drawnItems.addLayer(layer);
+    
+    // Want to capture the length of the segment and save it to the database. Or might save the segment data as a real GeoJSON and then calculate the length dynamically. 
+    
+    // Creating a GeoJSON of the segment.
   }); // end laMap.on
 
   $('map').imageMapResize();
