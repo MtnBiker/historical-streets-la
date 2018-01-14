@@ -184,3 +184,9 @@ change-camelcase-column-names to underscore so search would work. Some fixes wor
 To get search icon: gem "font-awesome-rails" @import "font-awesome"; <i class="fa fa-search"></i> , but can also use <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">. Although not the Rails way, is simpler. Still don't have icon inside the search text box.
 
 Turbolinks and Leaflet don't get along. The most extreme was getting map related errors on pages without maps. data: {turbolinks: false} in link_to's going to or from map related pages. Maybe better to just remove turbolinks since navbar links can be used from any page. And individual pages can be set to not honor turbolinks (See docs). Decided I probably don't need turbolinks. Easier to just not use turbolinks than be chasing different fixes. 2018.01.12
+
+Displaying no. of significant figures for distance
+http://api.rubyonrails.org/classes/ActiveSupport/NumberHelper.html#method-i-number_to_rounded
+number_to_rounded(number, precision: 1, significant: true)
+But how get a value from the table into  number as a variable
+<%= @street.extent_length.round(2) %> but maybe will always show 2 significant figures?

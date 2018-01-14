@@ -210,26 +210,18 @@ function editMap(popupText) {
        layer = e.layer;
    var geojson = layer.toGeoJSON();  // is an object Object, therefore stringify below.
    
-   // geojson and layer don't work below need to simplify the geojson to as shown
-   var line = turf.lineString(geojson.geometry.coordinates);
-   var length = turf.length(line, {units: 'miles'});
-   console.log("216. length:", length, "type: ", type);
+   // Determine length of segment in miles. Turf.js wants just the array of coordinates
+   // http://turfjs.org/docs/#distance distance=length (expect avoiding normal meaning of length in jS etc.)
+   // Why is this turf.lineString()? Suspect it was a typo on my part, but it works. Should be ?
+   var coordinate_array = turf.lineString(geojson.geometry.coordinates);
+   var length = turf.length(coordinate_array, {units: 'miles'});
    $("#street_extent_length").val(length);
    
   // Write GeoJSON to steet.extent_json for saving from the form.
   $("#street_extent_json").val(JSON.stringify(geojson.geometry));
   // This GeoJSON seems contorted. why not using featureGroup (not the same as GeoJSON feature) or drawnItems instead of layer. Why go val(JSON.stringify(layer.toGeoJSON))? Maybe stringify is needed. I think I'm getting the right result though. extent_json is just a JSON, not a GeoJSON. but maybe the geojson.geometry is. $('element').val gets the value in that DOM element
 
-
 // Add the drawn line to a layer to display it in the map.
-  console.log("218. layer:", layer);
-  var jsonStrF = JSON.stringify(geojson.geometry)
-  console.log("219. geojson:", geojson, "geojson.geometry", geojson.geometry, "JSON.stringify(geojson.geometry)", jsonStrF); // 
-  console.log("228. geojson.geometry.coordinates: ", geojson.geometry.coordinates); // 
-    // var feature = RGeo::GeoJSON.decode(jsonStrF); // Ruby, not jS
-   //  console.log("222. feature", feature);
-  
-  
     drawnItems.addLayer(layer);
     
     // Want to capture the length of the segment and save it to the database. Or might save the segment data as a real GeoJSON and then calculate the length dynamically. 
