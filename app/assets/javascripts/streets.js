@@ -211,9 +211,9 @@ function editMap(popupText) {
    var geojson = layer.toGeoJSON();  // is an object Object, therefore stringify below.
    
    // geojson and layer don't work below need to simplify the geojson to as shown
-   var line = turf.lineString([[-118.26525307988622,34.01198216765248],[-118.26257373016892,34.01198216765248]]);
+   var line = turf.lineString(geojson.geometry.coordinates);
    var length = turf.length(line, {units: 'miles'});
-   console.log("length:", length, "type: ", type);
+   console.log("216. length:", length, "type: ", type);
    $("#street_extent_length").val(length);
    
   // Write GeoJSON to steet.extent_json for saving from the form.
@@ -225,7 +225,7 @@ function editMap(popupText) {
   console.log("218. layer:", layer);
   var jsonStrF = JSON.stringify(geojson.geometry)
   console.log("219. geojson:", geojson, "geojson.geometry", geojson.geometry, "JSON.stringify(geojson.geometry)", jsonStrF); // 
-    console.log("220.  geojson.asFeature", geojson.asFeature); // geojson and layer are gone once click Update, ie when the page goes away.
+  console.log("228. geojson.geometry.coordinates: ", geojson.geometry.coordinates); // 
     // var feature = RGeo::GeoJSON.decode(jsonStrF); // Ruby, not jS
    //  console.log("222. feature", feature);
   
