@@ -1,4 +1,6 @@
 ### To Be Done
+* Search would be better in navbar since it's sticky and there is room or it. For now should be called "Search streets" unless add site-wide search
+
 * 1928 Hill's needs more detailed georeferencing
  
 * 1902 Rueger needs trimming. Unfortunately probably have to georef again.
@@ -9,7 +11,7 @@
   
 * Option to paginate. Gems are installed. Two places change. streets/users_controller.rb lines 7/8 and two erbs for pagination on streets/index.html.erb
  
-* Get rid of example user when I get myself set up on localhost
+* Get rid of example user when I get myself set up on localhost. Also track who made the change
  
 * Make the signup and password reset emails and HTML a bit more professional
 
@@ -46,7 +48,9 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * Buttons One is solid on edit, but using same class on show doesn't work: btn btn-primary. Text isn't white
 
-* Hill 1928 shows as selected in selection menu when first load
+* Edit listing on left is a bit scrunched. Happened when I messed with the overlay map list
+
+* Duplicate a street item. Since often have similar info that don't want to reenter. Would take you to new with the info
 
 ### Completed
 

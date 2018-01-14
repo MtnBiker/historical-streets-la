@@ -35,28 +35,35 @@
 
             <div class="row">
               <div class="col-lg-12 text-center font-bold">For Previous Street Name</div>
-                <div class="field col-lg-6">
-                  <%= form.label "Earliest Confirmed Date" %>
-                  <%= form.text_field :date_earliest, id: :street_date_earliest %>
-                </div>
+              <div class="field col-lg-6">
+                <%= form.label "Earliest Confirmed Date" %>
+                <%= form.text_field :date_earliest, id: :street_date_earliest %>
+              </div>
 
-                <div class="field col">
-                  <%= form.label "Latest Confirmed Date" %>
-                  <%= form.text_field :date_latest, id: :street_date_latest %>
-                </div>
+              <div class="field col">
+                <%= form.label "Latest Confirmed Date" %>
+                <%= form.text_field :date_latest, id: :street_date_latest %>
+              </div>
             </div>
 
-            <div class="field">
-              <%= form.label "Entry covers from cross street to cross street or similar" %>
-              <%= form.text_area :cross_streets, id: :street_cross_streets, :maxlength=>"100%" %>
+              <div class="field">
+                <%= form.label "Entry covers from cross street to cross street or similar" %>
+                <%= form.text_area :cross_streets, id: :street_cross_streets, :maxlength=>"100%" %>
+              </div>
+
+            <div class="row">
+              <div class="col-lg-12 text-center font-bold">Extent of This Item</div>
+              <div class="field col-lg-6">
+                <%= form.label "Approximate Number of Blocks" %>
+                <%= form.text_field :number_of_blocks, id: :street_number_of_blocks %>
+              </div>
+
+              <div class="field col">
+                <%= form.label "Length of segment, miles" %>
+                <%= form.text_field :extent_length, id: :street_extent_length %>
+              </div>
             </div>
 
-            <div class="field">
-              <%= form.label "Approximate Number of Blocks this entry is about" %>
-              <%= form.text_field :number_of_blocks, id: :street_number_of_blocks %>
-            </div>
-
-            <p>List each reference in a separate field.</p>
             <div class="field">
               <%= form.label "Reference 1" %>
               <%= form.text_area :ref1, id: :street_ref1, :maxlength=>"95%" %> <!-- maxlength no effect -->

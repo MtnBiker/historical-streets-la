@@ -209,6 +209,13 @@ function editMap(popupText) {
     var type = e.layerType,
        layer = e.layer;
    var geojson = layer.toGeoJSON();  // is an object Object, therefore stringify below.
+   
+   // geojson and layer don't work below need to simplify the geojson to as shown
+   var line = turf.lineString([[-118.26525307988622,34.01198216765248],[-118.26257373016892,34.01198216765248]]);
+   var length = turf.length(line, {units: 'miles'});
+   console.log("length:", length, "type: ", type);
+   $("#street_extent_length").val(length);
+   
   // Write GeoJSON to steet.extent_json for saving from the form.
   $("#street_extent_json").val(JSON.stringify(geojson.geometry));
   // This GeoJSON seems contorted. why not using featureGroup (not the same as GeoJSON feature) or drawnItems instead of layer. Why go val(JSON.stringify(layer.toGeoJSON))? Maybe stringify is needed. I think I'm getting the right result though. extent_json is just a JSON, not a GeoJSON. but maybe the geojson.geometry is. $('element').val gets the value in that DOM element
