@@ -190,3 +190,8 @@ http://api.rubyonrails.org/classes/ActiveSupport/NumberHelper.html#method-i-numb
 number_to_rounded(number, precision: 1, significant: true)
 But how get a value from the table into  number as a variable
 <%= @street.extent_length.round(2) %> but maybe will always show 2 significant figures?
+
+XX Did this in another branch, but I abandoned this idea. I wanted to just get the two turf pieces I needed, but too complicated. Later 
+Turf.js and webpacker/yarn: `yarn add @turf/helpers `and `yarn add @turf/length`. Probably could have chained, but first time with an outside jS file. Need to do more. Guess I need the webpacker part. `gem 'webpacker', '~> 3.0'` and  `rails webpacker:install`   and `rails webpacker:install:erb` hoping to get back erb in streets>show. didn't help. Maybe too much trouble just to avoid one turf.js large file. The idea is to only install the needed pieces.
+The following shows the steps needed. Can't believe that a simpler approach won't be worked out.
+https://clarkdave.net/2015/01/how-to-use-webpack-with-rails/

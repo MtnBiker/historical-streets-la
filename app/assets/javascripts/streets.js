@@ -210,9 +210,8 @@ function editMap(popupText) {
        layer = e.layer;
    var geojson = layer.toGeoJSON();  // is an object Object, therefore stringify below.
    
-   // Determine length of segment in miles. Turf.js wants just the array of coordinates
+   // Determine length of segment in miles and set up for saving. Turf.js wants just the array of coordinates
    // http://turfjs.org/docs/#distance distance=length (expect avoiding normal meaning of length in jS etc.)
-   // Why is this turf.lineString()? Suspect it was a typo on my part, but it works. Should be ?
    var coordinate_array = turf.lineString(geojson.geometry.coordinates);
    var length = turf.length(coordinate_array, {units: 'miles'});
    $("#street_extent_length").val(length);

@@ -52,7 +52,10 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * Duplicate a street item. Since often have similar info that don't want to reenter. Would take you to new with the info
 
+* Existing segment doesn't show up when go to edit. Should show up as different color or make it editable, but don't want it going away if the segment is not edited. Fixed this, but now not working again.
+
+* Column sorting
+
 ### Completed
 
-* Existing segment doesn't show up when go to edit. Should show up as different color or make it editable, but don't want it going away if the segment is not edited
 
