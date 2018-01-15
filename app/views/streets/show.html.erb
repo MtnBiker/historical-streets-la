@@ -88,17 +88,21 @@
       </p>
       
       <button type="button" class="btn btn-outline-primary" >
-        <%= link_to 'Edit', edit_street_path(@street), data: {turbolinks: false} %>
+        <%= link_to 'Edit', edit_street_path(@street) %>
       </button>
     <% end  %>
     
     <br><br>
     <button type="button" class="btn btn-outline-primary" >
-      <%= link_to 'Street List', streets_path, data: {turbolinks: false} %>
+      <%= link_to 'Street List', streets_path %>
     </button>
     <% if logged_in? %>
       <button type="button" class="btn btn-outline-primary" >
-        <%= link_to 'New Historic Street Entry', new_street_path, data: {turbolinks: false} %>
+        <%= link_to 'New Historic Street Entry', new_street_path %>
+      </button>
+      
+      <button type="button" class="btn btn-outline-primary" >
+        <%= link_to 'Duplicate This Entry', new_street_path, :action => "dup", :id => @street.id %>
       </button>
     <% end %>
 
