@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'overview', to: 'overview#index' # above doesn't work
   resources :maps
   resources :streets
+  get 'dup_street', to: 'streets#dup' # part of duplicating an entry/record
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   get '/home',      to: 'static_pages#home'
   get '/contact',   to: 'static_pages#contact'
   get '/acknowledgements',   to: 'static_pages#acknowledgements'
-  get 'acknowledgments' => 'static_pages#acknowledgments' # missing e and is probalby not needed
+  get 'acknowledgments' => 'static_pages#acknowledgments' # missing e and is probably not needed
   get 'about' => 'static_pages#about'
 
   get    '/login',   to: 'sessions#new'

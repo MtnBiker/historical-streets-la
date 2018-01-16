@@ -42,7 +42,7 @@
     
     <p>
       <strong>Length of segment:</strong>
-      <%= @street.extent_length.round(2) %> miles
+      <%= @street.extent_length %> miles <!-- .round(2) -->
     </p>
 
     <p>
@@ -86,25 +86,17 @@
         <strong>Current User [Testing-remove when working]</strong>
         <%= current_user.name %>
       </p>
-      
-      <button type="button" class="btn btn-outline-primary" >
-        <%= link_to 'Edit', edit_street_path(@street) %>
-      </button>
-    <% end  %>
-    
+      <%= link_to 'Edit', edit_street_path(@street), class: "btn btn-outline-primary" %>
+    <% end  %> <!-- if logged in -->
     <br><br>
-    <button type="button" class="btn btn-outline-primary" >
-      <%= link_to 'Street List', streets_path %>
-    </button>
+
+      <%= link_to 'Street List', streets_path, class: "btn btn-outline-primary" %>
+      <br>
     <% if logged_in? %>
-      <button type="button" class="btn btn-outline-primary" >
-        <%= link_to 'New Historic Street Entry', new_street_path %>
-      </button>
-      
-      <button type="button" class="btn btn-outline-primary" >
-        <%= link_to 'Duplicate This Entry', new_street_path, :action => "dup", :id => @street.id %>
-      </button>
-    <% end %>
+      <%= link_to 'New Historic Street Entry', new_street_path, class: 'btn btn-outline-primary' %>
+      <%= link_to 'Duplicate This Entry', dup_street_path(id: @street.id,), action: "dup",  class: "btn btn-outline-primary" %>   
+
+    <% end %>  <!-- if logged in -->
 
   </div> <!-- end col-4 Left col-->
 

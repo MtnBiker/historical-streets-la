@@ -31,6 +31,11 @@ class StreetsController < ApplicationController
     gon.streetExtentArray = @street.extent_array
     @maps = Map.all.order(:year) # Needed for streets/new.
   end
+    
+  def dup # Duplicate an entry/record to reuse much of the information
+    @street = Street.find(params[:id]).dup
+    render :new
+  end
 
   # GET /streets/1/edit
   def edit
