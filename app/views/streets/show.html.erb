@@ -90,12 +90,11 @@
     <% end  %> <!-- if logged in -->
     <br><br>
 
-      <%= link_to 'Street List', streets_path, class: "btn btn-outline-primary" %>
-      <br>
+    <%= link_to 'Street List', streets_path, class: "btn btn-outline-primary" %>
+    <br>
     <% if logged_in? %>
       <%= link_to 'New Historic Street Entry', new_street_path, class: 'btn btn-outline-primary' %>
-      <%= link_to 'Duplicate This Entry', dup_street_path(id: @street.id,), action: "dup",  class: "btn btn-outline-primary" %>   
-
+      <%= link_to 'Duplicate This Entry', dup_street_path(id: @street.id), action: "dup", class: "btn btn-outline-primary" %>   
     <% end %>  <!-- if logged in -->
 
   </div> <!-- end col-4 Left col-->

@@ -2,15 +2,13 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
   get 'password_resets/new'
-
   get 'password_resets/edit'
-
   get 'signup' => 'users#new'
-  # resources :overview
+  # resources :overview # overkill since only one page
   get 'overview', to: 'overview#index' # above doesn't work
   resources :maps
   resources :streets
-  get 'dup_street', to: 'streets#dup' # part of duplicating an entry/record
+  get 'dup_street', to: 'streets#dup' # part of duplicating an entry/record from show page
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

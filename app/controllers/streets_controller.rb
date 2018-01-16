@@ -29,11 +29,12 @@ class StreetsController < ApplicationController
   def new
     @street = Street.new
     gon.streetExtentArray = @street.extent_array
-    @maps = Map.all.order(:year) # Needed for streets/new.
+    @maps = Map.all.order(:year) # Needed for _overlaymap_selector
   end
     
-  def dup # Duplicate an entry/record to reuse much of the information
+  def dup # Duplicate an entry/record to reuse much of the information to create a new entry
     @street = Street.find(params[:id]).dup
+    @maps = Map.all.order(:year) # Needed _overlaymap_selector (has to be created before the render)
     render :new
   end
 
