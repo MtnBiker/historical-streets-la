@@ -3,7 +3,5 @@
 <h1>Drawing and Editing an Historic Street</h1>
 
 <%= render 'form_edit', street: @street %>
-<button type="button" class="btn-outline-primary" >
-  <%= link_to 'Cancel', @street, data: {turbolinks: false} %> |
-  <%= link_to 'To Street List Without Saving', streets_path, data: {turbolinks: false} %>
-</button>
+<%= link_to 'Cancel', @street, class: 'btn btn-outline-primary' %> 
+<%= link_to 'To Street List Without Saving', streets_path, class: 'btn btn-outline-primary' %>
