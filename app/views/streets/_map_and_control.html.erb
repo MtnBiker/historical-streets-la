@@ -1,4 +1,5 @@
-<!-- The two middle columns of show and edit. See also the functions in streets.js -->
+<!-- The  middle column of show and edit. See also the functions in streets.js -->
+<!--Last column is overlaymap_selector -->
 <!-- Also for new, but line 31 throws an error at the moment. Maybe need to fix the leaflet.draw issue first-->
 <!-- May end up also being overview. If so can bring back in overlaymap_selector TODO -->
 
@@ -10,7 +11,7 @@
     <script>
       // showMap() is in assets/javascripts/streets.js
 
-      var popupText = "&le;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&ge;<%= @street.date_latest %><br><%= @street.current_name %>";
+      var popupText = "&le;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&ge;<%= @street.date_latest %><br><%= @street.current_name %><br>test mc";
       // $(document).on("ready page:load", function() { // have to reload to get page to show
       // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
       // $(document).on("turbolinks:load", function() {
@@ -25,3 +26,8 @@
 </div>  <!-- col middle -->
 
 <!-- should rename map or showMap or mapDisplay -->
+
+<!-- Trying to figure out how to put a link in the popup on the overview map ONLY Redundant on show, but then there it is mainly for edification.  -->
+<!-- <br>< = link_to "Link", @street.id %> -->
+
+<!-- This is supposed to be used by overview, but it's not?? -->

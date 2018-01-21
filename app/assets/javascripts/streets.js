@@ -88,9 +88,10 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
 
 // used by showMap and editMap (if the segment already exists)
 function showSegment(laMap) {
+  
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
   var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring. True even if just declare `var streetExtensionJson;`
-
+  debugger;
 // Don't want to do the following for overviewMap. A bit of a work around since calling this for overview
   if (streetExtentArray != undefined || streetExtentJson != undefined) {
     // If linestring exists, draw it. this is for edit and show, but not overview
@@ -138,7 +139,7 @@ function showMap(popupText) {
   // console.log(('101. showMap. laMap just defined. laMap:', laMap, 'map:', map); 
   // osmMap.addTo(laMap); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
   bing.addTo(laMap); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
-  L.control.layers(baseLayers).addTo(laMap); // baseLayers defined about ten lines above
+  L.control.layers(null, baseLayers, {collapsed: false}).addTo(laMap); // baseLayers defined about ten lines above, don't need null if don't have options
 
 // Above established the basemap as Bing or OSM. Now add street segment(s)
 // if (streetExtentArray != undefined || streetExtentJson != undefined) { // didn't work if outside the function

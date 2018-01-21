@@ -42,7 +42,7 @@
     
     <p>
       <strong>Length of segment:</strong>
-      <%= @street.extent_length %> miles <!-- .round(2) -->
+      <%= @street.extent_length.round(2) %> miles <!-- round sometimes errors -->
     </p>
 
     <p>
