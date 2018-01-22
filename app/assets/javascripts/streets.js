@@ -65,7 +65,7 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     google      = L.tileLayer(googleUrl,      {attribution: 'Google'}),
     hill1928 = L.tileLayer(Hill1928aws,  {attribution: bigBlogMapAttrib, layers: 'Hill1928', maxZoom:18 }),
     baistDetail = L.tileLayer(baistDetailAws, {attribution: rumseyAttrib, layers: 'BaistDetail', maxZoom:19 }),
-    baistKM     = L.tileLayer(baistKMaws,   {attribution: rumseyAttrib}),
+    rueger1902     = L.tileLayer(baistKMaws,   {attribution: rumseyAttrib}),
     rueger1902  = L.tileLayer(rueger1902aws),
     // hamlin1908   = L.tileLayer(hamlin1908url),
     // hamlin1908   = L.mapbox.styleLayer('mtnbiker.ng4kio7i'),
@@ -79,7 +79,39 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     "<span style='color: orange'>OSM Street</span>"        : osmMap,
     "<span style='color: green' >ESRI Satellite</span>"    : esriMap,
     "<span style='color: green' >Google Satellite</span>"  : google
-	}
+    }
+    // overlayLayers used so can compare historic maps to each other.
+    // Can I use Rails or jS to loop over the map list from the database?
+    var overlayLayers = {
+      // "<span style='color: blue'>1857 Bancroft</span>"     : bing,
+      // "<span style='color: blue'>1888 Sanborn</span>"      : bing,
+      // "<span style='color: blue'>1894 Sanborn</span>"      : bing,
+      "<span style='color: blue'>1902 Rueger</span>"          : rueger1902,
+      "<span style='color: blue'>1908 Wood</span>"            : woods1908,
+      // "<span style='color: blue'>1908 Hamlin</span>"       : bing,
+      "<span style='color: blue'>1921 Baist detail</span>"    : baistDetail,
+      "<span style='color: blue'>1921 Baist key map</span>"   : rueger1902,
+      "<span style='color: blue'>1928 Hill</span>"            : hill1928
+    }
+    // Trying to put all layers as an option so can compare old maps against each other
+    // var allLayers = baseLayers + overlayLayers; // can concatenate them this way nor by JSON.parse() and concatenating
+    // Layers all stay on and some other glitches
+    var allLayers = {
+    "<span style='color: green'>Bing</span>"               : bing,
+    "<span style='color: orange'>OSM Street</span>"        : osmMap,
+    "<span style='color: green' >ESRI Satellite</span>"    : esriMap,
+    "<span style='color: green' >Google Satellite</span>"  : google,
+    // "<span style='color: blue'>1857 Bancroft</span>"     : bing,
+    // "<span style='color: blue'>1888 Sanborn</span>"      : bing,
+    // "<span style='color: blue'>1894 Sanborn</span>"      : bing,
+    "<span style='color: blue'>1902 Rueger</span>"          : rueger1902,
+    "<span style='color: blue'>1908 Wood</span>"            : woods1908,
+    // "<span style='color: blue'>1908 Hamlin</span>"       : bing,
+    "<span style='color: blue'>1921 Baist detail</span>"    : baistDetail,
+    "<span style='color: blue'>1921 Baist key map</span>"   : rueger1902,
+    "<span style='color: blue'>1928 Hill</span>"            : hill1928 
+    }
+
 // console.log(('81. end of variable declaration. laMap:', laMap);
 // ############################################################################################
 // One function for edit and one for show. editMap is added to the bottom of showMap
@@ -139,7 +171,8 @@ function showMap(popupText) {
   // console.log(('101. showMap. laMap just defined. laMap:', laMap, 'map:', map); 
   // osmMap.addTo(laMap); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
   bing.addTo(laMap); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
-  L.control.layers(null, baseLayers, {collapsed: false}).addTo(laMap); // baseLayers defined about ten lines above, don't need null if don't have options
+  
+  L.control.layers(null, baseLayers, {collapsed: false}).addTo(laMap); // baseLayers defined about ten lines above, don't need null if don't have options. Collapses with rollover though.
 
 // Above established the basemap as Bing or OSM. Now add street segment(s)
 // if (streetExtentArray != undefined || streetExtentJson != undefined) { // didn't work if outside the function
