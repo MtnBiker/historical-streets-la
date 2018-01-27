@@ -1,11 +1,14 @@
 ### To Be Done
-* Search would be better in navbar since it's sticky and there is room or it. For now should be called "Search streets" unless add site-wide search
+
+* Add search icon to Search for street textarea and remove Submit Search
+
+* Add boolean column to Maps as to whether to include in the map views. Add the logic to the streets.js and overviewmapSelector to not show those maps
 
 * 1928 Hill's needs more detailed georeferencing
  
 * 1902 Rueger needs trimming. Unfortunately probably have to georef again.
 
-* Date slider on overview map. Even better if overview maps synced by date.
+* Date slider on overview map. Even better if overview maps synced by date? Color by dateß
 
 * Section 5.3.4 testing mostly not working
   
@@ -36,7 +39,7 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * Color of lines on overview map. L.mapbox.featureLayer doesn't have color option. Can it be added to json? If not need a whole new approach. Adding polylines in Leaflet. Has path options which includes color. Probably need to do this if going to change colors by year. And PolyLine is lat-lng not lng-lat like GeoJSON. No key on lat or lon, so would have to parse. Maybe need to go back to drawing with lat-lng polylines
 
-* Add other Baist detail maps to existing served set?
+* Add other Baist detail maps to existing served set.
 
 * Is jQuery UI being used? If so remove unused effects and widgets
 
@@ -58,4 +61,4 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 ### Completed
 
-
+* Search would be better in navbar since it's sticky and there is room or it. For now should be called "Search streets" unless add site-wide search

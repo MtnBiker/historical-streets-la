@@ -24,7 +24,12 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   # Whats does one use in link_to to use this link, crores_path or _url doesn't work
-  get 'crores' => redirect("https://secure-shore-68966.herokuapp.com")
+  get 'crores', to: redirect("https://secure-shore-68966.herokuapp.com"), as: 'crores'  
+  get 'twitter', to: redirect('https://twitter.com/HistStreetsLA'), as: 'twitter'        
+  get 'facebook', to: redirect( 'https://www.facebook.com/Historic-Street-Names-in-Los-Angeles-1654691867902831/'), as: "facebook"
+  "https://github.com/MtnBiker/historical-streets-la"
+  get 'githublahist', to: redirect("https://github.com/MtnBiker/historical-streets-la"), as: 'githublahist'
+  
 
   # so overview.html.erb and overviewMap can find what overview.json.jbuilder created.
  get 'overview/overview_data', :defaults => { :format => 'json' } # Clark p159.
