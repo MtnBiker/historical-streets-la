@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'facebook', to: redirect( 'https://www.facebook.com/Historic-Street-Names-in-Los-Angeles-1654691867902831/'), as: "facebook"
   "https://github.com/MtnBiker/historical-streets-la"
   get 'githublahist', to: redirect("https://github.com/MtnBiker/historical-streets-la"), as: 'githublahist'
-  
+  get "knobby", to: redirect('http://knobby.ws/'), as: 'knobby'
 
   # so overview.html.erb and overviewMap can find what overview.json.jbuilder created.
  get 'overview/overview_data', :defaults => { :format => 'json' } # Clark p159.
