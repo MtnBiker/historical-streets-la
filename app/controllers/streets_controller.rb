@@ -42,6 +42,7 @@ class StreetsController < ApplicationController
   def edit
     @maps = Map.all.order(:year)
     gon.streetExtentArray = @street.extent_array
+    gon.streetExtentJson = @street.extent_json
   end
 
   # POST /streets

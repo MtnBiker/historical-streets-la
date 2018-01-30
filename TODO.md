@@ -2,6 +2,8 @@
 
 * Add search icon to Search for street textarea and remove Submit Search
 
+* Formatting of Log in page: /sessions/new.html.erb
+
 * Add boolean column to Maps as to whether to include in the map views. Add the logic to the streets.js and overviewmapSelector to not show those maps
 
 * 1928 Hill's needs more detailed georeferencing
