@@ -9,10 +9,14 @@ but since it was being done; may as well lets others use and contribute.</p>
 
 <p>Just established <%= link_to "Facebook", facebook_path, target: :_blank  %> and <%= link_to "Twitter", twitter_path, target: :_blank  %>.</p>
 
-<p>The scanned maps came from sources linked to on the map. All georeferencing of the individual scanned maps was done using QGIS. Then those were exported as a set of tiles using the QGIS plug-in QTiles.</p>
+<p>The historic scanned maps came from sources linked to on the map. The scans were cleaned up using Photoshop Elements (mainly removing the collars). The georeferencing of the individual scanned maps was done using QGIS. Then those were combined and exported as a set of tiles using the QGIS plug-in QTiles.</p>
 
-<p><%= link_to "Leaflet.ActiveLayers", "https://github.com/vogdb/Leaflet.ActiveLayers", target: :_blank %></p>
+<p>Leaflet.js provides the core of the mapping with some Mapbox additions. Key add-ons to Leaflet were <%= link_to "Leaflet.ActiveLayers", "https://github.com/vogdb/Leaflet.ActiveLayers", target: :_blank %> and <%= link_to "Leaflet.OpacityControls", "https://github.com/lizardtechblog/Leaflet.OpacityControls", target: :_blank%></p>
 
-<p><%= link_to "Leaflet.OpacityControls", "https://github.com/lizardtechblog/Leaflet.OpacityControls", target: :_blank%></p>
+<p>Ruby on Rails was used for the site as it provides a good framework for putting together a database driven site. Important to my use of Rails was Michael Hartl's book and. An El Camino College class on Javascript helped with understanding Javascript which is the foundation of Leaflet. The site is hosted on Heroku as it provides an easy entry to hosting Rails. Map tiles are hosted at AWS since there are too many tiles to be included directly in the site.</p>
+
+<p>Without the support of Stackoverload users the site couldn't have happened. Searching there led to the solution of many problems, others were solved just writing up a problem, and others were solved by responses to my posts.</p>
+
+<p>MaptimeLA introduced me to many of the technologies and inspired me to try to make the site. About the time I needed the information on this site, MaptimeLA held meetings at CSUN and UCLA reminding me of the great historical maps available, and CSUN's Chris Salvano mentioned his <%= link_to "San Francisco Historical Street Names Index", "http://www.chrissalvano.com/lost-san-francisco/san-francisco-historical-street-names-index-update", target: "_blank" %> project which suggested a need for a similar repository for Los Angeles.</p>
 
 <p>For status of the development of the site see the <%= link_to "GitHub repository", githublahist_path, target: :_blank %>.</p>

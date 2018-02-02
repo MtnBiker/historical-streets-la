@@ -178,7 +178,7 @@ function showMap(popupText) {
 // if (streetExtentArray != undefined || streetExtentJson != undefined) { // didn't work if outside the function
   showSegment(laMap); // laMap is global, so probably don't need to do this
 // }
-  // Shows zoom level which I find useful. Like to have in on the lower right
+  // Shows zoom level which I find useful. Like to have in on the upper left next to zoom control TODO
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html
   var ZoomViewer = L.Control.extend(
     {
@@ -198,7 +198,7 @@ function showMap(popupText) {
           return container;
         }
   	}); // end ZoomViewer
-  	(new ZoomViewer).addTo(laMap); // unknown to me syntax  TODO, not currently showing up
+  	(new ZoomViewer).addTo(laMap); // unknown to me syntax
 
 // Put the layer selection control on the map. Note that we need two `layers` from the map definition
   // The event handler for changing the display after the selection of an overlayLayer?? Is this comment orphaned?
