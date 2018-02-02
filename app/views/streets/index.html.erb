@@ -34,7 +34,7 @@
         <th>Current (Latest)</th>
         <th>Latest Date</th>
         <th>Cross Streets</th>
-        <th>Approx. Number of Blocks</th> <!-- / miles -->
+        <th>Approx. Number of Blocks / miles</th> <!-- / miles -->
         <th>Section Drawn?</th>
         <th>Ref. 1</th>
         <th>Ref. 2</th>
@@ -53,7 +53,7 @@
           <td><%= street.current_name %></td>
           <td><%= street.date_latest %></td>
           <td><%= street.cross_streets %></td>
-          <td><%= street.number_of_blocks %> </td>  <!-- / < = street.extent_length %> -->
+          <td><%= street.number_of_blocks %> / <%= number_to_human(street.extent_length, precision: 2, significant: true, strip_insignificant_zeros: true) %> </td>
           <% if street.extent_json? || street.extent_array? %>
             <td class="extent-yes">Yes</td>
           <% else %>
