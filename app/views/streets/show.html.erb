@@ -42,7 +42,7 @@
     
     <p>
       <strong>Length of segment:</strong>
-      <%= @street.extent_length.to_s.truncate(3) %> miles <!--.round(2) round sometimes errors: undefined method `round' for nil:NilClass. Truncate isn't as accurate, but three significant figures even without rounding is probably OK, but it still may error at heroku and localhost. Truncate is a string method -->
+      <%= number_to_human(@street.extent_length, precision: 2, significant: true, strip_insignificant_zeros: true) %> miles <!--.round(2) round sometimes errors: undefined method `round' for nil:NilClass. -->
       
    <!--    < = begin
             @street.extent_length.round(2)
