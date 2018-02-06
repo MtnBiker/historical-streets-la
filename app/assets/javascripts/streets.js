@@ -123,8 +123,8 @@ function showSegment(laMap) {
   
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
   var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring. True even if just declare `var streetExtensionJson;`
-  debugger;
 // Don't want to do the following for overviewMap. A bit of a work around since calling this for overview
+  console.log('127. streetExtentJson: ', streetExtentJson)
   if (streetExtentArray != undefined || streetExtentJson != undefined) {
     // If linestring exists, draw it. this is for edit and show, but not overview
     // But also have to pick between streetExtentArray and streetExtentJson (should be able to eliminate streetExtentArray when data all in streetExtentJson. I had both because had trouble getting one or the other working.)
@@ -263,7 +263,7 @@ function editMap(popupText) {
   }); // end laMap.on
 
   $('map').imageMapResize();
-  // console.log('203. end of editMap. map:', map, 'laMap:', laMap); 
+  console.log('266. end of editMap. map:', map, 'laMap:', laMap);
 };  // end editMap
 
 // ######################
