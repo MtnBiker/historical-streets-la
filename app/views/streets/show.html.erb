@@ -42,16 +42,7 @@
     
     <p>
       <strong>Length of segment:</strong>
-
-      <%= number_to_human(@street.extent_length, precision: 2, significant: true, strip_insignificant_zeros: true) %> miles <!--.round(2) round sometimes errors: undefined method `round' for nil:NilClass. -->
-      
-   <!--    < = begin
-            @street.extent_length.round(2)
-          rescue
-            @street.extent_length
-          end 
-        %> miles -->
-      
+      <%= number_to_human(@street.extent_length, precision: 2, significant: true, strip_insignificant_zeros: true) %> miles <!--.round(2) round sometimes errors, but this seems to work -->
     </p>
 
     <p>

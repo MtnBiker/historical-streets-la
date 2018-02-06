@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <!-- <%= full_title(yield(:title)) %> -->
-<% provide(:title, @street) %>
+<% provide(:title, "List") %>
+
 <h1>Historic Street Name Changes in Los Angeles</h1>
 
     <div class="col-sm">
@@ -34,12 +35,12 @@
         <th>Current (Latest)</th>
         <th>Latest Date</th>
         <th>Cross Streets</th>
-        <th>Approx. Number of Blocks</th> <!-- / miles -->
-        <th>Section Drawn?</th>
+        <th>Approx. Number of Blocks / miles</th> <!-- / miles -->
         <th>Ref. 1</th>
         <th>Ref. 2</th>
         <th>Ref. 3</th>
         <th>Notes</th>
+        <th>Section Drawn?</th>
         <th colspan="3">Details</th>
       </tr>
     </thead>
@@ -53,16 +54,16 @@
           <td><%= street.current_name %></td>
           <td><%= street.date_latest %></td>
           <td><%= street.cross_streets %></td>
-          <td><%= street.number_of_blocks %> </td>  <!-- / < = street.extent_length %> -->
+          <td><%= street.number_of_blocks %> / <%= number_to_human(street.extent_length, precision: 2, significant: true, strip_insignificant_zeros: true) %> </td>
+          <td><%= street.ref1 %></td>
+          <td><%= street.ref2 %></td>
+          <td><%= street.ref3 %></td>
+          <td><%= street.notes %></td>
           <% if street.extent_json? || street.extent_array? %>
             <td class="extent-yes">Yes</td>
           <% else %>
             <td class='extent-no'>No</td>
           <% end %>
-          <td><%= street.ref1 %></td>
-          <td><%= street.ref2 %></td>
-          <td><%= street.ref3 %></td>
-          <td><%= street.notes %></td>
           <td><%= link_to 'Show', street, class: "text-success" %></td>
           <% if logged_in? %>
             <td><%= link_to 'Edit', edit_street_path(street) %></td>

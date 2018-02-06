@@ -4,11 +4,13 @@
 
 * Formatting of Log in page: /sessions/new.html.erb
 
+* Street length should be dynamically created. One less variable to store.
+
 * Add boolean column to Maps as to whether to include in the map views. Add the logic to the streets.js and overviewmapSelector to not show those maps
 
-* 1928 Hill's needs more detailed georeferencing
+* 1928 Hill's needs more detailed georeferencing. 1894 Sanborn could be refined at S corner straight up to Commercial. Eastern side is OK
  
-* 1902 Rueger needs trimming. Unfortunately probably have to georef again.
+* 1902 Rueger needs trimming. Unfortunately probably have to georef again. Maybe not really a problem.
 
 * Date slider on overview map. Even better if overview maps synced by date? Color by dateß
 
@@ -29,7 +31,7 @@
 * Put up a notice if no coverage available for the map selected.
 * Some if not all maps give errors for tiles that don't exist. E.g., 1909gates/13/1406/… at least when load outside its range
  
-* The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. 
+* The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. Don't understand why button isn't on same line. Look at the Leaflet overlay to see how the formatting is done.
 
 * Scan and OCR street information in City Directories. The Los Angeles City Directories had a section that listed street names and their extent (beginning and end.) Add this to site as searchable. Scan any maps too. The scans may be available where the directories are, e.g., LAPL, Ancestry
 
