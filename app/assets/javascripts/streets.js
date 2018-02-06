@@ -263,7 +263,8 @@ function editMap(popupText) {
   }); // end laMap.on
 
   $('map').imageMapResize();
-  console.log('266. end of editMap. map:', map, 'laMap:', laMap);
+  console.log('266. end of editMap. map:', map);
+  console.log('267. end of editMap. laMap:', laMap);
 };  // end editMap
 
 // ######################
@@ -326,7 +327,7 @@ function overlaySelector(laMap) {
     let mapID = $("#select-overlay input[type='radio']:checked").val();
     // The function that is passed in is executed after the json.forEach is executed.
     findSelectedMap(mapID, function() {
-      // console.log('266. top of overlaySelector in findSelectedMap call. laMap:', laMap);
+      console.log('330. top of overlaySelector in findSelectedMap call. laMap:', laMap);
         currentLayer = L.tileLayer(changeLayerTo).addTo(laMap);
         currentZoom = laMap.getZoom();
         // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
@@ -347,6 +348,7 @@ function overlaySelector(laMap) {
           opacitySlider.setOpacityLayer(currentLayer);
           //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
           currentLayer.setOpacity(0.6);
+          console.log('351. in overlaySelector. currentLayer:', currentLayer);
           previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
         } // end addOpacitySlider
     
