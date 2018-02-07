@@ -1,5 +1,10 @@
 ### To Be Done
 
+* Date slider on overview map. Even better if overview maps synced by date? Color by date
+* Color of lines on overview map. L.mapbox.featureLayer doesn't have color option. Can it be added to json? If not need a whole new approach. Adding polylines in Leaflet. Has path options which includes color. Probably need to do this if going to change colors by year. And PolyLine is lat-lng not lng-lat like GeoJSON. No key on lat or lon, so would have to parse. Maybe need to go back to drawing with lat-lng polylines
+
+* Table of references and a way to select them in Create/New and have them all list
+
 * Add search icon to Search for street textarea and remove Submit Search
 
 * Formatting of Log in page: /sessions/new.html.erb
@@ -11,8 +16,6 @@
 * 1928 Hill's needs more detailed georeferencing. 1894 Sanborn could be refined at S corner straight up to Commercial. Eastern side is OK
  
 * 1902 Rueger needs trimming. Unfortunately probably have to georef again. Maybe not really a problem.
-
-* Date slider on overview map. Even better if overview maps synced by date? Color by dateß
 
 * Section 5.3.4 testing mostly not working
   
@@ -40,8 +43,6 @@
 * Link in popup on overview to streets>show
 https://gis.stackexchange.com/questions/229723/how-to-display-properties-of-geojson-in-popup-on-leaflet
 https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-leaflet
-
-* Color of lines on overview map. L.mapbox.featureLayer doesn't have color option. Can it be added to json? If not need a whole new approach. Adding polylines in Leaflet. Has path options which includes color. Probably need to do this if going to change colors by year. And PolyLine is lat-lng not lng-lat like GeoJSON. No key on lat or lon, so would have to parse. Maybe need to go back to drawing with lat-lng polylines
 
 * Add other Baist detail maps to existing served set.
 
