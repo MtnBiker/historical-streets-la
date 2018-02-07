@@ -1,21 +1,22 @@
 <p id="notice"><%= notice %></p>
 <% provide(:title, "Map List") %>
 
-<h1>Historic Maps. Mainly for providing information for overlay maps</h1>
+<h1>Historic Maps. Providing information for overlay maps and adding references</h1>
 
 <%= link_to 'New Map', new_map_path %>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Short Name*</th>
       <th>Year</th>
-      <th>Max. Zoom</th>
+      <th>Max. Zoom**</th>
       <th>Notes</th>
-      <th>Thomas Guide</th>
-      <th>URL</th>
+      <th>Map Name</th>
+      <th>Server URL</th>
       <th>Attribution Link</th>
       <th>Attribution Text</th>
+      <th>Link to Original Map</th>
       <th colspan="3"></th>
       <th>Name</th>
     </tr>
@@ -28,10 +29,11 @@
         <td><%= map.year %></td>
         <td><%= map.zoom %></td>
         <td><%= map.notes %></td>
-        <td><%= map.thomasGuide%></td>
-        <td><%= map.url %></td>
+        <td><%= map.title %><td>
+        <td><%= map.server_url %></td>
         <td><%= map.attribLink %></td>
         <td><%= map.attrib %></td>
+        <td><%= map.source_url %></td>
         <td><%= link_to 'Show', map %></td>
         <td><%= link_to 'Edit', edit_map_path(map) %></td>
         <td><%= link_to 'Destroy', map, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -40,7 +42,10 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
+<hr>
 <%= link_to 'New Map', new_map_path %>
+<hr>
+<p>*&nbsp; To identify on overlay maps list for selecting in browser</p>
+<p>** Used for sorting in overlay maps</p>
+<p>** Maximum zoom level from server</p>

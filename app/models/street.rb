@@ -1,5 +1,5 @@
 class Street < ApplicationRecord
-  # has_many :maps
+  has_many :maps
   has_paper_trail
   validates :previous_name, :current_name, presence: true
   # before_save :json_to_geojson # or create or update

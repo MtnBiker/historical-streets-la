@@ -1,3 +1,4 @@
+<!--Used by  -->
 <%= form_with(model: map, local: true) do |form| %>
   <% if map.errors.any? %>
     <div id="error_explanation">
@@ -22,24 +23,24 @@
   </div>
   
   <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :map_title %>
+  </div>
+  
+  
+  <div class="field">
     <%= form.label :zoom %>
     <%= form.text_field :zoom, id: :map_zoom %>
   </div>
   
-
   <div class="field">
     <%= form.label :notes %>
     <%= form.text_area :notes, id: :map_notes %>
   </div>
 
   <div class="field">
-    <%= form.label :thomasGuide %>
-    <%= form.text_field ":thomasGuide", id: :map_thomasGuide %>
-  </div>
-
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_area :url, id: :map_url %>
+    <%= form.label :server_url %>
+    <%= form.text_area :server_url, id: :map_server_url %>
   </div>
 
   <div class="field">
@@ -51,6 +52,12 @@
     <%= form.label :attrib %>
     <%= form.text_field :attrib, id: :map_attrib %>
   </div>
+  
+  <div class="field">
+    <%= form.label :source_url %>
+    <%= form.text_area :source_url, id: :map_source_url %>
+  </div>
+  
 
   <div class="actions">
     <%= form.submit %>

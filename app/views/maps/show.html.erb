@@ -15,20 +15,19 @@
   <%= @map.zoom %>
 </p>
 
-
 <p>
   <strong>Notes:</strong>
   <%= @map.notes %>
 </p>
 
 <p>
-  <strong>Thomas Guide:</strong>
-  <%= @map.thomasGuide %>
+  <strong>Map Title:</strong>
+  <%= @map.title %>
 </p>
 
 <p>
   <strong>Map Server URL:</strong>
-  <%= @map.url %>
+  <%= @map.server_url %>
 </p>
 
 <p>
@@ -40,6 +39,12 @@
   <strong>Attribution text</strong>
   <%= @map.attrib %>
 </p>
+
+<p>
+  <strong>Original Map Source URL:</strong>
+  <%= @map.source_url %>
+</p>
+
 
 <%= link_to 'Edit', edit_map_path(@map) %> |
 <%= link_to 'Maps List', maps_path %>
