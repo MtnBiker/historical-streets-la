@@ -69,7 +69,7 @@ group :development do
   gem 'awesome_print' # Prefs in ~/.irbrc
   # http://undefined-reference.org/2016/01/31/super_awesome_print-as-debugger.html
   gem 'super_awesome_print' # Gilmore just uses awesome_print may be enough.
-
+  gem "rails-erd" # Entity-Relationship Diagrams, `rake erd` or `bundle exec rake erd` to get a pdf http://voormedia.github.io/rails-erd/install.html
   # Copy db from (and to?) Heroku
   # To see an updated list of tasks and descriptions: rake heroku_db_restore -T heroku_db_restore
   gem 'heroku_db_restore'

@@ -64,6 +64,22 @@
               </div>
             </div>
 
+            <div class="row">
+              <div class="col-lg-12 text-center font-bold">Maps that confirm the choices</div>
+              <% @maps.each do |map| %>
+                <div>
+                  <label> <!-- Getting id="map_name" for each item -->
+                    <%= check_box_tag(:map_name, map.id, false) %>
+                    <%= label_tag(:map_name, map.name) %>
+                  </label>
+                </div>
+              <% end %>
+            </div>
+           <div class="row">
+              <div class="col-lg-12 text-center font-bold">The following are for references not in the checkboxes above</div>
+              <p> (They may be filled in with items above before the checkboxes were introduced. Please check the appropriate boxes and delete now duplicate references below.)</p>
+            </div>
+            
             <div class="field">
               <%= form.label "Reference 1" %>
               <%= form.text_area :ref1, id: :street_ref1, :maxlength=>"95%" %> <!-- maxlength no effect -->
