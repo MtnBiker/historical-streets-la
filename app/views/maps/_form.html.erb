@@ -1,4 +1,4 @@
-<!--Used by  -->
+<!--Used by maps>edit-->
 <%= form_with(model: map, local: true) do |form| %>
   <% if map.errors.any? %>
     <div id="error_explanation">
@@ -39,12 +39,12 @@
   </div>
 
   <div class="field">
-    <%= form.label :server_url %>
+    <%= form.label "Server URL (tile server)" %>
     <%= form.text_area :server_url, id: :map_server_url %>
   </div>
 
   <div class="field">
-    <%= form.label :attribLink %>
+    <%= form.label "Attribution Link" %>
     <%= form.text_area :attribLink, id: :map_attribLink %>
   </div>
 
@@ -54,7 +54,7 @@
   </div>
   
   <div class="field">
-    <%= form.label :source_url %>
+    <%= form.label "Original map link" %>
     <%= form.text_area :source_url, id: :map_source_url %>
   </div>
   
