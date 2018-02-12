@@ -27,6 +27,7 @@ gem 'bootstrap', '~> 4.0.0' # 4.0.0.beta3 new as of Dec 2017 (but not available 
 # gem "bootstrap_form", # See implementation notes, I tried it
 #     git: "https://github.com/bootstrap-ruby/bootstrap_form.git",
 #     branch: "master"
+gem "comfy_bootstrap_form", "~> 4.0.0" # https://github.com/comfy/comfy-bootstrap-form
 gem "font-awesome-rails" # wanted to use an icon for search. Might be easier to just use CDN
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 # gem 'turbolinks', '~> 5' # didn't play well with Leaflet on my pages.
