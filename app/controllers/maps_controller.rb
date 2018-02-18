@@ -19,6 +19,7 @@ class MapsController < ApplicationController
 
   # GET /maps/1/edit
   def edit
+    @maps = Map.all.order(:year)
   end
 
   # POST /maps

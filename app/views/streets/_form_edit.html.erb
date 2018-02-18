@@ -51,8 +51,8 @@
                 <%= form.text_area :cross_streets, id: :street_cross_streets, :maxlength=>"100%" %>
               </div>
 
-            <div class="row">
-              <div class="col-lg-12 text-center font-bold">Extent of This Item</div>
+            <div class="row"> <!-- row so can have two columns -->
+              <p class="col-lg-12 text-center font-bold">Extent of This Item</p>
               <div class="field col-lg-6">
                 <%= form.label "Approximate Number of Blocks" %>
                 <%= form.text_field :number_of_blocks, id: :street_number_of_blocks %>
@@ -62,21 +62,15 @@
                 <%= form.label "Length of segment, miles" %>
                 <%= form.text_field :extent_length, id: :street_extent_length %>
               </div>
+            </div> <!-- ends the row -->
+            
+            <div class="col-lg-12 text-center font-bold">
+              <p class="text-center font-bold">Maps that confirm the choices</p>
+              <%= form.collection_check_boxes :map_ids, @maps, :id, :name, bootstrap: {check_inline: true} %>
             </div>
-
-            <div class="row">
-              <div class="col-lg-12 text-center font-bold">Maps that confirm the choices</div>
-              <% @maps.each do |map| %>
-                <div>
-                  <label> <!-- Getting id="map_name" for each item -->
-                    <%= check_box_tag(:map_name, map.id, false) %>
-                    <%= label_tag(:map_name, map.name) %>
-                  </label>
-                </div>
-              <% end %>
-            </div>
-           <div class="row">
-              <div class="col-lg-12 text-center font-bold">The following are for references not in the checkboxes above</div>
+            
+           <div class="">
+              <p class="text-center font-bold">The following are for references not in the checkboxes above</p>
               <p> (They may be filled in with items above before the checkboxes were introduced. Please check the appropriate boxes and delete now duplicate references below.)</p>
             </div>
             
