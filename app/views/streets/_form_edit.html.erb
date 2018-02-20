@@ -25,16 +25,16 @@
 
             <div class="field">
               <%= form.label "Previous Name" %>
-              <%= form.text_field :previous_name, id: :street_previous_name %>
+              <%= form.text_field :previous_name, id: :street_previous_name, placeholder: "Street name before 'Earliest confirmed date' below" %>
             </div>
 
             <div class="field">
               <%= form.label "Current Street Name" %>
-              <%= form.text_field :current_name, id: :street_current_name, placeholder: "Name at end of period (Latest confirmed date)", :size=>"95%" %> <!-- whether size or maxlength it goes full -->
+              <%= form.text_field :current_name, id: :street_current_name, placeholder: "Street name between the dates below", :size=>"95%" %> <!-- whether size or maxlength it goes full -->
             </div>
 
             <div class="row">
-              <div class="col-lg-12 text-center font-bold">For Previous Street Name</div>
+              <div class="col-lg-12 text-center font-bold">For Current Street Name</div>
               <div class="field col-lg-6">
                 <%= form.label "Earliest Confirmed Date" %>
                 <%= form.text_field :date_earliest, id: :street_date_earliest %>
@@ -48,35 +48,37 @@
 
               <div class="field">
                 <%= form.label "Entry covers from cross street to cross street or similar" %>
-                <%= form.text_area :cross_streets, id: :street_cross_streets, :maxlength=>"100%" %>
+                <%= form.text_area :cross_streets, id: :street_cross_streets, :maxlength=>"100%", placeholder: "Main St to Alameda Ave" %>
               </div>
 
             <div class="row"> <!-- row so can have two columns -->
               <p class="col-lg-12 text-center font-bold">Extent of This Item</p>
               <div class="field col-lg-6">
-                <%= form.label "Approximate Number of Blocks" %>
-                <%= form.text_field :number_of_blocks, id: :street_number_of_blocks %>
+                <%= form.label "Number of Blocks" %>
+                <%= form.text_field :number_of_blocks, id: :street_number_of_blocks, placeholder: "Approximate number is OK" %>
               </div>
 
               <div class="field col">
                 <%= form.label "Length of segment, miles" %>
-                <%= form.text_field :extent_length, id: :street_extent_length %>
+                <%= form.text_field :extent_length, id: :street_extent_length, placeholder: "Will be filled in when line is drawn" %>
               </div>
             </div> <!-- ends the row -->
-            
-            <div class="col-lg-12 text-center font-bold">
-              <p class="text-center font-bold">Maps that confirm the choices</p>
-              <%= form.collection_check_boxes :map_ids, @maps, :id, :name, bootstrap: {check_inline: true} %>
+
+            <div class="col-lg-12">
+              <p class="text-center font-bold">Reference Maps</p>
+              <%= form.collection_check_boxes :map_ids, @maps, :id, :name, bootstrap: {check_inline: true}, class: "" %>
+<!-- collection_check_boxes is a plain Rails method. -->
             </div>
-            
-           <div class="">
-              <p class="text-center font-bold">The following are for references not in the checkboxes above</p>
-              <p> (They may be filled in with items above before the checkboxes were introduced. Please check the appropriate boxes and delete now duplicate references below.)</p>
+
+            <hr>  <!-- Something wrong with the formatting, without this no new line. -->
+
+            <div class="col-lg-12">
+              <span class="font-bold">References not available in the checkboxes above.</span> (For older entries, please check the appropriate boxes and delete now duplicate references below.)
             </div>
-            
+
             <div class="field">
               <%= form.label "Reference 1" %>
-              <%= form.text_area :ref1, id: :street_ref1, :maxlength=>"95%" %> <!-- maxlength no effect -->
+              <%= form.text_area :ref1, id: :street_ref1, :maxlength=>"95%", placeholder: "For maps or sources not checked above" %> <!-- maxlength no effect -->
             </div>
 
             <div class="field">
@@ -91,12 +93,12 @@
 
             <div class="field">
               <%= form.label :notes %>
-              <%= form.text_area :notes, id: :street_notes %>
+              <%= form.text_area :notes, id: :street_notes, placeholder: "Any other useful information" %>
             </div>
 
             <div class="field">
               <%= form.label "Extent as JSON [lng lat]" %>
-              <%= form.text_field :extent_json, id: :street_extent_json, placeholder: "Will be automagically filled in when line is drawn!" %>
+              <%= form.text_field :extent_json, id: :street_extent_json, placeholder: "Will be automagically filled in when line is drawn! Won't be shown in final release." %>
             </div>
             <% if @street.extent_array? %>
               <div class="field">
