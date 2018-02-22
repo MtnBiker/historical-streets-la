@@ -1,1 +1,1 @@
-json.maps map, :id, :name, :zoom, :url
+json.maps map, :id, :name, :zoom, :server_url

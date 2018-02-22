@@ -298,15 +298,16 @@ function overviewMap() {
 // pulled out this function to help debug overlaySelector
 function findSelectedMap(mapID, cb) {
   // console.log('236. top of findSelectedMap. map:', map, 'laMap:', laMap);
-   $.getJSON('/maps.json', function(json) { // not sure what this json is, but without it, the each never happens. The leading slash says that map.json is at the top level
-     // console.log('238. in findSelectedMap and getJSON.map.json. map', map, 'laMap:', laMap); 
+   $.getJSON('/maps.json', function(json) {
+     // console.log('302. in findSelectedMap and getJSON.map.json. map', map, 'laMap:', laMap);
      let i = 1; // only for console.log
     json.forEach(function(entry) {
       // Should stop the if once a match is found, but the loop is set by the each and not sure how to stop 
       if (entry.maps.id == mapID) {
-        changeLayerTo = entry.maps.url;
+        changeLayerTo = entry.maps.server_url;
         maxZoom = entry.maps.zoom;
         maxMapZoom = entry.maps.zoom;
+        // console.log('310. in findSelectedMap. map', map, 'laMap:', laMap, 'entry.maps.url', entry.maps.url);
         // return false; // acts like a break inside a $().each, but not a forEach loop
       } // end if
       i =+ 1;
