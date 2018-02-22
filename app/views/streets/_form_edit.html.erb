@@ -4,7 +4,7 @@
   <p>This is for a street name from Previous Name/Earliest Date to Current Name/Latest Date</p>
     <div class="row"> <!-- Setting up to have two columns -->
        <div class="col-4"> <!--Left hand column. Set one row width and the others will fit in Bootstrap 4.  https://v4-alpha.getbootstrap.com/layout/grid/#setting-one-column-width -->
-        <%= form_with(model: street, local: true) do |form| %>
+        <%= form_with(model: street, local: true) do |form| %> <!-- form_with is replacing form_for. I didn't have the @in front of street for a long time Feb. 2018 -->
           <% if street.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(street.errors.count, "error") %> prohibited this street from being saved:</h2>
@@ -65,12 +65,14 @@
             </div> <!-- ends the row -->
 
             <div class="col-lg-12">
-              <p class="text-center font-bold">Reference Maps</p>
-              <%= form.collection_check_boxes :map_ids, @maps, :id, :name, bootstrap: {check_inline: true}, class: "" %>
+              <p class="text-center font-bold">Reference Maps</p> 
+            <%= form.collection_check_boxes( :map_ids, @maps, :id, :name, bootstrap: {check_inline: true}, class: "") do |b|
+            b.label(:"data-value" => b.value) { b.check_box + b.text }
+          end %> <!-- @maps (sorted by date) or Maps.all (sorted by entry order) -->
 <!-- collection_check_boxes is a plain Rails method. -->
             </div>
 
-            <hr>  <!-- Something wrong with the formatting, without this no new line. -->
+            <hr>  <!-- Something wrong with the formatting, without this no new line. Now doesn't work with fancy loop above for labels-->
 
             <div class="col-lg-12">
               <span class="font-bold">References not available in the checkboxes above.</span> (For older entries, please check the appropriate boxes and delete now duplicate references below.)
