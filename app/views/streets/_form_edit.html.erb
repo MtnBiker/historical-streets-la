@@ -66,10 +66,7 @@
 
             <div class="col-lg-12">
               <p class="text-center font-bold">Reference Maps</p> 
-            <%= form.collection_check_boxes( :map_ids, @maps, :id, :name, bootstrap: {check_inline: true}, class: "") do |b|
-            b.label(:"data-value" => b.value) { b.check_box + b.text }
-          end %> <!-- @maps (sorted by date) or Maps.all (sorted by entry order) -->
-<!-- collection_check_boxes is a plain Rails method. -->
+            <%= form.collection_check_boxes( :map_ids, @maps, :id, :name, bootstrap: {check_inline: true}, class: "") %>
             </div>
 
             <hr>  <!-- Something wrong with the formatting, without this no new line. Now doesn't work with fancy loop above for labels-->
