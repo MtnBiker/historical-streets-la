@@ -112,15 +112,14 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     "<span style='color: blue'>1928 Hill</span>"            : hill1928 
     }
 
-// console.log(('81. end of variable declaration. laMap:', laMap);
+// console.log(('115. end of variable declaration. laMap:', laMap);
+
 // ############################################################################################
 // One function for edit and one for show. editMap is added to the bottom of showMap
 // For street > show. Used for show and called by editMap and overviewMap to get all the initial stuff
 // Used also by overviewMap
-
 // used by showMap and editMap (if the segment already exists)
-function showSegment(laMap) {
-  
+function showSegment(laMap) {  
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
   var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring. True even if just declare `var streetExtensionJson;`
 // Don't want to do the following for overviewMap. A bit of a work around since calling this for overview
@@ -143,14 +142,13 @@ function showSegment(laMap) {
   }; // end if 15 lines above
 } // end of showSegment
 
-function showMap(popupText) {  
+function showMap(popupText) {
   // console.trace();
   // if (typeof map === 'undefined' || !map){
   //   console.log('89. top of showMap. map is undefined. laMap:', laMap, 'popupText:', popupText);
   // } else {
   //   console.log('91. top of showMap. map:', map, 'laMap:', laMap, 'popupText:', popupText);
   // }
-  //
   //
   // // Sets up map, but if there is a linestring defined will zoom to that in the next if statement
   // // But need a baselayer and a overlayLayer for opacitySlider to load
@@ -182,7 +180,7 @@ function showMap(popupText) {
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html
   var ZoomViewer = L.Control.extend(
     {
-  		onAdd: function()
+      onAdd: function()
         {
           var container= L.DomUtil.create('div');
           var gauge = L.DomUtil.create('div');
@@ -191,10 +189,9 @@ function showMap(popupText) {
           container.style.textAlign = 'left';
           laMap.on('zoomstart zoom zoomend', function(ev)
           {
-          	gauge.innerHTML = 'Zoom level: ' + laMap.getZoom();
+            gauge.innerHTML = 'Zoom level: ' + laMap.getZoom();
           })
           container.appendChild(gauge);
-
           return container;
         }
   	}); // end ZoomViewer
@@ -249,22 +246,22 @@ function editMap(popupText) {
    var coordinate_array = turf.lineString(geojson.geometry.coordinates);
    var length = turf.length(coordinate_array, {units: 'miles'});
    $("#street_extent_length").val(length);
-   
+
   // Write GeoJSON to steet.extent_json for saving from the form.
   $("#street_extent_json").val(JSON.stringify(geojson.geometry));
   // This GeoJSON seems contorted. why not using featureGroup (not the same as GeoJSON feature) or drawnItems instead of layer. Why go val(JSON.stringify(layer.toGeoJSON))? Maybe stringify is needed. I think I'm getting the right result though. extent_json is just a JSON, not a GeoJSON. but maybe the geojson.geometry is. $('element').val gets the value in that DOM element
 
 // Add the drawn line to a layer to display it in the map.
     drawnItems.addLayer(layer);
-    
+
     // Want to capture the length of the segment and save it to the database. Or might save the segment data as a real GeoJSON and then calculate the length dynamically. 
-    
+
     // Creating a GeoJSON of the segment.
   }); // end laMap.on
 
   $('map').imageMapResize();
-  console.log('266. end of editMap. map:', map);
-  console.log('267. end of editMap. laMap:', laMap);
+  console.log('263. end of editMap. map:', map);
+  console.log('264. end of editMap. laMap:', laMap);
 };  // end editMap
 
 // ######################
@@ -275,7 +272,7 @@ function overviewMap() {
 // The popup shows with just this , no bindPopup or openPopup
   
   var segmentLayer = L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(laMap);
-  
+
   // Getting out of mapbox into Leaflet so can work with color, etc.
   // var data = loadURL('overview/overview_data.geojson');
   // L.geoJSON(data, {
@@ -285,11 +282,11 @@ function overviewMap() {
   // }).bindPopup(function (layer) {
   //     return layer.feature.properties.description;
   // }).addTo(laMap);
-    
+
   // May need to openPopup. Read the following and ??
   // https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-leaflet
   // https://gis.stackexchange.com/questions/229723/how-to-display-properties-of-geojson-in-popup-on-leaflet
-  
+ 
   // L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(map).bindPopup(feature.properties.title).openPopup();
  // console.log('230. end of overviewMap. map:', map, 'laMap:', laMap); 
 }; // end overviewMap
@@ -297,9 +294,9 @@ function overviewMap() {
 //  #############################
 // pulled out this function to help debug overlaySelector
 function findSelectedMap(mapID, cb) {
-  // console.log('236. top of findSelectedMap. map:', map, 'laMap:', laMap);
+  // console.log('297. top of findSelectedMap. map:', map, 'laMap:', laMap);
    $.getJSON('/maps.json', function(json) {
-     // console.log('302. in findSelectedMap and getJSON.map.json. map', map, 'laMap:', laMap);
+     // console.log('299. in findSelectedMap and getJSON.map.json. map', map, 'laMap:', laMap);
      let i = 1; // only for console.log
     json.forEach(function(entry) {
       // Should stop the if once a match is found, but the loop is set by the each and not sure how to stop 
@@ -319,16 +316,16 @@ function findSelectedMap(mapID, cb) {
 
 // called by _overlaymap_selector.html.erb which is on streets > overview, show and edit. So ready to respond
 function overlaySelector(laMap) {
-  // console.log('257. Top of overlaySelector. laMap: ', laMap);
+  // console.log('319. Top of overlaySelector. laMap: ', laMap);
   // Adding overlays. This doesn't happen until one of the overlays is selected.  
   $( "#select-overlay" ).change(function() {
-     // console.log('260. top of $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);
+     // console.log('322. top of $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);
 
     // Get layer selected. Identify by map.id as set in _overlay_selector.html.erb    
     let mapID = $("#select-overlay input[type='radio']:checked").val();
     // The function that is passed in is executed after the json.forEach is executed.
     findSelectedMap(mapID, function() {
-      console.log('330. top of overlaySelector in findSelectedMap call. laMap:', laMap);
+      console.log('328. top of overlaySelector in findSelectedMap call. laMap:', laMap);
         currentLayer = L.tileLayer(changeLayerTo).addTo(laMap);
         currentZoom = laMap.getZoom();
         // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
