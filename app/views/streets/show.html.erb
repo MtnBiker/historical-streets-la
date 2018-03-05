@@ -45,7 +45,7 @@
       <%= number_to_human(@street.extent_miles, precision: 2, significant: true, strip_insignificant_zeros: true) %> miles <!--.round(2) round sometimes errors, but this seems to work -->
     </p>
 
-    <p> <strong>Map used to confirm street name changes):</strong> 
+    <p> <strong>Map(s) used to confirm street name changes):</strong> 
       <% if @street.maps.any? %>
         <% for map in @street.maps %>
           <br>&nbsp;&nbsp;<span class="map-list"><%= map.name %></span>
@@ -85,7 +85,7 @@
     </p>
     <% if @street.extent_array? %>
       <p class="json-extent">
-        <strong>Extent as Coordinate Array (string): [lat lng]</strong>
+        <strong>Extent as Coordinate Array (string): [lat lng] <em>Legacy/Deprecated</em></strong>
         <%= @street.extent_array %>
       </p>
     <% end %>
