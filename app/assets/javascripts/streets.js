@@ -236,9 +236,9 @@ function editMap(popupText) {
 
   laMap.on('draw:created', function(e) {
     // featureGroup.addLayer(e.layer); // might be equivalent to the following two lines
-    // var type = e.layerType, // is type being used? Quick test says no 2018.03.03
-    // var layer   = e.layer:
-    var geojson = e.layer.toGeoJSON();  // is an object Object, therefore stringify below.
+    // var type = e.layerType, // not using
+    var layer = e.layer;
+    var geojson = layer.toGeoJSON();  // is an object Object, therefore stringify below.
    
    // Determine length of segment in miles and set up for saving. Turf.js wants just the array of coordinates. Can get rid of this if calculate length dynamically
    // http://turfjs.org/docs/#distance distance=length (expect avoiding normal meaning of length in jS etc.)

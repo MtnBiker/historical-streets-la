@@ -44,6 +44,11 @@
       <strong>Length of segment:</strong>
       <%= number_to_human(@street.extent_length, precision: 2, significant: true, strip_insignificant_zeros: true) %> miles <!--.round(2) round sometimes errors, but this seems to work -->
     </p>
+    
+    <p>
+      <strong>TESTING Length of segment TESTING:</strong>
+      <%= @street.extent_miles %>
+    </p>
 
     <p> <strong>Map used to confirm street name changes):</strong> 
       <% if @street.maps.any? %>
