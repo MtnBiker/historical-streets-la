@@ -9,9 +9,7 @@
 
 * Formatting of Log in page: /sessions/new.html.erb
 
-* Street length should be dynamically created. One less variable to store.
-
-* Add boolean column to Maps as to whether to include in the map views. Add the logic to the streets.js and overviewmapSelector to not show those maps
+* Add boolean column to Maps as to whether to include in the map views, in other words, some maps may have a reference but not used in map views. Add the logic to the streets.js and overviewmapSelector to not show those maps. 
 
 * 1928 Hill's needs more detailed georeferencing. 1894 Sanborn could be refined at S corner straight up to Commercial. Eastern side is OK
  
@@ -27,6 +25,8 @@
 
 * A page to view paper_trail. Probably looks like other index list pages. Static or view of its own?
  
+* Column sorting
+
 * Look at puma.rb and see if hidden stuff is needed
  
 * Login should take you back to the page you were on
@@ -62,8 +62,9 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * Existing segment doesn't show up when go to edit. Should show up as different color or make it editable, but don't want it going away if the segment is not edited. Fixed this, but now not working again.
 
-* Column sorting
-
+* extent_length could be removed. Is a legacy item, but is still created in edit. streets.js would have to eliminate creating this and edit not show it (change to dynamically creating?)
 ### Completed
+
+* Street length should be dynamically created.  Still is stored when drawn, but that value not used except in edit window when line is drawn.
 
 * Search would be better in navbar since it's sticky and there is room or it. For now should be called "Search streets" unless add site-wide search

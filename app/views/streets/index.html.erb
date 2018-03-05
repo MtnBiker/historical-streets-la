@@ -54,7 +54,7 @@
           <td><%= street.current_name %></td>
           <td><%= street.date_latest %></td>
           <td><%= street.cross_streets %></td>
-          <td><%= street.number_of_blocks %> / <%= number_to_human(street.extent_length, precision: 2, significant: true, strip_insignificant_zeros: true) %> </td>
+          <td><%= street.number_of_blocks %> / <%= number_to_human(street.extent_miles, precision: 2, significant: true, strip_insignificant_zeros: true) %> </td>
           <td><%= street.ref1 %></td>
           <td><%= street.ref2 %></td>
           <td><%= street.ref3 %></td>

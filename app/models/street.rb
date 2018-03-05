@@ -12,20 +12,31 @@ class Street < ApplicationRecord
     where("previous_name ILIKE ? OR current_name ILIKE ? OR date_earliest ILIKE ? OR date_latest ILIKE ? OR cross_streets ILIKE ? OR ref1 ILIKE ? OR ref2 ILIKE ? OR ref3 ILIKE ? OR notes ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%").order("previous_name","current_name")
   end
 
-# http://www.movable-type.co.uk/scripts/latlong.html#equirectangular calculating how long a segment (extent_json) is 
+# http://www.movable-type.co.uk/scripts/latlong.html#equirectangular calculating how long a segment (extent_json) is. distance is used by extent_miles below 
   def distance(lon1, lat1, lon2, lat2)
     Math.acos( Math.sin(lat1 * (Math::PI/180))*Math.sin(lat2*(Math::PI/180)) + Math.cos(lat1*Math::PI/180) * Math.cos(lat2*(Math::PI/180))*Math.cos((lon2 * Math::PI/180)-(lon1*Math::PI/180)) ) * 6371000
   end
   
-  def extent_miles
-    # add if to use extent_array if extend_json doesn't exist
-    lineString = JSON.parse(extent_json[35..-2])  # JSON.parse converts string to array
+  def calculateMiles(lineString)
     i = 0
     lineLength = 0
-  while i < lineString.length - 1  do
+    while i < lineString.length - 1  do
       i+=1
       lineLength = lineLength + distance(lineString[i-1][0], lineString[i-1][1], lineString[i][0], lineString[i][1])
     end
     return lineLength * 0.0006214 # convert from meters to miles
+  end
+  
+  def extent_miles
+    # add if to use extent_array if extend_json doesn't exist
+    if extent_json.present?
+      lineString = JSON.parse(extent_json[35..-2])  # JSON.parse converts string to array
+      calculateMiles(lineString)
+    elsif extent_array.present?
+      lineString = JSON.parse(extent_array)
+      calculateMiles(lineString)
+    else
+      return ""
+    end    
   end
 end
