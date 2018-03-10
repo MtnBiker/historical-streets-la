@@ -26,5 +26,4 @@
 // Leaflet is included in mapbox, so don't need to load it.
 //  require leaflet
 //= require leaflet.draw
-
 //= require_tree .

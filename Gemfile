@@ -48,6 +48,7 @@ gem 'activerecord-postgis-adapter'
 gem 'rgeo-geojson'
 gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.10 (July 3, 2017)
 
+gem 'webpacker'
 # jQuery
 gem 'jquery-rails' # This needed by Bootstrap 4. Includes versions 1,2,3. Can select one or the other in application.js. Bootstrap 4 says use jquery3
 gem 'jquery-ui-rails' # needed by Leaflet.OpacityControls (slider)

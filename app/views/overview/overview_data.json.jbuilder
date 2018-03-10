@@ -9,11 +9,16 @@ json.features @segments do |street|
     json.type "Feature"
 
     json.properties do
+      # Adding what's needed for skeate/Leaflet.timeline
+      json.start street.date_earliest
+      json.end   street.date_latest
+      json.name  street.current_name # maybe this should be something else, but is used by sample
+      
        # title is for popup/rollover
        json.title h("Was #{street.previous_name} before #{street.date_earliest} and now is #{street.current_name} #{street.date_latest}.")
        # This breaks it, but fixable.
        # json.link = h(<a href=\"street/#{link}\">link</a>)  # if add this to above it comes across as is without the \, but no real link
-       json.link = street.id # to use to make link in .js
+       json.link = street.id # to use to make link in .js. not sure where, see link above TODO
     end # do
 
     json.geometry do

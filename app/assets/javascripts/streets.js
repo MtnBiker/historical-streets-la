@@ -123,7 +123,7 @@ function showSegment(laMap) {
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
   var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring. True even if just declare `var streetExtensionJson;`
 // Don't want to do the following for overviewMap. A bit of a work around since calling this for overview
-  console.log('127. streetExtentJson: ', streetExtentJson)
+  console.log('126. (gon.)streetExtentJson: ', streetExtentJson)
   if (streetExtentArray != undefined || streetExtentJson != undefined) {
     // If linestring exists, draw it. this is for edit and show, but not overview
     // But also have to pick between streetExtentArray and streetExtentJson (should be able to eliminate streetExtentArray when data all in streetExtentJson. I had both because had trouble getting one or the other working.)
@@ -267,10 +267,36 @@ function editMap(popupText) {
 // All the segments shown on one map. Called from overview.index.html
 function overviewMap() {
   showMap(); // showMap draws the map and adds control to select basemaps.
-
-// The popup shows with just this , no bindPopup or openPopup
+  // The popup shows with just this, no bindPopup or openPopup, probably because it is added via overview_data.geojson  
+  // var segmentLayer = L.mapbox.featureLayer().loadURL('overview_data.geojson').addTo(laMap);
   
-  var segmentLayer = L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(laMap);
+ // Leaflet.timeline https://github.com/skeate/Leaflet.timeline
+ // function onLoadData(data){
+ var data = new L.GeoJSON.AJAX("overview_data.geojson"); // This works with .addTo(laMap), so `data` is probably in the right format. Come out blue
+  var timeline = L.timeline(data, {
+   style: function(data){
+     return {
+       stroke: false,
+       color: getColorFor(data.properties.name),
+       fillOpacity: 0.5
+     }
+   },
+   waitToUpdateMap: true,
+   onEachFeature: function(feature, layer) {
+     layer.bindTooltip(feature.properties.name);
+   }
+  });
+
+   timelineControl = L.timelineSliderControl({
+     formatOutput: function(date) {
+       return new Date(date).toLocaleDateString();
+     },
+     enableKeyboardControls: true,
+   });
+   timeline.addTo(laMap);
+   timelineControl.addTo(laMap);
+   timelineControl.addTimelines(timeline);
+   // }  // end function onLoadData
 
   // Getting out of mapbox into Leaflet so can work with color, etc.
   // var data = loadURL('overview/overview_data.geojson');
@@ -281,6 +307,33 @@ function overviewMap() {
   // }).bindPopup(function (layer) {
   //     return layer.feature.properties.description;
   // }).addTo(laMap);
+  
+  // Adding a time slider dWilhem, getting one error: 
+  // layerGroup = L.layerGroup([marker1, marker2, marker3, polyline ]);
+  // var sliderControl = L.control.sliderControl({
+  //   layer:segmentLayer,
+  //   range: false, // true is the default, Has to be false for follow to work
+  //   follow: 5, // range must be false for follow to work.
+  //   timeStrLength: 10 // doesn't seem to make any difference, works with default 19 also
+  // });
+  // laMap.addControl(sliderControl);
+  // sliderControl.startSlider();
+  
+  // from crores
+ //  var mySliderControl = L.control.sliderControl({
+//     range: false, // true is the default, Has to be false for follow to work
+//     follow: 5, // range must be false for follow to work.
+//     timeStrLength: 10, // doesn't seem to make any difference, works with default 19 also
+//     // layer: pointLayer // this option is consistently seen. Except
+//     // layer: lineLayer // OK but popup is date, not info needed
+//     // layer: sliderLayer  // both don't work. Points all show and line is start or finish only
+//   });
+// // console.log("22. mySliderControl: ", mySliderControl);
+//   mySliderControl.addTo(laMap);
+//
+//   // http://jsfiddle.net/ngeLm8c0/5/ and http://stackoverflow.com/questions/35878087/timeslider-plugin-and-leaflet-markers-not-appearing-in-order/35881206#35881206
+// // console.log("26. mySliderControl: ", mySliderControl);
+//   mySliderControl.startSlider();
 
   // May need to openPopup. Read the following and ??
   // https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-leaflet
