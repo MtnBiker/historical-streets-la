@@ -286,6 +286,7 @@ function overviewMap() {
   // var segmentLayer = L.mapbox.featureLayer().loadURL('overview_data.geojson').addTo(laMap);
   
  // Leaflet.timeline https://github.com/skeate/Leaflet.timeline
+ // http://skeate.github.io/Leaflet.timeline/borders.html can be helpful for debugging
   $.getJSON("overview/overview_data.json", function (data) {
     let timeline = L.timeline(data, {
       style: function(data){
