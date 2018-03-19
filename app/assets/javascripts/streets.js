@@ -123,7 +123,7 @@ function showSegment(laMap) {
   var streetExtentArray = gon.streetExtentArray; // works better with this even if repeated later. And this has to be in the function, not with the other var. gon not defined if outside. In the statement, the streetExtentArray only exists in the sense of gon.
   var streetExtentJson = gon.streetExtentJson; // is this needed? Yes, otherwise streetExtentJson is undefined below and it's used several times, so worth declaring. True even if just declare `var streetExtensionJson;`
 // Don't want to do the following for overviewMap. A bit of a work around since calling this for overview
-  console.log('126. (gon.)streetExtentJson: ', streetExtentJson)
+  // console.log('126. (gon.)streetExtentJson: ', streetExtentJson)
   if (streetExtentArray != undefined || streetExtentJson != undefined) {
     // If linestring exists, draw it. this is for edit and show, but not overview
     // But also have to pick between streetExtentArray and streetExtentJson (should be able to eliminate streetExtentArray when data all in streetExtentJson. I had both because had trouble getting one or the other working.)
@@ -262,7 +262,19 @@ function editMap(popupText) {
   console.log('263. end of editMap. map:', map);
   console.log('264. end of editMap. laMap:', laMap);
 };  // end editMap
-
+// ###########
+// Different colors depending on year start the segment
+// Using the start year of the segment, but could change this depending on how it comes out
+function colorYear(year) {
+  let colorYear;
+  if (year < 1890) {
+    colorYear = '#ff0000';
+  }
+  else {
+    colorYear = '#008000';
+  } 
+  return colorYear
+};
 // ######################
 // All the segments shown on one map. Called from overview.index.html
 function overviewMap() {
@@ -274,9 +286,10 @@ function overviewMap() {
   $.getJSON("overview/overview_data.json", function (data) {
     let timeline = L.timeline(data, {
       style: function(data){
+        console.log("start: ", data.properties.start)
         return {
           stroke: true,
-          color: '#ff0000',
+          color: colorYear(data.properties.start),
           fillOpacity: 0.5
        }
      },
