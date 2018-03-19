@@ -265,16 +265,19 @@ function editMap(popupText) {
 // ###########
 // Different colors depending on year start the segment
 // Using the start year of the segment, but could change this depending on how it comes out
+// Formatted to make it easier to edit
+// http://colorbrewer2.org/#type=sequential&scheme=Reds&n=9
 function colorYear(year) {
   let colorYear;
-  if (year < 1890) {
-    colorYear = '#ff0000';
-  }
-  else {
-    colorYear = '#008000';
-  } 
+  if (year < 1890) {         colorYear = '#fc9272';  }
+  else if (year < 1900) {    colorYear = '#fb6a4a';  }
+  else if (year < 1910) {    colorYear = '#ef3b2c';  }
+  else if (year < 1920) {    colorYear = '#cb181d';  }
+  else if (year < 1930) {    colorYear = '#a50f15';  }
+  else {                     colorYear = '#67000d';  } 
   return colorYear
 };
+
 // ######################
 // All the segments shown on one map. Called from overview.index.html
 function overviewMap() {
@@ -286,7 +289,7 @@ function overviewMap() {
   $.getJSON("overview/overview_data.json", function (data) {
     let timeline = L.timeline(data, {
       style: function(data){
-        console.log("start: ", data.properties.start)
+        // console.log("start: ", data.properties.start)
         return {
           stroke: true,
           color: colorYear(data.properties.start),
