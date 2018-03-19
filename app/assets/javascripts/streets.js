@@ -294,13 +294,14 @@ function overviewMap() {
           stroke: true,
           color: colorYear(data.properties.start),
           fillOpacity: 0.5
-       }
-     },
+        }
+       }, // end style: function(data)
      waitToUpdateMap: true,
-     // onEachFeature: function(feature, layer) {
-     //   layer.bindTooltip(feature.properties.name);
-     // }
-    });
+     onEachFeature: function(data, layer) {
+       console.log("301. Trying to get popup working", data.properties.title);
+       // layer.bindTooltip(data.properties.name); // Uncaught TypeError: Cannot read property '_panes' of undefined. Works fine in borders.html
+     }
+    }); // end let timeline = L.timeline
 
     let timelineControl = L.timelineSliderControl({
       enableKeyboardControls: true,
