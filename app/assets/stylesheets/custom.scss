@@ -356,35 +356,3 @@ label {
   padding: 0, 0, 0, 20;
 }
 
-// Leaflet.timeline
-// Commented out parts I figured were already defined
-//@import url(http://fonts.googleapis.com/css?family=Open+Sans);
-//html, body{
-//  margin: 0;
-//  padding: 0;
-//  font-family: "Open Sans", sans-serif;
-//}
-#info{
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 20vw;
-  padding: 1em;
-}
-//#map{
-//  position: fixed;
-//  top: 0;
-//  left: 20vw;
-//  bottom: 0;
-//  right: 0;
-//}
-.leaflet-bottom.leaflet-left{
-  width: 100%;
-}
-.leaflet-control-container .leaflet-timeline-controls{
-  box-sizing: border-box;
-  width: 100%;
-  margin: 0;
-  margin-bottom: 15px;
-}
