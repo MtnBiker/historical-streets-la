@@ -1,11 +1,6 @@
 {
   "name": "la_hist_street",
-  "version": "1.0",
-  "private": true,
-  "dependencies": {
-    "bootstrap": "4.0.0-alpha.6",
-    "jquery": "^3.2.1",
-    "tether": "^1.4.0"
+  "private": true
   },
   "homepage": "https://stark-cove-20051.herokuapp.com",
   "repository": {
@@ -22,35 +17,5 @@
     "geo",
     "Sanborn",
     "Baist"
-    ],
-  "devDependencies": {
-    "lint-staged": "^4.0.0",
-    "pre-commit": "^1.2.2",
-    "prettier": "^1.5.2"
-  }
-}
-{
-  "scripts": 
-  {
-    "precommit": "lint-staged"
-  },
-  "lint-staged": 
-  {
-    "app/**/*.{js,es6,jsx,scss,css}": 
-    [
-      "./node_modules/prettier/bin/prettier.js --trailing-comma es5 --write",
-      "git add"
-    ],
-    "{app,test}/**/*.rb": 
-    [
-      "bundle exec rubocop -a",
-      "git add"
     ]
-  },
-  "devDependencies": 
-  {
-    "husky": "^0.13.4",
-    "lint-staged": "^3.6.0",
-    "prettier": "^1.4.2"
-  }
 }

@@ -10,8 +10,8 @@ json.features @segments do |street|
 
     json.properties do
       # Adding what's needed for skeate/Leaflet.timeline
-      json.start street.date_earliest
-      json.end   street.date_latest
+      json.start street.date_earliest.to_i
+      json.end   street.date_latest.to_i
       json.name  street.current_name # maybe this should be something else, but is used by sample
       
        # title is for popup/rollover

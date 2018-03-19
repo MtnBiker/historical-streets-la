@@ -197,3 +197,6 @@ The following shows the steps needed. Can't believe that a simpler approach won'
 https://clarkdave.net/2015/01/how-to-use-webpack-with-rails/
 
 gem "bootstrap_form", https://github.com/bootstrap-ruby/bootstrap_form Doubled up field titles on so left off (because was using :field for text, if hard code no problem). Not sure of the importance of using this. Only used in street>edit and map>edit. REMOVED AS I DIDN'T SEE THE ADVANTAGES (DIDN'T TRY TOO HARD) AND WOULD HAVE had to figure out how to get rid of the duplicate titles, I needed to hard code the titles, so I was getting the hard coded version and one created from the field name (which either was awkward, eg. Url, or not descriptive enough )
+
+2018.03.19  Commit hasn't worked for a while. Since Webpacker or before, but hadn't realized it.
+I had gotten Leaflet.Timeline working to some extent.

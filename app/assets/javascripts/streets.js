@@ -271,31 +271,31 @@ function overviewMap() {
   // var segmentLayer = L.mapbox.featureLayer().loadURL('overview_data.geojson').addTo(laMap);
   
  // Leaflet.timeline https://github.com/skeate/Leaflet.timeline
- // function onLoadData(data){
- var data = new L.GeoJSON.AJAX("overview_data.geojson"); // This works with .addTo(laMap), so `data` is probably in the right format. Come out blue
-  var timeline = L.timeline(data, {
-   style: function(data){
-     return {
-       stroke: false,
-       color: getColorFor(data.properties.name),
-       fillOpacity: 0.5
-     }
-   },
-   waitToUpdateMap: true,
-   onEachFeature: function(feature, layer) {
-     layer.bindTooltip(feature.properties.name);
-   }
-  });
-
-   timelineControl = L.timelineSliderControl({
-     formatOutput: function(date) {
-       return new Date(date).toLocaleDateString();
+  $.getJSON("overview/overview_data.json", function (data) {
+    let timeline = L.timeline(data, {
+      style: function(data){
+        return {
+          stroke: true,
+          color: '#ff0000',
+          fillOpacity: 0.5
+       }
      },
-     enableKeyboardControls: true,
-   });
-   timeline.addTo(laMap);
-   timelineControl.addTo(laMap);
-   timelineControl.addTimelines(timeline);
+     waitToUpdateMap: true,
+     // onEachFeature: function(feature, layer) {
+     //   layer.bindTooltip(feature.properties.name);
+     // }
+    });
+
+    let timelineControl = L.timelineSliderControl({
+      enableKeyboardControls: true,
+      steps: 100,
+      start: 1885,
+      end: 1928,
+    });
+    timeline.addTo(laMap);
+    timelineControl.addTo(laMap);
+    timelineControl.addTimelines(timeline);
+  }); //  end $.getJSON
    // }  // end function onLoadData
 
   // Getting out of mapbox into Leaflet so can work with color, etc.
