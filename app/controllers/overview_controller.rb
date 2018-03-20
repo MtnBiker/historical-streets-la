@@ -13,7 +13,7 @@ class OverviewController < ApplicationController
   def all_data # maybe for export. Also looked at to start from scratch with jBuilder
     @streets_data_dump = Street.all
   end
-  
+
  
   private
 

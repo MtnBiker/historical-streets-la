@@ -277,14 +277,21 @@ function colorYear(year) {
   else {                     colorYear = '#67000d';  } 
   return colorYear
 };
-
+// #########
+// Show all lines on overview map, a kluge, but that's it for now
+$(document).ready(function() {
+  $('#show-line').click(function(event) {
+    L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(laMap);
+  });
+}); // end ready
 // ######################
-// All the segments shown on one map. Called from overview.index.html
+
+// Segments shown on one map with time slider. Called from overview.index.html
 function overviewMap() {
   showMap(); // showMap draws the map and adds control to select basemaps.
   // The popup shows with just this, no bindPopup or openPopup, probably because it is added via overview_data.geojson  
   // var segmentLayer = L.mapbox.featureLayer().loadURL('overview_data.geojson').addTo(laMap);
-  
+
  // Leaflet.timeline https://github.com/skeate/Leaflet.timeline
  // http://skeate.github.io/Leaflet.timeline/borders.html can be helpful for debugging
   $.getJSON("overview/overview_data.json", function (data) {
@@ -299,8 +306,10 @@ function overviewMap() {
        }, // end style: function(data)
      waitToUpdateMap: true,
      onEachFeature: function(data, layer) {
-       console.log("301. Trying to get popup working", data.properties.title);
-       // layer.bindTooltip(data.properties.name); // Uncaught TypeError: Cannot read property '_panes' of undefined. Works fine in borders.html
+       // debugger
+       // console.log("301. Trying to get popup working", data.properties.title, "layer: ", layer);
+       // layer.bindTooltip("test"); // same error, is something different about layer?
+       // layer.bindTooltip(data.properties.name); // Uncaught TypeError: Cannot read property '_panes' of undefined. Works fine in borders.html. The inputs look the same
      }
     }); // end let timeline = L.timeline
 

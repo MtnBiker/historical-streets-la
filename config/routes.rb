@@ -4,8 +4,7 @@ Rails.application.routes.draw do
   get 'password_resets/new'
   get 'password_resets/edit'
   get 'signup' => 'users#new'
-  # resources :overview # overkill since only one page
-  get 'overview', to: 'overview#index' # above doesn't work
+  get 'overview', to: 'overview#index'
   resources :maps
   resources :streets
   get 'dup_street', to: 'streets#dup' # part of duplicating an entry/record from show page
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
   get 'crores', to: redirect("https://secure-shore-68966.herokuapp.com"), as: 'crores'  
   get 'twitter', to: redirect('https://twitter.com/HistStreetsLA'), as: 'twitter'        
   get 'facebook', to: redirect( 'https://www.facebook.com/Historic-Street-Names-in-Los-Angeles-1654691867902831/'), as: "facebook"
-  "https://github.com/MtnBiker/historical-streets-la"
+  
   get 'githublahist', to: redirect("https://github.com/MtnBiker/historical-streets-la"), as: 'githublahist'
   get "knobby", to: redirect('http://knobby.ws/'), as: 'knobby'
 

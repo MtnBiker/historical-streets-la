@@ -1,7 +1,6 @@
 ### To Be Done
 
-* Date slider on overview map. Even better if overview maps synced by date? Color by date
-* Color of lines on overview map. L.mapbox.featureLayer doesn't have color option. Can it be added to json? If not need a whole new approach. Adding polylines in Leaflet. Has path options which includes color. Probably need to do this if going to change colors by year. And PolyLine is lat-lng not lng-lat like GeoJSON. No key on lat or lon, so would have to parse. Maybe need to go back to drawing with lat-lng polylines
+* Fix overview so popups work without the added click to show all segments
 
 * Length of segment. Easier to comprehend if units were feet (or meters) up to a quarter of a mile or so, then miles. 0.054 miles is hard to comprehend. Currently truncation is done in streets/index. That would have to move to the model since units (ie feet or miles) would be added there. Change name from extent_miles to extent_length or something. Not part of database, so not too hard to change.
 
@@ -63,6 +62,7 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 * Existing segment doesn't show up when go to edit. Should show up as different color or make it editable, but don't want it going away if the segment is not edited. Fixed this, but now not working again.
 
 * extent_length could be removed. Is a legacy item, but is still created in edit. streets.js would have to eliminate creating this and edit not show it (change to dynamically creating?)
+
 ### Completed
 
 * Street length should be dynamically created.  Still is stored when drawn, but that value not used except in edit window when line is drawn. 2018.03.05
@@ -70,3 +70,6 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 * Table of references and a way to select them in Create/New and have them all list
 
 * Search would be better in navbar since it's sticky and there is room or it. For now should be called "Search streets" unless add site-wide search
+
+* Date slider on overview map. Even better if overview maps synced by date? Color by date. 2018.03.19
+* Color of lines on overview map. L.mapbox.featureLayer doesn't have color option. Can it be added to json? If not need a whole new approach. Adding polylines in Leaflet. Has path options which includes color. Probably need to do this if going to change colors by year. And PolyLine is lat-lng not lng-lat like GeoJSON. No key on lat or lon, so would have to parse. Maybe need to go back to drawing with lat-lng polylines
