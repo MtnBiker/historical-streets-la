@@ -1,3 +1,4 @@
+// https://github.com/skeate/Leaflet.timeline
 /* global L */
 
 // GVS put Timeline.js, TimelineSliderControl.js and IntervalTree together to get a full version sans minification
@@ -17,7 +18,7 @@
  * @property {IntervalTreeNode?} right Right child (higher intervals)
  * @property {IntervalTreeNode?} parent The parent of this node
  * @private
- */
+*/
 class IntervalTreeNode {
   constructor(low, high, data, parent) {
     this.low = low;
@@ -38,7 +39,7 @@ class IntervalTreeNode {
  *
  * It allows you to find all intervals which contain a specific point, or
  * overlap with a given interval.
- */
+*/
 class IntervalTree {
   /**
    * Constructs an empty interval tree.
@@ -64,7 +65,7 @@ class IntervalTree {
    * add the interval
    * @param {string} parentSide The side of the parent we're looking at
    * @returns {IntervalTreeNode} The newly added node
-   */
+  */
   _insert(begin, end, value, node, parent, parentSide) {
     let newNode;
     if (node === null) {
@@ -96,7 +97,7 @@ class IntervalTree {
    * @param {number} begin The start of the valid interval
    * @param {number} end The end of the valid interval
    * @param {*} value The value for the interval
-   */
+  */
   insert(begin, end, value) {
     this._insert(begin, end, value, this._root, this._root);
     this.size++;
@@ -122,7 +123,7 @@ class IntervalTree {
    *
    * @param {number} point The sought point
    * @returns {*[]} An array of all values that are valid at the given point.
-   */
+  */
   lookup(point) {
     return this._lookup(point);
   }
@@ -147,7 +148,7 @@ class IntervalTree {
    * @param {number} begin The start of the valid interval
    * @param {number} end The end of the valid interval
    * @returns {*[]} An array of all values that overlap the given interval.
-   */
+  */
   overlap(begin, end) {
     return this._overlap(begin, end);
   }
@@ -168,7 +169,7 @@ L.Timeline = L.GeoJSON.extend({
    * @param {Boolean} [options.drawOnSetTime=true] Make the layer draw as soon
    * as `setTime` is called. If this is set to false, you will need to call
    * `updateDisplayedLayers()` manually.
-   */
+  */
   initialize(geojson, options = {}) {
     this.times = [];
     this.ranges = new IntervalTree();
@@ -203,7 +204,7 @@ L.Timeline = L.GeoJSON.extend({
    * array, and puts everything into an IntervalTree for quick lookup.
    *
    * @param {Object} data GeoJSON to process
-   */
+  */
   _process(data) {
     // In case we don't have a manually set start or end time, we need to find
     // the extremes in the data. We can do that while we're inserting everything
@@ -247,7 +248,7 @@ L.Timeline = L.GeoJSON.extend({
    * @param {Number|String} time The time to set. Usually a number, but if your
    * data is really time-based then you can pass a string (e.g. '2015-01-01')
    * and it will be processed into a number automatically.
-   */
+  */
   setTime(time) {
     this.time = typeof time === 'number' ? time : new Date(time).getTime();
     if (this.options.drawOnSetTime) {
@@ -260,7 +261,7 @@ L.Timeline = L.GeoJSON.extend({
    * Update the layer to show only the features that are relevant at the current
    * time. Usually shouldn't need to be called manually, unless you set
    * `drawOnSetTime` to `false`.
-   */
+  */
   updateDisplayedLayers() {
     // This loop is intended to help optimize things a bit. First, we find all
     // the features that should be displayed at the current time.
@@ -294,7 +295,7 @@ L.timeline = (geojson, options) => new L.Timeline(geojson, options);
 /*
  * @class
  * @extends L.Control
- */
+*/
 L.TimelineSliderControl = L.Control.extend({
   /**
    * @constructor
@@ -321,7 +322,7 @@ L.TimelineSliderControl = L.Control.extend({
    * @param {Number} [options.end] The end time of the timeline. If unset, this
    * will be calculated automatically based on the timelines registered to this
    * control.
-   */
+  */
   initialize(options = {}) {
     const defaultOptions = {
       duration:               10000,
@@ -349,7 +350,7 @@ L.TimelineSliderControl = L.Control.extend({
   /**
    * @private
    * @returns {Number[]} A flat, sorted list of all the times of all layers
-   */
+  */
   _getTimes() {
     const times = [];
     this.timelines.forEach((timeline) => {
@@ -376,7 +377,7 @@ L.TimelineSliderControl = L.Control.extend({
    * change (e.g. when adding a new layer).
    *
    * @private
-   */
+  */
   _recalculate() {
     const manualStart = typeof this.options.start !== 'undefined';
     const manualEnd = typeof this.options.end !== 'undefined';
@@ -415,7 +416,7 @@ L.TimelineSliderControl = L.Control.extend({
    * @param {Number} findTime The time to find events around
    * @param {Number} mode The operating mode. See main function description.
    * @returns {Number} The time of the nearest event.
-   */
+  */
   _nearestEventTime(findTime, mode = 0) {
     const times = this._getTimes();
     let retNext = false;
@@ -455,7 +456,7 @@ L.TimelineSliderControl = L.Control.extend({
    * Create all of the DOM for the control.
    *
    * @private
-   */
+  */
   _createDOM() {
     const classes = [
       'leaflet-control-layers',
@@ -491,7 +492,7 @@ L.TimelineSliderControl = L.Control.extend({
    * Add keyboard listeners for keyboard control
    *
    * @private
-   */
+  */
   _addKeyListeners() {
     this._listener = (...args) => this._onKeydown(...args);
     document.addEventListener('keydown', this._listener);
@@ -501,7 +502,7 @@ L.TimelineSliderControl = L.Control.extend({
    * Remove keyboard listeners
    *
    * @private
-   */
+  */
   _removeKeyListeners() {
     document.removeEventListener('keydown', this._listener);
   },
@@ -522,7 +523,7 @@ L.TimelineSliderControl = L.Control.extend({
 
   /**
    * Reconstructs the <datalist>. Should be called when new data comes in.
-   */
+  */
   _rebuildDataList() {
     const datalist = this._datalist;
     while (datalist.firstChild) {
@@ -541,7 +542,7 @@ L.TimelineSliderControl = L.Control.extend({
    * @private
    * @param {HTMLElement} container The container to which to add the button
    * @param {String} name The class to give the button and the function to call
-   */
+  */
   _makeButton(container, name) {
     const button = L.DomUtil.create('button', name, container);
     button.addEventListener('click', () => this[name]());
@@ -553,7 +554,7 @@ L.TimelineSliderControl = L.Control.extend({
    *
    * @private
    * @param {HTMLElement} container The container to which to add the buttons
-   */
+  */
   _makeButtons(container) {
     this._makeButton(container, 'prev');
     this._makeButton(container, 'play');
@@ -565,7 +566,7 @@ L.TimelineSliderControl = L.Control.extend({
    * DOM event handler to disable dragging on map
    * 
    * @private
-   */
+  */
   _disableMapDragging() {
     this.map.dragging.disable();
   },
@@ -574,7 +575,7 @@ L.TimelineSliderControl = L.Control.extend({
    * DOM event handler to enable dragging on map
    * 
    * @private
-   */
+  */
   _enableMapDragging() {
     this.map.dragging.enable();
   },
@@ -584,7 +585,7 @@ L.TimelineSliderControl = L.Control.extend({
    *
    * @private
    * @param {HTMLElement} container The container to which to add the input
-   */
+  */
   _makeSlider(container) {
     const slider = L.DomUtil.create('input', 'time-slider', container);
     slider.type = 'range';
@@ -642,7 +643,7 @@ L.TimelineSliderControl = L.Control.extend({
    * playback.
    *
    * @param {...L.Timeline} timelines The `L.Timeline`s to register
-   */
+  */
   addTimelines(...timelines) {
     this.pause();
     const timelineCount = this.timelines.length;
@@ -660,7 +661,7 @@ L.TimelineSliderControl = L.Control.extend({
    * playback.
    *
    * @param {...L.Timeline} timelines The `L.Timeline`s to unregister
-   */
+  */
   removeTimelines(...timelines) {
     this.pause();
     const timelineCount = this.timelines.length;
@@ -686,7 +687,7 @@ L.TimelineSliderControl = L.Control.extend({
 
   /**
    * Pauses playback and goes to the previous event.
-   */
+  */
   prev() {
     this.pause();
     const prevTime = this._nearestEventTime(this.time, -1);
@@ -696,7 +697,7 @@ L.TimelineSliderControl = L.Control.extend({
 
   /**
    * Pauses playback.
-   */
+  */
   pause(fromSynced) {
     clearTimeout(this._timer);
     this._playing = false;
@@ -711,7 +712,7 @@ L.TimelineSliderControl = L.Control.extend({
 
   /**
    * Starts playback.
-   */
+  */
   play(fromSynced) {
     clearTimeout(this._timer);
     if (parseFloat(this._timeSlider.value, 10) === this.end) {
@@ -738,7 +739,7 @@ L.TimelineSliderControl = L.Control.extend({
 
   /**
    * Pauses playback and goes to the next event.
-   */
+  */
   next() {
     this.pause();
     const nextTime = this._nearestEventTime(this.time, 1);
@@ -750,7 +751,7 @@ L.TimelineSliderControl = L.Control.extend({
    * Set the time displayed.
    *
    * @param {Number} time The time to set
-   */
+  */
   setTime(time) {
     if (this._timeSlider) this._timeSlider.value = +time;
     this._sliderChanged({

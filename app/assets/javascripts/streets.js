@@ -289,7 +289,7 @@ $(document).ready(function() {
 // Segments shown on one map with time slider. Called from overview.index.html
 function overviewMap() {
   showMap(); // showMap draws the map and adds control to select basemaps.
-  // The popup shows with just this, no bindPopup or openPopup, probably because it is added via overview_data.geojson  
+  // The popup shows with just this, no bindPopup or openPopup, probably because it is added via overview_data.geojson. Commented out because using Leaflet.timeline now, and it doesn't display even if uncommented.
   // var segmentLayer = L.mapbox.featureLayer().loadURL('overview_data.geojson').addTo(laMap);
 
  // Leaflet.timeline https://github.com/skeate/Leaflet.timeline
@@ -309,7 +309,7 @@ function overviewMap() {
        // debugger
        // console.log("301. Trying to get popup working", data.properties.title, "layer: ", layer);
        // layer.bindTooltip("test"); // same error, is something different about layer?
-       // layer.bindTooltip(data.properties.name); // Uncaught TypeError: Cannot read property '_panes' of undefined. Works fine in borders.html. The inputs look the same
+       // layer.bindTooltip(data.properties.name); // Uncaught TypeError: Cannot read property '_panes' of undefined. Works fine in borders.html. The inputs look the same TODO
      }
     }); // end let timeline = L.timeline
 
@@ -323,6 +323,7 @@ function overviewMap() {
     timelineControl.addTo(laMap);
     timelineControl.addTimelines(timeline);
   }); //  end $.getJSON
+
    // }  // end function onLoadData
 
   // Getting out of mapbox into Leaflet so can work with color, etc.
@@ -404,7 +405,7 @@ function overlaySelector(laMap) {
     let mapID = $("#select-overlay input[type='radio']:checked").val();
     // The function that is passed in is executed after the json.forEach is executed.
     findSelectedMap(mapID, function() {
-      console.log('328. top of overlaySelector in findSelectedMap call. laMap:', laMap);
+      // console.log('408. top of overlaySelector in findSelectedMap call. laMap:', laMap);
         currentLayer = L.tileLayer(changeLayerTo).addTo(laMap);
         currentZoom = laMap.getZoom();
         // Maps have various zoom levels and as overlay maps are selected reset the maxZoom
@@ -425,7 +426,7 @@ function overlaySelector(laMap) {
           opacitySlider.setOpacityLayer(currentLayer);
           //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
           currentLayer.setOpacity(0.6);
-          console.log('351. in overlaySelector. currentLayer:', currentLayer);
+          // console.log('429. in overlaySelector. currentLayer:', currentLayer);
           previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
         } // end addOpacitySlider
     
