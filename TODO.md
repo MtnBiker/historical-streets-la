@@ -1,5 +1,7 @@
 ### To Be Done
 
+* Column sorting
+
 * Fix overview so popups work without the added click to show all segments
 
 * Length of segment. Easier to comprehend if units were feet (or meters) up to a quarter of a mile or so, then miles. 0.054 miles is hard to comprehend. Currently truncation is done in streets/index. That would have to move to the model since units (ie feet or miles) would be added there. Change name from extent_miles to extent_length or something. Not part of database, so not too hard to change.
@@ -24,8 +26,6 @@
 
 * A page to view paper_trail. Probably looks like other index list pages. Static or view of its own?
  
-* Column sorting
-
 * Look at puma.rb and see if hidden stuff is needed
  
 * Login should take you back to the page you were on
@@ -57,7 +57,7 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * Edit listing on left is a bit scrunched. Happened when I messed with the overlay map list
 
-* Duplicate a street item. Since often have similar info that don't want to reenter. Would take you to new with the info
+* Duplicate a street item. Since often have similar info that don't want to reenter. Would take you to new with the info—partially done?
 
 * Existing segment doesn't show up when go to edit. Should show up as different color or make it editable, but don't want it going away if the segment is not edited. Fixed this, but now not working again.
 
