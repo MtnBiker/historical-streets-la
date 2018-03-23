@@ -1,6 +1,21 @@
 <p id="notice"><%= notice %></p>
 <!-- <%= full_title(yield(:title)) %> -->
 <% provide(:title, "List") %>
+<!-- Only need for streets index, but is this the best way? -->
+
+<!-- Next 10 lines and script at bottom trying data-tables, but got a jQuery error. -->
+<!-- https://datatables.net/examples/styling/bootstrap4.html -->
+<!-- https://datatables.net/download/ to get custom .js and .css -->
+<link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/cr-1.4.1/fh-3.1.3/r-2.2.1/datatables.min.css"/>
+ 
+<!-- Generic scripts -->
+<script src = "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src = "https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Custom script -->
+<!-- <script src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/cr-1.4.1/fh-3.1.3/r-2.2.1/datatables.min.js"></script> -->
+
+
 
 <h1>Historic Street Name Changes in Los Angeles</h1>
 
@@ -26,7 +41,8 @@
 
 <!-- < = will_paginate %> Following Hartl  -->
   <!-- table table-striped table-hover table-responsive - - Losses vertical centering -->
-  <table class="search-in-index streets pretty table table-striped table-hover table-responsive">
+<!-- id data-table is for the js of that name, data-toggle is for bootstrap-table-rails -->
+  <table id="data-table" data-toggle="table" class="search-in-index streets pretty table table-striped table-hover table-responsive">
     <thead>
       <tr>
         <th>City if not LA</th>
@@ -41,7 +57,9 @@
         <th>Ref. 3</th>
         <th>Notes</th>
         <th>Section Drawn?</th>
-        <th colspan="3">Details</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -92,3 +110,9 @@
     <%= link_to 'Add New Historic Street', new_street_path %>
   </button>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+      $('#data-table').DataTable();
+  } );
+</script>
