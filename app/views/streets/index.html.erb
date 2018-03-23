@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <!-- <%= full_title(yield(:title)) %> -->
 <% provide(:title, "List") %>
-<!-- Only need for streets index, but is this the best way? -->
+<!-- Only need for streets index, but is this the best place to put this? Also a script at bottom of page. Seems to work -->
 
 <!-- Next 10 lines and script at bottom trying data-tables, but got a jQuery error. -->
 <!-- https://datatables.net/examples/styling/bootstrap4.html -->
@@ -58,8 +58,10 @@
         <th>Notes</th>
         <th>Section Drawn?</th>
         <th></th>
-        <th></th>
-        <th></th>
+        <% if logged_in? %>
+          <th></th>
+          <th></th>
+        <% end %>
       </tr>
     </thead>
 
