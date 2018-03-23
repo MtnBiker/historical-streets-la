@@ -9,15 +9,13 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/cr-1.4.1/fh-3.1.3/r-2.2.1/datatables.min.css"/>
  
 <!-- Generic scripts -->
-<script src = "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src = "https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<!-- <script src = "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
+<!-- <script src = "https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
 
 <!-- Custom script -->
-<!-- <script src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/cr-1.4.1/fh-3.1.3/r-2.2.1/datatables.min.js"></script> -->
+<script src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/cr-1.4.1/fh-3.1.3/r-2.2.1/datatables.min.js"></script>
 
-
-
-<h1>Historic Street Name Changes in Los Angeles</h1>
+<!-- <h1>Historic Street Name Changes in Los Angeles</h1> -->
 
     <div class="col-sm">
       <% if logged_in? %>
@@ -57,7 +55,7 @@
         <th>Ref. 3</th>
         <th>Notes</th>
         <th>Section Drawn?</th>
-        <th></th>
+        <th>Details</th>
         <% if logged_in? %>
           <th></th>
           <th></th>
@@ -113,8 +111,15 @@
   </button>
 <% end %>
 
+<!-- https://datatables.net/manual/options -->
 <script>
   $(document).ready(function() {
-      $('#data-table').DataTable();
+      $('#data-table').DataTable( {
+        "columnDefs": [
+          { "orderable": false, "targets": [5,7,8,9,10,12,13,14] } // the numbered columns don't have sorting option https://datatables.net/reference/option/columns.orderable
+          ]
+        // paging: false, // these two do work, but need to open up the table length a bit
+        // scrollY: 400
+      });
   } );
 </script>
