@@ -201,3 +201,5 @@ gem "bootstrap_form", https://github.com/bootstrap-ruby/bootstrap_form Doubled u
 2018.03.19  Commit hasn't worked for a while. Since Webpacker or before, but hadn't realized it. Removed a lot of package.json and everything related to Webpacker per Sam Ruby, Copeland p 197
 Leaflet.Timeline working to some extent. Hack to get width of control right and popups not working YET.
 As a kluge, have a link to put all lines on the map that have the popups
+
+2018.03.22 Added datatables to get sorting and pagination. Removed gems installed for pagination from Hartl. https://datatables.net/manual/options

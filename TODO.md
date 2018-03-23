@@ -15,8 +15,8 @@
 * 1902 Rueger needs trimming. Unfortunately probably have to georef again. Maybe not really a problem.
 
 * Section 5.3.4 testing mostly not working
-  
-* Option to paginate. Gems are installed. Two places change. streets/users_controller.rb lines 7/8 and two erbs for pagination on streets/index.html.erb
+
+ * Make column titles sticky. Not so important with pagination
  
 * Get rid of example user when I get myself set up on localhost. Also track who made the change. Create admin user at historicstreets.la
  
@@ -47,10 +47,6 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * Notices appear twice. Note that in Map>show after an edit, one of the notices is borked, so only get rid of that one
 
-* Add a column/field for segment length, and calculate when created. More info than blocks.
-
-* Make column titles sticky
-
 * Buttons One is solid on edit, but using same class on show doesn't work: btn btn-primary. Text isn't white
 
 * Edit listing on left is a bit scrunched. Happened when I messed with the overlay map list
@@ -72,4 +68,5 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 * Date slider on overview map. Even better if overview maps synced by date? Color by date. 2018.03.19
 * Color of lines on overview map. L.mapbox.featureLayer doesn't have color option. Can it be added to json? If not need a whole new approach. Adding polylines in Leaflet. Has path options which includes color. Probably need to do this if going to change colors by year. And PolyLine is lat-lng not lng-lat like GeoJSON. No key on lat or lon, so would have to parse. Maybe need to go back to drawing with lat-lng polylines
 
-* Column sorting 2018.03.22
+* Column sorting 2018.03.22 which included.   Option to paginate came along for the ride.
+

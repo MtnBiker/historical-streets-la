@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   
   def index
-    # @users = User.all # Before pagination added Listing 10.46
-    @users = User.paginate(page: params[:page])
+    @users = User.all # Before pagination added Listing 10.46. Removed the gem. If need pagination use dataTables. 
+    # @users = User.paginate(page: params[:page])
   end
   
   def new

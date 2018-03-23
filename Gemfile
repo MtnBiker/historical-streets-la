@@ -23,7 +23,7 @@ gem 'puma', '3.4' # not sure of latest version that will work, but 3.9.1 doesn't
 gem 'uglifier'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'bootstrap', '~> 4.0.0' # 4.0.0.beta3 new as of Dec 2017 (but not available to rubygems). bootstrap-sass is not compatiable with 4 (https://github.com/twbs/bootstrap-rubygem)
+gem 'bootstrap', '~> 4.0.0' # bootstrap-sass is not compatiable with 4 (https://github.com/twbs/bootstrap-rubygem)
 # gem "bootstrap_form", # See implementation notes, I tried it
 #     git: "https://github.com/bootstrap-ruby/bootstrap_form.git",
 #     branch: "master"
@@ -37,7 +37,7 @@ gem 'jbuilder' , '~> 2.7'
 gem 'bcrypt', '~> 3.1.11'
 # Undo changes and record of who changed what
 gem 'paper_trail'
-gem 'carrierwave', '1.1.0'
+gem 'carrierwave', '1.1.0' # Rails 5.2 may add this capability
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -55,8 +55,8 @@ gem 'jquery-ui-rails' # needed by Leaflet.OpacityControls (slider)
 gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. 
 
 # Added for Hartl tutorial and can be used with streets, but I want an option. May be better with edit in table
-gem 'will_paginate',           '3.1.5'
-gem 'bootstrap-will_paginate', '1.0.0'
+# gem 'will_paginate',           '3.1.5' # Removed when added datatables. Can delete if don't need 2018.03.22
+# gem 'bootstrap-will_paginate', '1.0.0' # Removed when added datatables. Can delete if don't need 2018.03.22
 gem 'gon'
 gem 'aws-sdk', '~> 2.3' # Needed for AWS
 
