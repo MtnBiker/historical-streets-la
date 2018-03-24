@@ -30,7 +30,7 @@ gem 'bootstrap', '~> 4.0.0' # bootstrap-sass is not compatiable with 4 (https://
 gem "comfy_bootstrap_form", "~> 4.0.0" # https://github.com/comfy/comfy-bootstrap-form
 gem "font-awesome-rails" # wanted to use an icon for search. Might be easier to just use CDN
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-# gem 'turbolinks', '~> 5' # didn't play well with Leaflet on my pages.
+# gem 'turbolinks', '~> 5' # didn't play well with Leaflet on my pages, probably because my JavaScript is less than well written.
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder' , '~> 2.7'
 # Use ActiveModel has_secure_password

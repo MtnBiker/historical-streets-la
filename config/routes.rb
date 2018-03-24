@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'password_resets/new'
   get 'password_resets/edit'
-  get 'signup' => 'users#new'
+  get 'signup', to: 'users#new'
   get 'overview', to: 'overview#index'
   resources :maps
   resources :streets

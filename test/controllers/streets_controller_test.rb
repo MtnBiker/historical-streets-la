@@ -11,13 +11,13 @@ class StreetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_street_url
+    get :new
     assert_response :success
   end
 
   test "should create street" do
     assert_difference('Street.count') do
-      post streets_url, params: { street: { currentName: @street.currentName, dateEarliest: @street.dateEarliest, dateLatest: @street.dateLatest, extent: @street.extent, notes: @street.notes, numBlocks: @street.numBlocks, previous_name: @street.previous_name, ref1: @street.ref1, ref2: @street.ref2, ref3: @street.ref3, where: @street.where } }
+      post streets_url, params: { street: { current_name: @street.current_name, date_earliest: @street.date_earliest, date_latest: @street.date_latest, extent_json: @street.extent_json, notes: @street.notes, number_of_blocks: @street.number_of_blocks, previous_name: @street.previous_name, references: @street.references, ref1: @street.ref1, ref2: @street.ref2, ref3: @street.ref3 } }
     end
 
     assert_redirected_to street_url(Street.last)
@@ -34,7 +34,7 @@ class StreetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update street" do
-    patch street_url(@street), params: { street: { currentName: @street.currentName, dateEarliest: @street.dateEarliest, dateLatest: @street.dateLatest, extent: @street.extent, notes: @street.notes, numBlocks: @street.numBlocks, previous_name: @street.previous_name, ref1: @street.ref1, ref2: @street.ref2, ref3: @street.ref3, where: @street.where } }
+    patch street_url(@street), params: { street: { current_name: @street.current_name, date_earliest: @street.date_earliest, date_latest: @street.date_latest, extent_json: @street.extent_json, notes: @street.notes, number_of_blocks: @street.number_of_blocks, previous_name: @street.previous_name, references: @street.references, ref1: @street.ref1, ref2: @street.ref2, ref3: @street.ref3 } }
     assert_redirected_to street_url(@street)
   end
 

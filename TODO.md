@@ -1,10 +1,12 @@
 ### To Be Done
 
+* Add search icon to Search for street textarea and remove Submit Search. Remove duplicate search, i.e, in menu bar when on streets pages, maybe 
+
 * Fix overview so popups work without the added click to show all segments
 
 * Length of segment. Easier to comprehend if units were feet (or meters) up to a quarter of a mile or so, then miles. 0.054 miles is hard to comprehend. Currently truncation is done in streets/index. That would have to move to the model since units (ie feet or miles) would be added there. Change name from extent_miles to extent_length or something. Not part of database, so not too hard to change.
 
-* Add search icon to Search for street textarea and remove Submit Search
+* The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. Don't understand why button isn't on same line. Look at the Leaflet overlay to see how the formatting is done.
 
 * Formatting of Log in page: /sessions/new.html.erb
 
@@ -31,8 +33,6 @@
 * Put up a notice if no coverage available for the map selected.
 * Some if not all maps give errors for tiles that don't exist. E.g., 1909gates/13/1406/… at least when load outside its range
  
-* The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. Don't understand why button isn't on same line. Look at the Leaflet overlay to see how the formatting is done.
-
 * Scan and OCR street information in City Directories. The Los Angeles City Directories had a section that listed street names and their extent (beginning and end.) Add this to site as searchable. Scan any maps too. The scans may be available where the directories are, e.g., LAPL, Ancestry
 
 * Edit OCR Baist index. Saved as text file with the maps
@@ -43,7 +43,7 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * Add other Baist detail maps to existing served set.
 
-* Is jQuery UI being used? If so remove unused effects and widgets
+* Is jQuery UI being used? If so remove unused effects and widgets. Yes, Leaflet.OpacityControls  uses it.
 
 * Notices appear twice. Note that in Map>show after an edit, one of the notices is borked, so only get rid of that one
 

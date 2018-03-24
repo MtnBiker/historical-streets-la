@@ -21,10 +21,11 @@ class MapsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Map.count') do
       post maps_url, params: {
          map: {
-            attrib: @map.attrib, 
-            attribLink: @map.attribLink, 
+            attrib: @map.attrib,
+            attribLink: @map.attribLink,
             name: @name, # Changed from default Copeland p102
-            url: @map.url, 
+            server_url: @map.server_url,
+            source_url: @map.source_url,
             year: @map.year
          }
       }
@@ -44,7 +45,7 @@ class MapsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update map" do
-    patch map_url(@map), params: { map: { attrib: @map.attrib, attribLink: @map.attribLink, name: @map.name, url: @map.url, year: @map.year } }
+    patch map_url(@map), params: { map: { attrib: @map.attrib, attribLink: @map.attribLink, name: @map.name, server_url: @map.server_url, source_url: @map.source_url, year: @map.year } }
     assert_redirected_to map_url(@map)
   end
 
