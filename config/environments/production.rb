@@ -85,10 +85,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
-  # Following ~12 lines Hartl Listing 11.41
+  # Following ~12 lines Hartl 5 Listing 12.23
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = 'stark-cove-20051.herokuapp.com'
+  # host = 'stark-cove-20051.herokuapp.com'
+  host = 'historicstreets.la'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
@@ -99,4 +100,5 @@ Rails.application.configure do
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
+
 end
