@@ -28,4 +28,4 @@ class SessionsController < ApplicationController
   end
 end
 
-# Complete Hartl Listing 11.32
+# Complete Hartl Listing 11.32 Rails 5
