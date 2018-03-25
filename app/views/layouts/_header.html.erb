@@ -19,6 +19,7 @@
       <% end %>
 
       <% if logged_in? %>
+        <li class="nav-item"><%= link_to "Map list", maps_path, class: "nav-link", data: {turbolinks: false} %></li>
         <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link" %></li>
         <!-- Dropdown starts Confusing because a dropdown menu and Map List item appear when logged in-->
         <!-- Accessible Rich Internet Applications (ARIA) for accessibility -->
@@ -30,7 +31,6 @@
               <%= link_to "Log out",  logout_path, method: :delete, class: "dropdown-item" %>
            </div>
           </li>
-        <li class="nav-item"><%= link_to "Map list", maps_path, class: "nav-link", data: {turbolinks: false} %></li>
       <% else %>
         <li class="nav-item"><%= link_to "Log in", login_path, class: "nav-link" %></li>
       <% end %>  <!-- if logged_in -->
