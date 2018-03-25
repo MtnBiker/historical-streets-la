@@ -97,7 +97,7 @@ Rails.application.configure do
     :authentication => :plain,
     :user_name      => ENV['SENDGRID_USERNAME'], # configured automatically via the SendGrid add-on 
     :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'historicstreets.la,
+    :domain         => 'historicstreets.la',
     :enable_starttls_auto => true
   }
 
