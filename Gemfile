@@ -10,7 +10,7 @@ git_source(:github) do |repo_name|
 end
 
 ruby '2.5.0' # Heroku wants this.
-gem 'bundler', "1.16.1" # no problem when installed bundler with a new version of Ruby. 
+gem 'bundler', "1.16.1" # no problem when installed bundler with a new version of Ruby.
 
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record

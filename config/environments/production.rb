@@ -89,7 +89,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   host = 'stark-cove-20051.herokuapp.com'
-  # host = 'historicstreets.la'# generates and error wheras the above doesn't.
+  # host = 'historicstreets.la'# generates and error whereas the above doesn't.
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
@@ -97,7 +97,7 @@ Rails.application.configure do
     :authentication => :plain,
     :user_name      => ENV['SENDGRID_USERNAME'], # configured automatically via the SendGrid add-on 
     :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
+    :domain         => 'historicstreets.la,
     :enable_starttls_auto => true
   }
 
