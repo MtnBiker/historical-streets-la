@@ -10,7 +10,7 @@ git_source(:github) do |repo_name|
 end
 
 ruby '2.5.0' # Heroku wants this.
-gem 'bundler', "1.16.1" # no problem when installed bundler with a new version of Ruby. Maybe if nail it down now
+gem 'bundler', "1.16.1" # no problem when installed bundler with a new version of Ruby. 
 
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
@@ -39,9 +39,6 @@ gem 'bcrypt', '~> 3.1.11'
 gem 'paper_trail'
 gem 'carrierwave', '1.1.0' # Rails 5.2 may add this capability
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # Leaflet included in mapbox 3.1.1 which is loaded in application.html.erb. PS: mapbox-rails is a year or two behind
 # gem 'leaflet-rails' # with statements in application.js/.scss, loads leaflet. 1.1 as of Sept 17 (current is 1.2 (released 8 August 2017 and current 21 Dec 17) which might fix my leaflet.draw problem). Therefore try loading directly from the web, but is supposed to be included in mapbox.js. Caused other problems
 gem 'activerecord-postgis-adapter'
@@ -54,9 +51,6 @@ gem 'jquery-rails' # This needed by Bootstrap 4. Includes versions 1,2,3. Can se
 gem 'jquery-ui-rails' # needed by Leaflet.OpacityControls (slider)
 gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. 
 
-# Added for Hartl tutorial and can be used with streets, but I want an option. May be better with edit in table
-# gem 'will_paginate',           '3.1.5' # Removed when added datatables. Can delete if don't need 2018.03.22
-# gem 'bootstrap-will_paginate', '1.0.0' # Removed when added datatables. Can delete if don't need 2018.03.22
 gem 'gon'
 gem 'aws-sdk', '~> 2.3' # Needed for AWS
 
