@@ -18,13 +18,12 @@
 
 * Section 5.3.4 testing mostly not working
 
- * Make column titles sticky. Not so important with pagination
- 
-* Get rid of example user when I get myself set up on localhost. Also track who made the change. Create admin user at historicstreets.la
+* Make column titles sticky. Not so important with pagination
  
 * Make the signup and password reset emails and HTML a bit more professional
 
 * A page to view paper_trail. Probably looks like other index list pages. Static or view of its own?
+* Track who's made a change. 
  
 * Look at puma.rb and see if hidden stuff is needed
  
@@ -43,7 +42,7 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * Add other Baist detail maps to existing served set.
 
-* Is jQuery UI being used? If so remove unused effects and widgets. Yes, Leaflet.OpacityControls  uses it.
+* Remove unused effects and widgets from jQuery. Leaflet.OpacityControls uses jQuery.
 
 * Notices appear twice. Note that in Map>show after an edit, one of the notices is borked, so only get rid of that one
 
@@ -72,3 +71,4 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 
 * For admin only: add email address to users>show. Helpful for testing accounts I set up and of others join in. 2018.03.26
 
+* Get rid of example user when I get myself set up on localhost. Also track who made the change. Create admin user at historicstreets.la 2018.03.25
