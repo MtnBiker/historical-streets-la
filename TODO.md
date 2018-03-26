@@ -4,6 +4,8 @@
 
 * Fix overview so popups work without the added click to show all segments
 
+* For admin only: add email address to users>show. Helpful for testing accounts I set up and of others join in
+
 * Length of segment. Easier to comprehend if units were feet (or meters) up to a quarter of a mile or so, then miles. 0.054 miles is hard to comprehend. Currently truncation is done in streets/index. That would have to move to the model since units (ie feet or miles) would be added there. Change name from extent_miles to extent_length or something. Not part of database, so not too hard to change.
 
 * The overlay maps selection column needs to have radio button next to text. At least now scrunched enough can tell. But need to get into Bootstrap 4 more. Don't understand why button isn't on same line. Look at the Leaflet overlay to see how the formatting is done.
