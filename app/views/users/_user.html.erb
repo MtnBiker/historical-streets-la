@@ -3,6 +3,11 @@
   <%= link_to user.name, user %>
   
   <% if current_user.admin? && !current_user?(user) %>
+    | <% if user.admin?  %>
+         is an admin.
+      <%  else %>
+        is regular user.
+      <% end %>
     | <%= user.email %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
