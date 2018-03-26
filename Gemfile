@@ -40,7 +40,7 @@ gem 'paper_trail'
 gem 'carrierwave', '1.1.0' # Rails 5.2 may add this capability
 
 # Leaflet included in mapbox 3.1.1 which is loaded in application.html.erb. PS: mapbox-rails is a year or two behind
-# gem 'leaflet-rails' # with statements in application.js/.scss, loads leaflet. 1.1 as of Sept 17 (current is 1.2 (released 8 August 2017 and current 21 Dec 17) which might fix my leaflet.draw problem). Therefore try loading directly from the web, but is supposed to be included in mapbox.js. Caused other problems
+# gem 'leaflet-rails'
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-geojson'
 gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.10 (July 3, 2017)
@@ -72,8 +72,7 @@ group :development do
   # Copy db from (and to?) Heroku
   # To see an updated list of tasks and descriptions: rake heroku_db_restore -T heroku_db_restore
   gem 'heroku_db_restore'
-
-end
+end # development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -85,7 +84,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-end
+end #  development, test
 
 group :test do
   gem 'minitest-reporters', '1.1.9'
@@ -94,7 +93,7 @@ group :test do
   gem 'rails-controller-testing', '1.0.2' # with Rails 5 Hartl
   # Creates /coverage/index.html which details MiniTest coverage
   gem 'simplecov', :require => false
-end
+end # test
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem. Do I need these?
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

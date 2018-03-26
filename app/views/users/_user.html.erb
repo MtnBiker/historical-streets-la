@@ -2,13 +2,16 @@
   <%= gravatar_for user, size: 50 %>
   <%= link_to user.name, user %>
   
-  <% if current_user.admin? && !current_user?(user) %>
-      <% if current_user.admin?  %>
-         is an admin.
-      <% else %>
-        is regular user.
-      <% end %>
-    email: <%= user.email %>
+  <% if current_user.admin? %> <!-- Status and email shown when admin. Need email if using trial users for testing -->
+    <% if user.admin? %>
+       is an admin.
+    <% else %>
+       is regular user.
+    <% end %>
+    | email: <%= user.email %>
+  <% end %>
+
+  <% if current_user.admin? && !current_user?(user) %> <!-- Don't allow logged in admin to be deleted. -->
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
