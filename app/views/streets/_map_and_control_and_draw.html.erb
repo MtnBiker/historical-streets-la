@@ -9,7 +9,7 @@
 
   <div id="map"></div>
   <script>    
-    var popupText = "&le;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&ge;<%= @street.date_latest %><br><%= @street.current_name %><br> test mcd";
+    var popupText = "&le;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&ge;<%= @street.date_latest %><br><%= @street.current_name %>";
     $(document).ready(function() {
        editMap(popupText); // editMap() is in assets/javascripts/streets.js
     });    
