@@ -20,7 +20,7 @@ let currentLayer;
 let currentZoom;
 let changeLayerTo;
 // L.mapbox.accessToken = "<%= ENV["MAPBOX_TOKEN"] %>"; // error because maybe Mapbox isn't setup yet. The Ruby works even when (jS) commented out
-//URLs. I'm not sure these are used anymore. See Map list
+//URLs. I'm not sure these are used anymore. See Map list TODO
 var Hill1928aws    = 'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y}.png',
     baistDetailAws = 'https://crores.s3.amazonaws.com/tiles/baistDetail/{z}/{x}/{y}.png',
     baistKMaws     = "https://crores.s3.amazonaws.com/tiles/bkm/{z}/{x}/{y}.png",
