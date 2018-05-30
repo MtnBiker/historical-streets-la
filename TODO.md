@@ -1,5 +1,9 @@
 ### To Be Done
 
+* Create images table: url (of the image), thumb_url, source_name, refer_url (where heard about it), title, description, date. has_and_belongs_to_many similar to maps. How add images? From street > new/update. What does streets>index and streets>show? Thumbnail with link?
+
+* Main St numbering change
+
 * Add search icon to Search for street textarea and remove Submit Search. Remove duplicate search, i.e, in menu bar when on streets pages, maybe 
 
 * Fix overview so popups work without the added click to show all segments

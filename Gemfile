@@ -12,7 +12,7 @@ end
 ruby '2.5.0' # Heroku wants this.
 gem 'bundler', "1.16.1" # no problem when installed bundler with a new version of Ruby.
 
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.1.4' # Why not 5.2? Careful of scripts see https://bauland42.com/ruby-on-rails-content-security-policy-csp/o
 # Use postgresql as the database for Active Record
 gem 'pg' , '~> 0.18' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23. Put qualification in to see if helps with server problem (Jan 2018), it did. Apparently v1.0.0 just released and something hasn't caught up. 
 # Use Puma as the app server
@@ -64,7 +64,6 @@ group :development do
   gem 'database_cleaner'
   gem 'rubocop', require: false # on command line `rubocop`
   # gem 'factory_girl_rails'
-  gem 'dotenv-rails' # See p198 Clark. Right now I just have Mapbox credential. But I'm using it for AWS I think.
   gem 'awesome_print' # Prefs in ~/.irbrc
   # http://undefined-reference.org/2016/01/31/super_awesome_print-as-debugger.html
   gem 'super_awesome_print' # Gilmore just uses awesome_print may be enough.
@@ -80,7 +79,7 @@ group :development, :test do
   gem 'pry-byebug' # binding.pry
   gem "better_errors"
   gem 'binding_of_caller'
-
+  gem 'dotenv-rails' # See p198 Clark. Right now I just have Mapbox credential. But I'm using it for AWS I think. Moved to dev and test based on https://github.com/bkeepers/dotenv
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'

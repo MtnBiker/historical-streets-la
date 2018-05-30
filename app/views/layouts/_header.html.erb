@@ -1,5 +1,5 @@
 <!-- Bootstrap Fixed top.  Not sure about toggleable part -->
-<!-- Modeled after /Users/gscar/Downloads/bootstrap-4.0.0-beta.3/docs/4.0/examples/navbar-top-fixed/index.html-->
+<!-- Modeled after /Users/gscar/Downloads/bootstrap-4.0.0-beta.3/docs/4.0/examples/navbar-top-fixed/index.html -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <%= link_to "Historic Street Names in Los Angeles", root_path, class: "navbar-brand" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@
       <% if logged_in? %>
         <li class="nav-item"><%= link_to "Map list", maps_path, class: "nav-link", data: {turbolinks: false} %></li>
         <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link" %></li>
-        <!-- Dropdown starts Confusing because a dropdown menu and Map List item appear when logged in-->
+        <!-- Dropdown starts Confusing because a dropdown menu and Map List item appear when logged in -->
         <!-- Accessible Rich Internet Applications (ARIA) for accessibility -->
          <li class="nav-item dropdown">
            <a class="nav-link dropdown-toggle"  id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
