@@ -23,6 +23,7 @@
     <%= render 'layouts/header' %>
     <div class="container-fluid"> <!-- class="container" has meaning to Bootstrap, but currently crops streets table, Container-fluid fixes that -->
       <% flash.each do |message_type, message| %> <!-- Hartl Listing 7.31, 7.35 plus paper_trail -->
+<!--content_tag is being replace by https://blog.bigbinary.com/2017/08/23/new-syntax-for-tag-helpers-in-rails-5-1.html but in 2019 Hartl still uses. Still supported though and not deprecated. Only instance of contact_tag in this app. The page didn't cover as complex a call as I have; the raw() isn't shown-->
         <%= content_tag(:div, raw(message), class: "alert alert-#{message_type}") %>
       <% end %>
 
