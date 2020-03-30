@@ -1,4 +1,4 @@
-# GitHub README&mdash;Historic Street Names in Los Angeles
+# GitHub README—Historic Street Names in Los Angeles
 A compilation of the history of the street name changes in Los Angeles.
 
 And showing those changed segments of the streets on a map.
@@ -25,7 +25,7 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 
 ### Technical
-- Ruby on Rails 5.1.
+- Ruby on Rails 5.1.4
 
 - PostgreSQL (PostGIS) database.
  
