@@ -9,8 +9,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.5.0' # Heroku wants this.
-# gem 'bundler', "1.16.1" # no problem when installed bundler with a new version of Ruby.
+ruby '2.7.0' # Heroku wants this.
+# gem 'bundler' # With Ruby 2.6, bundler is part of the default rails
 
 gem 'rails', '~> 5.1.4' # Why not 5.2? Careful of scripts see https://bauland42.com/ruby-on-rails-content-security-policy-csp/o
 # Use postgresql as the database for Active Record

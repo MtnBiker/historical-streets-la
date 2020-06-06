@@ -12,6 +12,8 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 ### Status—Deployed
 
+- And the database is running from there, instead of locally as it was during development. Yes in db/dumps/la_street_history_development.2018.01.23.dump
+
 - [historicstreets.la/](https://historicstreets.la/)  is up and running. 
 
 ### Bigger plans

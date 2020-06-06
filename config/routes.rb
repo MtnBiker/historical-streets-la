@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/acknowledgements',   to: 'static_pages#acknowledgements'
   get 'acknowledgments' => 'static_pages#acknowledgments' # missing e and is probably not needed
   get 'about' => 'static_pages#about'
+  get 'street_list' => 'streets#index' # an attempt to get around having streets in crores
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
