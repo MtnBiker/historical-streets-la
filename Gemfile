@@ -23,7 +23,7 @@ gem 'puma'
 gem 'uglifier'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'bootstrap', '~> 4.0.0' # bootstrap-sass is not compatiable with 4 (https://github.com/twbs/bootstrap-rubygem)
+gem 'bootstrap', '~> 4' # bootstrap-sass is not compatiable with 4 (https://github.com/twbs/bootstrap-rubygem)
 # gem "bootstrap_form", # See implementation notes, I tried it
 #     git: "https://github.com/bootstrap-ruby/bootstrap_form.git",
 #     branch: "master"
@@ -52,7 +52,8 @@ gem 'jquery-ui-rails' # needed by Leaflet.OpacityControls (slider)
 gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. 
 
 gem 'gon'
-gem 'aws-sdk', '~> 2.3' # Needed for AWS
+# gem 'aws-sdk', '~> 2.3' # Needed for AWS
+gem 'aws-sdk-s3', '~> 1'# Since got error. Let's hope there aren't new isssues
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

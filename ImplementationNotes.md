@@ -206,3 +206,17 @@ As a kluge, have a link to put all lines on the map that have the popups
 
 2020.06.06 I had moved the database to Heroku (now the master); but I want a local copy for a presentation, so should download it. May lead to confusion on my part.
 Also updated to ruby-2.7.0 to get past the Bundler not installed. Still at `gem 'rails', '~> 5.1.4'``
+2020.06.09 Push failed with `This repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting .git/hooks/post-checkout.` so renamed file. Fixed git push. But `git push heroku` failed.
+Also a note on checking into out this branch: `This repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting .git/hooks/post-checkout.` Renamed that file but to what other effects?
+`brew upgrade yarn` as got errors about needing. Except got this message `Warning: yarn 1.22.4 already installed`
+
+
+Ruby Sass has reached end-of-life and should no longer be used
+NEWER VERSION AVAILABLE: Please upgrade to AWS SDK For Ruby V3
+
+` Ruby Sass has reached end-of-life and should no longer be used.
+remote:        * If you use Sass as a plug-in for a Ruby web framework, we recommend using the
+remote:          sassc gem: https://github.com/sass/sassc-ruby#readme`
+I don't directly require it. Bootstrap4 seems to, but that's fairly recent. Maybe a bundle will fix. Still there. `bundle update`? Tried `bundle update bootstrap`. No change, so changed Gemfile to v4 instead of v4.0.0 Bootstrap is up to 4.5. `sass` is now gone, replaced with sassc?
+
+`bundle update puma` because of a note from GitHub (first time I got one of these)
