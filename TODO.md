@@ -1,5 +1,7 @@
 ### To Be Done
 
+* Rollover/popup not working on main map
+
 * Create images table: url (of the image), thumb_url, source_name, refer_url (where heard about it), title, description, date. has_and_belongs_to_many similar to maps. How add images? From street > new/update. What does streets>index and streets>show? Thumbnail with link?
 
 * Main St numbering change

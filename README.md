@@ -1,4 +1,4 @@
-# GitHub README&mdash;Historic Street Names in Los Angeles
+# GitHub README—Historic Street Names in Los Angeles
 A compilation of the history of the street name changes in Los Angeles.
 
 And showing those changed segments of the streets on a map.
@@ -11,6 +11,8 @@ but then saw a general need and was able to leverage the extensive list publishe
 For more information for now check out the about page at [Croatian Run Restaurants in Los Angeles  1880&ndash;1930](https://secure-shore-68966.herokuapp.com/about) which uses many of the same resources. Also its [acknowledgements page](https://secure-shore-68966.herokuapp.com/about).
 
 ### Status—Deployed
+
+- And the database is running from there, instead of locally as it was during development. Yes in db/dumps/la_street_history_development.2018.01.23.dump
 
 - [historicstreets.la/](https://historicstreets.la/)  is up and running. 
 
@@ -25,7 +27,7 @@ For more information for now check out the about page at [Croatian Run Restauran
 
 
 ### Technical
-- Ruby on Rails 5.1.
+- Ruby on Rails 5.1.4
 
 - PostgreSQL (PostGIS) database.
  

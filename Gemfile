@@ -9,14 +9,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.5.0' # Heroku wants this.
-gem 'bundler', "1.16.1" # no problem when installed bundler with a new version of Ruby.
+ruby '2.7.0' # Heroku wants this.
+# gem 'bundler' # With Ruby 2.6, bundler is part of the default rails
 
 gem 'rails', '~> 5.1.4' # Why not 5.2? Careful of scripts see https://bauland42.com/ruby-on-rails-content-security-policy-csp/o
 # Use postgresql as the database for Active Record
 gem 'pg' , '~> 0.18' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23. Put qualification in to see if helps with server problem (Jan 2018), it did. Apparently v1.0.0 just released and something hasn't caught up. 
 # Use Puma as the app server
-gem 'puma', '3.4' # not sure of latest version that will work, but 3.9.1 doesn't work. I thought I had 3.7 before and it worked but now it doesn't
+gem 'puma'
 # Use SCSS for stylesheets
 # gem 'sass-rails', '~> 5.0' # Not compatible with Bootstrap 4
 # Use Uglifier as compressor for JavaScript assets

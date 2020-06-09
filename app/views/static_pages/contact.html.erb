@@ -2,7 +2,7 @@
 <% provide(:title, 'Contact') %>
 <h1>Contact</h1>
 <p>
-  Please contact <%= mail_to("greg@historicstreets.la", name = "Greg via email", html_options = {subject: "About LA Historic Streets", body: "Hi Greg"}) %> or <%= link_to "post to the project at GitHub", "https://github.com/MtnBiker/historical-streets-la/issues", target: :_blank %> with any comments, questions, suggestions or whatever.
+  Please contact <%= mail_to("Historical_Streets@web.knobby.ws", name = "Greg via email", html_options = {subject: "About LA Historic Streets", body: "Hi Greg"}) %> or <%= link_to "post to the project at GitHub", "https://github.com/MtnBiker/historical-streets-la/issues", target: :_blank %> with any comments, questions, suggestions or whatever.
 </p>
 <p>Also <%= link_to "Facebook", facebook_path, target: :_blank %> and <%= link_to "Twitter", twitter_path, target: :_blank %>.</p>
 <p>See the <%= link_to "Acknowledgements", acknowledgements_path %> page for information on sources, etc.</p>
