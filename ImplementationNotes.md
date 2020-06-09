@@ -203,3 +203,6 @@ Leaflet.Timeline working to some extent. Hack to get width of control right and 
 As a kluge, have a link to put all lines on the map that have the popups
 
 2018.03.22 Added datatables to get sorting and pagination. Removed gems installed for pagination from Hartl. https://datatables.net/manual/options
+
+2020.06.06 I had moved the database to Heroku (now the master); but I want a local copy for a presentation, so should download it. May lead to confusion on my part.
+Also updated to ruby-2.7.0 to get past the Bundler not installed. Still at `gem 'rails', '~> 5.1.4'``

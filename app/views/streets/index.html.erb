@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <!-- <%= full_title(yield(:title)) %> -->
-<% provide(:title, "List") %>
+<% provide(:title, "List of") %>
 <!-- Only need for streets index, but is this the best place to put this? Also a script at bottom of page. Seems to work -->
 
 <!-- Next 10 lines and script at bottom trying data-tables, but got a jQuery error. -->
@@ -42,7 +42,7 @@
   <table id="data-table" data-toggle="table" class="search-in-index streets pretty table table-striped table-hover table-responsive">
     <thead>
       <tr>
-        <th>City if not LA</th>
+        <th>City</th>  <!-- if not LA -->
         <th>Previous Name</th>
         <th>Earliest Date for Prev Name</th>
         <th>Current (Latest)</th>
@@ -65,7 +65,8 @@
     <tbody>
       <% for street in @streets %>
         <tr>
-          <td><% if street.city != "Los Angeles" %><%= street.city %><% end %></td>
+          <!-- <td><%# if street.city != "Los Angeles" %><%#= street.city %><%# end %></td> -->
+          <td><% street.city != "Los Angeles" %> ? <%= street.city : "LA"%><% end %></td>
           <td><%= street.previous_name %></td>
           <td><%= street.date_earliest %></td>
           <td><%= street.current_name %></td>
@@ -119,3 +120,4 @@
       });
   } );
 </script>
+  
