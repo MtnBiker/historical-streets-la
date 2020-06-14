@@ -220,3 +220,22 @@ remote:          sassc gem: https://github.com/sass/sassc-ruby#readme`
 I don't directly require it. Bootstrap4 seems to, but that's fairly recent. Maybe a bundle will fix. Still there. `bundle update`? Tried `bundle update bootstrap`. No change, so changed Gemfile to v4 instead of v4.0.0 Bootstrap is up to 4.5. `sass` is now gone, replaced with sassc?
 
 `bundle update puma` because of a note from GitHub (first time I got one of these)
+
+gem install ffi -v '1.13.1' --source 'https://rubygems.org/' since got bundle error
+
+`gem install ffi -v '1.12.1' --source 'https://rubygems.org/'` since this version was in crores. Also change Gemfile.lock. Didn't help. 
+
+Bootstrap needs ffi, but turn this off for a build. Guard & Listen same thing. Now successful bundle. Put bootstrap back in. Didn't help
+`ruby-install ruby-2.7.0`again `bundle install` still failed
+`bundle update --all` failed with same error
+Relaunched iTerm
+`sudo xcodebuild -license`  no help
+
+Tried changing back to ruby 2.6.6 and ruby 2.6.1 but then got into nokogiri install problems
+Back to 2.7.0 but then ffi problems
+`ruby-install ruby 2.7.0 ` which seems to do a complete reinstall. since some of the errors mentioned ruby, but then it's ruby that's running
+  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker #FIXME? turned off to since maybe an error relateed to know having in development.rb allowed `rs` to work, but don't have bootstrap yet. But with Bootstrap back in get ffi error
+  
+bundle update without gem bootstrap, but then have page loading failures with popper, then sassc. This won't work in the long run since I'm using Bootstrap. 
+
+Do I bit the bullet and move to Rails 6 and webpacker and fight all of that. Maybe since I did it not too long ago in crores5

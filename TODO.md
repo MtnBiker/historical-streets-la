@@ -2,6 +2,8 @@
 
 * Rollover/popup not working on main map
 
+* Add Ruxton
+
 * Create images table: url (of the image), thumb_url, source_name, refer_url (where heard about it), title, description, date. has_and_belongs_to_many similar to maps. How add images? From street > new/update. What does streets>index and streets>show? Thumbnail with link?
 
 * Main St numbering change
@@ -78,3 +80,6 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 * For admin only: add email address to users>show. Helpful for testing accounts I set up and of others join in. 2018.03.26
 
 * Get rid of example user when I get myself set up on localhost. Also track who made the change. Create admin user at historicstreets.la 2018.03.25
+
+* * ≤ ≥ are backwards on streets>show 2020.06.13
+
