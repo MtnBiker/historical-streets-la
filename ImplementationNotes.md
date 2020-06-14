@@ -239,3 +239,6 @@ Back to 2.7.0 but then ffi problems
 bundle update without gem bootstrap, but then have page loading failures with popper, then sassc. This won't work in the long run since I'm using Bootstrap. 
 
 Do I bit the bullet and move to Rails 6 and webpacker and fight all of that. Maybe since I did it not too long ago in crores5
+gem update --system
+bundle update # good after one gem change
+
