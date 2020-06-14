@@ -241,4 +241,7 @@ bundle update without gem bootstrap, but then have page loading failures with po
 Do I bit the bullet and move to Rails 6 and webpacker and fight all of that. Maybe since I did it not too long ago in crores5
 gem update --system
 bundle update # good after one gem change
+rails app:update
+- and copied over stuff that would have been wiped
+bin/rails webpacker:install
 
