@@ -234,14 +234,27 @@ Relaunched iTerm
 Tried changing back to ruby 2.6.6 and ruby 2.6.1 but then got into nokogiri install problems
 Back to 2.7.0 but then ffi problems
 `ruby-install ruby 2.7.0 ` which seems to do a complete reinstall. since some of the errors mentioned ruby, but then it's ruby that's running
-  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker #FIXME? turned off to since maybe an error relateed to know having in development.rb allowed `rs` to work, but don't have bootstrap yet. But with Bootstrap back in get ffi error
+  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker #FIXME? turned off to since maybe an error related to know having in development.rb allowed `rs` to work, but don't have bootstrap yet. But with Bootstrap back in get ffi error
   
 bundle update without gem bootstrap, but then have page loading failures with popper, then sassc. This won't work in the long run since I'm using Bootstrap. 
 
-Do I bit the bullet and move to Rails 6 and webpacker and fight all of that. Maybe since I did it not too long ago in crores5
+### Do I bit the bullet and move to Rails 6 and webpacker and fight all of that. Maybe since I did it not too long ago in crores5
 gem update --system
 bundle update # good after one gem change
 rails app:update
 - and copied over stuff that would have been wiped
-bin/rails webpacker:install
-
+bin/rails webpacker:install => LoadError: Could not load the 'listen' gem. Add `gem 'listen'` to the development group of your Gemfile
+but then bundle install fails # An error occurred while installing ffi (1.13.1), and Bundler cannot continue.
+back where I started from. Rails 6 didn't help
+Removed some gems that seemed to be an issue. 
+yarn upgrade # I made some changes to package.json
+brew upgrade yarn => yarn 1.22.4 already installed
+yarn install --check-files => success Nothing to install.
+➜ bin/rails webpacker:install
+LoadError: Could not load the 'listen' gem. Add `gem 'listen'` to the development group of your Gemfile
+Do that, then `bundle` and follow the install, but same error when `bundle` again
+An error occurred while installing ffi (1.13.1), and Bundler cannot continue.
+Make sure that `gem install ffi -v '1.13.1' --source 'https://rubygems.org/'` succeeds before bundling.
+Maybe give up for now on Rails 6 and go back and figure out when last uploaded to Heroku
+Last successfull upload: Deployed ba95057f May 30, 2018 at 1:54 PM · v82, Build succeeded
+May 30, 2018 at 1:54 PM 

@@ -28,7 +28,7 @@ gem 'bootsnap', require: false
 # gem "bootstrap_form", # See implementation notes, I tried it
 #     git: "https://github.com/bootstrap-ruby/bootstrap_form.git",
 #     branch: "master"
-gem "comfy_bootstrap_form", "~> 4.0.0" # https://github.com/comfy/comfy-bootstrap-form
+# gem "comfy_bootstrap_form", "~> 4.0.0" # https://github.com/comfy/comfy-bootstrap-form hard to tell if I'm using this, but if a form breaks, maybe
 gem "font-awesome-rails" # wanted to use an icon for search. Might be easier to just use CDN
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5' # didn't play well with Leaflet on my pages, probably because my JavaScript is less than well written. FIXME? turned back on for Rails 6
@@ -60,12 +60,12 @@ gem 'aws-sdk-s3', '~> 1'# Since got error when pushing in 2020. Let's hope there
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.5.1'
-  # gem 'listen', '>= 3.0.8', '< 3.2' # FIXME. needs ffi. Don't currently have in crores5
+  gem 'listen' # webpacker wants or its install does, but I don't have it in Crores
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
   # gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'database_cleaner'
-  gem 'rubocop', require: false # on command line `rubocop`
+  # gem 'rubocop', require: false # on command line `rubocop`
+  gem 'rubocop-rails' # on command line `rubocop --require rubocop-rails --rails` # from Crores
   # gem 'factory_girl_rails'
   gem 'awesome_print' # Prefs in ~/.irbrc
   # http://undefined-reference.org/2016/01/31/super_awesome_print-as-debugger.html
@@ -91,10 +91,12 @@ end #  development, test
 group :test do
   gem 'minitest-reporters', '1.1.9'
   # gem 'guard',              '2.14.1' # Rails 5 Hartl
-  gem 'guard-minitest',     '2.4.6' # '2.4.4' Rails 5 Hartl
+  # gem 'guard-minitest',     '2.4.6' # '2.4.4' Rails 5 Hartl
   gem 'rails-controller-testing'# with Rails 5 Hartl, but removed version because of bundle error
   # Creates /coverage/index.html which details MiniTest coverage
   gem 'simplecov', :require => false
+  # gem 'database_cleaner' # https://github.com/DatabaseCleaner/database_cleaner Have I ever used htis
+  # gem 'database_cleaner-active_record' # may be enough
 end # test
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem. Do I need these?
