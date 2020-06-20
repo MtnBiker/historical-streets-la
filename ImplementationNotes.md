@@ -205,6 +205,9 @@ Leaflet.Timeline working to some extent. Hack to get width of control right and 
 As a kluge, have a link to put all lines on the map that have the popups
 
 2018.03.22 Added datatables to get sorting and pagination. Removed gems installed for pagination from Hartl. https://datatables.net/manual/options
+<<<<<<< Local Changes
+
+=======
 
 2020.06.06 I had moved the database to Heroku (now the master); but I want a local copy for a presentation, so should download it. May lead to confusion on my part.
 Also updated to ruby-2.7.0 to get past the Bundler not installed. Still at `gem 'rails', '~> 5.1.4'``
@@ -268,3 +271,7 @@ Make sure that `gem install ffi -v '1.13.1' --source 'https://rubygems.org/'` su
 Still can't bundle update after following install ff1
 
 Try just going back to the May 30, 2018 at 1:54 PM  and make any needed changes
+>>>>>>> External Changes
+2020.06.20 Went back to May 30, 2018. Checked out via Sourcetree as 58-… but still couldn't bundle. Same ffi error
+ImplementationNotes still being tracked. Changed to  '/ImplementationNotes.md'
+Give up for now.
