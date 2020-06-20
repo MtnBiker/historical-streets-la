@@ -1,4 +1,6 @@
 #### Implementation Notes
+Took this file out of git control , i.e., in .gitignore so can see abandoned fork notes
+
 Rails 5.1 since supposed to have better JS asset management, Ruby 2.4
 https://stark-cove-20051.herokuapp.com/ | https://git.heroku.com/stark-cove-20051.git
 https://github.com/MtnBiker/historical-streets-la.git
@@ -258,3 +260,11 @@ Make sure that `gem install ffi -v '1.13.1' --source 'https://rubygems.org/'` su
 Maybe give up for now on Rails 6 and go back and figure out when last uploaded to Heroku
 Last successfull upload: Deployed ba95057f May 30, 2018 at 1:54 PM · v82, Build succeeded
 May 30, 2018 at 1:54 PM 
+
+Set Gemfile to match that date. Based on Comparing Revisions (Couldn't figure out SourceTree)
+Labeled changes with  FIXME-2020.06.16. Couldn't `bundle`, changed to `bundle update`
+=> An error occurred while installing ffi (1.13.1), and Bundler cannot continue.
+Make sure that `gem install ffi -v '1.13.1' --source 'https://rubygems.org/'` succeeds before bundling.
+Still can't bundle update after following install ff1
+
+Try just going back to the May 30, 2018 at 1:54 PM  and make any needed changes

@@ -4,6 +4,9 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+# Leave Implementation Notes out of git so can see notes on abandoned trails
+ImplementationNotes.md
+
 # Ignore bundler config.
 /.bundle
 
