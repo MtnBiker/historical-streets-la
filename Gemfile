@@ -16,15 +16,15 @@ gem 'rails', '~> 6.0.1' # Careful of scripts see https://bauland42.com/ruby-on-r
 # Use postgresql as the database for Active Record
 gem 'pg' , '~> 0.18' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23. Put qualification in to see if helps with server problem (Jan 2018), it did. Apparently v1.0.0 just released and something hasn't caught up. 
 # Use Puma as the app server
-gem 'puma', '3.4' # gem 'puma'  FIXME-2020.06.16
+gem 'puma'# , '3.4' # gem 'puma'  FIXME-2020.06.16
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-# gem 'webpacker', '~> 4.0'  FIXME-2020.06.16
+gem 'webpacker', '~> 4.0'
 gem 'bootsnap', require: false  # FIXME-2020.06.16
 # Use Uglifier as compressor for JavaScript assets
 # gem 'uglifier' # not needed with Webpacker
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'bootstrap', '~> 5.0.0' #  FIXME-2020.06.16 # gem 'bootstrap', '~> 4' # FIXME trying to fix
+# gem 'bootstrap', '~> 5.0.0' #  FIXME-2020.06.16 # gem 'bootstrap', '~> 4' # FIXME trying to fix
 # gem "bootstrap_form", # See implementation notes, I tried it
 #     git: "https://github.com/bootstrap-ruby/bootstrap_form.git",
 #     branch: "master"
@@ -48,7 +48,7 @@ gem 'rgeo-geojson'
 gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.10 (July 3, 2017)
 
 # jQuery
-gem 'jquery-rails' # This needed by Bootstrap 4. Includes versions 1,2,3. Can select one or the other in application.js. Bootstrap 4 says use jquery3
+# gem 'jquery-rails' # This needed by Bootstrap 4. Includes versions 1,2,3. Can select one or the other inapplication.js. Bootstrap 4 says use jquery3
 gem 'jquery-ui-rails' # needed by Leaflet.OpacityControls (slider)
 gem 'tether-rails' #  without this runs fine except I can't upload to heroku, error. 
 
@@ -59,7 +59,7 @@ gem 'aws-sdk-s3', '~> 1'# Since got error when pushing in 2020. Let's hope there
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.5.1'
-  gem 'listen' # webpacker wants or its install does, but I don't have it in Crores
+  # gem 'listen' # webpacker wants or its install does, but I don't have it in Crores
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
   # gem 'spring-watcher-listen', '~> 2.0.0'

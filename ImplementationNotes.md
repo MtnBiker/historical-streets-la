@@ -275,3 +275,9 @@ Try just going back to the May 30, 2018 at 1:54 PM  and make any needed changes
 2020.06.20 Went back to May 30, 2018. Checked out via Sourcetree as 58-… but still couldn't bundle. Same ffi error
 ImplementationNotes still being tracked. Changed to  '/ImplementationNotes.md'
 Give up for now.
+Add bootstrap via Webpacker which means a full Webpacker install.
+`brew upgrade yarn`
+`rails webpacker:install` Fails Rails doesn't know
+`gem install rails` webpacker install still fails
+Problem with something in development.rb - 
+And had to change LA_Historical_Street_Names without blanks and similarly for folder above. Git may have gotten confused too. Changed back to avoid git problems
