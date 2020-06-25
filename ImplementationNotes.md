@@ -326,3 +326,9 @@ Didn't help me.
 Moved `/app/javascript/stylesheets/application.scss` to `/app/javascript/packs/application.scss`
 
 Removed .babelrc per rossta `yarn upgrade` and now can load page.
+
+### moving on from there with Webpacker
+Although it may not be as fast or efficient, put all .js in app/javascript/src. Saves figuring out which one where. Can fix later. 
+https://rossta.net/blog/webpacker-with-bootstrap.html 
+extract_css: true for development in config/webpacker.yml
+Only one         <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> // only 

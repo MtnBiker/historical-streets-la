@@ -70,6 +70,8 @@ development:
       'Access-Control-Allow-Origin': '*'
     watch_options:
       ignored: '**/node_modules/**'
+    # If you omit the javascript_pack_tag and have extract_css: false set for your environment in config/webpacker.yml, then the CSS won't load! https://rossta.net/blog/webpacker-with-bootstrap.html
+    extract_css: true # this line not in default, and would be false by default setting
 
 
 test:

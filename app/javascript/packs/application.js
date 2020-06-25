@@ -1,4 +1,5 @@
 // app/javascripts/packs/application.js
+// webpack calls this file an "entry point" and Webpacker calls it a "pack". per rossta
 /* eslint no-console:0 */
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
@@ -23,6 +24,8 @@ console.log('Hello World from Webpacker')
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
+import 'stylesheets/application' // https://rossta.net/blog/webpacker-with-bootstrap.html
+
 // leaflet 
 import 'leaflet' // not needed if ProvidePlugin has this in environment.js. This may be redundant
 import "../src/leaflet.timeline.js"
@@ -30,18 +33,25 @@ import "../src/leaflet.timeline.js"
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
+// stupid hack so that leaflet's images work after going through webpack. Copied from crores
+import layers from 'leaflet/dist/images/layers.png';
+import marker from 'leaflet/dist/images/marker-icon.png';
+import marker2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
 require("@rails/ujs").start()
 // require("channels") // don't have any
 require("turbolinks").start()
 require("@rails/activestorage").start()
 // require("trix")
 // require("@rails/actiontext")
-require("jquery") // not needed by Bootstrap according to the ReadMe // Does environment.js take care of this, but do I need jQuery elsewhere
+// require("jquery") // not needed by Bootstrap according to the ReadMe // Does environment.js take care of this, but do I need jQuery elsewhere. See line below
+import 'jquery'
+import 'popper.js'
 
 // For Bootstrap 4 from GoRails. css is handled in /stylesheets/application.scss
 import "bootstrap"
-import 'bootstrap/dist/js/bootstrap' // seems redundant with above line
-// import 'popper.js'
+// import 'bootstrap/dist/js/bootstrap' // seems redundant with above line
 
 // I didn't do this in crores. Bu they get imported. FIXME? Adding didnt' stop the babel module error
 // import '../src/Bing.js'

@@ -17,6 +17,9 @@ gem 'rails', '~> 6.0.1' # Careful of scripts see https://bauland42.com/ruby-on-r
 gem 'pg' , '~> 0.18' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23. Put qualification in to see if helps with server problem (Jan 2018), it did. Apparently v1.0.0 just released and something hasn't caught up. 
 # Use Puma as the app server
 gem 'puma'# , '3.4' # gem 'puma'  FIXME-2020.06.16
+# Use SCSS for stylesheets. Was in rossta and makes sense. sass-rails depends on sassc-rails
+# both sass-rails and sassc-rails depend on ffi which I can't install
+# gem 'sassc-rails' # Could use sassc-rails, but probably more than I need. https://github.com/sass/sassc-rails
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 gem 'bootsnap', require: false  # FIXME-2020.06.16

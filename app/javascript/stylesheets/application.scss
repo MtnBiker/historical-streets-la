@@ -1,7 +1,7 @@
 //app/javascript/javascript/application.scss. 
 // Some would name this site.scss. Some would also name the folder css which seems to break some things. Leave the folder name as `stylesheets`
 
-@import "bootstrap";
+//@import "bootstrap"; // https://rossta.net/blog/webpacker-with-bootstrap.html doesn't have this and it does seem redundant
 @import '~bootstrap/scss/bootstrap.scss';
 
 @import 'leaflet'; // node_module
