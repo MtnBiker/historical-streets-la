@@ -11,9 +11,12 @@
     <link  href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
 <!-- look at http://turfjs.org/getting-started to get just what I need instead of the whole script need webpacker npm install @turf/length -->
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'streets', 'data-turbolinks-track': 'reload' %> FIXME, here or in streets/index.html.erb
+       
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %> <!-- Little idea what this is, but shows up in new Rails 6 apps -->
     <!-- Changed to below 23 Sept 17 based on GitHub gon (was just include_gon) Although they appear to give the same result for now. -->
     <%= Gon::Base.render_data %>
     <%= render 'layouts/shim' %> <!-- for IE9 -->

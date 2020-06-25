@@ -1,3 +1,4 @@
+// app/javascripts/packs/application.js
 /* eslint no-console:0 */
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
@@ -15,4 +16,39 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+// https://github.com/rails/webpacker
 console.log('Hello World from Webpacker')
+
+// Copied from crores. Not sure if need. Didn't fix the problem I was having
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
+
+// leaflet 
+import 'leaflet' // not needed if ProvidePlugin has this in environment.js. This may be redundant
+import "../src/leaflet.timeline.js"
+//  https://github.com/PaulLeCam/react-leaflet/issues/255
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+
+require("@rails/ujs").start()
+// require("channels") // don't have any
+require("turbolinks").start()
+require("@rails/activestorage").start()
+// require("trix")
+// require("@rails/actiontext")
+require("jquery") // not needed by Bootstrap according to the ReadMe // Does environment.js take care of this, but do I need jQuery elsewhere
+
+// For Bootstrap 4 from GoRails. css is handled in /stylesheets/application.scss
+import "bootstrap"
+import 'bootstrap/dist/js/bootstrap' // seems redundant with above line
+// import 'popper.js'
+
+// I didn't do this in crores. Bu they get imported. FIXME? Adding didnt' stop the babel module error
+// import '../src/Bing.js'
+// import '../src/ie10-viewport-bug-workaround.js'
+// import '../src/imageMapResizer.min.js'
+// import '../src/leaflet-bing-layer.js'
+// import '../src/Leaflet.OpacityControls.js'
+// import '../src/leaflet.tilelayer.fallback.js'
+// import '../src/leaflet.timeline.js'
+// import '../src/streets.js'

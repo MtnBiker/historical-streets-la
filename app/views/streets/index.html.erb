@@ -1,19 +1,18 @@
 <p id="notice"><%= notice %></p>
-<!-- <%= full_title(yield(:title)) %> -->
+<!-- <%#= full_title(yield(:title)) %> -->
 <% provide(:title, "List of") %>
 <!-- Only need for streets index, but is this the best place to put this? Also a script at bottom of page. Seems to work -->
 
 <!-- Next 10 lines and script at bottom trying data-tables, but got a jQuery error. -->
 <!-- https://datatables.net/examples/styling/bootstrap4.html -->
 <!-- https://datatables.net/download/ to get custom .js and .css -->
-<link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/cr-1.4.1/fh-3.1.3/r-2.2.1/datatables.min.css"/>
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/cr-1.4.1/fh-3.1.3/r-2.2.1/datatables.min.css"/> -->
  
 <!-- Generic scripts -->
 <!-- <script src = "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
 <!-- <script src = "https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
 
-<!-- Custom script -->
-<script src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/cr-1.4.1/fh-3.1.3/r-2.2.1/datatables.min.js"></script>
+<!-- <script src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/cr-1.4.1/fh-3.1.3/r-2.2.1/datatables.min.js"></script> -->
 
 <!-- <h1>Historic Street Name Changes in Los Angeles</h1> -->
 
@@ -65,9 +64,9 @@
     <tbody>
       <% for street in @streets %>
         <tr>
-          <!-- <td><%# if street.city != "Los Angeles" %><%#= street.city %><%# end %></td> -->
-          <td><% street.city != "Los Angeles" %> ? <%= street.city : "LA"%><% end %></td>
-          <td><%= street.previous_name %></td>
+          <td><%# if street.city != "Los Angeles" %><%#= street.city %><%# end %></td>
+          <!-- <td><%# street.city != "Los Angeles" %> ? <%#= street.city : "LA" %><%# end %></td> -->
+         <td><%= street.previous_name %></td>
           <td><%= street.date_earliest %></td>
           <td><%= street.current_name %></td>
           <td><%= street.date_latest %></td>
@@ -108,8 +107,8 @@
   </button>
 <% end %>
 
-<!-- https://datatables.net/manual/options -->
-<script>
+<!-- https://datatables.net/manual/options Go with Ransack I think. -->
+<!-- <script>
   $(document).ready(function() {
       $('#data-table').DataTable( {
         "columnDefs": [
@@ -119,5 +118,5 @@
         // scrollY: 400
       });
   } );
-</script>
+</script> -->
   

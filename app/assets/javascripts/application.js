@@ -13,17 +13,17 @@
 // Bootstrap tooltips and popovers depend on popper.js for positioning, so is needed
 
 // Is rail-ujs in conflict with jquery_ujs? Doesn't seem to be
-//= require rails-ujs
+//  require rails-ujs
 // https://github.com/twbs/bootstrap-rubygem bootstrap possible instead of bootstrap-sprockets. 
 // Use jquery3 instead of jquery?. v3 is current. I think jQuery3 means no v1 which supports older browsers. Bootstrap gem says use jquery3
-//= require jquery3
+//  require jquery3
 //  require turbolinks. Doesn't play well with Leaflet. Are workarounds, but I don't need turbolinks.
-//= require popper
-//= require tether
-//= require bootstrap-sprockets
-//= require jquery-ui
+//  require popper
+//  require tether
+//  require bootstrap-sprockets
+//  require jquery-ui
 //  require jquery_ujs
 // Leaflet is included in mapbox, so don't need to load it.
 //  require leaflet
-//= require leaflet.draw
-//= require_tree .
+//  require leaflet.draw
+//  require_tree .

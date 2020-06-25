@@ -1,6 +1,6 @@
 ### To Be Done
 
-* Rollover/popup not working on main map
+* Rollover/popup not working on main map. Do I need popper and have I installed it right. One bootstrap reference said it's included in bootstrap? Apparently need popper.js (not popper which is different)
 
 * Add Ruxton
 

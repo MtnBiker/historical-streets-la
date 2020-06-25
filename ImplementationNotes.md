@@ -198,7 +198,7 @@ Turf.js and webpacker/yarn: `yarn add @turf/helpers `and `yarn add @turf/length`
 The following shows the steps needed. Can't believe that a simpler approach won't be worked out.
 https://clarkdave.net/2015/01/how-to-use-webpack-with-rails/. This is two years old.
 
-gem "bootstrap_form", https://github.com/bootstrap-ruby/bootstrap_form Doubled up field titles on so left off (because was using :field for text, if hard code no problem). Not sure of the importance of using this. Only used in street>edit and map>edit. REMOVED AS I DIDN'T SEE THE ADVANTAGES (DIDN'T TRY TOO HARD) AND WOULD HAVE had to figure out how to get rid of the duplicate titles, I needed to hard code the titles, so I was getting the hard coded version and one created from the field name (which either was awkward, eg. Url, or not descriptive enough )
+gem "bootstrap_form"__, https://github.com/bootstrap-ruby/bootstrap_form Doubled up field titles on so left off (because was using :field for text, if hard code no problem). Not sure of the importance of using this. Only used in street>edit and map>edit. REMOVED AS I DIDN'T SEE THE ADVANTAGES (DIDN'T TRY TOO HARD) AND WOULD HAVE had to figure out how to get rid of the duplicate titles, I needed to hard code the titles, so I was getting the hard coded version and one created from the field name (which either was awkward, eg. Url, or not descriptive enough )
 
 2018.03.19  Commit hasn't worked for a while. Since Webpacker or before, but hadn't realized it. Removed a lot of package.json and everything related to Webpacker per Sam Ruby, Copeland p 197
 Leaflet.Timeline working to some extent. Hack to get width of control right and popups not working YET.
@@ -279,5 +279,50 @@ Add bootstrap via Webpacker which means a full Webpacker install.
 `brew upgrade yarn`
 `rails webpacker:install` Fails Rails doesn't know
 `gem install rails` webpacker install still fails
-Problem with something in development.rb - 
-And had to change LA_Historical_Street_Names without blanks and similarly for folder above. Git may have gotten confused too. Changed back to avoid git problems
+Problem with something in development.rb -
+And had to change LA_Historical_Street_Names without blanks and similarly for folder above  and `yarn upgrade` succeeds. Git may have gotten confused too. Changed back to avoid git problems
+`yarn upgrade`
+`yarn add bootstrap`
+`yarn add jquery`
+`yarn add jqueryui popper tether`
+`yarn add leaflet`
+`yarn add @rails/ujs`
+`yarn add turbolinks`
+Lots of changes to /javascripts/packs/application.js
+Appears bootstrap isn't working.
+`yarn add core-js regenerator-runtime` Didn't help with jS error
+
+Following per https://github.com/tootsuite/mastodon/issues/10092
+`yarn upgrade-interactive --latest`
+`rm yarn.lock`
+`rm -rf node_modules`
+`yarn install`
+Same error: bootstrap:83 Uncaught Error: Module build failed (from ./node_modules/babel-loader/lib/index.js):
+Error: Cannot find module 'babel-plugin-syntax-dynamic-import' from '/Users/gscar/Documents/Croatian Restaurants Project-CroRes/LA Historical Street Names/la_hist_street'
+- Did you mean "@babel/syntax-dynamic-import"?
+`yarn add @babel/plugin-syntax-dynamic-import --dev` didn't help. BTW it was already installed
+`yarn remove tether` not sure was using and what the heck. No difference
+`@rails/activestorage` Seems like I should have this. Little harm if don't. Can remove later 
+➜ yarn add popper.js
+yarn add v1.22.4 # because got unmet dependency
+`yarn add @babel/core` because of unmet etc. but said already had
+
+Tried commenting out all test and dev gems. server didn't work. 
+Commented out all test and server worked, but same error
+Commented out gem turbolinks since now with Webpack, but still get babel error
+Added active storage
+yarn add @fortawesome/fontawesome-free and turned off gem
+Switched to Ruby 2.7.1 because why not. How much worse can it get
+Webpacker to v5 was v4. no help for babel issue
+bundle exec rails webpacker:install since upgraded. Had to remove spaces from folder names
+`yarn upgrade`
+
+https://stackoverflow.com/questions/58520418/rails-webpacker-compile-error-on-production-enviorment
+This is for production environment, but I tried the following anyway.
+`yarn add @rails/webpacker`
+`bundle update webpacker`
+Didn't help me.
+
+Moved `/app/javascript/stylesheets/application.scss` to `/app/javascript/packs/application.scss`
+
+Removed .babelrc per rossta `yarn upgrade` and now can load page.
