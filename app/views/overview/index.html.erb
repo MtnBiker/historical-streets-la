@@ -3,7 +3,7 @@
 <!-- <h1>Historic Street Names in Los Angeles</h1> There already is a heading and space is a premium on this page -->
 
 <div class="row">
-<!-- This is  _map_and_control except popupText isn't put in here. -->
+<!-- This is  _map_and_control except popupText isnt put in here. -->
   <div class="col card">
     <p class="font-bold-red center">If no map shows up when you choose an overlay map, the map may not cover that region; so try another map, particularly if not near downtown.</p>
     <p class="center" id="show-line"><span>Click here to show all street segments at once</span>, then click on black lines to get information on the historic changes. Or use the time slider at bottom left to see when the name changes occurred.</p>
@@ -12,9 +12,10 @@
     <div id="map"></div>
     <%#= javascript_pack_tag 'streets' %>
       <script>
-
+        <%= render 'layouts/bing_as_partial' %>
+        <%= render 'layouts/streets_as_partial' %>
         $(document).ready(function() {
-           overviewMap(); // overviewMap() is in app/javascripts/src/streets.js:276
+           overviewMap(); // overviewMap() is in app/javascripts/src/streets.js: which is now in layouts/_streets_as_partial
         });
       </script>
 </div>  <!-- col for map -->
