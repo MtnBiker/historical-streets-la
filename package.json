@@ -1,21 +1,24 @@
 {
-  "name": "la_hist_street",
-  "private": true
+  "license": "ISC",
+  "main": "application.js",
+  "dependencies": {
+    "@babel/core": "^7.10.3",
+    "@fortawesome/fontawesome-free": "^5.13.1",
+    "@rails/activestorage": "^6.0.3-2",
+    "@rails/ujs": "^6.0.3-2",
+    "@rails/webpacker": "^5.1.1",
+    "bootstrap": "^4.5.0",
+    "core-js": "^3.6.5",
+    "jquery": "^3.5.1",
+    "jqueryui": "^1.11.1",
+    "leaflet": "^1.6.0",
+    "popper.js": "^1.16.1",
+    "regenerator-runtime": "^0.13.5",
+    "turbolinks": "^5.2.0",
+    "webpack": "^4.43.0"
   },
-  "homepage": "https://stark-cove-20051.herokuapp.com",
-  "repository": {
-    "url": "https://github.com/MtnBiker/historical-streets-la",
-    "type": "git"
-  },
-  "bugs": "https://github.com/MtnBiker/historical-streets-la/issues",
-  "author": "Greg <la_hist_street@web.knobby.ws>",
-  "license": "MIT",
-  "keywords": [
-    "Los Angeles",
-    "streets",
-    "history",
-    "geo",
-    "Sanborn",
-    "Baist"
-    ]
+  "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "webpack-dev-server": "^3.11.0"
+  }
 }

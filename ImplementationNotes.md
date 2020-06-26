@@ -1,4 +1,6 @@
 #### Implementation Notes
+Took this file out of git control , i.e., in .gitignore so can see abandoned fork notes
+
 Rails 5.1 since supposed to have better JS asset management, Ruby 2.4
 https://stark-cove-20051.herokuapp.com/ | https://git.heroku.com/stark-cove-20051.git
 https://github.com/MtnBiker/historical-streets-la.git
@@ -196,13 +198,154 @@ Turf.js and webpacker/yarn: `yarn add @turf/helpers `and `yarn add @turf/length`
 The following shows the steps needed. Can't believe that a simpler approach won't be worked out.
 https://clarkdave.net/2015/01/how-to-use-webpack-with-rails/. This is two years old.
 
-gem "bootstrap_form", https://github.com/bootstrap-ruby/bootstrap_form Doubled up field titles on so left off (because was using :field for text, if hard code no problem). Not sure of the importance of using this. Only used in street>edit and map>edit. REMOVED AS I DIDN'T SEE THE ADVANTAGES (DIDN'T TRY TOO HARD) AND WOULD HAVE had to figure out how to get rid of the duplicate titles, I needed to hard code the titles, so I was getting the hard coded version and one created from the field name (which either was awkward, eg. Url, or not descriptive enough )
+gem "bootstrap_form"__, https://github.com/bootstrap-ruby/bootstrap_form Doubled up field titles on so left off (because was using :field for text, if hard code no problem). Not sure of the importance of using this. Only used in street>edit and map>edit. REMOVED AS I DIDN'T SEE THE ADVANTAGES (DIDN'T TRY TOO HARD) AND WOULD HAVE had to figure out how to get rid of the duplicate titles, I needed to hard code the titles, so I was getting the hard coded version and one created from the field name (which either was awkward, eg. Url, or not descriptive enough )
 
 2018.03.19  Commit hasn't worked for a while. Since Webpacker or before, but hadn't realized it. Removed a lot of package.json and everything related to Webpacker per Sam Ruby, Copeland p 197
 Leaflet.Timeline working to some extent. Hack to get width of control right and popups not working YET.
 As a kluge, have a link to put all lines on the map that have the popups
 
 2018.03.22 Added datatables to get sorting and pagination. Removed gems installed for pagination from Hartl. https://datatables.net/manual/options
+<<<<<<< Local Changes
+
+=======
 
 2020.06.06 I had moved the database to Heroku (now the master); but I want a local copy for a presentation, so should download it. May lead to confusion on my part.
 Also updated to ruby-2.7.0 to get past the Bundler not installed. Still at `gem 'rails', '~> 5.1.4'``
+2020.06.09 Push failed with `This repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting .git/hooks/post-checkout.` so renamed file. Fixed git push. But `git push heroku` failed.
+Also a note on checking into out this branch: `This repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting .git/hooks/post-checkout.` Renamed that file but to what other effects?
+`brew upgrade yarn` as got errors about needing. Except got this message `Warning: yarn 1.22.4 already installed`
+
+
+Ruby Sass has reached end-of-life and should no longer be used
+NEWER VERSION AVAILABLE: Please upgrade to AWS SDK For Ruby V3
+
+` Ruby Sass has reached end-of-life and should no longer be used.
+remote:        * If you use Sass as a plug-in for a Ruby web framework, we recommend using the
+remote:          sassc gem: https://github.com/sass/sassc-ruby#readme`
+I don't directly require it. Bootstrap4 seems to, but that's fairly recent. Maybe a bundle will fix. Still there. `bundle update`? Tried `bundle update bootstrap`. No change, so changed Gemfile to v4 instead of v4.0.0 Bootstrap is up to 4.5. `sass` is now gone, replaced with sassc?
+
+`bundle update puma` because of a note from GitHub (first time I got one of these)
+
+gem install ffi -v '1.13.1' --source 'https://rubygems.org/' since got bundle error
+
+`gem install ffi -v '1.12.1' --source 'https://rubygems.org/'` since this version was in crores. Also change Gemfile.lock. Didn't help. 
+
+Bootstrap needs ffi, but turn this off for a build. Guard & Listen same thing. Now successful bundle. Put bootstrap back in. Didn't help
+`ruby-install ruby-2.7.0`again `bundle install` still failed
+`bundle update --all` failed with same error
+Relaunched iTerm
+`sudo xcodebuild -license`  no help
+
+Tried changing back to ruby 2.6.6 and ruby 2.6.1 but then got into nokogiri install problems
+Back to 2.7.0 but then ffi problems
+`ruby-install ruby 2.7.0 ` which seems to do a complete reinstall. since some of the errors mentioned ruby, but then it's ruby that's running
+  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker #FIXME? turned off to since maybe an error related to know having in development.rb allowed `rs` to work, but don't have bootstrap yet. But with Bootstrap back in get ffi error
+  
+bundle update without gem bootstrap, but then have page loading failures with popper, then sassc. This won't work in the long run since I'm using Bootstrap. 
+
+### Do I bit the bullet and move to Rails 6 and webpacker and fight all of that. Maybe since I did it not too long ago in crores5
+gem update --system
+bundle update # good after one gem change
+rails app:update
+- and copied over stuff that would have been wiped
+bin/rails webpacker:install => LoadError: Could not load the 'listen' gem. Add `gem 'listen'` to the development group of your Gemfile
+but then bundle install fails # An error occurred while installing ffi (1.13.1), and Bundler cannot continue.
+back where I started from. Rails 6 didn't help
+Removed some gems that seemed to be an issue. 
+yarn upgrade # I made some changes to package.json
+brew upgrade yarn => yarn 1.22.4 already installed
+yarn install --check-files => success Nothing to install.
+➜ bin/rails webpacker:install
+LoadError: Could not load the 'listen' gem. Add `gem 'listen'` to the development group of your Gemfile
+Do that, then `bundle` and follow the install, but same error when `bundle` again
+An error occurred while installing ffi (1.13.1), and Bundler cannot continue.
+Make sure that `gem install ffi -v '1.13.1' --source 'https://rubygems.org/'` succeeds before bundling.
+Maybe give up for now on Rails 6 and go back and figure out when last uploaded to Heroku
+Last successfull upload: Deployed ba95057f May 30, 2018 at 1:54 PM · v82, Build succeeded
+May 30, 2018 at 1:54 PM 
+
+Set Gemfile to match that date. Based on Comparing Revisions (Couldn't figure out SourceTree)
+Labeled changes with  FIXME-2020.06.16. Couldn't `bundle`, changed to `bundle update`
+=> An error occurred while installing ffi (1.13.1), and Bundler cannot continue.
+Make sure that `gem install ffi -v '1.13.1' --source 'https://rubygems.org/'` succeeds before bundling.
+Still can't bundle update after following install ff1
+
+Try just going back to the May 30, 2018 at 1:54 PM  and make any needed changes
+>>>>>>> External Changes
+2020.06.20 Went back to May 30, 2018. Checked out via Sourcetree as 58-… but still couldn't bundle. Same ffi error
+ImplementationNotes still being tracked. Changed to  '/ImplementationNotes.md'
+Give up for now.
+Add bootstrap via Webpacker which means a full Webpacker install.
+`brew upgrade yarn`
+`rails webpacker:install` Fails Rails doesn't know
+`gem install rails` webpacker install still fails
+Problem with something in development.rb -
+And had to change LA_Historical_Street_Names without blanks and similarly for folder above  and `yarn upgrade` succeeds. Git may have gotten confused too. Changed back to avoid git problems
+`yarn upgrade`
+`yarn add bootstrap`
+`yarn add jquery`
+`yarn add jqueryui popper tether`
+`yarn add leaflet`
+`yarn add @rails/ujs`
+`yarn add turbolinks`
+Lots of changes to /javascripts/packs/application.js
+Appears bootstrap isn't working.
+`yarn add core-js regenerator-runtime` Didn't help with jS error
+
+Following per https://github.com/tootsuite/mastodon/issues/10092
+`yarn upgrade-interactive --latest`
+`rm yarn.lock`
+`rm -rf node_modules`
+`yarn install`
+Same error: bootstrap:83 Uncaught Error: Module build failed (from ./node_modules/babel-loader/lib/index.js):
+Error: Cannot find module 'babel-plugin-syntax-dynamic-import' from '/Users/gscar/Documents/Croatian Restaurants Project-CroRes/LA Historical Street Names/la_hist_street'
+- Did you mean "@babel/syntax-dynamic-import"?
+`yarn add @babel/plugin-syntax-dynamic-import --dev` didn't help. BTW it was already installed
+`yarn remove tether` not sure was using and what the heck. No difference
+`@rails/activestorage` Seems like I should have this. Little harm if don't. Can remove later 
+➜ yarn add popper.js
+yarn add v1.22.4 # because got unmet dependency
+`yarn add @babel/core` because of unmet etc. but said already had
+
+Tried commenting out all test and dev gems. server didn't work. 
+Commented out all test and server worked, but same error
+Commented out gem turbolinks since now with Webpack, but still get babel error
+Added active storage
+yarn add @fortawesome/fontawesome-free and turned off gem
+Switched to Ruby 2.7.1 because why not. How much worse can it get
+Webpacker to v5 was v4. no help for babel issue
+bundle exec rails webpacker:install since upgraded. Had to remove spaces from folder names
+`yarn upgrade`
+
+https://stackoverflow.com/questions/58520418/rails-webpacker-compile-error-on-production-enviorment
+This is for production environment, but I tried the following anyway.
+`yarn add @rails/webpacker`
+`bundle update webpacker`
+Didn't help me.
+
+Moved `/app/javascript/stylesheets/application.scss` to `/app/javascript/packs/application.scss`
+
+Removed .babelrc per rossta `yarn upgrade` and now can load page.
+
+### moving on from there with Webpacker
+Although it may not be as fast or efficient, put all .js in app/javascript/src. Saves figuring out which one where. Can fix later. 
+https://rossta.net/blog/webpacker-with-bootstrap.html 
+extract_css: true for development in config/webpacker.yml
+Only one  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> // only application
+
+Now need to clean up references to .js. In crores I got rid of the $(document).ready(function() { on a page
+L.BingLayer error went away when tried to define. Suspect it will come back
+Bootstrap more or less working, but no maps show.
+
+Can't include other jS in main jS. Pages work if have all jS in the main html file. Sprockets worked better for me, but main problem is not understanding jS and Webpacker. 
+
+So everything is stuffed into _map_and_control.html.erb
+
+Git not working in TM
+
+Overview map fixed with partials too.
+
+But in streets>show, not clearing some of the "cache" and can't load a second time.
+
+Turned off Turbolinks because previousLayer was persisting.
+

@@ -27,10 +27,8 @@
 #   'true': 'foo'
 #
 # To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
+# available at https://guides.rubyonrails.org/i18n.html.
 
 en:
   hello: "Hello world"
-  user_mailer.account_activation.subject: "Account activation for Historic Street Names LA"
-# Hartl Listing 11.10. Aslo one for reset
-#  but don't know how to activate it
+  user_mailer.account_activation.subject: "Account activation for Historic Street Names LA" # From pre Rails 6
