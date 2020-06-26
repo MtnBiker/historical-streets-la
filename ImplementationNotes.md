@@ -331,4 +331,15 @@ Removed .babelrc per rossta `yarn upgrade` and now can load page.
 Although it may not be as fast or efficient, put all .js in app/javascript/src. Saves figuring out which one where. Can fix later. 
 https://rossta.net/blog/webpacker-with-bootstrap.html 
 extract_css: true for development in config/webpacker.yml
-Only one         <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> // only 
+Only one  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> // only application
+
+Now need to clean up references to .js. In crores I got rid of the $(document).ready(function() { on a page
+L.BingLayer error went away when tried to define. Suspect it will come back
+Bootstrap more or less working, but no maps show.
+
+Can't include other jS in main jS. Pages work if have all jS in the main html file. Sprockets worked better for me, but main problem is not understanding jS and Webpacker. 
+
+So everything is stuffed into _map_and_control.html.erb
+
+Git not working in TM
+

@@ -13,6 +13,7 @@ const webpack = require('webpack')
 // The process for adding or modifying webpack plugins
 // https://github.com/rails/webpacker/blob/master/docs/webpack.md#plugins
 
+// make jQuery available for all packs through configuration (again, it will not be available in views, just in packs). The third line down "Provides" the jQuery module to all packs through $. You could `import $ from 'jQuery';` in each pak
 environment.plugins.append('Provide',
   new webpack.ProvidePlugin({
     $: 'jquery',

@@ -6,12 +6,16 @@
 
 @import 'leaflet'; // node_module
 
-// The files in /javascript/stylesheets // Can the path be added once somewhere? FIXME. In crores this file is in stylesheets
-@import '../stylesheets/custom';
-@import '../stylesheets/leaflet.timeline';
-@import '../stylesheets/scaffold';
-@import '../stylesheets/static_pages';
-@import '../stylesheets/streets';
+// The files in /javascript/stylesheets the same place as this file
+@import 'custom';
+@import 'leaflet.timeline';
+@import 'scaffold';
+@import 'static_pages';
+@import 'streets';
+
+// Not sure I'm using this. Added to try to stop an error which it didn't
+// https://medium.com/swlh/integrate-bootstrap-4-and-font-awesome-5-in-rails-6-fec52ee51753
+@import '@fortawesome/fontawesome-free';
 
 // from Ruby-Copeland p130. Should this be in another file? But is used by many models/controllers, so needs to be general. Copied from crores when upgraded to Webpacker
 //.notice, #notice {

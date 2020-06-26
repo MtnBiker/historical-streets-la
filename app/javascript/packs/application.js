@@ -13,7 +13,7 @@
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
-//
+// Uncommenting the following two lines Didn't help find missing layers.png. 2020.06.25
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
@@ -48,8 +48,6 @@ require("@rails/activestorage").start()
 // require("jquery") // not needed by Bootstrap according to the ReadMe // Does environment.js take care of this, but do I need jQuery elsewhere. See line below
 import 'jquery'
 import 'popper.js'
-
-// For Bootstrap 4 from GoRails. css is handled in /stylesheets/application.scss
 import "bootstrap"
 // import 'bootstrap/dist/js/bootstrap' // seems redundant with above line
 
@@ -62,3 +60,4 @@ import "bootstrap"
 // import '../src/leaflet.tilelayer.fallback.js'
 // import '../src/leaflet.timeline.js'
 // import '../src/streets.js'
+// import '../src/testLeaflet.js' // dev for webpacker way. Using very simple map. Couldn't get to work if insrc. 

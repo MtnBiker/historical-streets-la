@@ -50,6 +50,9 @@ default: &default
 development:
   <<: *default
   compile: true
+  
+  # Verifies that correct packages and versions are installed by inspecting package.json, yarn.lock, and node_modules. 2020.06.25 copied from crores.
+  # check_yarn_integrity: true # didn't fix the problem at hand
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:

@@ -2,7 +2,7 @@
 <p></p>
 <h1>Historic Street Name</h1>
 
-<div class="row">
+<div class="row"> <!-- three columns: data, map, overlaymap_selector -->
   <div class="col-4">  <!-- Data list  Col 1 of 3-->
     <% if @street.city != "Los Angeles" %>
       <p>
@@ -113,8 +113,8 @@
 
   </div> <!-- end col-4 Left col-->
 
-<%= render 'map_and_control' %>  <!-- middle column with map (should be named map or show_map)-->
+  <%= render 'map_and_control' %>  <!-- middle column with map (should be named map or show_map)-->
 
-<%= render 'overlaymap_selector' %> <!-- last column with basemap selector -->
+  <%= render 'overlaymap_selector' %> <!-- last column with basemap selector -->
 
 </div> <!-- end row which is basically the page -->
