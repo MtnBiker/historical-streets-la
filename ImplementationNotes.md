@@ -343,3 +343,9 @@ So everything is stuffed into _map_and_control.html.erb
 
 Git not working in TM
 
+Overview map fixed with partials too.
+
+But in streets>show, not clearing some of the "cache" and can't load a second time.
+
+Turned off Turbolinks because previousLayer was persisting.
+

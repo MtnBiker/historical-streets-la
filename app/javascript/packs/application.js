@@ -41,7 +41,7 @@ import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 require("@rails/ujs").start()
 // require("channels") // don't have any
-require("turbolinks").start()
+// require("turbolinks").start() // turning off to see if previousLayer already declared will stop
 require("@rails/activestorage").start()
 // require("trix")
 // require("@rails/actiontext")
