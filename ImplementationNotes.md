@@ -364,7 +364,9 @@ streets>edit throws an error editMap not defined
     $(document).ready(function() {
        editMap(popupText); // editMap() is in assets/javascripts/packs/streets.js 
     });  
-Aren't packs supposed to automatically be loaded? Tried `import "streets"` Missing module. Moved streets and 
+Aren't packs supposed to automatically be loaded? "Webpack does not expose your JavaScript to the global scope; every file is treated as a module, which, in practice, is a function with its own scope. To expose a particular reference to the global scope, you can assign it to the window object, e.g., window.editMap = editMap, from within the module." @rossta
+
+Tried `import "streets"` Missing module. Moved streets and 
 `import '../src/streets.js'` and now onto other errors
 `L.BingLayer is not a constructor`
 `import '../src/leaflet-bing-layer.js'` Didn't help
@@ -388,4 +390,9 @@ Moved streets.js up in application.js to see if that would help. No go
 https://stackoverflow.com/questions/62649100/why-is-an-existing-javascript-function-not-found-generating-uncaught-referenceer/62649412#62649412 showed to add window.editMap = editMap to streets.js
 
 Now the problem is (but may check a few other things first related to my inclding jS via render partials.)
-streets.js:220 Uncaught TypeError: L.Control.Draw is not a constructor
+streets.js:220 Uncaught TypeError: L.Control.Draw is not a constructor. Drawing tools and opacity slider missing. Same issue as earlier
+`import 'leaflet-draw' `to `application.js` moved the problem along
+Uncaught TypeError: $(...).imageMapResize is not a function  at editMap 
+`yarn add leaflet-bing-layer` and added to  `application.js`
+
+Trying to solve `69:234 Uncaught TypeError: L.BingLayer is not a constructor` but didn't help, but still probably a good thing to do

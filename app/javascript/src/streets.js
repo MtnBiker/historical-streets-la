@@ -1,3 +1,4 @@
+// app/javascript/src/streets.js
 "use strict";
 
 // .erb to process Ruby MAPBOX_TOKEN with ENV. Removed .erb 2017.10.11 since not using MapBox
@@ -444,4 +445,5 @@ function overlaySelector(laMap) {
   }); // end $( "#select-overlay" ).
   // console.log('302. end of overlaySelector. map:', map, 'laMap:', laMap);  
 }; // end overlaySelector function
-window.editMap = editMap; // https://stackoverflow.com/questions/62649100/why-is-an-existing-javascript-function-not-found-generating-uncaught-referenceer/62649412#62649412
+window.editMap = editMap; // street>edit uses editMap (which also uses showMap) https://stackoverflow.com/questions/62649100/why-is-an-existing-javascript-function-not-found-generating-uncaught-referenceer/62649412#62649412
+window.showMap = showMap; // without this controls don't show. streets>show uses showMap

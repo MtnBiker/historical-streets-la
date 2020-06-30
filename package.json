@@ -12,6 +12,7 @@
     "jquery": "^3.5.1",
     "jqueryui": "^1.11.1",
     "leaflet": "^1.6.0",
+    "leaflet-bing-layer": "^3.3.1",
     "leaflet-draw": "^1.0.4",
     "mapbox.js": "^3.3.1",
     "popper.js": "^1.16.1",

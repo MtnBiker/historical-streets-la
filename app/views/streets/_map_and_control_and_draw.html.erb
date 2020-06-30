@@ -11,7 +11,7 @@
   <script>
     var popupText = "&ge;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&le;<%= @street.date_latest %><br><%= @street.current_name %>";
     $(document).ready(function() {
-       editMap(popupText); // editMap() is in app/javascript/src/streets.js
+       editMap(popupText); // editMap() is in app/javascript/src/streets.js and is exposed with window.editMap = editMap
     });
   </script>
 

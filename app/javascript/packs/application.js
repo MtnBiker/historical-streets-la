@@ -34,6 +34,8 @@ import "../src/leaflet.timeline.js"
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import 'mapbox.js/src/mapbox.js'
+import 'leaflet-draw'
+import 'leaflet-bing-layer'
 
 // stupid hack so that leaflet's images work after going through webpack. Copied from crores
 import layers from 'leaflet/dist/images/layers.png';
@@ -43,7 +45,7 @@ import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 require("@rails/ujs").start()
 // require("channels") // don't have any
-// require("turbolinks").start() // turning off to see if previousLayer already declared will stop
+require("turbolinks").start() // turning off to see if previousLayer already declared will stop. Probably did, but ignores other issues?
 require("@rails/activestorage").start()
 // require("trix")
 // require("@rails/actiontext")
@@ -57,7 +59,7 @@ import "bootstrap"
 // import '../src/Bing.js'
 // import '../src/ie10-viewport-bug-workaround.js'
 // import '../src/imageMapResizer.min.js'
-import '../src/leaflet-bing-layer.js'
+// import '../src/leaflet-bing-layer.js' // as node-module now
 // import '../src/Leaflet.OpacityControls.js'
 // import '../src/leaflet.tilelayer.fallback.js'
 // import '../src/leaflet.timeline.js'
