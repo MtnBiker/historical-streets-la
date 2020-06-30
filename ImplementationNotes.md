@@ -349,3 +349,43 @@ But in streets>show, not clearing some of the "cache" and can't load a second ti
 
 Turned off Turbolinks because previousLayer was persisting.
 
+Added jquery-ui for L.opacityControls. Didn't help, still getting an error: `L.Control.opacitySlider is not a constructor
+
+`yarn add leaflet.control.opacity` as a replacement for above. See if I can make it work. (removed later) https://github.com/dayjournal/Leaflet.Control.Opacity. Has other issues working right. Some with CSS and it's purpose is enough different from what I want to do  that I would have to modify it. Separate controls to turn on and off a layer and a **slider for each** layer to control opacity. Should have been combined or something. 
+## 59-fixing-streets-show 2020.06.29
+Abandoned since about May 30, 2018 at 1:54 PM . need to check that for sure though. Webpack is installed and implemented to some extent. `bundle install`
+Git error, diff showed
+fatal: ambiguous argument 'UsersgscarDocumentsCroatian Restaurants Project-CroResLA Historical Street Names': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+* Webpacker had been implemented
+streets>edit throws an error editMap not defined
+    $(document).ready(function() {
+       editMap(popupText); // editMap() is in assets/javascripts/packs/streets.js 
+    });  
+Aren't packs supposed to automatically be loaded? Tried `import "streets"` Missing module. Moved streets and 
+`import '../src/streets.js'` and now onto other errors
+`L.BingLayer is not a constructor`
+`import '../src/leaflet-bing-layer.js'` Didn't help
+Dropped Bing layer for the moment, now back to editMap not defined again ?
+Now ` L.Control.Draw is not a constructor` something about `L …` and
+ moving jS to an html.erb partial. 
+ So moving to partials approach isn't going to work. Need to do the jS right !!!! Just pushing the problem down the road.
+ 
+edit:610 Uncaught TypeError: L.Control.opacitySlider is not a constructor:  https://stackoverflow.com/questions/38930066/typeerror-l-control-draw-is-not-a-constructor
+  
+`yarn add leaflet-draw` Seems like I should have this
+
+Added var to function editMaps in streets and it removed the problem `Uncaught ReferenceError: editMap is not defined`
+
+Things tried to fix above.
+`yarn add --dev webpack-bundle-analyzer` https://rossta.net/blog/webpacker-output-analysis-with-webpack-bundle-analyzer.html
+`yarn webpack:analyze` to see the results in a browser. Don't understand it.
+Moved streets.js up in application.js to see if that would help. No go
+`RAILS_ENV=development node -e 'console.dir(require("./config/webpack/development"), { depth: null })'` Didn't show me anything, but what do I know
+`yarn add mapbox.js` and removed CDN, but included Leaflet version is older
+https://stackoverflow.com/questions/62649100/why-is-an-existing-javascript-function-not-found-generating-uncaught-referenceer/62649412#62649412 showed to add window.editMap = editMap to streets.js
+
+Now the problem is (but may check a few other things first related to my inclding jS via render partials.)
+streets.js:220 Uncaught TypeError: L.Control.Draw is not a constructor

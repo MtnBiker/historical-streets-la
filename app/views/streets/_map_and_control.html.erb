@@ -9,9 +9,7 @@
 <%#= javascript_pack_tag 'streets' %>
   <div id="map"></div>
     <script>
-     <%= render 'layouts/bing_as_partial' %> // embarrasing workaround to get Bing.js included
-
-      // showMap() is in assets/javascripts/streets.js
+      // showMap() is in app/javascript/src/streets.js
       var popupText = "&ge;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&le;<%= @street.date_latest %><br><%= @street.current_name %>";
       // $(document).on("ready page:load", function() { // have to reload to get page to show
       // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
@@ -469,7 +467,6 @@
          showMap(popupText); // which is in streets.js
       });
     </script>
-      <%= javascript_pack_tag 'streets' %>
 
 </div>  <!-- col middle -->
 

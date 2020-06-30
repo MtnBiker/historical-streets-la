@@ -12,6 +12,8 @@
     "jquery": "^3.5.1",
     "jqueryui": "^1.11.1",
     "leaflet": "^1.6.0",
+    "leaflet-draw": "^1.0.4",
+    "mapbox.js": "^3.3.1",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.5",
     "turbolinks": "^5.2.0",
@@ -19,6 +21,12 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "webpack:analyze": "yarn webpack:build_json && yarn webpack:analyze_json",
+    "webpack:build_json": "RAILS_ENV=${RAILS_ENV:-production} NODE_ENV=${NODE_ENV:-production} bin/webpack --profile --json > tmp/webpack-stats.json",
+    "webpack:analyze_json": "webpack-bundle-analyzer tmp/webpack-stats.json public/packs"
   }
 }

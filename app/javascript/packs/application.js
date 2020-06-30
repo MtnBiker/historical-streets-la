@@ -27,11 +27,13 @@ import 'regenerator-runtime/runtime'
 import 'stylesheets/application' // https://rossta.net/blog/webpacker-with-bootstrap.html
 
 // leaflet 
-import 'leaflet' // not needed if ProvidePlugin has this in environment.js. This may be redundant
+// import 'leaflet' // not needed if ProvidePlugin has this in environment.js. This may be redundant
+import 'mapbox.js/node_modules/leaflet/src/Leaflet.js' // LEAFLET
 import "../src/leaflet.timeline.js"
 //  https://github.com/PaulLeCam/react-leaflet/issues/255
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import 'mapbox.js/src/mapbox.js'
 
 // stupid hack so that leaflet's images work after going through webpack. Copied from crores
 import layers from 'leaflet/dist/images/layers.png';
@@ -55,9 +57,9 @@ import "bootstrap"
 // import '../src/Bing.js'
 // import '../src/ie10-viewport-bug-workaround.js'
 // import '../src/imageMapResizer.min.js'
-// import '../src/leaflet-bing-layer.js'
+import '../src/leaflet-bing-layer.js'
 // import '../src/Leaflet.OpacityControls.js'
 // import '../src/leaflet.tilelayer.fallback.js'
 // import '../src/leaflet.timeline.js'
-// import '../src/streets.js'
+import '../src/streets.js' // if streets is in packs so loads by default
 // import '../src/testLeaflet.js' // dev for webpacker way. Using very simple map. Couldn't get to work if insrc. 
