@@ -9,16 +9,15 @@
 
   <div id="map"></div>
     <script>
-      // showMap() is in app/javascript/src/streets.js
       var popupText = "&ge;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&le;<%= @street.date_latest %><br><%= @street.current_name %>";
-      // $(document).on("ready page:load", function() { // have to reload to get page to show
+      // $(document).on("ready page:load", function() { // This doesn't work
       // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
-      // $(document).on("turbolinks:load", function() {
-      //    showMap(popupText);
-      // });
+      // $(document).on("turbolinks:load", function() { // This works the same as the one below
+     //     showMap(popupText);
+     //  });
 
       $(document).ready(function() {
-         showMap(popupText); // which is in streets.js
+         showMap(popupText); // showMap() is in app/javascript/src/streets.js
       });
     </script>
 

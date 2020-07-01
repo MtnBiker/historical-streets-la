@@ -395,4 +395,9 @@ streets.js:220 Uncaught TypeError: L.Control.Draw is not a constructor. Drawing 
 Uncaught TypeError: $(...).imageMapResize is not a function  at editMap 
 `yarn add leaflet-bing-layer` and added to  `application.js`
 
-Trying to solve `69:234 Uncaught TypeError: L.BingLayer is not a constructor` but didn't help, but still probably a good thing to do
+Trying to solve `69:234 Uncaught TypeError: L.BingLayer is not a constructor` but didn't help, but still probably a good thing to do.
+
+Done with scripts in partials, but much to sort out.
+`yarn add leaflet.timeline` For map/overview. Didn't work so continued with downloaded version which was customized by me. Removed
+
+

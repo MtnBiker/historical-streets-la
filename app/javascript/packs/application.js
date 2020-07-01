@@ -29,13 +29,16 @@ import 'stylesheets/application' // https://rossta.net/blog/webpacker-with-boots
 // leaflet 
 // import 'leaflet' // not needed if ProvidePlugin has this in environment.js. This may be redundant
 import 'mapbox.js/node_modules/leaflet/src/Leaflet.js' // LEAFLET
-import "../src/leaflet.timeline.js"
 //  https://github.com/PaulLeCam/react-leaflet/issues/255
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import 'mapbox.js/src/mapbox.js'
 import 'leaflet-draw'
 import 'leaflet-bing-layer'
+// import 'leaflet.timeline'// trouble with needing Timeline.ts which wasn't there?  So use downloaded version below
+import "../src/leaflet.timeline.js" 
+
+// import 'timeline' // Thought might be for Time
 
 // stupid hack so that leaflet's images work after going through webpack. Copied from crores
 import layers from 'leaflet/dist/images/layers.png';

@@ -12,7 +12,7 @@ var laMap; // can't do it in showMap, because overlayMap selector needs it and n
 // console.log('8. streets.js. laMap declared, but not given a value: laMap:', laMap);
 // var bing;
 var imagerySet = "Road"; // AerialWithLabels | Birdseye | BirdseyeWithLabels | Road -- select one forBing map. Using this with L.BingLayer. Could use with L.tileLayer.bing too
-let previousLayer;
+let previousLayer; // go can setOpacity(0.0)
 let opacitySlider; // global so works for remove
 // let mapID;
 let maxZoom;
@@ -62,7 +62,7 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     esriMap     = L.tileLayer(esriUrl,      {attribution: esriAttrib}),
     // bing        = L.tileLayer(bingUrl), // This approach doesn't seem to work, but the following two do. bing is easier to read than OSM because many major street names don't show up in OSM
     // bing = new L.BingLayer("AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav", {type: imagerySet}), // both this and the following work.
-    // bing = L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav'), // Road may be default
+    bing = L.tileLayer.bing('AtGe6-aWfp_sv8DMsQeQBgTVE0AaVI2WcT42hmv12YSO-PPROsm9_UvdRyL91jav'), // Road may be default
     google      = L.tileLayer(googleUrl,      {attribution: 'Google'}),
     hill1928 = L.tileLayer(Hill1928aws,  {attribution: bigBlogMapAttrib, layers: 'Hill1928', maxZoom:18 }),
     baistDetail = L.tileLayer(baistDetailAws, {attribution: rumseyAttrib, layers: 'BaistDetail', maxZoom:19 }),
@@ -76,13 +76,13 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     sanborn1888km1a = L.tileLayer(sanborn1888km1aURL,  {attribution: csunAttrib})
 
     var baseLayers = {
-    // "<span style='color: green'>Bing</span>"               : bing,
     "<span style='color: orange'>OSM Street</span>"        : osmMap,
     "<span style='color: green' >ESRI Satellite</span>"    : esriMap,
-    "<span style='color: green' >Google Satellite</span>"  : google
+    "<span style='color: green' >Google Satellite</span>"  : google,
+    "<span style='color: green'>Bing Satellite</span>"               : bing
     }
     // overlayLayers used so can compare historic maps to each other.
-    // Can I use Rails or jS to loop over the map list from the database?
+    // Can I use Rails or jS to loop over the map list from the database?. Yes and the following is not being used
     var overlayLayers = {
       // "<span style='color: blue'>1857 Bancroft</span>"     : bing,
       // "<span style='color: blue'>1888 Sanborn</span>"      : bing,
@@ -420,6 +420,7 @@ function overlaySelector(laMap) {
           // Create the opacity controls—the slider
           // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
           opacitySlider = new L.Control.opacitySlider();
+          // console.log('423. opacitySlider: ', opacitySlider) // NewClass {options: {…}, _initHooksCalled: true}
           laMap.addControl(opacitySlider);
           // Specify the layer for which you want to modify the opacity. 
           // Note that the setOpacityLayer() method applies to all the controls.
@@ -427,23 +428,26 @@ function overlaySelector(laMap) {
           opacitySlider.setOpacityLayer(currentLayer);
           //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
           currentLayer.setOpacity(0.6);
-          // console.log('429. in overlaySelector. currentLayer:', currentLayer);
+          
+          console.log('431. in overlaySelector. currentLayer:', currentLayer);
           previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
         } // end addOpacitySlider
     
         // This is bringing the overlay map on top, otherwise it ends up behind the base layer
-        currentLayer.bringToFront();
-
+        currentLayer.bringToFront();        
+        // Taking out to test if will show up without this. It is not currently. Didn't help
         if ($('.opacity_slider_control').is(':visible')) {
           previousLayer.setOpacity(0.0);
           opacitySlider.remove(); // remove any existing opacitySlider and then add the new one in the next step
-        } // end if 
-        addOpacitySlider(currentLayer);
-        // console.log('298. end of overlaySelector in findSelectedMap. map:', map, 'currentLayer:', currentLayer, 'laMap:', laMap);
+        } // end if
+        addOpacitySlider(currentLayer); // I guess this gets called over and over again, but can reset
+        console.log('444. end of overlaySelector in findSelectedMap. map:', map, 'currentLayer:', currentLayer, 'laMap:', laMap);
     }); // using mapID, find the url, zoom for overlayMap selected 
     // console.log('300. end $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);   
   }); // end $( "#select-overlay" ).
   // console.log('302. end of overlaySelector. map:', map, 'laMap:', laMap);  
-}; // end overlaySelector function
+}; // end function overlaySelector
 window.editMap = editMap; // street>edit uses editMap (which also uses showMap) https://stackoverflow.com/questions/62649100/why-is-an-existing-javascript-function-not-found-generating-uncaught-referenceer/62649412#62649412
 window.showMap = showMap; // without this controls don't show. streets>show uses showMap
+window.overviewMap = overviewMap; // "Map" which is overview>index.html.erb
+// window.overlaySelector = overlaySelector; // opacitySlider wasn't showing up so tossed this in. Didn't help
