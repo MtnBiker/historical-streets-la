@@ -400,4 +400,12 @@ Trying to solve `69:234 Uncaught TypeError: L.BingLayer is not a constructor` bu
 Done with scripts in partials, but much to sort out.
 `yarn add leaflet.timeline` For map/overview. Didn't work so continued with downloaded version which was customized by me. Removed
 
+Copied OpacitySlider images to app/javascript/stylesheets/images because .css expects to find them there
+Opacity Slider missing from streets>show and edit `L.Control.opacitySlider is not a constructor`
+`Uncaught TypeError: $(...).slider is not a function` Now
+import 'jqueryui' // in application.js. seeing if it will help with opacity slider not showing on streets/. Got rid of the error, but slider not showing. If look at code and roll over the divs, the opacity slider lcoation shows up
+
+No opacity slider of only css is <link  href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' /> 
+
+Merged scaffold.scss into custom
 

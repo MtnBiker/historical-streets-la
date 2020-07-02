@@ -1,0 +1,8 @@
+/* Control.Opacity.css is the original name at GitHub https://github.com/lizardtechblog/Leaflet.OpacityControls/blob/master/lib/opacity/Control.Opacity.css */
+/* I copied the images into app/javacript/stylesheet/images from GitHub original */
+// app/javascript/stylesheets/leaflet.OpacityControls.scss
+.opacity_slider_control .ui-slider-range {
+    background-image: none;
+    background-color: #646464;
+    height: 200px;
+}  

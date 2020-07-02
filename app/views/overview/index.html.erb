@@ -12,10 +12,8 @@
     <div id="map"></div>
     <%#= javascript_pack_tag 'streets' %>
       <script>
-        <%#= render 'layouts/bing_as_partial' %>
-        <%#= render 'layouts/streets_as_partial' %>
         $(document).ready(function() {
-           overviewMap(); // overviewMap() is in app/javascripts/src/streets.js: which is now in layouts/_streets_as_partial
+           overviewMap(); // overviewMap() is in app/javascripts/src/streets.js. Added `window.overviewMap = overviewMap;` to make it available
         });
       </script>
 </div>  <!-- col for map -->

@@ -201,7 +201,7 @@ function showMap(popupText) {
 // Put the layer selection control on the map. Note that we need two `layers` from the map definition
   // The event handler for changing the display after the selection of an overlayLayer?? Is this comment orphaned?
 // console.log(('152. end of showMap. map:', map, 'laMap:', laMap); 
-overlaySelector(laMap); // page is built with _overlaymap_selector.html.erb, but this all puts in the listener. 
+overlaySelector(laMap); // page is built with _overlaymap_selector.html.erb, but this  puts in the listener so the buttons put the selected map up. 
 };  // end showMap
 
 // #############################################################################################
@@ -374,6 +374,7 @@ function overviewMap() {
 
 //  #############################
 // pulled out this function to help debug overlaySelector
+// apparently this is just finding out which map has been selected and returning (via vars) characteristics of the selected map. Seems should be able to do some kind of mapping to just grabl the right map
 function findSelectedMap(mapID, cb) {
   // console.log('297. top of findSelectedMap. map:', map, 'laMap:', laMap);
    $.getJSON('/maps.json', function(json) {
@@ -395,11 +396,11 @@ function findSelectedMap(mapID, cb) {
   // console.log('251. end of findSelectedMap. map:', map, 'laMap:', laMap);
 }; // end findSelectedMap
 
-// called by _overlaymap_selector.html.erb which is on streets > overview, show and edit. So ready to respond
+// _map_and_control.html.erb (middle column) calls showMap which calls this.  
 function overlaySelector(laMap) {
   // console.log('319. Top of overlaySelector. laMap: ', laMap);
   // Adding overlays. This doesn't happen until one of the overlays is selected.  
-  $( "#select-overlay" ).change(function() {
+  $( "#select-overlay" ).change(function() { // #select-overlay is the right column
      // console.log('322. top of $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);
 
     // Get layer selected. Identify by map.id as set in _overlay_selector.html.erb    
@@ -415,7 +416,8 @@ function overlaySelector(laMap) {
         if (currentZoom > maxMapZoom) {
           // laMap.setMaxZoom(maxMapZoom+1); // not sure about doing this. In theory stops zooming past what can be shown
           laMap.setZoom(maxMapZoom);
-        }    
+        } // setZoom
+            
         let addOpacitySlider = function(currentLayer) {
           // Create the opacity controls—the slider
           // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
@@ -429,24 +431,26 @@ function overlaySelector(laMap) {
           //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
           currentLayer.setOpacity(0.6);
           
-          console.log('431. in overlaySelector. currentLayer:', currentLayer);
+          console.log('434. in overlaySelector. currentLayer:', currentLayer);
           previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
         } // end addOpacitySlider
     
         // This is bringing the overlay map on top, otherwise it ends up behind the base layer
+        //Leaflet.OpacityControls creates the div
         currentLayer.bringToFront();        
-        // Taking out to test if will show up without this. It is not currently. Didn't help
         if ($('.opacity_slider_control').is(':visible')) {
+          console.log('441. opacity_slider_control is visible')
           previousLayer.setOpacity(0.0);
           opacitySlider.remove(); // remove any existing opacitySlider and then add the new one in the next step
         } // end if
         addOpacitySlider(currentLayer); // I guess this gets called over and over again, but can reset
-        console.log('444. end of overlaySelector in findSelectedMap. map:', map, 'currentLayer:', currentLayer, 'laMap:', laMap);
+        console.log('446. end of overlaySelector in findSelectedMap. map:', map, 'currentLayer:', currentLayer, 'laMap:', laMap);
     }); // using mapID, find the url, zoom for overlayMap selected 
     // console.log('300. end $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);   
   }); // end $( "#select-overlay" ).
   // console.log('302. end of overlaySelector. map:', map, 'laMap:', laMap);  
 }; // end function overlaySelector
+
 window.editMap = editMap; // street>edit uses editMap (which also uses showMap) https://stackoverflow.com/questions/62649100/why-is-an-existing-javascript-function-not-found-generating-uncaught-referenceer/62649412#62649412
 window.showMap = showMap; // without this controls don't show. streets>show uses showMap
 window.overviewMap = overviewMap; // "Map" which is overview>index.html.erb

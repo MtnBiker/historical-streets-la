@@ -14,16 +14,6 @@ $gray-lighter: lighten(#000, 93.5%); // #eee
   box-sizing:         border-box;
 }
 
-// Bootstrap not working right without these with 4.0.0.alpha6
-// But shouldn't need now that downgraded to v3. Old news I'm at 4.0.0
-//.navbar-inverse,
-//.navbar-inverse li a,
-//.navbar-inverse a:hover,
-//.navbar-inverse a#logo {
-//  color: white;
-//  background-color: black;
-//}
-
 // GVS
 .font-bold {
 font-weight: bold;}
@@ -249,7 +239,7 @@ p, ol, ul, td {
 }
 
 pre {
-  background-color: $gray-lighter;
+  background-color: $gray-lighter; // or #eee
   padding: 10px;
   font-size: 11px;
 }
@@ -293,6 +283,18 @@ div {
   color: green;
 }
 
+// from Ruby-Copeland p130.  Copied from crores when upgraded to Webpacker
+//.notice, #notice {
+//  background: #ffb;
+//  border-radius: 0.5em;
+//  border: solid 0.177em #882;
+//  color: #882;
+//  font-weight: bold;
+//  margin-bottom: 1em;
+//  padding: 1em 1.414em;
+//  text-align: center;
+//}
+
 .field_with_errors {
   padding: 2px;
   background-color: red;
@@ -329,11 +331,12 @@ label {
 // For Opacity (Slider) Control 
 // https://github.com/lizardtechblog/Leaflet.OpacityControls/blob/master/lib/opacity/Control.Opacity.css
 // Only the css relative to the slider control, and not the css for the = - buttons
-.opacity_slider_control .ui-slider-range {
-    background-image: none;
-    background-color: #646464;
-    height: 200px;
-}
+// but I put leaflet.OpacityControls.scss in the chaing
+//.opacity_slider_control .ui-slider-range {
+//    background-image: none;
+//    background-color: #646464;
+//    height: 200px;
+//}
 
 // Buttons for New street and search in streets>index and table padding
 .search-in-index {

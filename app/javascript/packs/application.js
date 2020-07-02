@@ -28,15 +28,16 @@ import 'stylesheets/application' // https://rossta.net/blog/webpacker-with-boots
 
 // leaflet 
 // import 'leaflet' // not needed if ProvidePlugin has this in environment.js. This may be redundant
-import 'mapbox.js/node_modules/leaflet/src/Leaflet.js' // LEAFLET
+import 'mapbox.js/node_modules/leaflet/src/Leaflet.js' // LEAFLET. Using because mapbox has it and presumably uses this version
 //  https://github.com/PaulLeCam/react-leaflet/issues/255
 import L from 'leaflet'
-import 'leaflet/dist/leaflet.css'
-import 'mapbox.js/src/mapbox.js'
+// import 'leaflet/dist/leaflet.css'
+// import 'mapbox.js/src/mapbox.js'
 import 'leaflet-draw'
 import 'leaflet-bing-layer'
 // import 'leaflet.timeline'// trouble with needing Timeline.ts which wasn't there?  So use downloaded version below
 import "../src/leaflet.timeline.js" 
+import "../src/Leaflet.OpacityControls.js" // dont' see on npm
 
 // import 'timeline' // Thought might be for Time
 
@@ -54,6 +55,7 @@ require("@rails/activestorage").start()
 // require("@rails/actiontext")
 // require("jquery") // not needed by Bootstrap according to the ReadMe // Does environment.js take care of this, but do I need jQuery elsewhere. See line below
 import 'jquery'
+import 'jqueryui' // seeing if it will help with opacity slider not showing on streets/
 import 'popper.js'
 import "bootstrap"
 // import 'bootstrap/dist/js/bootstrap' // seems redundant with above line
