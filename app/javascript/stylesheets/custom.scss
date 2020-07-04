@@ -14,7 +14,6 @@ $gray-lighter: lighten(#000, 93.5%); // #eee
   box-sizing:         border-box;
 }
 
-// GVS
 .font-bold {
 font-weight: bold;}
 
@@ -329,14 +328,17 @@ label {
 }
 
 // For Opacity (Slider) Control 
-// https://github.com/lizardtechblog/Leaflet.OpacityControls/blob/master/lib/opacity/Control.Opacity.css
+// https://github.com/lizardtechblog/Leaflet.OpacityControls/blob/dfdf/lib/opacity/Control.Opacity.css
 // Only the css relative to the slider control, and not the css for the = - buttons
-// but I put leaflet.OpacityControls.scss in the chaing
-//.opacity_slider_control .ui-slider-range {
-//    background-image: none;
-//    background-color: #646464;
-//    height: 200px;
-//}
+// but I put leaflet.OpacityControls.scss in the chain
+// I screwed this up before because it's named with underscores not dashes: .opacity-slider-control NOT
+// now it shows, but not how it should
+.opacity_slider_control{
+ //   background-image: none;
+ //   background-color: #646464;
+    height: 200px;
+    width: 30px;
+}
 
 // Buttons for New street and search in streets>index and table padding
 .search-in-index {

@@ -34,7 +34,7 @@ import L from 'leaflet'
 // import 'leaflet/dist/leaflet.css'
 // import 'mapbox.js/src/mapbox.js'
 import 'leaflet-draw'
-import 'leaflet-bing-layer'
+import 'leaflet-bing-layer' // node-module now
 // import 'leaflet.timeline'// trouble with needing Timeline.ts which wasn't there?  So use downloaded version below
 import "../src/leaflet.timeline.js" 
 import "../src/Leaflet.OpacityControls.js" // dont' see on npm

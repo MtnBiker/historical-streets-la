@@ -389,7 +389,7 @@ Moved streets.js up in application.js to see if that would help. No go
 `yarn add mapbox.js` and removed CDN, but included Leaflet version is older
 https://stackoverflow.com/questions/62649100/why-is-an-existing-javascript-function-not-found-generating-uncaught-referenceer/62649412#62649412 showed to add window.editMap = editMap to streets.js
 
-Now the problem is (but may check a few other things first related to my inclding jS via render partials.)
+Now the problem is (but may check a few other things first related to my including jS via render partials.)
 streets.js:220 Uncaught TypeError: L.Control.Draw is not a constructor. Drawing tools and opacity slider missing. Same issue as earlier
 `import 'leaflet-draw' `to `application.js` moved the problem along
 Uncaught TypeError: $(...).imageMapResize is not a function  at editMap 
@@ -409,3 +409,14 @@ No opacity slider of only css is <link  href='https://api.mapbox.com/mapbox.js/v
 
 Merged scaffold.scss into custom
 
+Tried adding the following to streets>show page in a script. No help. This is formatted wrong. Learn CSS
+.opacity_slider_control .ui-slider-range {
+    height: 200px;
+}
+
+Tried `import 'leaflet'`instead of `import 'mapbox.js/node_modules/leaflet/src/Leaflet.js'`.  No help
+Looked for zero-width spaces: &#8203; and U+200. Not found 
+
+Moved element in Chrome to just in the map, i.e., direct child of #map and still the same. Which means it's one of the 
+
+Finally started down the right track. Got the .opacity_slider_control SCSS correct

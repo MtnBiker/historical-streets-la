@@ -195,8 +195,8 @@ function showMap(popupText) {
           container.appendChild(gauge);
           return container;
         }
-  	}); // end ZoomViewer
-  	(new ZoomViewer).addTo(laMap); // unknown to me syntax
+    }); // end ZoomViewer
+    (new ZoomViewer).addTo(laMap); // unknown to me syntax
 
 // Put the layer selection control on the map. Note that we need two `layers` from the map definition
   // The event handler for changing the display after the selection of an overlayLayer?? Is this comment orphaned?
@@ -422,16 +422,17 @@ function overlaySelector(laMap) {
           // Create the opacity controls—the slider
           // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
           opacitySlider = new L.Control.opacitySlider();
-          // console.log('423. opacitySlider: ', opacitySlider) // NewClass {options: {…}, _initHooksCalled: true}
+          // console.log('425. opacitySlider: ', opacitySlider) // NewClass {options: {…}, _initHooksCalled: true}
           laMap.addControl(opacitySlider);
           // Specify the layer for which you want to modify the opacity. 
           // Note that the setOpacityLayer() method applies to all the controls.
           // You only need to call it once.
           opacitySlider.setOpacityLayer(currentLayer);
+          // console.log('431. opacitySlider: ', opacitySlider)
           //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
           currentLayer.setOpacity(0.6);
           
-          console.log('434. in overlaySelector. currentLayer:', currentLayer);
+          // console.log('434. in overlaySelector. currentLayer:', currentLayer);
           previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
         } // end addOpacitySlider
     
