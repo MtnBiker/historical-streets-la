@@ -180,10 +180,8 @@ function showMap(popupText) {
 
   // Shows zoom level which I find useful. Like to have in on the upper left next to zoom control TODO
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html
-  var ZoomViewer = L.Control.extend(
-    {
-      onAdd: function()
-        {
+  var ZoomViewer = L.Control.extend({
+    onAdd: function(){
           var container= L.DomUtil.create('div');
           var gauge = L.DomUtil.create('div');
           container.style.width = '200px';
@@ -195,7 +193,7 @@ function showMap(popupText) {
           })
           container.appendChild(gauge);
           return container;
-        }
+      } // end onAdd: function
     }); // end ZoomViewer
     (new ZoomViewer).addTo(laMap); // unknown to me syntax
 
@@ -474,7 +472,7 @@ function overlaySelector(laMap) {
         start = null;
     };
     //end Mapbox slider
-        console.log('446. end of overlaySelector in findSelectedMap. map:', map, 'currentLayer:', currentLayer, 'laMap:', laMap);
+        console.log('475. end of overlaySelector in findSelectedMap. map:', map, 'currentLayer:', currentLayer, 'laMap:', laMap);
     }); // using mapID, find the url, zoom for overlayMap selected 
     // console.log('300. end $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);   
   }); // end $( "#select-overlay" ).

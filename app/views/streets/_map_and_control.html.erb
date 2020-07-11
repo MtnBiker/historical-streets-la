@@ -7,9 +7,10 @@
   <p class="font-bold-red">If no map shows up when you choose a map, the map may not cover that region, so try another map. May need to select something in the right column first before the upper right box. <i>A little buggy yet.</i></p>
   <br/>
 
-  <div id="map"></div>
-  <div id='control' class='ui-opacity'> <!-- This and next two lines for Mapbox Opacity Control -->
-    <div id='handle' class='handle'></div>
+  <div id="map">
+    <div id='control' class='ui-opacity'> <!-- This and next two lines for Mapbox Opacity Control -->
+      <div id='handle' class='handle'></div>
+    </div>
   </div>
     <script>
       var popupText = "&ge;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&le;<%= @street.date_latest %><br><%= @street.current_name %>";

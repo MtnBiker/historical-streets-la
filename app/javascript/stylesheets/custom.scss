@@ -360,11 +360,15 @@ label {
 }
 
 // For Mapbox slider from https://docs.mapbox.com/mapbox.js/example/v1.0.0/opacity/
+// Note that the following two classes are in the  HTML whereas Leaflet Opacity Slider put the element on with jS.
+// In the example .handle is in the .ui-opacity div but below the map div. I am trying put these inside the map div. At first they end up under the layers.
 .ui-opacity {
   background:#FFF;
-  position:absolute;
-  left:20px; //10px;
-  top:160px; // 70px;
+  position:relative; // was absolute. relative ends up below the map.
+  float: right; // added in hopes of moving to right edge
+//  left:800px; //10px; original // 20px works for show, but not room in edit
+//  top:160px; // 70px;
+  top:120px; // now relative to map since I put this div in the map div
   height:200px;
   width:28px;
   border:1px solid rgba(0,0,0,0.4);
