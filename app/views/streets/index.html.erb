@@ -49,10 +49,12 @@
         <th>Cross Streets</th>
         <th>Approx. Number of Blocks / miles</th> <!-- / miles -->
         <th>Section Drawn?</th>
-        <th>Details</th>
         <% if logged_in? %>
+          <th>Details</th>
           <th></th>
           <th></th>
+        <% else %>
+          <th>Details</th>
         <% end %>
         <th>Notes</th>
         <th>Ref. 1</th>
@@ -77,15 +79,15 @@
           <% else %>
             <td class='extent-no'>No</td>
           <% end %>
-          <td><%= street.notes %></td>
-          <td><%= street.ref1 %></td>
-          <td><%= street.ref2 %></td>
-          <td><%= street.ref3 %></td>
           <td><%= link_to 'Show', street, class: "text-success" %></td>
           <% if logged_in? %>
             <td><%= link_to 'Edit', edit_street_path(street) %></td>
             <!-- <td/>< = link_to 'Duplicate', dup_street_path, action: "dup", data: { confirm: 'This will make a duplicate for editing into a new entry.'} %></tr> -->
             <td><%= link_to 'Destroy', street, class: "text-danger", method: :delete, data: { confirm: 'Are you sure?'} %></td>
+          <td><%= street.notes %></td>
+          <td><%= street.ref1 %></td>
+          <td><%= street.ref2 %></td>
+          <td><%= street.ref3 %></td>
           <% end %>
         </tr>
       <% end %> <!-- If no streets found in search, the table is hidden -->

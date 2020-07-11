@@ -8,6 +8,9 @@
   <br/>
 
   <div id="map"></div>
+  <div id='control' class='ui-opacity'> <!-- This and next two lines for Mapbox Opacity Control -->
+    <div id='handle' class='handle'></div>
+  </div>
     <script>
       var popupText = "&ge;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&le;<%= @street.date_latest %><br><%= @street.current_name %>";
       // $(document).on("ready page:load", function() { // This doesn't work
@@ -16,8 +19,9 @@
      //     showMap(popupText);
      //  });
 
-      $(document).ready(function() {
-         showMap(popupText); // showMap() is in app/javascript/src/streets.js
+      // $(document).ready(function() { // wait for page to load before doing the following
+      $(function() { // shortcut version of line above
+       showMap(popupText); // showMap() is in app/javascript/src/streets.js
       });
     </script>
 

@@ -66,7 +66,8 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     google      = L.tileLayer(googleUrl,      {attribution: 'Google'}),
     hill1928 = L.tileLayer(Hill1928aws,  {attribution: bigBlogMapAttrib, layers: 'Hill1928', maxZoom:18 }),
     baistDetail = L.tileLayer(baistDetailAws, {attribution: rumseyAttrib, layers: 'BaistDetail', maxZoom:19 }),
-    rueger1902     = L.tileLayer(baistKMaws,   {attribution: rumseyAttrib}),
+    baistKey =  L.tileLayer(baistKMaws, {attribution: rumseyAttrib, layers: 'BaistDetail', maxZoom:19 }),
+    rueger1902  = L.tileLayer(baistKMaws,   {attribution: rumseyAttrib}),
     rueger1902  = L.tileLayer(rueger1902aws),
     // hamlin1908   = L.tileLayer(hamlin1908url),
     // hamlin1908   = L.mapbox.styleLayer('mtnbiker.ng4kio7i'),
@@ -79,7 +80,7 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     "<span style='color: orange'>OSM Street</span>"        : osmMap,
     "<span style='color: green' >ESRI Satellite</span>"    : esriMap,
     "<span style='color: green' >Google Satellite</span>"  : google,
-    "<span style='color: green'>Bing Satellite</span>"               : bing
+    "<span style='color: green'>Bing Satellite</span>"     : bing
     }
     // overlayLayers used so can compare historic maps to each other.
     // Can I use Rails or jS to loop over the map list from the database?. Yes and the following is not being used
@@ -164,19 +165,19 @@ function showMap(popupText) {
   // All the above may not be needed. Still get one error on index, but so what?
   // if (map != undefined) { map.remove(); }
   // var laMap;
-  laMap = L.map('map', {zoomDelta: 0.25,
-                      zoomSnap: 0.25
-  }).setView([34.05, -118.25], 13); // https://stackoverflow.com/questions/38930066/typeerror-l-control-draw-is-not-a-constructor , { drawControl: true }) // the error went away?
+  laMap = L.map('map', {zoomDelta: 0.25, zoomSnap: 0.25
+                        }).setView([34.05, -118.25], 13); // https://stackoverflow.com/questions/38930066/typeerror-l-control-draw-is-not-a-constructor , { drawControl: true }) // the error went away?
   // console.log(('101. showMap. laMap just defined. laMap:', laMap, 'map:', map); 
   // osmMap.addTo(laMap); // trial to se how worked with overlayLayers. I prefer Bing since it's cleaner
   // bing.addTo(laMap); // Makes Bing load with intial page load. Doesn't matter after that. Maybe L.control.layers doesn't load anything. May not show without reload. Previously had the whole definition of bing here; particularly if no map to show, i.e., segment not defined. NO: may want to look around map before editing. Commented out to see if helped with change of baselayer covering overlay-made not difference.
   
-  L.control.layers(null, baseLayers, {collapsed: false}).addTo(laMap); // baseLayers defined about ten lines above, don't need null if don't have options. Collapses with rollover though.
+  L.control.layers(null, baseLayers, {collapsed: false}).addTo(laMap); // baseLayers defined about ten lines above, don't need null if don't have options. Collapses with rollover though. if overlayLayers instead of null, both sets show up in the selection box. Change collapsed to false if want to see list of all the baselayers instead of the icon
 
 // Above established the basemap as Bing or OSM. Now add street segment(s)
 // if (streetExtentArray != undefined || streetExtentJson != undefined) { // didn't work if outside the function
   showSegment(laMap); // laMap is global, so probably don't need to do this
 // }
+
   // Shows zoom level which I find useful. Like to have in on the upper left next to zoom control TODO
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html
   var ZoomViewer = L.Control.extend(
@@ -263,6 +264,7 @@ function editMap(popupText) {
   console.log('263. end of editMap. map:', map);
   console.log('264. end of editMap. laMap:', laMap);
 };  // end editMap
+
 // ###########
 // Different colors depending on year start the segment
 // Using the start year of the segment, but could change this depending on how it comes out
@@ -270,7 +272,7 @@ function editMap(popupText) {
 // http://colorbrewer2.org/#type=sequential&scheme=Reds&n=9
 function colorYear(year) {
   let colorYear;
-  if (year < 1890) {         colorYear = '#fc9272';  }
+  if      (year < 1890) {    colorYear = '#fc9272';  }
   else if (year < 1900) {    colorYear = '#fb6a4a';  }
   else if (year < 1910) {    colorYear = '#ef3b2c';  }
   else if (year < 1920) {    colorYear = '#cb181d';  }
@@ -278,13 +280,14 @@ function colorYear(year) {
   else {                     colorYear = '#67000d';  } 
   return colorYear
 };
+
 // #########
-// Show all lines on overview map, a kluge, but that's it for now. But this could happen for every page.
-$(document).ready(function() {
-  $('#show-line').click(function(event) {
-    L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(laMap);
-  });
-}); // end ready
+// Show all lines on overview map, a kluge, but that's it for now. But this could happen for every page. Moved to overview>index
+// $(document).ready(function() {
+//   $('#show-line').click(function(event) {
+//     L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(laMap);
+//   });
+// }); // end ready
 // ######################
 
 // Segments shown on one map with time slider. Called from overview.index.html
@@ -418,33 +421,59 @@ function overlaySelector(laMap) {
           laMap.setZoom(maxMapZoom);
         } // setZoom
             
-        let addOpacitySlider = function(currentLayer) {
+            // Leaflet Opacity Slider. Changed to Mapbox opacity slider
+        // let addOpacitySlider = function(currentLayer) {
           // Create the opacity controls—the slider
           // Better if I can place opacitySlider to the right of the layer control, moot with Rails approach to overlayLayers
-          opacitySlider = new L.Control.opacitySlider();
-          // console.log('425. opacitySlider: ', opacitySlider) // NewClass {options: {…}, _initHooksCalled: true}
-          laMap.addControl(opacitySlider);
-          // Specify the layer for which you want to modify the opacity. 
-          // Note that the setOpacityLayer() method applies to all the controls.
-          // You only need to call it once.
-          opacitySlider.setOpacityLayer(currentLayer);
-          // console.log('431. opacitySlider: ', opacitySlider)
-          //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
-          currentLayer.setOpacity(0.6);
-          
-          // console.log('434. in overlaySelector. currentLayer:', currentLayer);
-          previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
-        } // end addOpacitySlider
-    
-        // This is bringing the overlay map on top, otherwise it ends up behind the base layer
-        //Leaflet.OpacityControls creates the div
-        currentLayer.bringToFront();        
-        if ($('.opacity_slider_control').is(':visible')) {
-          console.log('441. opacity_slider_control is visible')
-          previousLayer.setOpacity(0.0);
-          opacitySlider.remove(); // remove any existing opacitySlider and then add the new one in the next step
-        } // end if
-        addOpacitySlider(currentLayer); // I guess this gets called over and over again, but can reset
+          // opacitySlider = new L.Control.opacitySlider();
+       //    // console.log('425. opacitySlider: ', opacitySlider) // NewClass {options: {…}, _initHooksCalled: true}
+       //    laMap.addControl(opacitySlider);
+       //    // Specify the layer for which you want to modify the opacity.
+       //    // Note that the setOpacityLayer() method applies to all the controls.
+       //    // You only need to call it once.
+       //    opacitySlider.setOpacityLayer(currentLayer);
+       //    // console.log('431. opacitySlider: ', opacitySlider)
+       //    //Set initial opacity to 0.5 (Optional, but helps with understanding what one is seeing)
+       //    currentLayer.setOpacity(0.6);
+       //
+       //    // console.log('434. in overlaySelector. currentLayer:', currentLayer);
+       //    previousLayer = currentLayer; // so can remove below. May be able to reorder the  $( "#select-overlay" ).change(function() to avoid having this extra variable. But first get it all working
+       //  } // end addOpacitySlider LOS=Leaflet Opacity Layer
+       //
+       //  // This is bringing the overlay map on top, otherwise it ends up behind the base layer
+       //  //Leaflet.OpacityControls creates the div
+       //  currentLayer.bringToFront();
+       //  if ($('.opacity_slider_control').is(':visible')) {
+       //    console.log('441. opacity_slider_control is visible')
+       //    previousLayer.setOpacity(0.0);
+       //    opacitySlider.remove(); // remove any existing opacitySlider and then add the new one in the next step
+       //  } // end if
+       //      // addOpacitySlider(currentLayer); // I guess this gets called over and over again, but can reset LOS
+        
+        // Mapbox opacity slider
+    var handle = document.getElementById('handle'),
+        start = false,
+        startTop;
+
+    document.onmousemove = function(e) {
+        if (!start) return;
+        // Adjust control.
+        handle.style.top = Math.max(-5, Math.min(195, startTop + parseInt(e.clientY, 10) - start)) + 'px';
+        // Adjust opacity.
+        currentLayer.setOpacity(1 - (handle.offsetTop / 200));
+    };
+
+    handle.onmousedown = function(e) {
+        // Record initial positions.
+        start = parseInt(e.clientY, 10);
+        startTop = handle.offsetTop - 5;
+        return false;
+    };
+
+    document.onmouseup = function(e) {
+        start = null;
+    };
+    //end Mapbox slider
         console.log('446. end of overlaySelector in findSelectedMap. map:', map, 'currentLayer:', currentLayer, 'laMap:', laMap);
     }); // using mapID, find the url, zoom for overlayMap selected 
     // console.log('300. end $( "#select-overlay" ) within overlaySelector map:', map, 'laMap:', laMap);   

@@ -14,6 +14,10 @@
       <script>
         $(document).ready(function() {
            overviewMap(); // overviewMap() is in app/javascripts/src/streets.js. Added `window.overviewMap = overviewMap;` to make it available
+           // Show all lines on overview map. Works so I guess laMap is available. , but why isn't this just in overviewMap?
+           $('#show-line').click(function(event) {
+             L.mapbox.featureLayer().loadURL('overview/overview_data.geojson').addTo(laMap);
+           });
         });
       </script>
 </div>  <!-- col for map -->
