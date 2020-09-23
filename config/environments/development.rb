@@ -27,6 +27,11 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
+  
+  # https://blog.bigbinary.com/2020/07/29/rails-6-1-adds-annotate_rendered_view_with_filenames-to-annotate-html-output.html
+  # Now the rendered HTML will contain comment indicating the begining and end of each template.
+  # Off until update to Rails 6.1
+  # config.action_view.annotate_rendered_view_with_filenames = true
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

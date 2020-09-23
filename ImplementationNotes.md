@@ -419,4 +419,19 @@ Looked for zero-width spaces: &#8203; and U+200. Not found
 
 Moved element in Chrome to just in the map, i.e., direct child of #map and still the same. Which means it's one of the 
 
-Finally started down the right track. Got the .opacity_slider_control SCSS correct
+Finally started down the right track. Got the .opacity_slider_control SCSS correct.
+
+Now trying Mapbox Opacity Slider https://docs.mapbox.com/mapbox.js/example/v1.0.0/opacity/
+file:///Users/gscar/Documents/GIS%20&%20Mapping/Mapbox.OpacitySlider.html
+2020.08.08 After migrating to OWC SSD PGAdmin wouldn't work. I deleted (after archiving) all in Library>Application Support>Postgres and then PGAdmin would start. 
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -d la_street_history_development la_hist.2020.07.03.dump
+First need extension postgis CREATE EXTENSION postgis_tiger_geocoder CASCADE;
+then reran pg_restore seemed to work.
+
+2020.08.20 Changing to webpacker seems to have messed up how pages and the parts load. One is that /overview comes up without background or overlay maps. There were defaults before. They will show up by selecting them. The street segments show up.
+
+heroku not working. `NoSuchBucketThe specified bucket does not existcrores_heroku4743A413A2A1015CLeMV19sBarSuMPIPYaQlSSNbs/cwM1UoNVP57NsInKLSN1JwnNw9CqvoXTTX6aq1c+dVM8/bQ1E=` Downloaded db and it is similar size to old, so apparently not a problem with  the database.
+Am I uploading anything to AWS via the website?
+Added s to http on error page and reset `heroku config:set ERROR_PAGE_URL=//https://crores.s3.amazonaws.com/heroku_error_page.html` and now it works.
+
+Can't draw on site, but can here. Will upload. Has bugs though.

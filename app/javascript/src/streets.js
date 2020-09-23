@@ -179,12 +179,14 @@ function showMap(popupText) {
 // }
 
   // Shows zoom level which I find useful. Like to have in on the upper left next to zoom control TODO
+  // but it's put in the basemap selector container. +- zoom control is automatic with map
   // http://leafletjs.com/examples/zoom-levels/example-fractional.html
   var ZoomViewer = L.Control.extend({
     onAdd: function(){
-          var container= L.DomUtil.create('div');
+      var container= L.DomUtil.create('div', 'zoom-level'); // zoom-level is my addition, but not helping
           var gauge = L.DomUtil.create('div');
-          container.style.width = '200px';
+          container.style.width = '90px';
+          container.style.position	=	'topleft'; // ignored, but it was a guess at how to do it
           container.style.background = 'rgba(255,255,255,0.5)';
           container.style.textAlign = 'left';
           laMap.on('zoomstart zoom zoomend', function(ev)

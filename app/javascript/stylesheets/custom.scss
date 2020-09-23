@@ -361,14 +361,13 @@ label {
 
 // For Mapbox slider from https://docs.mapbox.com/mapbox.js/example/v1.0.0/opacity/
 // Note that the following two classes are in the  HTML whereas Leaflet Opacity Slider put the element on with jS.
-// In the example .handle is in the .ui-opacity div but below the map div. I am trying put these inside the map div. At first they end up under the layers.
+// In the example .handle is in the .ui-opacity div but below the map div; but all is within only the body and my page is more complex. I am trying put these inside the map div which is closer to the example; but then the slider moves the map. At first they end up under the layers.
 .ui-opacity {
   background:#FFF;
-  position:relative; // was absolute. relative ends up below the map.
-  float: right; // added in hopes of moving to right edge
-//  left:800px; //10px; original // 20px works for show, but not room in edit
-//  top:160px; // 70px;
-  top:120px; // now relative to map since I put this div in the map div
+  position:absolute; // was absolute and ends up on the left.
+  float: right; // added in hopes of moving to right edge. Seems to work within map div
+//  left:100px; //10px; original // 20px works for show, not showing in edit
+  top:160px; // 70px;
   height:200px;
   width:28px;
   border:1px solid rgba(0,0,0,0.4);
@@ -386,7 +385,15 @@ label {
   cursor:pointer;
   cursor:ns-resize;
   }
-.ui-opacity .handle:hover {
+.ui-opacity .handle:hover { // does this make the up/down arrow show.
   background:#303030;
 }
 //    end Mapbox slider
+
+// For zoom-level, want near +- in upper left
+// The zoom level is put into the leaflet-top leaflet-right container that has the basemap selector, so can't get it to the upper left at least until figure out how to move it into its own container
+//.leaflet-control .zoom-level{
+//  position:absolute;
+//  left:50px;
+//  top:10px;
+//}

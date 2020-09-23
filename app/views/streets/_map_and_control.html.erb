@@ -7,24 +7,24 @@
   <p class="font-bold-red">If no map shows up when you choose a map, the map may not cover that region, so try another map. May need to select something in the right column first before the upper right box. <i>A little buggy yet.</i></p>
   <br/>
 
-  <div id="map">
-    <div id='control' class='ui-opacity'> <!-- This and next two lines for Mapbox Opacity Control -->
-      <div id='handle' class='handle'></div>
-    </div>
+  <div id="map"></div> <!-- Tried putting the following three lines in the map div, but then the slider moved the map -->
+  <div id='control' class='ui-opacity'> <!-- This and next two lines for Mapbox Opacity Control -->
+    <div id='handle' class='handle'></div>
   </div>
-    <script>
-      var popupText = "&ge;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&le;<%= @street.date_latest %><br><%= @street.current_name %>";
-      // $(document).on("ready page:load", function() { // This doesn't work
-      // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
-      // $(document).on("turbolinks:load", function() { // This works the same as the one below
-     //     showMap(popupText);
-     //  });
 
-      // $(document).ready(function() { // wait for page to load before doing the following
-      $(function() { // shortcut version of line above
-       showMap(popupText); // showMap() is in app/javascript/src/streets.js
-      });
-    </script>
+  <script>
+    var popupText = "&ge;<%= @street.date_earliest %><br><%= @street.previous_name %><br>&le;<%= @street.date_latest %><br><%= @street.current_name %>";
+    // $(document).on("ready page:load", function() { // This doesn't work
+    // The turbolinks:load part may not be needed https://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
+    // $(document).on("turbolinks:load", function() { // This works the same as the one below
+   //     showMap(popupText);
+   //  });
+
+    // $(document).ready(function() { // wait for page to load before doing the following
+    $(function() { // shortcut version of line above
+     showMap(popupText); // showMap() is in app/javascript/src/streets.js
+    });
+  </script>
 
 </div>  <!-- col middle -->
 

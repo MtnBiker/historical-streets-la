@@ -12,7 +12,7 @@ end
 ruby '2.7.1' # Heroku wants this. FIXME-2020.06.16
 # gem 'bundler' # With Ruby 2.6, bundler is part of the default rails
 
-gem 'rails', '~> 6.0.1' # Careful of scripts see https://bauland42.com/ruby-on-rails-content-security-policy-csp/o
+gem 'rails', '~> 6.0.1' # Careful of scripts see. https://bauland42.com/ruby-on-rails-content-security-policy-csp/o. Also see development.rb if update to 6.1
 # Use postgresql as the database for Active Record
 gem 'pg' , '~> 0.18' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23. Put qualification in to see if helps with server problem (Jan 2018), it did. Apparently v1.0.0 just released and something hasn't caught up. 
 # Use Puma as the app server

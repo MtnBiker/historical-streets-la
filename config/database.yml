@@ -20,10 +20,15 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # https://morioh.com/p/09f1e543c728/how-to-use-postgresql-with-your-ruby-on-rails-application-on-macos
+  # Hadn't set this up, but put it here while trying to solve a problem
+  # username: la_hist_street # i.e., appname  
+  # password: <%= ENV['LA_HIST_STREET_DATABASE_PASSWORD'] %> # In .zprofile. Is this the right place?
 
 development:
   <<: *default
   database: la_street_history_development
+  # psql -d la_street_history_development-U gscar -W # put here to sav
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
