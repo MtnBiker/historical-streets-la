@@ -27,8 +27,10 @@ var Hill1928aws    = 'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y
     baistKMaws     = "https://crores.s3.amazonaws.com/tiles/bkm/{z}/{x}/{y}.png",
     rueger1902aws  = "https://crores.s3.amazonaws.com/tiles/1902rueger/{z}/{x}/{y}.png",
     woods1908url   = "https://crores.s3.amazonaws.com/tiles/1908woods/{z}/{x}/{y}.png",
-    sanborn1888km1aURL = "https://crores.s3.amazonaws.com/tiles/1888SanbornKM1a/{z}/{x}/{y}.png",
-    sanborn1894km1aURL = "https://crores.s3.amazonaws.com/tiles/1894SanbornKM1a/{z}/{x}/{y}.png",
+    sanborn1894KmUrl =  'https://crores.s3.amazonaws.com/tiles/1894SanbornKeyMaps/{z}/{x}/{y}.png',
+    sanborn1894url = 'https://crores.s3.amazonaws.com/tiles/1894Sanborn/{z}/{x}/{y}.png', 
+    sanborn1888km = "https://crores.s3.amazonaws.com/tiles/1888SanbornKM1a/{z}/{x}/{y}.png",
+    
     osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     esriUrl   = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     googleUrl = 'http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}'
@@ -39,6 +41,7 @@ var Hill1928aws    = 'https://crores.s3.amazonaws.com/tiles/1928Hills/{z}/{x}/{y
 // Links for attribution
 var osmLink  = '<a href="https://openstreetmap.org">OpenStreetMap</a>',
     osmCopy = '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    locLink    = '<a href="https://www.loc.gov/collections/sanborn-maps/about-this-collection/">Library of Congress</a>',
     mapboxCopy = '<a href="https://www.mapbox.com/map-feedback/">Mapbox</a>',
     esriLink = '<a href="https://www.esri.com/">ESRI</a>',
     mbLink   = '<a href="https://mapbox.com/">OpenStreetMap</a>',
@@ -73,8 +76,9 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     // hamlin1908   = L.mapbox.styleLayer('mtnbiker.ng4kio7i'),
     // hamlin1908   = L.mapbox.map('map', 'mtnbiker.ng4kio7i'),
     woods1908    = L.tileLayer(woods1908url,  {attribution: rumseyAttrib, maxZoom:17 }),
-    sanborn1894km1a = L.tileLayer(sanborn1894km1aURL,  {attribution: csunAttrib}),
-    sanborn1888km1a = L.tileLayer(sanborn1888km1aURL,  {attribution: csunAttrib})
+    sanborn1894 = L.tileLayer(sanborn1894url,  {attribution: locLink}),
+    sanborn1894km = L.tileLayer(sanborn1894KmUrl,  {attribution: locLink}),
+    sanborn1888km = L.tileLayer(sanborn1888km,  {attribution: csunAttrib})
 
     var baseLayers = {
     "<span style='color: orange'>OSM Street</span>"        : osmMap,
@@ -86,8 +90,9 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     // Can I use Rails or jS to loop over the map list from the database?. Yes and the following is not being used
     var overlayLayers = {
       // "<span style='color: blue'>1857 Bancroft</span>"     : bing,
-      // "<span style='color: blue'>1888 Sanborn</span>"      : bing,
-      // "<span style='color: blue'>1894 Sanborn</span>"      : bing,
+      "<span style='color: blue'>1888 Sanborn</span>"      : sanborn1888km,
+      "<span style='color: blue'>1894 Sanborn Key Map</span>" : sanborn1894km,
+      "<span style='color: blue'>1894 Sanborn</span>"         : sanborn1894,
       "<span style='color: blue'>1902 Rueger</span>"          : rueger1902,
       "<span style='color: blue'>1908 Wood</span>"            : woods1908,
       // "<span style='color: blue'>1908 Hamlin</span>"       : bing,
@@ -100,13 +105,14 @@ var rueger1902Map = L.tileLayer(rueger1902aws,    {attribution: mapboxAttrib}),
     // Layers all stay on and some other glitches
     var allLayers = {
     // "<span style='color: green'>Bing</span>"               : bing,
-    "<span style='color: orange'>OSM Street</span>"        : osmMap,
-    "<span style='color: green' >ESRI Satellite</span>"    : esriMap,
-    "<span style='color: green' >Google Satellite</span>"  : google,
+    "<span style='color: orange'>OSM Street</span>"         : osmMap,
+    "<span style='color: green' >ESRI Satellite</span>"     : esriMap,
+    "<span style='color: green' >Google Satellite</span>"   : google,
     // "<span style='color: blue'>1857 Bancroft</span>"     : bing,
-    // "<span style='color: blue'>1888 Sanborn</span>"      : bing,
-    // "<span style='color: blue'>1894 Sanborn</span>"      : bing,
-    "<span style='color: blue'>1902 Rueger</span>"          : rueger1902,
+    "<span style='color: blue'>1888 Sanborn</span>"         : sanborn1888km,
+    "<span style='color: blue'>1894 Sanborn Key Map</span>" : sanborn1894km,
+    "<span style='color: blue'>1894 Sanborn</span>"         : sanborn1894,
+     "<span style='color: blue'>1902 Rueger</span>"         : rueger1902,
     "<span style='color: blue'>1908 Wood</span>"            : woods1908,
     // "<span style='color: blue'>1908 Hamlin</span>"       : bing,
     "<span style='color: blue'>1921 Baist detail</span>"    : baistDetail,

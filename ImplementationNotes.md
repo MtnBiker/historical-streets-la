@@ -228,6 +228,8 @@ I don't directly require it. Bootstrap4 seems to, but that's fairly recent. Mayb
 
 gem install ffi -v '1.13.1' --source 'https://rubygems.org/' since got bundle error
 
+Answer I got later: https://stackoverflow.com/questions/62368342/rails-bundle-cant-install-gem-ffi/64083281#64083281
+
 `gem install ffi -v '1.12.1' --source 'https://rubygems.org/'` since this version was in crores. Also change Gemfile.lock. Didn't help. 
 
 Bootstrap needs ffi, but turn this off for a build. Guard & Listen same thing. Now successful bundle. Put bootstrap back in. Didn't help
@@ -434,4 +436,5 @@ heroku not working. `NoSuchBucketThe specified bucket does not existcrores_herok
 Am I uploading anything to AWS via the website?
 Added s to http on error page and reset `heroku config:set ERROR_PAGE_URL=//https://crores.s3.amazonaws.com/heroku_error_page.html` and now it works.
 
-Can't draw on site, but can here. Will upload. Has bugs though.
+Can't draw on site, but can here. Will upload. Has bugs though. Now can draw on site.
+But no maps show when click on edit, etc. for other buginess
