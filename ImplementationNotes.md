@@ -438,3 +438,5 @@ Added s to http on error page and reset `heroku config:set ERROR_PAGE_URL=//http
 
 Can't draw on site, but can here. Will upload. Has bugs though. Now can draw on site.
 But no maps show when click on edit, etc. for other buginess
+
+Started to change Sanborn Map links forgetting now in the database.
