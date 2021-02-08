@@ -41,7 +41,7 @@ gem 'jbuilder' , '~> 2.9'
 gem 'bcrypt', '~> 3.1.11'
 # Undo changes and record of who changed what
 gem 'paper_trail'
-gem 'carrierwave', '1.1.0' # Rails 5.2  added this capability, but requires reworking
+gem 'carrierwave', '1.3.2' # Rails 5.2  added this capability, but requires reworking
 
 # Leaflet included in mapbox 3.1.1 which is loaded in application.html.erb. PS: mapbox-rails is a year or two behind
 # gem 'leaflet-rails'
