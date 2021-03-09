@@ -205,9 +205,6 @@ Leaflet.Timeline working to some extent. Hack to get width of control right and 
 As a kluge, have a link to put all lines on the map that have the popups
 
 2018.03.22 Added datatables to get sorting and pagination. Removed gems installed for pagination from Hartl. https://datatables.net/manual/options
-<<<<<<< Local Changes
-
-=======
 
 2020.06.06 I had moved the database to Heroku (now the master); but I want a local copy for a presentation, so should download it. May lead to confusion on my part.
 Also updated to ruby-2.7.0 to get past the Bundler not installed. Still at `gem 'rails', '~> 5.1.4'``
@@ -440,3 +437,26 @@ Can't draw on site, but can here. Will upload. Has bugs though. Now can draw on 
 But no maps show when click on edit, etc. for other buginess
 
 Started to change Sanborn Map links forgetting now in the database.
+
+`ruby-install ruby 2.7.2 `to reduce friction with Heroku. Updated Homebrew
+`brew install git-lfs` to see if get rid of an error. I probably had this early in doc storage. Should be able to get rid of it
+`git init` to try fix the` fatal: not a git repository (or any of the parent directories): .git fatal: not a git repository (or any of the parent directories): .git fatal: not a git repository (or any of the parent directories): .git` when trying to commit. Didn't help
+Tried changing permissions of .git to everyone read-write no help
+Moved .git_attributes and .git_ignore and didn't help
+`git commit -m "kkk"` on command line works, or at least `git status
+On branch 60-moving-on
+nothing to commit, working tree clean` thinks so
+Add the file that you just made changes to by clicking the “+”
+In the text box write in your commit message (if you’re wanting to know how to write better commit messages I found this article helpful). Then click the check mark.
+VSCode is happy. But TextMate still isn't
+
+2021.03.09 Need to update stack per notice "Your Heroku account has one or more apps running on the Heroku-16 stack, which reaches end-of-life on May 1st, 2021." Ruby 2.7.2 and Rails 6.0.1 seem current enough
+Going from heroku-16 to -20. Instructions cover temporary and testing. I will just go for it, once I figure it out.
+"To upgrade via the Heroku CLI, use the stack:set command on your production app:
+$ heroku stack:set heroku-20 -a <app name>"
+  heroku stack:set heroku-20 -a stark-cove-20051, then I'll merge and push
+ " Eegad! You're not on a branch" when tried to git commit in TM
+ But TM thinks "Already on '60-moving-on'"
+
+Started to change Sanborn Map links forgetting now in the database.
+Switched to a new branch '61-post-stack-upgrade'. I think that git and TM now are on the same branch. Forgot how to merge changes. No TM is still confused. Fix sometime
