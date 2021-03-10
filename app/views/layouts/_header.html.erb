@@ -23,14 +23,14 @@
         <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link" %></li>
         <!-- Dropdown starts Confusing because a dropdown menu and Map List item appear when logged in -->
         <!-- Accessible Rich Internet Applications (ARIA) for accessibility -->
-         <li class="nav-item dropdown">
-           <a class="nav-link dropdown-toggle"  id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "Profile",  current_user, class: "dropdown-item" %>
               <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Log out",  logout_path, method: :delete, class: "dropdown-item" %>
            </div>
-          </li>
+        </li>
       <% else %>
         <li class="nav-item"><%= link_to "Log in", login_path, class: "nav-link" %></li>
       <% end %>  <!-- if logged_in -->
