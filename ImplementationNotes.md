@@ -459,4 +459,4 @@ $ heroku stack:set heroku-20 -a <app name>"
  But TM thinks "Already on '60-moving-on'"
 
 Started to change Sanborn Map links forgetting now in the database.
-Switched to a new branch '61-post-stack-upgrade'. I think that git and TM now are on the same branch. Forgot how to merge changes. No TM is still confused. Fix sometime
+Switched to a new branch '61-post-stack-upgrade'. I think that git and TM now are on the same branch. Forgot how to merge changes. No TM is still confused. Fix sometime. But for now use command line for Git.
