@@ -9,7 +9,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.7.1' # Heroku wants this. FIXME-2020.06.16
+ruby '2.7.2' # Heroku wants this. FIXME-2020.06.16
 # gem 'bundler' # With Ruby 2.6, bundler is part of the default rails
 
 gem 'rails', '~> 6.0.1' # Careful of scripts see. https://bauland42.com/ruby-on-rails-content-security-policy-csp/o. Also see development.rb if update to 6.1
