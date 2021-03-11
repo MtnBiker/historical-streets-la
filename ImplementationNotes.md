@@ -476,3 +476,10 @@ TypeError: this.getOptions is not a function
     at Object.loader (/Users/gscar/Documents/Croatian Restaurants Project-CroRes/LA Historical Street Names/la_hist_street/node_modules/sass-loader/dist/index.js:25:24)
 `sass-loader` which is coming from where? 
 `yarn add sass-loader@^10.1.1` should downgrade, recent problem for many
+Upgraded to ruby-2.7.2 since it's the end of the line and just one less thing to think about
+
+Look at SourceTree and see the other "improvements" that might be useful. Maybe reorganized webpacker to latest guides. recommendations. But mainly a matter of style. I tried making this rearrangement, but failed with getting access to application.scss right. Leave well enough alone `If It Works Don't Fix It`
+  source_path: app/packs
+  source_entry_path: entrypoints
+
+`gem 'activerecord-postgis-adapter'` default may now work, but will have to try again

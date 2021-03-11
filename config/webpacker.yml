@@ -3,6 +3,10 @@
 default: &default
   source_path: app/javascript
   source_entry_path: packs
+  # 2021.03.11 could reorganize, but I tried and failed, problem was application.scss I think and how it is included
+  # source_path: app/packs
+  # source_entry_path: entrypoints
+  
   public_root_path: public
   public_output_path: packs
   cache_path: tmp/cache/webpacker

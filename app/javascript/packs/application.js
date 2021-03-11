@@ -24,7 +24,7 @@ console.log('Hello World from Webpacker')
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
-import 'stylesheets/application' // https://rossta.net/blog/webpacker-with-bootstrap.html
+import 'stylesheets/application' // https://rossta.net/blog/webpacker-with-bootstrap.html This is old style now, but when I moved application.scss to entrypoints it didn't work
 
 // leaflet 
 // import 'leaflet' // not needed if ProvidePlugin has this in environment.js. This may be redundant
