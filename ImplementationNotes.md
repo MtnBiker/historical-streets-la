@@ -444,7 +444,7 @@ Started to change Sanborn Map links forgetting now in the database.
 Tried changing permissions of .git to everyone read-write no help
 Moved .git_attributes and .git_ignore and didn't help
 `git commit -m "kkk"` on command line works, or at least `git status
-On branch 60-moving-on
+### On branch 60-moving-on
 nothing to commit, working tree clean` thinks so
 Add the file that you just made changes to by clicking the “+”
 In the text box write in your commit message (if you’re wanting to know how to write better commit messages I found this article helpful). Then click the check mark.
@@ -460,3 +460,19 @@ $ heroku stack:set heroku-20 -a <app name>"
 
 Started to change Sanborn Map links forgetting now in the database.
 Switched to a new branch '61-post-stack-upgrade'. I think that git and TM now are on the same branch. Forgot how to merge changes. No TM is still confused. Fix sometime. But for now use command line for Git.
+### 62-giving-up-on-61
+61-post-stack-upgrade wasn't working, so started over from maste which does work on Heroku unless I'm confused which is possible
+But even this new branch from what would be 60-moving-on has issues. Also Git is still confused or least TM is confused about it.
+Error:  Rendered static_pages/home.html.erb within layouts/application (Duration: 298.8ms | Allocations: 13515)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+[webpack-cli] Failed to load '/Users/gscar/Documents/Croatian Restaurants Project-CroRes/LA Historical Street Names/la_hist_street/config/webpack/development.js' config
+[webpack-cli] TypeError: Cannot read property 'plugins' of undefined
+    at Object.<anonymous> (/Users/gscar/Documents/Croatian Restaurants Project-CroRes/LA Historical Street Names/la_hist_street/config/webpack/environment.js:17:13)
+      
+Copied over config/webpack/environment.js from crores and still doesn't work, page loads but no Bootstrap
+Hadn't looked at browser console errors, but seeing what I saw before:
+TypeError: this.getOptions is not a function
+    at Object.loader (/Users/gscar/Documents/Croatian Restaurants Project-CroRes/LA Historical Street Names/la_hist_street/node_modules/sass-loader/dist/index.js:25:24)
+`sass-loader` which is coming from where? 
+`yarn add sass-loader@^10.1.1` should downgrade, recent problem for many
