@@ -483,3 +483,5 @@ Look at SourceTree and see the other "improvements" that might be useful. Maybe 
   source_entry_path: entrypoints
 
 `gem 'activerecord-postgis-adapter'` default may now work, but will have to try again
+
+Some overlay maps are not loading

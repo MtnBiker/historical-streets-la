@@ -1,4 +1,5 @@
 // app/javascript/src/streets.js
+// Leaflet
 "use strict";
 
 // .erb to process Ruby MAPBOX_TOKEN with ENV. Removed .erb 2017.10.11 since not using MapBox
