@@ -54,7 +54,13 @@ require("@rails/activestorage").start()
 // require("trix")
 // require("@rails/actiontext")
 // require("jquery") // not needed by Bootstrap according to the ReadMe // Does environment.js take care of this, but do I need jQuery elsewhere. See line below
-import 'jquery'
+import 'jquery';
+// include jQuery in global and window scope (so you can access it globally)
+// in your web browser, when you type $('.div'), it is actually refering to global.$('.div')
+// https://rubyyagi.com/how-to-use-bootstrap-and-jquery-in-rails-6-with-webpacker/
+// Added the two following lines to get $(function() working in _map_and_control.html.erb. Don't have this in crores anymore
+global.$ = global.jQuery = jQuery;
+window.$ = window.jQuery = jQuery;
 import 'jqueryui' // seeing if it will help with opacity slider not showing on streets/
 import 'popper.js'
 import "bootstrap"

@@ -461,7 +461,7 @@ $ heroku stack:set heroku-20 -a <app name>"
 Started to change Sanborn Map links forgetting now in the database.
 Switched to a new branch '61-post-stack-upgrade'. I think that git and TM now are on the same branch. Forgot how to merge changes. No TM is still confused. Fix sometime. But for now use command line for Git.
 ### 62-giving-up-on-61
-61-post-stack-upgrade wasn't working, so started over from maste which does work on Heroku unless I'm confused which is possible
+61-post-stack-upgrade wasn't working, so started over from master which does work on Heroku unless I'm confused which is possible
 But even this new branch from what would be 60-moving-on has issues. Also Git is still confused or least TM is confused about it.
 Error:  Rendered static_pages/home.html.erb within layouts/application (Duration: 298.8ms | Allocations: 13515)
 [Webpacker] Compiling...
@@ -485,3 +485,9 @@ Look at SourceTree and see the other "improvements" that might be useful. Maybe 
 `gem 'activerecord-postgis-adapter'` default may now work, but will have to try again
 
 Some overlay maps are not loading
+
+heroku config:set --remote heroku-20 etc. Said I was out of date. bundle update required it seemed. Failed at updating. Since no one is contributing, I'll just move the master db  back to localhost. It seems the db is too big, but it still can serve. IIRC, technically heroku doesn't care. Assumes it is the master. I just need to change localhost to use downloaded version, i.e., point the app. IIRC it's done with pg. Where is the db on localhost.
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -d la_street_history_development latest.dump
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -d la_street_history_development "/Users/gscar/Documents/Croatian Restaurants Project-CroRes/LA Historical Street Names/la_hist_street/db/dumps/latest.from_Heroku.2021.06.13.dump"
+NOT SURE THIS HAPPENED, NO FEEDBACK.
+But app is seriously broken. Problems with jQuery, assets not loading. Maybe webpack changes.

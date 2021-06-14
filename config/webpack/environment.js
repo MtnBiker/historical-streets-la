@@ -17,8 +17,8 @@ const webpack = require('webpack')
 environment.plugins.append('Provide',
   new webpack.ProvidePlugin({
     $: 'jquery',
-    jQuery: 'jquery/src/jquery', // Is the "jquery/src/" prefix needed ? Not the first time I've seen this
-    jquery: 'jquery/src/jquery',
+    jQuery: 'jquery',
+    jquery: 'jquery'
     // 'window.Jquery': 'jquery', 
     // https://www.lugolabs.com/articles/using-webpacker-in-ruby-on-rails-applications
     // Popper: ['popper.js' ,'default']
