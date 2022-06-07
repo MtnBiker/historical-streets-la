@@ -137,7 +137,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
-    jmespath (1.4.0)
+    jmespath (1.6.1)
     leaflet-draw-rails (0.1.0)
     loofah (2.6.0)
       crass (~> 1.0.2)
