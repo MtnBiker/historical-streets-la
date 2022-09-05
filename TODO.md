@@ -1,5 +1,5 @@
 ### To Be Done
-
+* Fix links to AWS following crores
 * Sort out requires and importing for leaflet mapbox
 * Rollover/popup not working on main map. Do I need popper and have I installed it right. One bootstrap reference said it's included in bootstrap? Apparently need popper.js (not popper which is different)
 

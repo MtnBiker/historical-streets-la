@@ -490,4 +490,6 @@ heroku config:set --remote heroku-20 etc. Said I was out of date. bundle update 
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -d la_street_history_development latest.dump
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -d la_street_history_development "/Users/gscar/Documents/Croatian Restaurants Project-CroRes/LA Historical Street Names/la_hist_street/db/dumps/latest.from_Heroku.2021.06.13.dump"
 NOT SURE THIS HAPPENED, NO FEEDBACK.
-But app is seriously broken. Problems with jQuery, assets not loading. Maybe webpack changes.
+Some fixes for webpacker set up. Image and jQuery
+### Heroku going away
+Downloaded db, but app doesn't look good on localhost. Fix while can see at Heroku
