@@ -493,3 +493,4 @@ NOT SURE THIS HAPPENED, NO FEEDBACK.
 Some fixes for webpacker set up. Image and jQuery
 ### Heroku going away
 Downloaded db, but app doesn't look good on localhost. Fix while can see at Heroku
+import db to MBA (since trying with large screen)

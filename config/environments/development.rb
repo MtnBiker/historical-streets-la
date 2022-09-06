@@ -76,5 +76,5 @@ Rails.application.configure do
   # to the length of #inspect's payload for the given object. Please be aware that HTML escaping
   # modifies the size of this payload so setting this limit too precisely is not recommended.  
   # default value: 100_000
-  BetterErrors.maximum_variable_inspect_size = 100_000
+  # BetterErrors.maximum_variable_inspect_size = 100_000 # Shutoff because of some error, removed gem too
 end

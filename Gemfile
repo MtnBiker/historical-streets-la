@@ -9,12 +9,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.7.2' # Heroku wants this.
+ruby '2.7.6' # Heroku wants this.
 # gem 'bundler' # With Ruby 2.6, bundler is part of the default rails
 
 gem 'rails', '~> 6.0.1' # Careful of scripts see. https://bauland42.com/ruby-on-rails-content-security-policy-csp/o. Also see development.rb if update to 6.1
 # Use postgresql as the database for Active Record
-gem 'pg' , '~> 0.18' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23. Put qualification in to see if helps with server problem (Jan 2018), it did. Apparently v1.0.0 just released and something hasn't caught up. 
+gem 'pg' , '~> 1.4.3' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23. Put qualification in to see if helps with server problem (Jan 2018), it did. Apparently v1.0.0 just released and something hasn't caught up. 
 # Use Puma as the app server
 gem 'puma'# , '3.4' # gem 'puma'  FIXME-2020.06.16
 # Use SCSS for stylesheets. Was in rossta and makes sense. sass-rails depends on sassc-rails
@@ -46,7 +46,7 @@ gem 'carrierwave', '1.1.0' # Rails 5.2  added this capability, but requires rewo
 # Leaflet included in mapbox 3.1.1 which is loaded in application.html.erb. PS: mapbox-rails is a year or two behind
 # gem 'leaflet-rails'
 # gem 'activerecord-postgis-adapter' # Failing with Rails 6. Below is a branch until master gets updated. 2019.09.13 still failing: rspec errors and rails won't launch  FIXME-2020.06.16
-gem 'activerecord-postgis-adapter', git: 'https://github.com/corneverbruggen/activerecord-postgis-adapter', branch: 'activerecord-6.0'
+# gem 'activerecord-postgis-adapter', git: 'https://github.com/corneverbruggen/activerecord-postgis-adapter', branch: 'activerecord-6.0' # This has gone away. And probably not really using postgis
 gem 'rgeo-geojson'
 gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.10 (July 3, 2017)
 
@@ -62,7 +62,7 @@ gem 'aws-sdk-s3', '~> 1'# Since got error when pushing in 2020. Let's hope there
 # None of these are needed at least to get server running
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.5.1'
+  # gem 'web-console', '>= 3.5.1' # bindex error  FIXME
   # gem 'listen' # webpacker wants or its install does, but I don't have it in Crores
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
@@ -83,10 +83,10 @@ end # development
 #  better_errors is needed, others seem to be optional
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry-byebug' # binding.pry
-  gem "better_errors" # server won't work without this
-  gem 'binding_of_caller'
+  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw] # getting an error FIXME
+  # gem 'pry-byebug' # binding.pry
+  # gem "better_errors" # server won't work without this
+  # gem 'binding_of_caller'
   gem 'dotenv-rails' # See p198 Clark. Right now I just have Mapbox credential. But I'm using it for AWS I think. Moved to dev and test based on https://github.com/bkeepers/dotenv
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
