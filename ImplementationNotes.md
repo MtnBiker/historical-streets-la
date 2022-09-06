@@ -493,4 +493,13 @@ NOT SURE THIS HAPPENED, NO FEEDBACK.
 Some fixes for webpacker set up. Image and jQuery
 ### Heroku going away
 Downloaded db, but app doesn't look good on localhost. Fix while can see at Heroku
-import db to MBA (since trying with large screen)
+
+import db to MBA (since trying with large screen). iCloud sync is way slow
+
+Put the Rails app on iCloud so can use on all 3 Macs. Took a long time to propagate, so tried making it a Shared folder and invited myself. Supposed to speed up syncing. Still was slow
+Importing to MBP for testing `psql la_street_history_development < la_hist_streets_dump.sql` db name is what I've been using. See `database.yml` Database didn't exist, so created in PGAdmin. Owner `gscar` which is same as on iMac. Now opens on MBP, but serious formatting problems. Lots of errors showing in server report (iTerm) and in developer console. Some Node modules not connecting. Ran `yarn` Several errors, one about Python availablility. Looking for python2, `which python3` is good but `python --version` fails. Do I need both? Not sure this is the issue. Focus on Chrome>console errors
+
+OK, so runs with format (some js not working?)merrors on MBP, but
+
+`yarn` for he heck of it and another `bundle install` and now it works fine on MBA. So can go for fly.io from MBA
+
