@@ -501,5 +501,7 @@ Importing to MBP for testing `psql la_street_history_development < la_hist_stree
 
 OK, so runs with format (some js not working?)merrors on MBP, but
 
-`yarn` for he heck of it and another `bundle install` and now it works fine on MBA. So can go for fly.io from MBA
+`yarn` for he heck of it and another `bundle install` and now it works fine on MBA. So can go for fly.io from MBA.
+
+
 

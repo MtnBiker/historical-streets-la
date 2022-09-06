@@ -1,4 +1,9 @@
 ### To Be Done
+* Move to Rails 7 and better asset management (no webpacker)
+* Stimulus for putting linked document once select.
+
+* Color lines on main map to show which end is resid vs. resto
+
 * Fix links to AWS following crores
 * Sort out requires and importing for leaflet mapbox
 * Rollover/popup not working on main map. Do I need popper and have I installed it right. One bootstrap reference said it's included in bootstrap? Apparently need popper.js (not popper which is different)
