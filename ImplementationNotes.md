@@ -503,5 +503,70 @@ OK, so runs with format (some js not working?)merrors on MBP, but
 
 `yarn` for he heck of it and another `bundle install` and now it works fine on MBA. So can go for fly.io from MBA.
 
+`fly dashboard`says no app so run:
+
+that is, following https://fly.io/docs/rails/getting-started/migrate-from-heroku/
+
+`fly launch` I gave a name `la-hist-streets` and yes to create a postgresql database
+
+la_hist_street on  62-giving-up-on-61 [$✘!?] via ⬢ v18.8.0 via 💎 ruby-2.7.6
+➜ fly launch
+Creating app in /Users/gscar/Documents/Croatian Restaurants Project-CroRes/LA Historical Street Names/la_hist_street
+Scanning source code
+Detected a Rails app
+? App Name (leave blank to use an auto-generated name): la-hist-streets
+Automatically selected personal organization: Greg S
+? Select region: lax (Los Angeles, California (US))
+Created app la-hist-streets in organization personal
+Wrote config file fly.toml
+? Would you like to set up a Postgresql database now? Yes
+For pricing information visit: https://fly.io/docs/about/pricing/#postgresql-clusters
+? Select configuration: Development - Single node, 1x shared CPU, 256MB RAM, 1GB disk
+Creating postgres cluster la-hist-streets-db in organization personal
+Postgres cluster la-hist-streets-db created
+  Username:    postgres
+  Password:    2ace6e7f9d4f0e4991864ced23294ffb91d674e75e01aacb
+  Hostname:    la-hist-streets-db.internal
+  Proxy Port:  5432
+  PG Port: 5433
+Save your credentials in a secure place -- you won't be able to see them again!
+
+Monitoring Deployment
+
+1 desired, 1 placed, 1 healthy, 0 unhealthy [health checks: 3 total, 2 passing, 1 critical]
+--> v0 deployed successfully
+
+Connect to postgres
+Any app within the personal organization can connect to postgres using the above credentials and the hostname "la-hist-streets-db.internal."
+For example: postgres://postgres:2ace6e7f9d4f0e4991864ced23294ffb91d674e75e01aacb@la-hist-streets-db.internal:5432
+
+Now that you've set up postgres, here's what you need to understand: https://fly.io/docs/reference/postgres-whats-next/ [ which I don't think applies to this where I have a db to upload ]
+
+Postgres cluster la-hist-streets-db is now attached to la-hist-streets
+The following secret was added to la-hist-streets:
+  DATABASE_URL=postgres://la_hist_streets:cWiEQ023MDUDWPQ@top2.nearest.of.la-hist-streets-db.internal:5432/la_hist_streets
+Postgres cluster la-hist-streets-db is now attached to la-hist-streets
+
+Your Rails app is prepared for deployment. Production will be set up with these versions of core runtime packages:
+
+Ruby 2.7.6
+Bundler 2.3.3
+NodeJS 18.8.0
+
+You can configure these in the [build] section in the generated fly.toml.
+
+Ruby versions available are: 3.1.2, 3.0.4, and 2.7.6. Learn more about the chosen Ruby stack, Fullstaq Ruby, here: https://github.com/evilmartians/fullstaq-ruby-docker.
+We recommend using the highest patch level for better security and performance.
+
+For the other packages, specify any version you need.
+
+If you need custom packages installed, or have problems with your deployment build, you may need to edit the Dockerfile
+for app-specific changes. If you need help, please post on https://community.fly.io.
+
+Now: run `'fly deploy'` to deploy your Rails app.
+
+23 2.974 Yarn executable was not detected in the system. and another error around webpacker.
+
+Maybe need to change the asset pipeline. Argh! What's the path, Ruby 3, Rails 7, then asset pipeline.
 
 

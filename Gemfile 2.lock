@@ -78,9 +78,17 @@ GEM
     aws-sigv4 (1.5.1)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.18)
+    better_errors (2.9.1)
+      coderay (>= 1.0.0)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
+    bindex (0.8.1)
+    binding_of_caller (1.0.0)
+      debug_inspector (>= 0.0.1)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    byebug (11.1.3)
     capybara (2.18.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -94,12 +102,14 @@ GEM
       mime-types (>= 1.16)
     childprocess (4.1.0)
     choice (0.2.0)
+    coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     database_cleaner-active_record (2.0.1)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
+    debug_inspector (1.1.0)
     docile (1.4.0)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
@@ -113,6 +123,7 @@ GEM
       i18n (>= 0.7)
       multi_json
       request_store (>= 1.0)
+    heroku_db_restore (0.0.5)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -145,13 +156,21 @@ GEM
     nokogiri (1.13.8)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    nokogiri (1.13.8-arm64-darwin)
+      racc (~> 1.4)
     paper_trail (13.0.0)
       activerecord (>= 5.2)
       request_store (~> 1.1)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
-    pg (1.4.3)
+    pg (0.21.0)
+    pry (0.14.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-byebug (3.10.1)
+      byebug (~> 11.0)
+      pry (>= 0.13, < 0.15)
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -247,6 +266,11 @@ GEM
     tzinfo (1.2.10)
       thread_safe (~> 0.1)
     unicode-display_width (2.2.0)
+    web-console (4.2.0)
+      actionview (>= 6.0.0)
+      activemodel (>= 6.0.0)
+      bindex (>= 0.4.0)
+      railties (>= 6.0.0)
     webpacker (5.4.3)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
@@ -261,23 +285,29 @@ GEM
     zeitwerk (2.6.0)
 
 PLATFORMS
+  arm64-darwin-21
   ruby
 
 DEPENDENCIES
   awesome_print
   aws-sdk-s3 (~> 1)
   bcrypt (~> 3.1.11)
+  better_errors
+  binding_of_caller
   bootsnap
+  byebug
   capybara (~> 2.13)
   carrierwave (= 1.1.0)
   database_cleaner-active_record
   dotenv-rails
   gon
+  heroku_db_restore
   jbuilder (~> 2.9)
   leaflet-draw-rails
   minitest-reporters (= 1.1.9)
   paper_trail
-  pg (~> 1.4.3)
+  pg (~> 0.18)
+  pry-byebug
   puma
   rails (~> 6.0.1)
   rails-erd
@@ -286,6 +316,7 @@ DEPENDENCIES
   selenium-webdriver
   simplecov
   super_awesome_print
+  web-console (>= 3.5.1)
   webpacker (~> 5.0)
 
 RUBY VERSION

@@ -14,9 +14,9 @@ ruby '2.7.6' # Heroku wants this.
 
 gem 'rails', '~> 6.0.1' # Careful of scripts see. https://bauland42.com/ruby-on-rails-content-security-policy-csp/o. Also see development.rb if update to 6.1
 # Use postgresql as the database for Active Record
-gem 'pg' , '~> 1.4.3' # removed qualification to try an help with heroku push problem, but bundle still showing 0.18.4 2017.08.23. Put qualification in to see if helps with server problem (Jan 2018), it did. Apparently v1.0.0 just released and something hasn't caught up. 
+gem 'pg' , '~> 1.4.3' # Was 0.18.4 2022.09.06 and wouldn't upgrade, so put in latest version. Seems to work at least on localhost.
 # Use Puma as the app server
-gem 'puma'# , '3.4' # gem 'puma'  FIXME-2020.06.16
+gem 'puma' # , '3.4' FIXME-2020.06.16
 # Use SCSS for stylesheets. Was in rossta and makes sense. sass-rails depends on sassc-rails
 # both sass-rails and sassc-rails depend on ffi which I can't install
 # gem 'sassc-rails' # Could use sassc-rails, but probably more than I need. https://github.com/sass/sassc-rails
@@ -63,7 +63,7 @@ gem 'aws-sdk-s3', '~> 1'# Since got error when pushing in 2020. Let's hope there
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   # gem 'web-console', '>= 3.5.1' # bindex error  FIXME
-  # gem 'listen' # webpacker wants or its install does, but I don't have it in Crores
+  # gem 'listen' # webpacker wants or its install does, but I don't have it in Crores. Put back in to see if fly deploy would be helped. Didn't help
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
   # gem 'spring-watcher-listen', '~> 2.0.0'
@@ -77,7 +77,7 @@ group :development do
   gem "rails-erd" # Entity-Relationship Diagrams, `rake erd` or `bundle exec rake erd` to get a pdf http://voormedia.github.io/rails-erd/install.html
   # Copy db from (and to?) Heroku
   # To see an updated list of tasks and descriptions: rake heroku_db_restore -T heroku_db_restore
-  gem 'heroku_db_restore'
+  # gem 'heroku_db_restore' # leaving heroku
 end # development
 
 #  better_errors is needed, others seem to be optional
