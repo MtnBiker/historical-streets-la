@@ -67,6 +67,9 @@ I don't see any relevant changes I need. I don't have image processing
 Rails 7
 Change the versions for Rails JavaScript packages in package.json and run yarn install, if running on Webpacker.
 I think I got the above
+
+app:upgrade, but now deal with the following. Got an error when `rails active_storage:update` ran
+
 Check https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-6-1-to-rails-7-0-spring
 https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#sprockets-is-now-an-optional-dependency
 zeitwork https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#applications-need-to-run-in-zeitwerk-mode
