@@ -56,6 +56,20 @@ LoadError: cannot load such file -- listen`
 Fail on `rs`
 Tried `yarn` Still fail on `rs`
 
+`bin/rails server --environment=production` no server launch errors but get error in Chrome on page load
+`EDITOR="mate --wait" bin/rails credentials:edit` to get `rs` since said it needed the secret
+
+Not a gem problem as commenting out all dev gems still doesn't work in development mode.
+Needed gem listen. App works except can't create segment. FIXME
+So now at rails (6.1.6.1)
+I don't see any relevant changes I need. I don't have image processing
+===
+Rails 7
+Check https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-6-1-to-rails-7-0-spring
+https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#sprockets-is-now-an-optional-dependency
+zeitwork https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#applications-need-to-run-in-zeitwerk-mode
+
+
 
 
 

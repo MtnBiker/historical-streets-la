@@ -64,8 +64,8 @@ gem 'aws-sdk-s3', '~> 1'# Since got error when pushing in 2020. Let's hope there
 # None of these are needed at least to get server running
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  # gem 'web-console', '>= 3.5.1' # bindex error  FIXME
-  # gem 'listen' # webpacker wants or its install does, but I don't have it in Crores. Put back in to see if fly deploy would be helped. Didn't help
+  # gem 'web-console', '>= 3.5.1' # bindex error on rs  FIXME
+  gem 'listen' # webpacker wants or its install does, but I don't have it in Crores. Put back in to see if fly deploy would be helped. Didn't help. Put back in because of error in Rails 6.1 and now app works or at least it loads
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
   # gem 'spring-watcher-listen', '~> 2.0.0'
