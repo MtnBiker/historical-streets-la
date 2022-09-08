@@ -569,4 +569,13 @@ Now: run `'fly deploy'` to deploy your Rails app.
 
 Maybe need to change the asset pipeline. Argh! What's the path, Ruby 3, Rails 7, then asset pipeline.
 
+https://guides.rubyonrails.org/upgrading_ruby_on_rails.html
+Rails 7 requires Ruby 2.7.0 or newer. So maybe upgrade to Rails 7, then worry about Ruby 3
+It's a good idea to upgrade Ruby and Rails separately. Upgrade to the latest Ruby you can first, and then upgrade Rails.
+When changing Rails versions, it's best to move slowly, one minor version at a time. Now at 6.0.1
+To 6.1 https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-6-0-to-rails-6-1
+https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#active-storage-now-requires-image-processing seems like the only thing that might apply in may case
 
+When ready for 6 to 7 https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-6-1-to-rails-7-0
+See Rails upgrading
+gem "image_processing", "~> 1.0" # Rails 6.1 upgrade
