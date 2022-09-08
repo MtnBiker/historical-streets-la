@@ -4,9 +4,9 @@
   "dependencies": {
     "@babel/core": "^7.10.3",
     "@fortawesome/fontawesome-free": "^5.13.1",
-    "@rails/activestorage": "^6.0.3-2",
-    "@rails/ujs": "^6.0.3-2",
-    "@rails/webpacker": "^5.1.1",
+    "@rails/activestorage": "^7.0.3.1",
+    "@rails/ujs": "^7.0.3.1",
+    "@rails/webpacker": "^5.4.3",
     "bootstrap": "^4.5.0",
     "core-js": "^3.6.5",
     "jquery": "^3.5.1",

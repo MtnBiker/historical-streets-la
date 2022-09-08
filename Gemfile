@@ -12,7 +12,7 @@ end
 ruby '2.7.6' # Rails 7 minimum 2.7
 # gem 'bundler' # With Ruby 2.6, bundler is part of the default rails
 
-gem 'rails', '~> 6.1' # Careful of scripts see. https://bauland42.com/ruby-on-rails-content-security-policy-csp/o. Also see development.rb if update to 6.1
+gem 'rails', '~> 7.0' # Careful of scripts see. https://bauland42.com/ruby-on-rails-content-security-policy-csp/o. Also see development.rb if update to 6.1
 # Use postgresql as the database for Active Record
 gem 'pg' , '~> 1.4.3' # Was 0.18.4 2022.09.06 and wouldn't upgrade, so put in latest version. Seems to work at least on localhost.
 # Use Puma as the app server
