@@ -74,7 +74,12 @@ Check https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from
 https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#sprockets-is-now-an-optional-dependency gem "sprockets-rails". I think I still have Sprockets and will continue to. Still rs errors
 zeitwork https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#applications-need-to-run-in-zeitwerk-mode
 https://guides.rubyonrails.org/classic_to_zeitwerk_howto.html
-`bin/rails runner 'p Rails.autoloaders.zeitwerk_enabled?'` Same earlier `rs` errors
+.rubies/ruby-2.7.6/lib/ruby/2.7.0/net/protocol.rb:66: warning: already initialized constant Net::ProtocRetryError
+
+Add `gem "net-http"` was suggested to get rid of the error. Can remove once successful.
+Now have new error on `rs`
+
+
 
 Go through: config/initializers/new_framework_defaults_7_0.rb TODO
 
