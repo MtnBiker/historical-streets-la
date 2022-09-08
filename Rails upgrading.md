@@ -68,12 +68,15 @@ Rails 7
 Change the versions for Rails JavaScript packages in package.json and run yarn install, if running on Webpacker.
 I think I got the above
 
-app:upgrade, but now deal with the following. Got an error when `rails active_storage:update` ran
+app:upgrade, but now deal with the following. Got an error when `rails active_storage:update` 
 
-Check https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-6-1-to-rails-7-0-spring
-https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#sprockets-is-now-an-optional-dependency
+Check https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-6-1-to-rails-7-0-spring - not using Spring, but if do turn it on
+https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#sprockets-is-now-an-optional-dependency gem "sprockets-rails". I think I still have Sprockets and will continue to. Still rs errors
 zeitwork https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#applications-need-to-run-in-zeitwerk-mode
+https://guides.rubyonrails.org/classic_to_zeitwerk_howto.html
+`bin/rails runner 'p Rails.autoloaders.zeitwerk_enabled?'` Same earlier `rs` errors
 
+Go through: config/initializers/new_framework_defaults_7_0.rb TODO
 
 
 

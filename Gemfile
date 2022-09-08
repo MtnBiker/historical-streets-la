@@ -22,6 +22,7 @@ gem 'puma' # , '3.4' FIXME-2020.06.16
 # gem 'sassc-rails' # Could use sassc-rails, but probably more than I need. https://github.com/sass/sassc-rails
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
+gem "sprockets-rails" # https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#sprockets-is-now-an-optional-dependency
 gem 'bootsnap', require: false  # FIXME-2020.06.16
 # Use Uglifier as compressor for JavaScript assets
 # gem 'uglifier' # not needed with Webpacker
