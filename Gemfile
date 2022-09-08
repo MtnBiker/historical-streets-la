@@ -15,7 +15,7 @@ ruby '2.7.6' # Rails 7 minimum 2.7
 gem 'rails', '~> 7.0' # Careful of scripts see. https://bauland42.com/ruby-on-rails-content-security-policy-csp/o. Also see development.rb if update to 6.1
 # Use postgresql as the database for Active Record
 gem 'pg' , '~> 1.4.3' # Was 0.18.4 2022.09.06 and wouldn't upgrade, so put in latest version. Seems to work at least on localhost.
-gem "net-http" # supposedly temporary to fix an upgrade to Rails 7 issue
+gem "net-http" # supposedly temporary to fix an upgrade to Rails 7 issue. Leaving in removes a launch error, but the app does launch
 # Use Puma as the app server
 gem 'puma' # , '3.4' FIXME-2020.06.16
 # Use SCSS for stylesheets. Was in rossta and makes sense. sass-rails depends on sassc-rails
