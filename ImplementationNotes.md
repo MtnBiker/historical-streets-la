@@ -585,3 +585,11 @@ gem "image_processing", "~> 1.0" # Rails 6.1 upgrade
 To upload db https://community.fly.io/t/pg-database-migration-from-heroku-not-working/6881/8:
 `pg_restore -v -d postgres://la_hist_streets:cWiEQ023MDUDWPQ@top2.nearest.of.la-hist-streets-db.internal:5432/la_hist_streets < db/dumps/latest.from_Heroku.2022.08.26.dump`
 Works but some errors 'multiple primary keys'
+
+[![](https://data.jsdelivr.com/v1/package/npm/leaflet.timeline/badge)](https://www.jsdelivr.com/package/npm/leaflet.timeline)
+
+https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js
+
+removed column extent from streets. Not used and was blank. Also removed Extensions (PGAdmin) postgis and postgistiger?. Not being used and were created notices on Fly.io migrations
+schema.rb seems to be regenerated on rgm, but not structure.sql 
+Added `config.active_record.schema_format = :sql` and now rdm generates structure.sql

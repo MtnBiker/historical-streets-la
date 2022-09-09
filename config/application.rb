@@ -11,6 +11,8 @@ module LaHistStreet
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.active_record.schema_format = :sql # https://blog.appsignal.com/2020/01/15/the-pros-and-cons-of-using-structure-sql-in-your-ruby-on-rails-application.html I think so can ignore old migrations. Now will generate config/structure.sql
+
     # From pre Rails 6, probably should be somewhere else or take it out and see if app works
     config.serve_static_assets = true # https://devcenter.heroku.com/articles/rails-4-asset-pipeline
 
