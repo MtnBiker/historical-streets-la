@@ -1,5 +1,6 @@
 ### To Be Done
-* Move to Rails 7 and better asset management (no webpacker)
+* Can't drawn in edit/new streets
+* Move to better asset management (no webpacker)
 * Stimulus for putting linked document once select.
 
 * Color lines on main map to show which end is resid vs. resto
@@ -40,9 +41,7 @@
 
 * A page to view paper_trail. Probably looks like other index list pages. Static or view of its own?
 * Track who's made a change. 
- 
-* Look at puma.rb and see if hidden stuff is needed
- 
+  
 * Login should take you back to the page you were on
  
 * Put up a notice if no coverage available for the map selected.
@@ -90,4 +89,6 @@ https://gis.stackexchange.com/questions/111410/display-a-link-in-a-popup-with-le
 * Get rid of example user when I get myself set up on localhost. Also track who made the change. Create admin user at historicstreets.la 2018.03.25
 
 * * ≤ ≥ are backwards on streets>show 2020.06.13
+
+* Move to Rails 7 and Ruby 3 2022.09.09
 

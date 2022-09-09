@@ -10,7 +10,6 @@ git_source(:github) do |repo_name|
 end
 
 ruby '3.1.2' # Rails 7 minimum 2.7
-# gem 'bundler' # With Ruby 2.6, bundler is part of the default rails
 
 gem 'rails', '~> 7.0' # Careful of scripts see. https://bauland42.com/ruby-on-rails-content-security-policy-csp/o. Also see development.rb if update to 6.1
 # Use postgresql as the database for Active Record
@@ -45,12 +44,10 @@ gem 'bcrypt', '~> 3.1.11'
 gem 'paper_trail'
 gem 'carrierwave', '1.1.0' # Rails 5.2  added this capability, but requires reworking
 
-gem "image_processing", "~> 1.0" # Rails 6.1 upgrade
+gem "image_processing", "~> 1.0" # Rails 6.1 upgrade, but I don't think I'm using this
 
 # Leaflet included in mapbox 3.1.1 which is loaded in application.html.erb. PS: mapbox-rails is a year or two behind
 # gem 'leaflet-rails'
-# gem 'activerecord-postgis-adapter' # Failing with Rails 6. Below is a branch until master gets updated. 2019.09.13 still failing: rspec errors and rails won't launch  FIXME-2020.06.16
-# gem 'activerecord-postgis-adapter', git: 'https://github.com/corneverbruggen/activerecord-postgis-adapter', branch: 'activerecord-6.0' # This has gone away. And probably not really using postgis
 gem 'rgeo-geojson'
 gem 'leaflet-draw-rails' # v0.4.9 as of Sept 17. Current leaflet.draw.js is 0.4.10 (July 3, 2017)
 
