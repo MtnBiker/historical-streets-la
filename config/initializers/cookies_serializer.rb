@@ -3,7 +3,6 @@
 # Specify a serializer for the signed and encrypted cookie jars.
 # Valid options are :json, :marshal, and :hybrid.
 # Rails.application.config.action_dispatch.cookies_serializer = :json
+Rails.application.config.action_dispatch.cookies_serializer = :hybrid
 
-# Now part of the default, changed with Rail 7
-
-# Can delete this file
+# Default is :json, otherwise need to set and something in Hartl's keeping track of logins requires this to not be the default

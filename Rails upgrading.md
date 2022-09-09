@@ -92,6 +92,11 @@ Got through them all and mostly workds
 streets.js:473 Uncaught TypeError: Cannot set properties of null (setting 'onmousedown') on /map
 streets.js:270 Uncaught TypeError: $(...).imageMapResize is not a function in console for new street (which maybe wasn't watching before, error exists) FIXME
 
+Oops. I hadn't worked through new_framework_defaults_6_0 or 6_1.rb and got an error when changed in application.rb
+Work through those OK with 6.0. and 6.1. Didn't see any issues except
+Had to put `Rails.application.config.action_dispatch.cookies_serializer = :hybrid` in for something to do with Hartl logins
+
+Now to Ruby 3 which guide said I should have done first
 
 
 

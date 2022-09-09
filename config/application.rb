@@ -9,9 +9,9 @@ Bundler.require(*Rails.groups)
 module LaHistStreet
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.1
+    config.load_defaults 7.0
 
-    # From pre Rails 6
+    # From pre Rails 6, probably should be somewhere else or take it out and see if app works
     config.serve_static_assets = true # https://devcenter.heroku.com/articles/rails-4-asset-pipeline
 
     # Configuration for the application, engines, and railties goes here.
@@ -20,6 +20,5 @@ module LaHistStreet
     # in config/environments, which are processed later.
     #
     config.time_zone = "Pacific Time (US & Canada)" # off by default
-    # config.eager_load_paths << Rails.root.join("extras")
   end
 end
