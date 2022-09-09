@@ -96,92 +96,10 @@ Oops. I hadn't worked through new_framework_defaults_6_0 or 6_1.rb and got an er
 Work through those OK with 6.0. and 6.1. Didn't see any issues except
 Had to put `Rails.application.config.action_dispatch.cookies_serializer = :hybrid` in for something to do with Hartl logins
 
-Now to Ruby 3 which guide said I should have done first
+Now to Ruby 3 which guide said I should have done before Rails upgrade
 
+First tried a `fly deploy` and stopped at migrations, so I hide all the migrations by renaming and try again.
+Success, now the db and succeeded. See Implementation notes
 
+chruby ruby-3.1.2 and works
 
-
-===== diff just to have copy
---- development.rb
-+++ (clipboard)
-@@ -1,10 +1,8 @@
--require "active_support/core_ext/integer/time"
--
- Rails.application.configure do
-   # Settings specified here will take precedence over those in config/application.rb.
- 
--  # In the development environment your application's code is reloaded any time
--  # it changes. This slows down response time but is perfect for development
-+  # In the development environment your application's code is reloaded on
-+  # every request. This slows down response time but is perfect for development
-   # since you don't have to restart the web server when you make code changes.
-   config.cache_classes = false
- 
-@@ -25,13 +23,15 @@
-       'Cache-Control' => "public, max-age=#{2.days.to_i}"
-     }
-   else
--    config.action_controller.perform_caching = false
-+    config.action_controller.perform_caching = true
- 
-     config.cache_store = :null_store
-   end
--
--  # Store uploaded files on the local file system (see config/storage.yml for options).
--  config.active_storage.service = :local
-+  
-+  # https://blog.bigbinary.com/2020/07/29/rails-6-1-adds-annotate_rendered_view_with_filenames-to-annotate-html-output.html
-+  # Now the rendered HTML will contain comment indicating the begining and end of each template.
-+  # Off until update to Rails 6.1
-+  # config.action_view.annotate_rendered_view_with_filenames = true
- 
-   # Don't care if the mailer can't send.
-   config.action_mailer.raise_delivery_errors = false
-@@ -41,12 +41,6 @@
-   # Print deprecation notices to the Rails logger.
-   config.active_support.deprecation = :log
- 
--  # Raise exceptions for disallowed deprecations.
--  config.active_support.disallowed_deprecation = :raise
--
--  # Tell Active Support which deprecation messages to disallow.
--  config.active_support.disallowed_deprecation_warnings = []
--
-   # Raise an error on page load if there are pending migrations.
-   config.active_record.migration_error = :page_load
- 
-@@ -62,15 +56,25 @@
-   config.assets.quiet = true
- 
-   # Raises error for missing translations.
--  # config.i18n.raise_on_missing_translations = true
--
--  # Annotate rendered view with file names.
--  # config.action_view.annotate_rendered_view_with_filenames = true
-+  # config.action_view.raise_on_missing_translations = true
- 
-   # Use an evented file watcher to asynchronously detect changes in source code,
--  # routes, locales, etc. This feature depends on the listen gem.
--  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
--
--  # Uncomment if you wish to allow Action Cable access from any origin.
--  # config.action_cable.disable_request_forgery_protection = true
-+  # routes, locales, etc. This feature depends on the listen gem. 
-+  # https://stackoverflow.com/questions/38663706/loaderror-could-not-load-the-listen-gem-rails-5
-+  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-+  
-+  # Hartl Listing 11.2.2 
-+  config.action_mailer.raise_delivery_errors = true
-+  config.action_mailer.delivery_method = :test
-+  host = 'localhost:3000' # Don't use this literally; use your local dev host instead
-+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
-+  
-+  # Moved to here from destination mentioned below because of error uploading to Heroku
-+  # e.g. in config/initializers/better_errors.rb
-+  # This will stop BetterErrors from trying to render larger objects, which can cause
-+  # slow loading times and browser performance problems. Stated size is in characters and refers
-+  # to the length of #inspect's payload for the given object. Please be aware that HTML escaping
-+  # modifies the size of this payload so setting this limit too precisely is not recommended.  
-+  # default value: 100_000
-+  # BetterErrors.maximum_variable_inspect_size = 100_000 # Shutoff because of some error, removed gem too
- end

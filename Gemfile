@@ -9,7 +9,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.7.6' # Rails 7 minimum 2.7
+ruby '3.1.2' # Rails 7 minimum 2.7
 # gem 'bundler' # With Ruby 2.6, bundler is part of the default rails
 
 gem 'rails', '~> 7.0' # Careful of scripts see. https://bauland42.com/ruby-on-rails-content-security-policy-csp/o. Also see development.rb if update to 6.1

@@ -579,3 +579,9 @@ https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#active-storage-now-r
 When ready for 6 to 7 https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-6-1-to-rails-7-0
 See Rails upgrading
 gem "image_processing", "~> 1.0" # Rails 6.1 upgrade
+
+`fly wireguard create` > la-hist.conf and load into Wireguard app
+
+To upload db https://community.fly.io/t/pg-database-migration-from-heroku-not-working/6881/8:
+`pg_restore -v -d postgres://la_hist_streets:cWiEQ023MDUDWPQ@top2.nearest.of.la-hist-streets-db.internal:5432/la_hist_streets < db/dumps/latest.from_Heroku.2022.08.26.dump`
+Works but some errors 'multiple primary keys'
