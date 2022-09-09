@@ -103,3 +103,5 @@ Success, now the db and succeeded. See Implementation notes
 
 chruby ruby-3.1.2 and works
 
+Now move beyond webpacker
+
