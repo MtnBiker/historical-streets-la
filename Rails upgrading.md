@@ -1,3 +1,4 @@
+### Rails, Ruby upgrades and moving to fly
 Change the Rails version number in the Gemfile and run bundle update.
 Change the versions for Rails JavaScript packages in package.json and run yarn install, if running on Webpacker.
 Run the Update task.
@@ -103,5 +104,5 @@ Success, now the db and succeeded. See Implementation notes
 
 chruby ruby-3.1.2 and works
 
-Now move beyond webpacker
+Now move beyond webpacker. See Implementation Notes
 

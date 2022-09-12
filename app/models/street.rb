@@ -4,8 +4,6 @@ class Street < ApplicationRecord
   validates :previous_name, :current_name, presence: true
   # before_save :json_to_geojson # or create or update
   # before_save :calculate_length # of segment
-  
-  # set_rgeo_factory_for_column(:extent, RGeo::Geographic.spherical_factory(:srid => 4326)) # http://daniel-azuma.com/articles/georails/part-3 if I decide to use this column
       
 # Used by search on streets>index. Maybe came from here https://stackoverflow.com/questions/39685055/self-search-body-rails
   def self.search(search)
