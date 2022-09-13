@@ -1,6 +1,7 @@
 ### To Be Done
 * Can't drawn in edit/new streets
 * Move to better asset management (no webpacker)
+* Add links to photos on an overview map. Indicate with an arrow pointing in the view direction. Have photo pop up on rollover or have it go to a page that shows the photo and the map with what is being seen on both (have to work out what this means)
 * Stimulus for putting linked document once select.
 
 * Color lines on main map to show which end is resid vs. resto

@@ -598,3 +598,5 @@ Next would be to get rid of webpacker. But is it worth is for this now? And can'
 [![](https://data.jsdelivr.com/v1/package/npm/leaflet.timeline/badge)](https://www.jsdelivr.com/package/npm/leaflet.timeline)
 
 https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js
+
+Can draw segments in Safari but not usually Chrome, but saved in neither.
