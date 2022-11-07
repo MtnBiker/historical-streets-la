@@ -42,7 +42,7 @@ gem 'jbuilder' , '~> 2.9'
 gem 'bcrypt', '~> 3.1.11'
 # Undo changes and record of who changed what
 gem 'paper_trail'
-gem 'carrierwave', '1.1.0' # Rails 5.2  added this capability, but requires reworking
+gem 'carrierwave', '1.3.2' # Rails 5.2  added this capability, but requires reworking
 
 gem "image_processing", "~> 1.0" # Rails 6.1 upgrade, but I don't think I'm using this
 
